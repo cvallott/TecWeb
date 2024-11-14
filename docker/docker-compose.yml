@@ -26,6 +26,7 @@ services:
       - "3307:3306"  # Verifica che la porta sia configurata correttamente
     volumes:
       - db_data:/var/lib/mysql
+      - ./mariadb.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - lamp-network
 
