@@ -23,7 +23,7 @@ services:
       - MYSQL_DATABASE=spring_boot_mysql
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     ports:
-      - "3307:3306"  # Verifica che la porta sia configurata correttamente
+      - "3307:3306" 
     volumes:
       - db_data:/var/lib/mysql
       - ./mariadb.cnf:/etc/mysql/conf.d/my.cnf
