@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --bgcolor: #FFF;
+    --txtcolor: #985342;
+    --linkcolor: #000;
+    --visitedcolor: #666;
+    --menucolor: #115783;
+}
+
+html{
+    background-image: url(../assets/grafiche/sfondo.jpg);
+    background-color: var(--bgcolor);
+    background-size: cover;
+}
+
+body{
+    font-size: 100%;
+    font-family: 'Lexend', Roboto, sans-serif;
+    line-height: 1.5em;
+    margin: auto;
+}
+
+/*
+------------------
+SEZIONE HEADER
+------------------
+ */
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bgcolor);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7%;
+}
+
+header img{
+    padding: 0 0.5em;
+    height: 100%;
+}
+
+#menu{
+    font-size: 1.3em;
+    padding: 1em;
+}
+
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1em;
+}
+
+#menu a:link{
+    color: var(--linkcolor);
+}
+
+#menu a:visited{
+    color: var(--visitedcolor);
+}
+
+#menu ul li{
+    display: inline-block;
+    color: var(--menucolor);
+    font-weight: bold;
+    transition: color 0.5s;
+}
+
+#menu ul li a:hover{
+    color: var(--txtcolor);
+}
+
+/*
+------------------
+SEZIONE CONTENUTO
+------------------
+ */
+#breadcrumb{
+    margin-top: 100px;
+}
+
+/*
+------------------
+SEZIONE CONTENUTO
+------------------
+ */
+main{
+    color: var(--txtcolor);
+    margin-top: calc(7% + 2em);
+}
+
