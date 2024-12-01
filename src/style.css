@@ -28,7 +28,7 @@ body{
 ------------------
 SEZIONE HEADER
 ------------------
- */
+*/
 header{
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    height: 7%;
+    height: 9%;
 }
 
 header img{
@@ -80,20 +80,27 @@ header img{
 
 /*
 ------------------
-SEZIONE CONTENUTO
+SEZIONE BREADCRUMB
 ------------------
- */
-#breadcrumb{
-    margin-top: 100px;
-}
+*/
 
 /*
 ------------------
 SEZIONE CONTENUTO
 ------------------
- */
-main{
+*/
+#intro {
+    background-image: url('../assets/img/margherita.jpeg');
+    background-size: cover;
+    background-attachment: scroll; /* Non fisso, si muove con lo scroll */
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: var(--txtcolor);
-    margin-top: calc(7% + 2em);
+    text-align: center;
+    font-size: 1.5em;
+    height: 100vh;
 }
 
