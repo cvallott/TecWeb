@@ -1,67 +1,94 @@
 <!DOCTYPE html>
-
 <html lang="it">
 <head>
     <meta charset="utf-8">
     <title>Non solo pizza</title>
-    <meta name="description" content="Sito ufficiale di Non solo pizza Scandolara. Scopri il nostro menù!">
-    <meta name="keywords" content="TODO">
-    <meta name="author" content="TODO">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- per il font - questa modalità premia l'efficienza se c'è un numero dia ccessi concorrente consistente-->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Questo è il sito ufficiale di Non solo Pizza. Una pizzeria e friggitoria d'asporto a gestione familiare a Scandolara. Venite a provare il nostro menù e le nostre pizze Zucca e gorgonzola, Pesto e mozzarella di bufala, Calzone alla Nutella"> 
+    <meta name="keywords" content="Non solo pizza,Scandolara,friggitoria,asporto,famiglia,menù,Zucca e gorgonzola,Pesto e mozzarella di bufala,Calzone alla Nutella">
+    <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com"> per il font - questa modalità premia l'efficienza se c'è un numero dia ccessi concorrente consistente-->
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">-->
     <link rel="stylesheet" href="style.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body id="homePage">
-<header>
-    <img class="logo" src="../assets/logo/logo.jpg" alt="Logo Non solo pizza">
-    <nav id="menu">
-        <ul>
-            <li id="currentLink" lang="en">Home</li>
-            <li><a href="chi-siamo.html">Chi siamo</a></li>
-            <li><a href="Menu_Prenota.html">Menù-Prenota</a></li>
-            <li>
-                <a href="area.html" id="ha-sottomenu">Area riservata</a>
-                <ul id="sottomenu">
-                    <li><a href="#">Consulenza</a></li>
-                    <li><a href="#">Sviluppo</a></li>
-                    <li><a href="#">Marketing</a></li>
-                </ul>
-            </li> 
-        </ul>
+
+    <header>
+        <img class="logo" src="../assets/logo/logo.jpg" alt="Logo Non solo pizza">
+        <nav id="menu">
+            <ul>
+                <li id="currentLink" lang="en">Home</li>
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="menu.html">Menù-Prenota</a></li>
+                <li><a href="area-riservata.html">Area riservata</a></li> <!-- NB. MOLTO PROBABILMENTE NON SERVIRA' IL DOPPIO ELENCO PUNTATO E AREA RISERVATA NON SARA' UN LINK-->
+                <li><a href="login.html"><span lang=en>Login</span></a></li>
+                <li><a href="registrati.html">Registrati</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <nav id="breadcrumb">
+        <p>Sei in: <span lang="en">Home</span></p>
     </nav>
-</header>
-<nav id="breadcrumb">
-    <p>Sei in: <span lang="en">Home</span></p>
-</nav>
-<main>
-    <section id="intro">
-        <h1>Non solo pizza</h1>
-        <h2>Pizzeria e friggitoria Scandolara</h2>
-    </section>
+    <main>
+        <section id="intro">
+            <h1>Non solo pizza</h1>
+            <h2>Pizzeria e friggitoria Scandolara</h2>
+        </section>
 
-    <section id="content">
-        <h2>La nostra filosofia</h2>
-        <p>TODO</p>
-        <a href="chi-siamo.html">Chi siamo</a>
+        <section id="filosofia">
+            <h2>La nostra filosofia</h2>
+            <p>A<strong>Non Solo Pizza</strong>, siamo molto più di una semplice <strong>pizzeria</strong>: siamo una <strong>famiglia</strong> che crede nel valore della tradizione, nella qualità degli ingredienti e nel piacere del buon cibo. Oltre alle nostre <strong>pizze</strong>, preparate con passione e attenzione, offriamo anche una selezione di <strong>specialità fritte</strong> che portano in tavola sapori autentici e irresistibili.</p>
 
-        <h2>Scopri i nostri fuori menù</h2>
-        <p>Zucca e gorgonzola</p>
-        <p>Pesto e mozzarella di bufala</p>
-        <p>Calzone alla Nutella</p>
+            <p>La qualità è al centro di tutto ciò che facciamo. Utilizziamo esclusivamente ingredienti freschi, locali e a chilometro zero, perché crediamo che il legame con il territorio sia fondamentale per offrire un prodotto genuino e sostenibile. Ogni impasto, ogni condimento e ogni frittura sono realizzati con cura e rispetto, seguendo ricette e metodi tramandati in <strong>famiglia</strong>.</p>  
+                
+            <p>Per noi, cibo significa condivisione e calore, e il nostro obiettivo è far sentire ogni cliente parte della nostra storia. Non importa se scegli una <strong>pizza</strong> fragrante o una delle nostre croccanti <strong>specialità fritte</strong>: ogni boccone è un gesto d’amore verso la tradizione e la buona cucina.</p>
+                
+            <p><strong>Non Solo Pizza</strong> è il luogo dove passione, <strong>famiglia</strong> e territorio si incontrano, per offrirti un’esperienza autentica e indimenticabile.</p>
+            
+            <a href="chi-siamo.html">Chi siamo</a>
+        </section>
 
-        <h2>Il nostro menù completo</h2>
-        <p>Tasto per download</p>
+        <section id="fuori-menu">
+            <h2>Scopri i nostri fuori menù</h2>
+            <ul>
+                <li><strong>Zucca e gorgonzola</strong></li>
+                <li><strong>Pesto e mozzarella di bufala</strong></li>
+                <li><strong>Calzone alla Nutella</strong></li>
+            </ul>
+        </section> 
 
-        <h2>Dove e quando trovarci</h2>
+        <section id="menu">
+            <h2>Il nostro menù completo</h2><!--magari scrivere qualche frase di descrizione del menù-->
+            <p>Tasto per download</p>
+        </section>
+
+        <section id="info">
+            <h2>Dove e quando trovarci</h2>
+            <p>Indirizzo: Via Scandolara 81, Scandolara TV</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.1918530980573!2d12.166931115585855!3d45.79249697910607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4778d9ef4bb36e1f%3A0x6b4f7523b15e8d39!2sVia%20Scandolara%2C%2081%2C%2031010%20Scandolara%20TV%2C%20Italia!5e0!3m2!1sit!2sit!4v1693678006894!5m2!1sit!2sit" ></iframe>
+            
+
+            <!--in CSS posso inserire questi attributi
+            width="600" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"-->
+            <p>Orari:</p>
+
+            <!--NON SO QUALI SIANO GLI ORARI, SE SONO TUTTI UGUALI POSSIAMO INSERIRE UNA SEMPLICE SCRITTA IN UN PARAGRAFO
+                SE SONO DIVERSI HA SENSO METTERE UNA TABELLA PER MIGLIORARE LA PRESENTAZIONE PER I VEDENTI RENDENDOLA ACCESSIBILE PER I NON VEDENTI-->
+        </section>
+    </main>
+    <footer>
+        <img class="imgValidCode" src="./images/valid-xhtml10.png" alt="HTML valido">
+        <p>Indirizzo: Via Scandolara 81, Scandolara TV</p>
         <p>Orari</p>
-    </section>
-</main>
-<footer>
-    <img class="imgValidCode" src="./images/valid-xhtml10.png" alt="HTML valido">
-    <p>Indirizzo</p>
-    <p>Orari</p>
-    <p>Contatti</p>
-</footer>
+        <p>Contatti: 0422345324</p>
+    </footer>
 </body>
 </html>
