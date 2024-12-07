@@ -16,15 +16,19 @@
 <body id="homePage">
 
     <header>
-        <img class="logo" src="../assets/logo/logo.jpg" alt="Logo Non solo pizza">
+        <img src="../assets/logo/logo.jpg" alt="Logo Non solo pizza">
         <nav id="menu">
             <ul>
                 <li id="currentLink" lang="en">Home</li>
                 <li><a href="chi-siamo.html">Chi siamo</a></li>
                 <li><a href="menu.html">Menù-Prenota</a></li>
-                <li><a href="area-riservata.html">Area riservata</a></li> <!-- NB. MOLTO PROBABILMENTE NON SERVIRA' IL DOPPIO ELENCO PUNTATO E AREA RISERVATA NON SARA' UN LINK-->
-                <li><a href="login.html"><span lang=en>Login</span></a></li>
-                <li><a href="registrati.html">Registrati</a></li>
+                <div id="dropdown">
+                    <li><button id="droplink">Area riservata</button></li>
+                    <div id="dropdown-content">
+                        <li><a href="login.html"><span lang=en>Login</span></a></li>
+                        <li><a href="registrati.html">Registrati</a></li>
+                    </div>
+                </div>
             </ul>
         </nav>
     </header>
