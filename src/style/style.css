@@ -12,7 +12,8 @@
 }
 
 html{
-    /* background-image: url(../assets/grafiche/sfondo.jpg); */
+    background-image: url(../../assets/grafiche/sfondo.jpg);
+    /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
     background-color: var(--bgcolor);
     background-size: cover;
 }
@@ -34,7 +35,7 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: var(--bgcolor);
-    position: absolute;
+    position: fixed;
     height: 9%;
     width: 100%;
     z-index: 10;
@@ -51,62 +52,38 @@ header img {
     margin-right: 1.5em;
 }
 
-
-
-/* Dropdown Button */
 #droplink {
     background-color: var(--bgcolor);
-    padding: 16px;
+    padding: 1em;
     border-radius: 0.5em;
-  /*  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  /*margin: 0;*/ /* Important for vertical align on mobile phones */
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
+}
+
 #dropdown {
     position: relative;
     display: inline-block;
-    /*float: left;
-    overflow: hidden;*/
 }
 
-/* Dropdown Content (Hidden by Default) */
 #dropdown-content {
-display: none;
-position: absolute;
-background-color: var(--bgcolor);
-min-width: 160px;
-/*z-index: 1;*/
+    display: none;
+    position: absolute;
+    background-color: var(--bgcolor);
+    width: 7em;
+    height: 6em;
 }
 
-/* Links inside the dropdown */
 #dropdown-content a {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-/* float: none;
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-text-align: left;*/
+    color: blue;
+    padding: 0.8em 1em;
+    text-decoration: none;
+    display: block;
 }
 
-/* Change color of dropdown links on hover */
-#dropdown-content li:hover {background-color: yellow;}
+#dropdown-content a:hover {color: green;}
 
-/* Show the dropdown menu on hover */
 #dropdown:hover #dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 #dropdown:hover #droplink {background-color: #3e8e41;}
+
 /*
 ------------------
 SEZIONE BREADCRUMB
@@ -116,14 +93,24 @@ SEZIONE BREADCRUMB
     position: absolute; /* absolute: rimane fisso -- fixed: si muove con lo scroll */
     top: 9%; /* Posizionato esattamente sotto l'header */
     width: 100%; /* Stesso allineamento dell'header */
-    background-color: var(--bgcolor);
+    background-color: var(--visitedcolor);
     /*text-align: center; Testo centrato */
-    padding: 9px 2; /* '2' inserito per definire l'altezza */
-    border-bottom: 1px solid #ccc; /* piccolo bordo, miglioramento visivo */
+    /*height: 2em; /* Imposta un'altezza fissa */
+    line-height: 1em; /* Allinea verticalmente il testo */
+    padding: 1.2em;
+    border-bottom: 1px solid green; /* piccolo bordo, miglioramento visivo */
     z-index: 9; /* Assicurati che rimanga sopra altri elementi */
 }
 
+#breadcrumb p {
+    color: pink;
+}
+
 /*
+------------------
+SEZIONE MAIN
+------------------
+*/
 /* Stile per la sezione filosofia */
 #filosofia {
     padding: 20px;
@@ -147,11 +134,11 @@ SEZIONE BREADCRUMB
 
 /* Stile per le immagini */
 .column img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%; 
+    height: auto; 
     object-fit: cover; /* utile a mantenere le proporzioni delle imgs */
     border-radius: 5px; /* effetto rotondo */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* aggiunta lieve ombra sotto l'immagine */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* aggiunta lieve ombra sotto l'immagine */
 }
 
 /* Aggiunta di un contenitore specifico per un layout più ordinato */
@@ -172,7 +159,7 @@ SEZIONE CONTENUTO
 ------------------
 */
 #intro {
-    background-image: url('../assets/img/margherita.jpeg');
+    background-image: url('../../assets/pizze/margherita.jpeg');
     background-size: cover;
     background-attachment: scroll; /* Non fisso, si muove con lo scroll */
     background-position: center;
