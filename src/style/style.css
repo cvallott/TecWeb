@@ -111,16 +111,40 @@ SEZIONE BREADCRUMB
 SEZIONE MAIN
 ------------------
 */
-/* Stile per la sezione filosofia */
-#filosofia {
-    padding: 5em;
+section {
+    padding: 3em;
     background-color: #d5d0d0;
     margin-left: 5%;
     margin-right: 5%;
 }
 
-.column {
-    display:flex;
+section h2 {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.main-content {
+    text-align: center;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    line-height: 2em;
+}
+
+.home-button {
+    background-color: blueviolet;
+    padding: 0.8em;
+    border-radius: 0.5em;
+    margin-top: 2em;
+}
+
+#filosofia {
+    background-color: chartreuse;
+}
+
+#container {
+    display: flex;
     gap: 0.5em;
     justify-content: space-between;
     align-items: center;
@@ -129,7 +153,7 @@ SEZIONE MAIN
     flex-wrap: wrap;
 }
 
-.column img {
+#container img {
     max-width: 100%;
     height: 15em;
     object-fit: cover;
@@ -139,10 +163,34 @@ SEZIONE MAIN
     margin: 0 auto;
 }
 
-#filosofia h2{
-    text-align: center;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+#fuori-menu {
+    background-color: darkslateblue;
+}
+
+#fuori-menu .main-content {
+    flex-direction: row;
+    /*gap: 0.5em;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    flex-wrap: wrap;*/
+}
+
+#lista-FM li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 3em;
+}
+
+#lista-FM li img {
+    /*max-width: 5%;*/
+    height: 15em;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    margin: 0 auto;
 }
 
 /*
