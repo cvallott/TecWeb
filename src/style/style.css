@@ -213,3 +213,39 @@ SEZIONE CONTENUTO
     height: 100vh;
 }
 
+
+/*
+------------------
+CHI SIAMO PAGE
+------------------
+*/
+
+#chi-siamo-contenitore{
+    display:flex;
+    justify-content: flex-start;  
+     
+}
+
+.chi-siamo-items{
+    flex-grow: 1;
+}
+
+.chi-siamo-items:hover{
+    background-color: #666;
+}
+
+.chi-siamo-titoli{
+    display:flex;
+    justify-content:flex-start;
+
+}
+
+.chi-siamo-titoli h2{
+    margin:auto;
+}
+
+.chi-siamo-items p{
+    margin-top:0.5em;
+}
+
+
