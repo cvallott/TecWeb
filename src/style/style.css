@@ -277,7 +277,7 @@ CHI SIAMO PAGE
     margin-top:0.5em;
 }
 
-#chi-siamo-storia{
+.chi-siamo-storia{
     background-color: #FFF;
     padding-left:5%;
     padding-right:5%;
@@ -291,7 +291,7 @@ CHI SIAMO PAGE
 
 
 
-#chi-siamo-storia img {
+.chi-siamo-storia img {
     width: 35%;
     height:70%;
   }
