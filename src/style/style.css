@@ -126,17 +126,17 @@ SEZIONE MAIN
     height: 100vh;
 }
 
-section:not(#intro) {
+/*section:not(#intro) {
     padding: 3em;
     margin-left: 5%;
     margin-right: 5%;
-}
+}*/
 
-section h2 {
+/*section h2 {
     text-align: center;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-}
+}*/
 
 .main-content {
     text-align: center;
@@ -220,14 +220,43 @@ CHI SIAMO PAGE
 ------------------
 */
 
+
+
+#chi-siamo-intro {
+    background-image: url('../../assets/altre/chi-siamo/chi-siamo-intro.jpg');
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center center;
+    /*color: var(--txtcolor);*/
+    text-align: center;
+    font-size: 1.5em;
+    height: 50vh;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+}
+
+
+
+#chi-siamo-intro img {
+    max-width: 100%;
+    height: auto;
+}
+
 #chi-siamo-contenitore{
     display:flex;
     justify-content: flex-start;  
+    background-color: #007BFF;
      
 }
 
 .chi-siamo-items{
     flex-grow: 1;
+    padding:3em;
 }
 
 .chi-siamo-items:hover{
@@ -247,5 +276,24 @@ CHI SIAMO PAGE
 .chi-siamo-items p{
     margin-top:0.5em;
 }
+
+#chi-siamo-storia{
+    background-color: #FFF;
+    padding-left:5%;
+    padding-right:5%;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    gap:10em;
+    
+}
+
+
+
+
+#chi-siamo-storia img {
+    width: 35%;
+    height:70%;
+  }
 
 
