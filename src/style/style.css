@@ -126,17 +126,17 @@ SEZIONE MAIN
     height: 100vh;
 }
 
-/*section:not(#intro) {
+/*section:not(#intro)*/ .aaa {
     padding: 3em;
     margin-left: 5%;
     margin-right: 5%;
-}*/
+}
 
-/*section h2 {
+.aaa h2 {
     text-align: center;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-}*/
+}
 
 .main-content {
     text-align: center;
@@ -163,7 +163,7 @@ SEZIONE MAIN
 }
 
 #filosofia {
-    background-color: chartreuse;
+    background-color: beige;
 }
 
 #container {
@@ -187,7 +187,7 @@ SEZIONE MAIN
 }
 
 #fuori-menu {
-    background-color: darkslateblue;
+    background-color: darkgray;
 }
 
 #fuori-menu .main-content {
@@ -214,14 +214,31 @@ SEZIONE MAIN
     margin: 0 3em;
 }
 
+#downloadMenu {
+    background-color: khaki;
+}
+
+#info {
+    background-color: cadetblue;
+}
+
+#info iframe {
+    width: 60em;
+    height: 20em;
+    border: 0;
+}
+
+#info .main-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /*
 ------------------
 CHI SIAMO PAGE
 ------------------
 */
-
-
-
 #chi-siamo-intro {
     background-image: url('../../assets/altre/chi-siamo/chi-siamo-intro.jpg');
     background-size: cover;
@@ -239,8 +256,6 @@ CHI SIAMO PAGE
     justify-content: center; 
     align-items: center; 
 }
-
-
 
 #chi-siamo-intro img {
     max-width: 100%;
@@ -287,9 +302,6 @@ CHI SIAMO PAGE
     gap:10em;
     
 }
-
-
-
 
 .chi-siamo-storia img {
     width: 35%;
