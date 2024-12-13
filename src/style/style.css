@@ -112,7 +112,7 @@ SEZIONE MAIN
 ------------------
 */
 #intro {
-    background-image: url('../../assets/pizze/margherita.jpeg');
+    background-image: url('../../assets/pizze/sfondomarghe.png');
     background-size: cover;
     background-attachment: scroll; /* Non fisso, si muove con lo scroll */
     background-position: center;
