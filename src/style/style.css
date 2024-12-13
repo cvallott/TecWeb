@@ -126,6 +126,16 @@ SEZIONE MAIN
     height: 100vh;
 }
 
+.stacco{
+    background-image: url("../../assets/grafiche/sfondo.jpg");
+    height: 3em;
+}
+
+#staccoMin{
+    background-image: url("../../assets/grafiche/sfondo.jpg");
+    height: 1.5em;
+}
+
 #intro h1{
     font-size: 2em;
     margin-top: 2em;
@@ -151,6 +161,7 @@ SEZIONE MAIN
 
 .aaa {
     padding: 3em;
+    background-color: beige;
 }
 
 .aaa h2 {
@@ -183,9 +194,9 @@ SEZIONE MAIN
     background-color: white;
 }
 
-#filosofia {
+/* #filosofia {
     background-color: beige;
-}
+} */
 
 #filosofia .home-button {
     display: block;
@@ -232,9 +243,9 @@ SEZIONE MAIN
     
 }
 
-#fuori-menu {
+/* #fuori-menu {
     background-color: beige;
-}
+} */
 
 #fuori-menu .main-content {
     display: flex;
@@ -260,12 +271,11 @@ SEZIONE MAIN
     margin: 0 3em;
 }
 
-#downloadMenu {
+/* #downloadMenu {
     background-color: beige;
-}
+} */
 
 .download-section {
-    background-color: #f7e283; /* Colore di sfondo simile a quello dell'immagine */
     padding: 20px;
     font-family: Arial, sans-serif;
     text-align: center;
