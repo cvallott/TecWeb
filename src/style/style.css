@@ -266,6 +266,7 @@ CHI SIAMO PAGE
     display:flex;
     justify-content: flex-start;  
     background-color: #007BFF;
+    /*flex-wrap: wrap;*/
      
 }
 
@@ -292,7 +293,7 @@ CHI SIAMO PAGE
     margin-top:0.5em;
 }
 
-.chi-siamo-storia{
+.chi-siamo-boxes{
     background-color: #FFF;
     padding-left:5%;
     padding-right:5%;
@@ -303,9 +304,15 @@ CHI SIAMO PAGE
     
 }
 
-.chi-siamo-storia img {
+.chi-siamo-boxes img {
     width: 35%;
     height:70%;
   }
 
+.chi-siamo-testo{
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+
+}
 
