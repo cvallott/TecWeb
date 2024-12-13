@@ -149,10 +149,8 @@ SEZIONE MAIN
     font-size: 0.7em;
 }
 
-/*section:not(#intro)*/ .aaa {
+.aaa {
     padding: 3em;
-    margin-left: 5%;
-    margin-right: 5%;
 }
 
 .aaa h2 {
@@ -210,7 +208,7 @@ SEZIONE MAIN
 }
 
 #fuori-menu {
-    background-color: darkgray;
+    background-color: beige;
 }
 
 #fuori-menu .main-content {
@@ -238,8 +236,70 @@ SEZIONE MAIN
 }
 
 #downloadMenu {
-    background-color: khaki;
+    background-color: beige;
 }
+
+.download-section {
+    background-color: #f7e283; /* Colore di sfondo simile a quello dell'immagine */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.download-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Per gestire il layout su dispositivi piccoli */
+}
+
+.download-column {
+    flex: 1 1 10%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.download-column:first-child {
+    flex: 2; /* La prima colonna è il doppio della seconda */
+}
+
+.download-column h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #000; /* Testo nero */
+}
+
+.download-column p {
+    font-size: 1em;
+    color: #333; /* Testo grigio scuro */
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.download-column a{
+    margin-top: 1em;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+
+
 
 #info {
     background-color: cadetblue;
