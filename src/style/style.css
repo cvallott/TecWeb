@@ -13,7 +13,7 @@
 }
 
 html{
-    background-image: url(../../assets/grafiche/sfondo.jpg);
+    /*background-image: url(../../assets/grafiche/sfondo.jpg); */
     /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
     background-color: var(--bgcolor);
     background-size: cover;
@@ -120,16 +120,37 @@ SEZIONE MAIN
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--txtcolor);
+    color: white;
     text-align: center;
     font-size: 1.5em;
     height: 100vh;
 }
 
-/*section:not(#intro)*/ .aaa {
+#intro h1{
+    font-size: 2em;
+    margin-top: 2em;
+}
+#intro h2{
+    font-size: 0.9em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+#intro a {
+    display: inline-block;
+    margin: 0.5em auto;
+    width: 15em;
+    padding: 0.5em;
+    background-color: transparent;
+    border: white 0.1em solid;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5em;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+.aaa {
     padding: 3em;
-    margin-left: 5%;
-    margin-right: 5%;
 }
 
 .aaa h2 {
@@ -212,7 +233,7 @@ SEZIONE MAIN
 }
 
 #fuori-menu {
-    background-color: darkgray;
+    background-color: beige;
 }
 
 #fuori-menu .main-content {
@@ -240,8 +261,70 @@ SEZIONE MAIN
 }
 
 #downloadMenu {
-    background-color: khaki;
+    background-color: beige;
 }
+
+.download-section {
+    background-color: #f7e283; /* Colore di sfondo simile a quello dell'immagine */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.download-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Per gestire il layout su dispositivi piccoli */
+}
+
+.download-column {
+    flex: 1 1 10%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.download-column:first-child {
+    flex: 2; /* La prima colonna è il doppio della seconda */
+}
+
+.download-column h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #000; /* Testo nero */
+}
+
+.download-column p {
+    font-size: 1em;
+    color: #333; /* Testo grigio scuro */
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.download-column a{
+    margin-top: 1em;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+
+
 
 #info {
     background-color: cadetblue;
@@ -276,10 +359,10 @@ CHI SIAMO PAGE
     width: 100%;
     margin: 0;
     left: 0;
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 
 #chi-siamo-intro img {
@@ -289,10 +372,10 @@ CHI SIAMO PAGE
 
 #chi-siamo-contenitore{
     display:flex;
-    justify-content: flex-start;  
+    justify-content: flex-start;
     background-color: #007BFF;
     /*flex-wrap: wrap;*/
-     
+
 }
 
 .chi-siamo-items{
@@ -326,7 +409,7 @@ CHI SIAMO PAGE
     justify-content:flex-start;
     align-items:center;
     gap:10em;
-    
+
 }
 
 .chi-siamo-boxes img {
@@ -340,4 +423,72 @@ CHI SIAMO PAGE
     justify-content:flex-start;
 
 }
+
+footer {
+    margin-top: 2em;
+    border-top: black 0.1em solid;
+    background-color: #f8f9fa;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.footer-column h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #007bff;
+}
+
+.footer-column p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+}
+
+.footer-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-bottom-row.footer-logos-center {
+    justify-content: center;
+}
+
+.footer-bottom-row p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.footer-logo {
+    height: 40px;
+}
+
+.footer-logo-extra {
+    height: 30px;
+    margin: 0 10px;
+}
+
+iframe {
+    border: none;
+    border-radius: 5px;
+}
+
+
 
