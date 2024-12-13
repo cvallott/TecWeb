@@ -131,7 +131,7 @@ SEZIONE MAIN
     height: 3em;
 }
 
-#staccoMin{
+.staccoMin{
     background-image: url("../../assets/grafiche/sfondo.jpg");
     height: 1.5em;
 }
@@ -435,7 +435,6 @@ CHI SIAMO PAGE
 }
 
 footer {
-    margin-top: 2em;
     border-top: black 0.1em solid;
     background-color: #f8f9fa;
     padding: 20px;
