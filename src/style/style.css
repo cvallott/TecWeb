@@ -158,18 +158,19 @@ iframe {
 }
 
 #torna-su {
-    position: fixed; /* Rende il link fisso nella pagina */
-    bottom: 2em; /* Spazio dal fondo della pagina */
-    right: 2em; /* Spazio dal lato destro */
-    background-color: #007bff; /* Colore di sfondo */
-    color: white; /* Colore del testo */
-    padding: 1em 1em; /* Padding per aumentare la superficie cliccabile */
-    text-decoration: none; /* Rimuove la sottolineatura del link */
-    border-radius: 0.7em; /* Angoli arrotondati */ì
+    position: sticky;
+    bottom: 2em;
+    right: 2em;
+    margin-left: auto; /* Spinge il link verso destra */
+    background-color: #007bff;
+    color: white;
+    padding: 1em 1em;
+    text-decoration: none;
+    border-radius: 0.7em;
 }
 
 #torna-su:hover {
-    background-color: #0056b3; /* Cambia colore quando il mouse è sopra */
+    background-color: #0056b3;
 }
 
 /*
@@ -179,6 +180,7 @@ HOME PAGE
 */
 #intro {
     background-image: url('../../assets/pizze/sfondomarghe.png');
+    background-color: gray;
     background-size: cover;
     background-attachment: scroll;
     background-position: center;
@@ -328,6 +330,19 @@ E FINISCE QUI*/
     border-radius: 5px;
     flex-grow: 1;
     margin: 0 auto;
+}
+
+#fuori-menu #FM-content li {
+    transition: 0.8s ease;
+}
+
+#fuori-menu #FM-content li:hover {
+    transform: scale(1.2);
+}
+
+#fuori-menu #FM-content a {
+    text-decoration: none;
+    color: black;
 }
 
 #lista-FM li {
