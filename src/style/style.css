@@ -108,13 +108,79 @@ SEZIONE BREADCRUMB
 
 /*
 ------------------
-SEZIONE MAIN
+SEZIONE FOOTER
+------------------
+*/
+footer {
+    background-color: #f8f9fa;
+    padding: 3em 4em 1em 4em;
+    color: #333;
+}
+
+#footer-top {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 3em;
+    border-bottom: 1px solid black;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 3em;
+}
+
+.footer-column h3 {
+    margin-bottom: 1.5em;
+    font-size: 1.2em;
+    color: #007bff;
+}
+
+.footer-column p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+iframe {
+    border: none;
+    border-radius: 5px;
+}
+
+#footer-bottom {
+    margin-top: 1.2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#footer-bottom #footer-logo {
+    height: 4em;
+}
+
+#torna-su {
+    position: fixed; /* Rende il link fisso nella pagina */
+    bottom: 2em; /* Spazio dal fondo della pagina */
+    right: 2em; /* Spazio dal lato destro */
+    background-color: #007bff; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    padding: 1em 1em; /* Padding per aumentare la superficie cliccabile */
+    text-decoration: none; /* Rimuove la sottolineatura del link */
+    border-radius: 0.7em; /* Angoli arrotondati */ì
+}
+
+#torna-su:hover {
+    background-color: #0056b3; /* Cambia colore quando il mouse è sopra */
+}
+
+/*
+------------------
+HOME PAGE
 ------------------
 */
 #intro {
     background-image: url('../../assets/pizze/sfondomarghe.png');
     background-size: cover;
-    background-attachment: scroll; /* Non fisso, si muove con lo scroll */
+    background-attachment: scroll;
     background-position: center;
     display: flex;
     flex-direction: column;
@@ -123,32 +189,21 @@ SEZIONE MAIN
     color: white;
     text-align: center;
     font-size: 1.5em;
-    height: 100vh;
-}
-
-.stacco{
-    background-image: url("../../assets/grafiche/sfondo.jpg");
-    height: 3em;
-}
-
-.staccoMin{
-    background-image: url("../../assets/grafiche/sfondo.jpg");
-    height: 1.5em;
-}
-
-#filosofia {
-    margin-bottom: 3em;
+    height: 100vh; /* CAPIRE SE POSSIAMO USARE vh */
+    margin-bottom: 1.5em;
 }
 
 #intro h1{
     font-size: 2em;
     margin-top: 2em;
 }
+
 #intro h2{
     font-size: 0.9em;
     padding-top: 1em;
     padding-bottom: 2em;
 }
+
 #intro a {
     display: inline-block;
     margin: 0.5em auto;
@@ -163,69 +218,64 @@ SEZIONE MAIN
     font-size: 0.7em;
 }
 
-.aaa {
-    padding: 3em;
-    background-color:  #FAF3E0;
+#intro a:hover {
+    background-color: black;
 }
 
-.aaa h2 {
+.home-section {
+    padding: 3em;
+    background-color: #FAF3E0;
+    text-align: center;
+}
+
+.home-section h2 {
     text-align: center;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 
-.main-content {
-    text-align: center;
+.home-section:not(:last-of-type) {
+    margin-bottom: 3em;
+}
+
+#download {
+    margin-bottom: 1.5em;
+}
+
+#filosofia p {
     padding-bottom: 0.5em;
-    display: flex;
-    flex-direction: column;
     line-height: 2em;
 }
 
-.home-button {
-    display: inline-block;
-    margin: 0.5em auto;
-    width: 15em;
-    padding: 0.5em;
-    background-color: #007BFF;
-    color: black;
-    text-decoration: none;
-    border-radius: 0.5em;
-    text-align: center;
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    max-width: 60%;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    margin: 0 auto;
 }
 
-.home-button:hover {
-    background-color: white;
+#container img {
+    width: calc(50% - 1em); /* POSSO USARE CALC????? */
+    height: 9em;
+    object-fit: cover;
 }
 
-/* #filosofia {
-    background-color: beige;
-} */
-
-#filosofia .home-button {
-    display: block;
-    margin: 0.5em auto;
-    width: 15em;
-    padding: 0.5em;
-    background-color: #007BFF;
-    color: black;
-    text-decoration: none;
-    border-radius: 0.5em;
-    text-align: center;
-}
-
+/* COMMENTO INIZIA QUI
 #container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     max-width: 60%;
-    gap: 1em; 
+    gap: 1em;
     align-items: center;
     padding-bottom: 2em;
     padding-top: 2em;
     margin: 0 auto;
     /*flex-wrap: wrap;*/
-}
-
+/*}
 #container img {
     /*max-width: 100%;
     height: auto;
@@ -234,37 +284,48 @@ SEZIONE MAIN
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex-grow: 1;
     margin: 0 auto;*/
-    width: 100%; /* Adatta l'immagine alla cella */
-    height: auto; /* Mantieni le proporzioni */
-    object-fit: cover;
+    /*width: 100%; /* Adatta l'immagine alla cella */
+    /*height: auto; /* Mantieni le proporzioni */
+    /*object-fit: cover;
     /*border-radius: 5px;*/
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 #container img {
     aspect-ratio: 5 / 3; /* Forza proporzioni uniformi (orizzontale 4:3) */
-    height: auto; /* Mantiene la dimensione proporzionata */
-    
+    /*height: auto; /* Mantiene la dimensione proporzionata */
+
+/*}
+E FINISCE QUI*/
+
+.home-section .home-button {
+    display: inline-block;
+    margin: 0.5em auto;
+    width: 15em;
+    padding: 0.5em;
+    background-color: #007BFF;
+    color: black;
+    text-decoration: none;
+    border-radius: 0.5em;
 }
 
-/* #fuori-menu {
-    background-color: beige;
-} */
+.home-section .home-button:hover {
+    background-color: white;
+}
 
-#fuori-menu .main-content {
+#fuori-menu #FM-content {
     display: flex;
     align-items: center;
     padding-bottom: 2em;
     padding-top: 2em;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-#fuori-menu .main-content li img {
+#fuori-menu #FM-content li img {
     max-width: 100%;
     height: 8em;
     object-fit: cover;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex-grow: 1;
     margin: 0 auto;
 }
@@ -275,33 +336,22 @@ SEZIONE MAIN
     margin: 0 3em;
 }
 
-/* #downloadMenu {
-    background-color: beige;
-} */
-
-.download-section {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-.download-container {
+#download {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap; /* Per gestire il layout su dispositivi piccoli */
+    max-width: 100%;
+    flex-wrap: wrap;
+    /* NEL MINI.CSS METTERE CHE LA COLONNA CON LE SCRITTE VA SOTTO A QUELLA CON IL BOTTONE, FORSE CON FLEX-DIRECTION: COLUMN; */
 }
 
 .download-column {
     flex: 1 1 10%;
-    margin: 10px;
-    padding: 10px;
+    padding: 1em;
 }
 
 .download-column:first-child {
-    flex: 2; /* La prima colonna è il doppio della seconda */
+    flex: 2;
 }
 
 .download-column h2 {
@@ -311,49 +361,7 @@ SEZIONE MAIN
 }
 
 .download-column p {
-    font-size: 1em;
-    color: #333; /* Testo grigio scuro */
-    margin-bottom: 20px;
     font-style: italic;
-}
-
-.download-column a{
-    margin-top: 1em;
-}
-
-.download-button {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.download-button:hover {
-    background-color: #0056b3;
-}
-
-
-
-
-#info {
-    background-color: cadetblue;
-}
-
-#info iframe {
-    width: 60em;
-    height: 20em;
-    border: 0;
-}
-
-#info .main-content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }
 
 /*
@@ -435,72 +443,6 @@ CHI SIAMO PAGE
     display:flex;
     flex-direction: column;
     justify-content:flex-start;
-
-}
-
-footer {
-    border-top: black 0.1em solid;
-    background-color: #f8f9fa;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-.footer-top {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.footer-column {
-    flex: 1;
-    margin: 0 10px;
-}
-
-.footer-column h3 {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    color: #007bff;
-}
-
-.footer-column p {
-    margin: 0;
-    line-height: 1.5;
-}
-
-.footer-bottom {
-    margin-top: 20px;
-}
-
-.footer-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.footer-bottom-row.footer-logos-center {
-    justify-content: center;
-}
-
-.footer-bottom-row p {
-    margin: 0;
-    font-size: 0.9em;
-}
-
-.footer-logo {
-    height: 40px;
-}
-
-.footer-logo-extra {
-    height: 30px;
-    margin: 0 10px;
-}
-
-iframe {
-    border: none;
-    border-radius: 5px;
 }
 
 
