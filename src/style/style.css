@@ -13,7 +13,7 @@
 }
 
 html{
-    /*background-image: url(../../assets/grafiche/sfondo.jpg); */
+    background-image: url(../../assets/grafiche/sfondo.jpg);
     /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
     background-color: var(--bgcolor);
     background-size: cover;
@@ -134,6 +134,10 @@ SEZIONE MAIN
 .staccoMin{
     background-image: url("../../assets/grafiche/sfondo.jpg");
     height: 1.5em;
+}
+
+#filosofia {
+    margin-bottom: 3em;
 }
 
 #intro h1{
