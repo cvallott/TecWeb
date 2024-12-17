@@ -254,15 +254,16 @@ HOME PAGE
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
-    max-width: 60%;
+    max-width: 50em;
     padding-bottom: 2em;
     padding-top: 2em;
     margin: 0 auto;
 }
 
 #container img {
-    width: calc(50% - 1em); /* POSSO USARE CALC????? */
-    height: 9em;
+    flex-grow: 1;
+    width: 22em;
+    height: 10em;
     object-fit: cover;
 }
 
