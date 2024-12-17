@@ -16,7 +16,7 @@ html{
     background-image: url(../../assets/grafiche/sfondo.jpg);
     /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
     background-color: var(--bgcolor);
-    background-size: cover;
+    background-size: contain;
 }
 
 body{
@@ -53,10 +53,27 @@ header img {
     margin-right: 1.5em;
 }
 
-#droplink {
-    background-color: var(--bgcolor);
-    padding: 1em;
-    border-radius: 0.5em;
+#menu li a {
+    text-decoration: none;
+    color: green;
+    position: relative;
+}
+
+/* DA VERIFICARE SE VA BENE */
+#menu li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 0;
+    height: 0.1em;
+    background-color: green;
+    transition: width 0.3s ease;
+}
+
+/* DA VERIFICARE SE VA BENE */
+#menu li a:hover::after {
+    width: 100%;
 }
 
 #dropdown {
@@ -157,20 +174,8 @@ iframe {
     height: 4em;
 }
 
-#torna-su {
-    position: sticky;
-    bottom: 2em;
-    right: 2em;
-    margin-left: auto; /* Spinge il link verso destra */
-    background-color: #007bff;
-    color: white;
-    padding: 1em 1em;
-    text-decoration: none;
-    border-radius: 0.7em;
-}
-
-#torna-su:hover {
-    background-color: #0056b3;
+#footer-top img {
+    height: 2em;
 }
 
 /*
@@ -352,7 +357,7 @@ E FINISCE QUI*/
     margin: 0 3em;
 }
 
-#download {
+#download-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -378,6 +383,17 @@ E FINISCE QUI*/
 
 .download-column p {
     font-style: italic;
+}
+
+.torna-su {
+    position: absolute;
+    right: 1em;
+    padding: 0.5em;
+    border-radius: 0.3em;
+}
+
+.torna-su:hover {
+    background-color: orange;
 }
 
 /*
