@@ -40,6 +40,7 @@ header {
     height: 9%;
     width: 100%;
     z-index: 10;
+    top:0;
 }
 
 header img {
@@ -108,8 +109,8 @@ SEZIONE BREADCRUMB
 ------------------
 */
 #breadcrumb {
-    position: absolute; /* absolute: rimane fisso -- fixed: si muove con lo scroll */
-    top: 9%; /* Posizionato esattamente sotto l'header */
+    /*position: absolute; /* absolute: rimane fisso -- fixed: si muove con lo scroll */
+    /*top: 9%; /* Posizionato esattamente sotto l'header */
     width: 100%; /* Stesso allineamento dell'header */
     background-color: var(--visitedcolor);
     /*text-align: center; Testo centrato */
@@ -117,6 +118,8 @@ SEZIONE BREADCRUMB
     padding: 1.2em;
     /*border-bottom: 1px solid green; /* piccolo bordo se dovesse servire*/
     z-index: 9; /* Assicurati che rimanga sopra altri elementi */
+    /*height:7%;*/
+    margin-top:6%;
 }
 
 #breadcrumb p {
@@ -386,7 +389,7 @@ E FINISCE QUI*/
 }
 
 .torna-su {
-    position: absolute;
+    position: relative;
     right: 1em;
     padding: 0.5em;
     border-radius: 0.3em;
@@ -403,6 +406,7 @@ CHI SIAMO PAGE
 */
 #chi-siamo-intro {
     background-image: url('../../assets/altre/chi-siamo/chi-siamo-intro.jpg');
+    background-colo:white;
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -417,6 +421,8 @@ CHI SIAMO PAGE
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    top:20%;
+    position:relative;
 }
 
 #chi-siamo-intro img {
@@ -430,6 +436,11 @@ CHI SIAMO PAGE
     background-color: #007BFF;
     /*flex-wrap: wrap;*/
 
+}
+@media screen and (max-width: 768px){
+    #chi-siamo-contenitore{
+        flex-wrap: wrap;
+    }
 }
 
 .chi-siamo-items{
@@ -464,22 +475,12 @@ CHI SIAMO PAGE
     align-items:center;
     gap:10em;
     padding-top:2.5em;
-    padding-down:2.5em;
+    padding-bottom:2.5em;
     }
-
-#chi-siamo-filosofia {
-    display:flex;
-    justify-content:flex-start;
-    align-items:flex-start;
-}
-
-
 
 .chi-siamo-boxes img {
     width: 35%;
     height:70%;
-    /*padding-top: 10em;
-    padding-bottom: 10em;*/
   }
 
 .chi-siamo-testo{
@@ -493,6 +494,16 @@ CHI SIAMO PAGE
     align-self: center;
 
 }
+
+.chi-siamo-boxes img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.chi-siamo-boxes img:hover {
+    transform: scale(1.1);
+}
+
+
 
 
 
