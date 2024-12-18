@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Menu/Prenota - Non solo Pizza</title>
+    <meta name="description" content=""><!--TODO-->
+    <meta name="keywords" content="">
+    <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+    <link rel="stylesheet" href="style/style.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <?php
+        require 'template/header.php';
+    ?>
+    <?php
+    require 'template/footer.html';
+    ?>
+</body

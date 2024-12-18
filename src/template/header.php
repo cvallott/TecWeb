@@ -14,6 +14,11 @@
                 }else{
                     echo '<li><a href="../chi-siamo.php">Chi siamo</a></li>';
                 }
+				if($currentpage == 'menu-prenota.php') {
+                    echo '<li id="currentLink">Menù-Prenota</a></li>';
+                }else{
+                    echo '<li><a href="../menu-prenota.php">Menù-Prenota</a></li>';
+                }
 			?>
              <!-- LANG DENTRO SPAN VICINO AD HOME O VA BENE COSI? -->
             <li><a href="../menu.html">Menù-Prenota</a></li>

@@ -15,7 +15,7 @@
 </head>
 <body id="homePage">
     <?php
-        require 'template-html/header.php';
+        require 'template/header.php';
     ?>
 
     <nav id="breadcrumb">
@@ -93,7 +93,7 @@
         </section>
     </main>
     <?php
-        require 'template-html/footer.html';
+        require 'template/footer.html';
     ?>
 
 </body>
