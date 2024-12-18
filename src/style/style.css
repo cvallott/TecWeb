@@ -37,9 +37,10 @@ header {
     justify-content: space-between;
     background-color: var(--bgcolor);
     position: fixed;
-    height: 9%;
+    top: 0;
+    height: 5em;
     width: 100%;
-    z-index: 10;
+    /*z-index: 10;*/
 }
 
 header img {
@@ -108,19 +109,12 @@ SEZIONE BREADCRUMB
 ------------------
 */
 #breadcrumb {
-    position: absolute; /* absolute: rimane fisso -- fixed: si muove con lo scroll */
-    top: 9%; /* Posizionato esattamente sotto l'header */
-    width: 100%; /* Stesso allineamento dell'header */
-    background-color: var(--visitedcolor);
-    /*text-align: center; Testo centrato */
-    line-height: 1em; /* Allinea verticalmente il testo */
-    padding: 1.2em;
-    /*border-bottom: 1px solid green; /* piccolo bordo se dovesse servire*/
-    z-index: 9; /* Assicurati che rimanga sopra altri elementi */
-}
-
-#breadcrumb p {
-    color: pink;
+    margin-top: 5em;
+    background-color: cadetblue;
+    color: #985342;
+    height: 3em;
+    line-height: 3em;
+    padding-left: 0.8em;
 }
 
 /*
@@ -476,6 +470,3 @@ CHI SIAMO PAGE
     flex-direction: column;
     justify-content:flex-start;
 }
-
-
-
