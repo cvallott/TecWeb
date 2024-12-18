@@ -11,26 +11,12 @@
 
 </head>
 <body id="chi-siamoPage">
-    <header>
-        <img src="../assets/logo/logo.jpg" alt="Logo Non solo pizza">
-        <nav id="menu">
-            <ul>
-                <li><a href="index.html" lang="en">Home</a></li>
-                <li id=currentLink>Chi siamo</li>
-                <li><a href="menu.html">Menù-Prenota</a></li>
-                <div id="dropdown">
-                    <li><button id="droplink">Area riservata</button></li>
-                    <div id="dropdown-content">
-                        <li><a href="login.html"><span lang=en>Login</span></a></li>
-                        <li><a href="registrati.html">Registrati</a></li>
-                    </div>
-                </div>
-            </ul>
-        </nav>
-    </header>
+    <?php
+        require 'template-html/header.php';
+    ?>
 
     <nav id="breadcrumb">
-        <p>Sei in: <a lang="en" href="index.html">Home</a> / Chi siamo</p>
+        <p>Sei in: <a lang="en" href="index.php">Home</a> / Chi siamo</p>
     </nav>
 
     <main>
@@ -102,11 +88,8 @@
 
         </section>
     </main>
-    <footer>
-        <img class="imgValidCode" src="./images/valid-xhtml10.png" alt="HTML valido">
-        <p>Indirizzo: Via Scandolara 81, Scandolara TV</p>
-        <p>Orari</p>
-        <p>Contatti: 0422345324</p>
-    </footer>
+    <?php
+    require 'template-html/footer.html';
+    ?>
 </body>
 </html>

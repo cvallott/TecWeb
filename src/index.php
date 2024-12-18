@@ -14,25 +14,9 @@
 <!-- DA CONTROLLARE SE VANNO SPAN (PER ESEMPIO SU INSTAGRAM E FACEBOOK -->
 </head>
 <body id="homePage">
-    <header>
-        <img src="../assets/logo/logo.jpg" alt="Logo Non solo pizza">
-        <nav id="menu">
-            <ul>
-                <li id="currentLink" lang="en">Home</li>
-                <li><a href="chi-siamo.html">Chi siamo</a></li>
-                <li><a href="menu.html">Menù-Prenota</a></li>
-                <li><a href="login.html">Area riservata</a></li>
-                <!-- INTANTO LO LASCIAMO COMMENTATO SE DOVESSE SERVIRE -->
-                <!-- <div id="dropdown">
-                    <li><button id="droplink">Area riservata</button></li>
-                    <div id="dropdown-content">
-                        <li><a href="login.html"><span lang=en>Login</span></a></li>
-                        <li><a href="registrati.html">Registrati</a></li>
-                    </div>
-                </div> -->
-            </ul>
-        </nav>
-    </header>
+    <?php
+        require 'template-html/header.php';
+    ?>
 
     <nav id="breadcrumb">
         <p>Sei in: <span lang="en">Home</span></p>
@@ -55,7 +39,7 @@
                 <img src="../assets/altre/filosofia3.jpg" alt="TODO">
                 <img src="../assets/altre/filosofia4.jpg" alt="TODO">
             </div>
-            <a href="chi-siamo.html" class="home-button">Scopri chi siamo</a>
+            <a href="chi-siamo.php" class="home-button">Scopri chi siamo</a>
         </section>
 
         <section id="fuori-menu" class="home-section">
@@ -108,33 +92,9 @@
             </div>
         </section>
     </main>
+    <?php
+        require 'template-html/footer.html';
+    ?>
 
-    <footer>
-        <div id="footer-top">
-            <div class="footer-column">
-                <h3>Contatti</h3> <!-- SIAMO SICURI VADA H3? -->
-                <p>Indirizzo: Via Scandolara 81, 31059, Scandolara TV</p>
-                <p>Telefono: 000000000</p>
-                <p>Seguici sui nostri social!</p>
-                <a href=""><img src="../assets/icons/instagram.png" alt="Link profilo instagram"></a> <!-- INSERIRE LINK INSTA -->
-                <a href=""><img src="../assets/icons/facebook.png" alt="Link profilo facebook"></a> <!-- INSERIRE LINK FACEBOOK -->
-            </div>
-            <div class="footer-column">
-                <h3>Orari</h3>
-                <p>Martedì - Domenica: 18:00 - 21:30</p>
-                <p>Giorno di chiusura: Lunedì</p>
-            </div>
-            <div class="footer-column">
-                <h3>Mappa</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.1918530980573!2d12.166931115585855!3d45.79249697910607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4778d9ef4bb36e1f%3A0x6b4f7523b15e8d39!2sVia%20Scandolara%2C%2081%2C%2031010%20Scandolara%20TV%2C%20Italia!5e0!3m2!1sit!2sit!4v1693678006894!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-        <div id="footer-bottom">
-            <p>&copy; 2024 Non solo pizza. Tutti i diritti riservati.</p>
-            <img src="../assets/valid/valid-xhtml10.png" alt="XHTML10 valido">
-            <img src="../assets/valid/vcss-blue.gif" alt="CSS valido">
-            <img src="../assets/logo/logo.jpg" alt="Logo" id="footer-logo">
-        </div>
-    </footer>
 </body>
 </html>
