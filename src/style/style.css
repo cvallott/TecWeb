@@ -37,9 +37,10 @@ header {
     justify-content: space-between;
     background-color: var(--bgcolor);
     position: fixed;
+    margin-top: 0;
     height: 9%;
     width: 100%;
-    z-index: 10;
+    z-index: 11;
 }
 
 header img {
@@ -477,5 +478,45 @@ CHI SIAMO PAGE
     justify-content:flex-start;
 }
 
+/*
+------------------
+RIEPILOGO-ORDINI PAGE
+------------------
+*/
+#RO-intro {
+    padding-top: 10%;
+    padding-bottom: 2em;
+    text-align: center;
+    width: 100%;
+    line-height: 2em;
+    background-color: orange;
+}
 
+table, tr, td, th{
+    border: 2px solid #000;
+}
+
+thead{
+    background-color: white;
+    color: blue;
+}
+
+tbody{
+    background-color: orangered;
+    color: white;
+}
+
+table{
+    border-collapse: collapse;
+    width: 95%;
+    margin: auto auto 2em;
+}
+
+td, th{
+    padding: 0.5em;
+}
+
+table ul li{
+    list-style-type: none;
+}
 
