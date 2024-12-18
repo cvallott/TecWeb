@@ -15,7 +15,7 @@
 </head>
 <body id="homePage">
     <?php
-        require 'template-html/header.html';
+        require 'template-html/header.php';
     ?>
 
     <nav id="breadcrumb">
