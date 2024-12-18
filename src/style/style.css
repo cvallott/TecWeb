@@ -477,5 +477,118 @@ CHI SIAMO PAGE
     justify-content:flex-start;
 }
 
+/*
+------------------
+CARRELLO
+------------------
+*/
 
+#carrello-prova{
+    background-color: white;
+    padding-top: 10em;
+}
 
+#carrello-prova h1{
+    padding-left: 2em;
+}
+
+#riepilogoCarrello{
+    background-color: white;
+}
+
+#carrello-intro h1{
+    padding-top: 3em;
+}
+
+#carrello-intro img {
+    max-width: 100%;
+    height: auto;
+}
+
+#carrello section{
+    background-color: #FAF3E0;
+}
+
+.contenitoreCarrello {
+    margin-left: 1.8em;
+    max-width: 80em;
+    background: #fff;
+    padding: 20px;
+}
+
+.carrelloItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pizza-info {
+    flex-grow: 1;
+}
+
+.prezzo-pizza{
+    flex-grow: 1;
+}
+
+.prezzo-tot{
+    flex-grow: 1;
+    text-align: right;
+}
+
+.controlli{
+    text-align: center;
+    flex-grow: 1;
+}
+
+.nomeProdotto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+
+.varianti {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+}
+
+.controlloQuantita {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controlloQuantita button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.controlloQuantita button:hover {
+    background: #218838;
+}
+
+.displayQuantita {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.rimuoviDaCarrello {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.rimuoviDaCarrello:hover {
+    background: #c82333;
+}
