@@ -37,10 +37,10 @@ header {
     justify-content: space-between;
     background-color: var(--bgcolor);
     position: fixed;
-    height: 9%;
+    top: 0;
+    height: 5em;
     width: 100%;
-    z-index: 10;
-    top:0;
+    /*z-index: 10;*/
 }
 
 header img {
@@ -109,21 +109,12 @@ SEZIONE BREADCRUMB
 ------------------
 */
 #breadcrumb {
-    /*position: absolute; /* absolute: rimane fisso -- fixed: si muove con lo scroll */
-    /*top: 9%; /* Posizionato esattamente sotto l'header */
-    width: 100%; /* Stesso allineamento dell'header */
-    background-color: var(--visitedcolor);
-    /*text-align: center; Testo centrato */
-    line-height: 1em; /* Allinea verticalmente il testo */
-    padding: 1.2em;
-    /*border-bottom: 1px solid green; /* piccolo bordo se dovesse servire*/
-    z-index: 9; /* Assicurati che rimanga sopra altri elementi */
-    /*height:7%;*/
-    margin-top:6%;
-}
-
-#breadcrumb p {
-    color: pink;
+    margin-top: 5em;
+    background-color: cadetblue;
+    color: #985342;
+    height: 3em;
+    line-height: 3em;
+    padding-left: 0.8em;
 }
 
 /*
@@ -389,7 +380,7 @@ E FINISCE QUI*/
 }
 
 .torna-su {
-    position: relative;
+    position: absolute;
     right: 1em;
     padding: 0.5em;
     border-radius: 0.3em;
@@ -406,7 +397,6 @@ CHI SIAMO PAGE
 */
 #chi-siamo-intro {
     background-image: url('../../assets/altre/chi-siamo/chi-siamo-intro.jpg');
-    background-colo:white;
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -421,8 +411,6 @@ CHI SIAMO PAGE
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top:20%;
-    position:relative;
 }
 
 #chi-siamo-intro img {
