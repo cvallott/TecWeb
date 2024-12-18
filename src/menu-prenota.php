@@ -11,10 +11,4 @@
 </head>
 
 <body>
-    <?php
-        require 'template/header.php';
-    ?>
-    <?php
-    require 'template/footer.html';
-    ?>
 </body

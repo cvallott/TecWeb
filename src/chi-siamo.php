@@ -11,10 +11,6 @@
 
 </head>
 <body id="chi-siamoPage">
-    <?php
-        require 'template/header.php';
-    ?>
-
     <nav id="breadcrumb">
         <p>Sei in: <a lang="en" href="index.php">Home</a> / Chi siamo</p>
     </nav>
@@ -88,8 +84,5 @@
 
         </section>
     </main>
-    <?php
-    require 'template/footer.html';
-    ?>
 </body>
 </html>
