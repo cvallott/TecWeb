@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <title>Menu/Prenota - Non solo Pizza</title>
-    <meta name="description" content=""><!--TODO-->
-    <meta name="keywords" content="">
-    <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
-    <link rel="stylesheet" href="style/style.css" media="screen">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
 
-</head>
+include_once 'template/components/loadComponents.php';
+$template = file_get_contents('template/pageTemplate/menu-prenotaTemplate.html');
 
-<body>
-</body
+$header = printHeader();
+$footer = printFooter();
+
+$template = str_replace('[header]', $header, $template);
+$template = str_replace('[footer]', $footer, $template);
+
+echo $template;

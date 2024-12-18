@@ -12,17 +12,17 @@ function printHeader()
     if($currentpage == 'index.php') {
         $home = "<li id='currentLink' lang='en'>Home</li>";
     }else{
-        $home = "<li><a href=''../index.php'><span lang='en'>Home</span></a></li>";
+        $home = "<li><a href='index.php'><span lang='en'>Home</span></a></li>";
     }
     if($currentpage == 'chi-siamo.php') {
         $chisiamo = "<li id='currentLink'>Chi siamo</a></li>";
     }else{
-        $chisiamo = "<li><a href='../../chi-siamo.php'>Chi siamo</a></li>";
+        $chisiamo = "<li><a href='chi-siamo.php'>Chi siamo</a></li>";
     }
     if($currentpage == 'menu-prenota.php') {
         $menu = "<li id='currentLink'>Menù-Prenota</a></li>";
     }else{
-        $menu = "<li><a href='../../menu-prenota.php'>Menù-Prenota</a></li>";
+        $menu = "<li><a href='menu-prenota.php'>Menù-Prenota</a></li>";
     }
 
     $areaRis = "<li><a href='../login.html'>Area riservata</a></li>";
