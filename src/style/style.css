@@ -448,7 +448,7 @@ CHI SIAMO PAGE
 }
 
 .chi-siamo-titoli h2{
-    margin:auto;
+   margin:auto;
 }
 
 .chi-siamo-items p{
@@ -463,18 +463,35 @@ CHI SIAMO PAGE
     justify-content:flex-start;
     align-items:center;
     gap:10em;
+    padding-top:2.5em;
+    padding-down:2.5em;
+    }
 
+#chi-siamo-filosofia {
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
 }
+
+
 
 .chi-siamo-boxes img {
     width: 35%;
     height:70%;
+    /*padding-top: 10em;
+    padding-bottom: 10em;*/
   }
 
 .chi-siamo-testo{
     display:flex;
     flex-direction: column;
     justify-content:flex-start;
+}
+
+.chi-siamo-testo h3{
+    padding-bottom:0.5em;
+    align-self: center;
+
 }
 
 
