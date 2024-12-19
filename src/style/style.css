@@ -5,11 +5,12 @@
 }
 
 :root{
-    --bgcolor: #FFF;
-    --txtcolor: #985342;
+    --bgcolor: #FAF3E0;
+    --txtcolor: #414143;
     --linkcolor: #000;
     --visitedcolor: #666;
     --menucolor: #115783;
+    --buttoncolor: #DC1C08;
 }
 
 html{
@@ -227,6 +228,7 @@ HOME PAGE
     padding: 3em;
     background-color: #FAF3E0;
     text-align: center;
+    color: #414143;
 }
 
 .home-section h2 {
@@ -304,8 +306,8 @@ E FINISCE QUI*/
     margin: 0.5em auto;
     width: 15em;
     padding: 0.5em;
-    background-color: #007BFF;
-    color: black;
+    background-color: var(--buttoncolor);
+    color: var(--bgcolor);
     text-decoration: none;
     border-radius: 0.5em;
 }
