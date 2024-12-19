@@ -13,8 +13,8 @@
 }
 
 html{
-    background-image: url(../../assets/grafiche/sfondo.jpg);
-    /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
+    /*background-image: url(../../assets/grafiche/sfondo.jpg);*/
+    background-image: url(../../assets/grafiche/sfondo-nero.jpg);
     background-color: var(--bgcolor);
     background-size: contain;
 }
