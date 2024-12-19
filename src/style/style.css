@@ -481,7 +481,7 @@ RIEPILOGO-ORDINI PAGE
     text-align: center;
     width: 100%;
     line-height: 2em;
-    background-color: orange;
+    background-color: var(--bgcolor);
 }
 
 table, tr, td, th{
