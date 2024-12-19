@@ -11,12 +11,13 @@
     --visitedcolor: #666;
     --menucolor: #115783;
     --buttoncolor: #DC1C08;
+    --bgcolor2: cadetblue;
 }
 
 html{
     /*background-image: url(../../assets/grafiche/sfondo.jpg);*/
     /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
-    background-image: url(../../assets/grafiche/sfondoarancio2.png);
+    /*background-image: url(../../assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
     background-size: contain;
 }
@@ -485,33 +486,65 @@ RIEPILOGO-ORDINI PAGE
     width: 100%;
     line-height: 2em;
     background-color: var(--bgcolor);
+    color: var(--txtcolor);
 }
 
-table, tr, td, th{
-    border: 2px solid #000;
+.tabella-ordini thead{
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
 }
 
-thead{
-    background-color: white;
-    color: blue;
+.tabella-ordini tbody{
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
 }
 
-tbody{
-    background-color: orangered;
-    color: white;
-}
-
-table{
-    border-collapse: collapse;
-    width: 95%;
+.tabella-ordini table{
+    width: 90%;
     margin: auto auto 2em;
+    text-align: center;
+    border-collapse: collapse;
 }
 
-td, th{
-    padding: 0.5em;
+.tabella-ordini td, th{
+    padding: 0.8em;
 }
 
-table ul li{
-    list-style-type: none;
+.tabella-ordini th, td {
+    border-bottom: 1px solid var(--txtcolor);
 }
 
+.tabella-ordini tfoot{
+    color: var(--txtcolor);
+}
+
+/*
+------------------
+DETTAGLI-ORDINE PAGE
+------------------
+*/
+#DO{
+    display: flex;
+    align-items: center;
+}
+
+#DO-intro h1{
+    padding: 3em;
+}
+
+#DO-intro a{
+    display: inline-block;
+    padding: 0.7em;
+    margin-left: 3em;
+    margin-bottom: 3em;
+    margin-top: 3em;
+    background-color: var(--buttoncolor);
+    color: var(--bgcolor);
+    text-decoration: none;
+    border-radius: 0.5em;
+    text-align: center;
+}
+
+#DO-intro a:hover {
+    background-color: var(--txtcolor);
+}

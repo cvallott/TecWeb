@@ -19,96 +19,57 @@
         <h2>Ordine confermato!</h2>
         <p>Ti aspettiamo alle ore ORARIO SCELTO</p>
     </section>
-    <section id="RO-tabella">
+    <section class="tabella-ordini">
         <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
         <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
-        <span id="descrTabella">In questa tabella vengono riassunti gli ultimi 5 ordini effettuati ORGANIZZATI PER COLONNE: orario, numero totale delle pizze, elenco delle pizze, prezzo, stato dell'ordine.</span>
+        <span id="descrTabella">In questa tabella vengono riassunti gli ultimi 5 ordini effettuati ORGANIZZATI PER COLONNE: Numero ordine, Data e orario, Stato ordine, Totale ordine e Dettagli</span>
         <table aria-describedby="descrTabella">
             <caption>Ultimi ordini effettuati</caption>
-            <thead> <!-- ci andrebbero ache le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
             <tr>
-                <th class="top-left" scope="col">Orario</th>
-                <th scope="col">Numero totale pizze</th>
-                <th scope="col">Pizze ordinate</th>
-                <th scope="col">Prezzo</th>
-                <th class="top-right" scope="col">Stato</th>
+                <th scope="col">Numero ordine</th>
+                <th scope="col">Data e orario</th>
+                <th scope="col">Stato ordine</th>
+                <th scope="col">Totale ordine</th>
+                <th scope="col">Dettagli</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <th scope="row">Martedì 09/11/22</th>
-                <td data-title="Numero totale pizze">2</td>
-                <td data-title="Pizze ordinate">
-                    <ul>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                    </ul>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00
                 </td>
-                <td data-title="Prezzo">43€</td>
                 <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli"><img src="../../../assets/icons/see-more.png"><a href="dettagli-ordineTemplate.html">Visualizza dettagli</a></td>
             </tr>
             <tr>
-                <th scope="row">Martedì 09/11/22</th>
-                <td data-title="Numero totale pizze">2</td>
-                <td data-title="Pizze ordinate">
-                    <ul>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                    </ul>
-                </td>
-                <td data-title="Prezzo">43€</td>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
                 <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">VISUALIZZA DETTAGLI</td>
             </tr>
             <tr>
-                <th scope="row">Martedì 09/11/22</th>
-                <td data-title="Numero totale pizze">2</td>
-                <td data-title="Pizze ordinate">
-                    <ul>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                    </ul>
-                </td>
-                <td data-title="Prezzo">43€</td>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
                 <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">VISUALIZZA DETTAGLI</td>
             </tr>
             <tr>
-                <th scope="row">Martedì 09/11/22</th>
-                <td data-title="Numero totale pizze">2</td>
-                <td data-title="Pizze ordinate">
-                    <ul>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                    </ul>
-                </td>
-                <td data-title="Prezzo">43€</td>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
                 <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">VISUALIZZA DETTAGLI</td>
             </tr>
             <tr>
-                <th class="bottom-left" scope="row">Martedì 09/11/22</th>
-                <td data-title="Numero totale pizze">2</td>
-                <td data-title="Pizze ordinate">
-                    <ul>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                        <li>Viennese</li>
-                        <li>Margherita</li>
-                    </ul>
-                </td>
-                <td data-title="Prezzo">43€</td>
-                <td class="bottom-right" data-title="Stato">Consegnato</td>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
+                <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">VISUALIZZA DETTAGLI</td>
             </tr>
             </tbody>
         </table>
