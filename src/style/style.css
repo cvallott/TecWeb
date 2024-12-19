@@ -14,8 +14,9 @@
 }
 
 html{
-    background-image: url(../../assets/grafiche/sfondo.jpg);
+    /*background-image: url(../../assets/grafiche/sfondo.jpg);*/
     /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
+    background-image: url(../../assets/grafiche/sfondoarancio2.png);
     background-color: var(--bgcolor);
     background-size: contain;
 }
@@ -36,12 +37,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--bgcolor);
+    background-color: white;
     position: fixed;
     top: 0;
     height: 5em;
     width: 100%;
-    /*z-index: 10;*/
+    z-index: 10;
 }
 
 header img {
@@ -124,9 +125,9 @@ SEZIONE FOOTER
 ------------------
 */
 footer {
-    background-color: #f8f9fa;
+    background-color: white;
     padding: 3em 4em 1em 4em;
-    color: #333;
+    color: var(--bgcolor);
 }
 
 #footer-top {
@@ -144,7 +145,7 @@ footer {
 .footer-column h3 {
     margin-bottom: 1.5em;
     font-size: 1.2em;
-    color: #007bff;
+    color: var(--bgcolor);
 }
 
 .footer-column p {
@@ -313,7 +314,7 @@ E FINISCE QUI*/
 }
 
 .home-section .home-button:hover {
-    background-color: white;
+    background-color: var(--txtcolor);
 }
 
 #fuori-menu #FM-content {
