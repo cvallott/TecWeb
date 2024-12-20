@@ -12,7 +12,7 @@ function printHeader()
     if($currentpage == 'index.php') {
         $home = "<li id='currentLink' lang='en'>Home</li>";
     }else{
-        $home = "<li><a href='index.php' lang='en'>Home</a></li>";
+        $home = "<li><a href='index.php'><span lang='en'>Home</span></a></li>";
     }
     if($currentpage == 'chi-siamo.php') {
         $chisiamo = "<li id='currentLink'>Chi siamo</a></li>";
@@ -26,14 +26,14 @@ function printHeader()
     }
 
     /*
-     <div id="dropdown">
+    <div id="dropdown">
                     <li><button id="droplink">Area riservata</button></li>
                     <div id="dropdown-content">
                         <li><a href="login.html"><span lang=en>Login</span></a></li>
                         <li><a href="registrati.html">Registrati</a></li>
                     </div>
                 </div>
-     */
+    */
 
     $areaRis = "<li><a href='../login.html'>Area riservata</a></li>";
 
