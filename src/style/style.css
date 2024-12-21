@@ -7,11 +7,8 @@
 :root{
     --bgcolor: #FAF3E0;
     --txtcolor: #414143;
-    --linkcolor: #000;
-    --visitedcolor: #666;
-    --menucolor: #115783;
     --buttoncolor: #DC1C08;
-    --bgcolor2: cadetblue;
+    --bgcolor2: #00284D;
 }
 
 html{
@@ -34,19 +31,24 @@ body{
 SEZIONE HEADER
 ------------------
 */
-header {
+#upper-menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
+    background-color: var(--bgcolor);
+    height: 5em;
+}
+
+header {
+    background-image: url(../../assets/grafiche/sfondoarancio2.png);
+    height: 5.5em;
     position: fixed;
     top: 0;
-    height: 5em;
     width: 100%;
     z-index: 10;
 }
 
-header img {
+#upper-menu img {
     height: 100%;
     padding: 0 0.5em;
 }
@@ -59,7 +61,7 @@ header img {
 
 #menu li a {
     text-decoration: none;
-    color: green;
+    color: var(--buttoncolor);
     position: relative;
 }
 
@@ -71,7 +73,7 @@ header img {
     bottom: -0.2em;
     width: 0;
     height: 0.1em;
-    background-color: green;
+    background-color: var(--buttoncolor);
     transition: width 0.3s ease;
 }
 
@@ -106,15 +108,16 @@ header img {
 
 #dropdown:hover #droplink {background-color: #3e8e41;}
 
+
 /*
 ------------------
 SEZIONE BREADCRUMB
 ------------------
 */
 #breadcrumb {
-    margin-top: 5em;
-    background-color: cadetblue;
-    color: #985342;
+    margin-top: 5.5em;
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
     height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
@@ -126,7 +129,7 @@ SEZIONE FOOTER
 ------------------
 */
 footer {
-    background-color: white;
+    background-color: var(--bgcolor2);
     padding: 3em 4em 1em 4em;
     color: var(--bgcolor);
 }
@@ -135,7 +138,7 @@ footer {
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 3em;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--bgcolor);
 }
 
 .footer-column {
@@ -228,9 +231,9 @@ HOME PAGE
 
 .home-section {
     padding: 3em;
-    background-color: #FAF3E0;
+    background-color: var(--bgcolor);
     text-align: center;
-    color: #414143;
+    color: var(--txtcolor);
 }
 
 .home-section h2 {
@@ -346,7 +349,7 @@ E FINISCE QUI*/
 
 #fuori-menu #FM-content a {
     text-decoration: none;
-    color: black;
+    color: var(--txtcolor);
 }
 
 #lista-FM li {
@@ -376,7 +379,7 @@ E FINISCE QUI*/
 .download-column h2 {
     font-size: 1.8em;
     font-weight: bold;
-    color: #000; /* Testo nero */
+    color: var(--txtcolor);
 }
 
 .download-column p {
@@ -391,7 +394,7 @@ E FINISCE QUI*/
 }
 
 .torna-su:hover {
-    background-color: orange;
+    background-color: var(--buttoncolor);
 }
 
 /*
@@ -486,6 +489,15 @@ RIEPILOGO-ORDINI PAGE
     width: 100%;
     line-height: 2em;
     background-color: var(--bgcolor);
+    color: var(--txtcolor);
+}
+
+#RO-intro h1 {
+    padding: 2em;
+}
+
+.tabella-ordini caption{
+    font-weight: bold;
     color: var(--txtcolor);
 }
 
