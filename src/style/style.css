@@ -525,6 +525,33 @@ CARRELLO
     padding: 3em;
 }
 
+.controlloQuantita {
+    display: flex;
+    align-items: center;
+    gap: 0.5em; /* Spaziatura tra gli elementi */
+}
+
+.controlloQuantita button {
+    padding: 0.5em;
+    font-size: 1.2em; /* Dimensione delle icone */
+    cursor: pointer;
+    background-color: var(--buttoncolor);
+    color: white;
+    border: none;
+    border-radius: 0.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5em; /* Pulsante quadrato */
+    height: 2.5em; /* Pulsante quadrato */
+}
+
+.controlloQuantita input {
+    width: 3em;
+    text-align: center;
+    font-size: 1em;
+}
+
 
 
 

@@ -23,7 +23,7 @@
 	</section>
 	<section id="carrello-prova">
           <div class="sezCarrello sezDettaglio">
-            <div class="row">
+            <div class="row" data-id="pizza1">
               <div class="dettaglioItem">
                 <h4>Margherita</h4>
                 <p>extra mozzarella</p>
@@ -32,10 +32,16 @@
                 <h4>10€</h4>
               </div>
               <div class="dettaglioItem">
-                <h4>Controlli</h4>
+				  <div class="controlloQuantita">
+					  <button class="decrease" onclick="updateQuantity(this, 'decrease')">-</button>
+					  <input type="number" class="quantity" value="1" min="1">
+					  <button class="increase" onclick="updateQuantity(this, 'increase')">+</button>
+					  <button class="remove" onclick="remove(this, 'pizza2')">R</button>
+				  </div>
+
               </div>
             </div>
-            <div class="row">
+            <div class="row" data-id="pizza2">
               <div class="dettaglioItem">
                 <h4>Margherita</h4>
                 <p>extra mozzarella</p>
@@ -44,10 +50,13 @@
                 <h4>10€</h4>
               </div>
               <div class="dettaglioItem">
-                <h4>Controlli</h4>
+				  <button class="decrease" onclick="updateQuantity(this, 'decrease')">-</button>
+				  <input type="number" class="quantity" value="1" min="1">
+				  <button class="increase" onclick="updateQuantity(this, 'increase')">+</button>
+				  <button class="remove">Rimuovi</button>
               </div>
             </div>
-			  <div class="row">
+			  <div class="row" data-id="pizza3">
 				  <div class="dettaglioItem">
 					  <h4>Margherita</h4>
 					  <p>extra mozzarella</p>
@@ -56,10 +65,9 @@
 					  <h4>10€</h4>
 				  </div>
 				  <div class="dettaglioItem">
-					  <h4>Controlli</h4>
 				  </div>
 			  </div>
-			  <div class="row">
+			  <div class="row" data-id="pizza4">
 				  <div class="dettaglioItem">
 					  <h4>Margherita</h4>
 					  <p>extra mozzarella</p>
@@ -68,7 +76,6 @@
 					  <h4>10€</h4>
 				  </div>
 				  <div class="dettaglioItem">
-					  <h4>Controlli</h4>
 				  </div>
 			  </div>
           </div>
@@ -80,3 +87,21 @@
 </main>
 [footer]
 </body>
+
+<script>
+    function updateQuantity(button, operation) {
+        const row = button.closest('.row'); // Trova la riga corrente
+        const input = row.querySelector('.quantity'); // Seleziona l'input corrispondente
+        let currentValue = parseInt(input.value); // Ottieni il valore attuale
+        if (operation === 'increase') {
+            currentValue += 1; // Aumenta il valore
+        } else if (operation === 'decrease' && currentValue > 1) {
+            currentValue -= 1; // Diminuisci il valore
+        }
+        input.value = currentValue; // Aggiorna l'input
+    }
+
+    function remove(button, id){
+		console.log(id);
+	}
+</script>
