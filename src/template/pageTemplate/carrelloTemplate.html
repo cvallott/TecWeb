@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <title>Chi siamo-Non solo pizza</title>
-  <meta name="description" content=""><!--TODO-->
-  <meta name="keywords" content="">
-  <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
-  <link rel="stylesheet" href="../../style/style.css" media="screen">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<title>Non solo pizza</title>
+	<meta name="description" content=""><!--TODO-->
+	<meta name="keywords" content="">
+	<meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
+	<link rel="stylesheet" href="../../style/style.css" media="screen">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
 [header]
 <nav id="breadcrumb">
-  <p>Sei in: <a lang="en" href="../../index.php">Home</a> / <a lang="en" href="../../menu-prenota.php">Menu-Prenota</a> / Carrello</p>
+	<p>Sei in: <a lang="en" href="../../index.php">Home</a> / <a lang="en"
+																 href="../../menu-prenota.php">Menu-Prenota</a> /
+		Carrello</p>
 </nav>
-<main>
-  <section id="carrello-prova">
-    <h1>Riepilogo carrello</h1>
-    <div class="contenitoreCarrello">
-      <div class="carrelloItem">
-        <div class="pizza-info">
-          <p class="nomeProdotto">Margherita</p>
-          <p class="varianti">Extra Mozzarella</p>
-        </div>
-        <div class="prezzo-pizza">
-          <p class="prezzo">10€</p>
-        </div>
-        <div class="controlli">
-          <div class="controlloQuantita">
-            <button onclick="decreaseQuantity(this)">-</button>
-            <span class="displayQuantita">2</span>
-            <button onclick="increaseQuantity(this)">+</button>
+<main id="mainCarrello">
+	<section id="carrello-titolo">
+		<h1>Riepilogo carrello</h1>
+	</section>
+	<section id="carrello-prova">
+          <div class="sezCarrello sezDettaglio">
+            <div class="row">
+              <div class="dettaglioItem">
+                <h4>Margherita</h4>
+                <p>extra mozzarella</p>
+              </div>
+              <div class="dettaglioItem">
+                <h4>10€</h4>
+              </div>
+              <div class="dettaglioItem">
+                <h4>Controlli</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="dettaglioItem">
+                <h4>Margherita</h4>
+                <p>extra mozzarella</p>
+              </div>
+              <div class="dettaglioItem">
+                <h4>10€</h4>
+              </div>
+              <div class="dettaglioItem">
+                <h4>Controlli</h4>
+              </div>
+            </div>
+			  <div class="row">
+				  <div class="dettaglioItem">
+					  <h4>Margherita</h4>
+					  <p>extra mozzarella</p>
+				  </div>
+				  <div class="dettaglioItem">
+					  <h4>10€</h4>
+				  </div>
+				  <div class="dettaglioItem">
+					  <h4>Controlli</h4>
+				  </div>
+			  </div>
+			  <div class="row">
+				  <div class="dettaglioItem">
+					  <h4>Margherita</h4>
+					  <p>extra mozzarella</p>
+				  </div>
+				  <div class="dettaglioItem">
+					  <h4>10€</h4>
+				  </div>
+				  <div class="dettaglioItem">
+					  <h4>Controlli</h4>
+				  </div>
+			  </div>
           </div>
-          <button class="rimuoviDaCarrello">C</button>
-        </div>
-        <div class="prezzo-tot">
-          <p class="prezzo">tot. 20€</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
+          <div class="sezCarrello" id="sezTotali">
+              <p>tot € indicato nella stampa</p>
+          </div>
+	</section>
 
 </main>
 [footer]

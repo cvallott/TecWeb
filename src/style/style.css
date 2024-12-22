@@ -480,111 +480,53 @@ CARRELLO
 ------------------
 */
 
-#carrello-prova{
-    background-color: white;
+#mainCarrello{
+    background-color: var(--bgcolor);
 }
 
-#carrello-prova h1{
-    padding-left: 2em;
-}
-
-#riepilogoCarrello{
-    background-color: white;
-}
-
-#carrello-intro h1{
-    padding-top: 3em;
-}
-
-#carrello-intro img {
-    max-width: 100%;
-    height: auto;
-}
-
-#carrello section{
-    background-color: #FAF3E0;
-}
-
-.contenitoreCarrello {
-    margin-left: 1.8em;
-    max-width: 80em;
-    background: #fff;
-    padding: 20px;
-}
-
-.carrelloItem {
+/* Carrello principale */
+#carrello-prova {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: nowrap;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    /* justify-content: space-between; */
 }
 
-.pizza-info {
-    flex-grow: 1;
+/* Sezioni del carrello */
+.sezCarrello {
+    display: flex;
+    flex-direction: column;
+    max-width: 70em;
 }
 
-.prezzo-pizza{
-    flex-grow: 1;
+.sezDettaglio{
+    flex-direction: column;
+    flex-grow:1;
+    justify-content: left;
 }
 
-.prezzo-tot{
-    flex-grow: 1;
-    text-align: right;
-}
-
-.controlli{
-    text-align: center;
-    flex-grow: 1;
-}
-
-.nomeProdotto {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 0 5px;
-}
-
-.varianti {
-    font-size: 0.9rem;
-    color: #555;
+.dettaglioItem h4, .dettaglioItem p {
+    display: block;
     margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
-.controlloQuantita {
+.row{
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: row;
 }
 
-.controlloQuantita button {
-    background: #28a745;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
+.dettaglioItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3em;
 }
 
-.controlloQuantita button:hover {
-    background: #218838;
-}
 
-.displayQuantita {
-    font-size: 1rem;
-    font-weight: bold;
-}
 
-.rimuoviDaCarrello {
-    background: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
 
-.rimuoviDaCarrello:hover {
-    background: #c82333;
-}
+
+
