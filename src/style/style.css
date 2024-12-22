@@ -8,7 +8,7 @@
     --bgcolor: #FAF3E0;
     --txtcolor: #414143;
     --buttoncolor: #DC1C08;
-    --bgcolor2: #00284D;
+    --bgcolor2: #DC1C08;
 }
 
 html{
@@ -17,6 +17,7 @@ html{
     /*background-image: url(../../assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
     background-size: contain;
+    background-image: url(../../assets/grafiche/sfondo-nero.jpg);
 }
 
 body{
@@ -31,24 +32,19 @@ body{
 SEZIONE HEADER
 ------------------
 */
-#upper-menu {
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--bgcolor);
     height: 5em;
-}
-
-header {
-    background-image: url(../../assets/grafiche/sfondoarancio2.png);
-    height: 5.5em;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 10;
 }
 
-#upper-menu img {
+header img {
     height: 100%;
     padding: 0 0.5em;
 }
@@ -108,14 +104,13 @@ header {
 
 #dropdown:hover #droplink {background-color: #3e8e41;}
 
-
 /*
 ------------------
 SEZIONE BREADCRUMB
 ------------------
 */
 #breadcrumb {
-    margin-top: 5.5em;
+    margin-top: 5em;
     background-color: var(--bgcolor2);
     color: var(--bgcolor);
     height: 3em;
@@ -129,15 +124,15 @@ SEZIONE FOOTER
 ------------------
 */
 footer {
-    background-color: var(--bgcolor2);
-    padding: 3em 4em 1em 4em;
+    padding: 0 0.7em 0.7em;
     color: var(--bgcolor);
 }
 
 #footer-top {
+    background-color: var(--txtcolor);
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 3em;
+    padding: 3em;
     border-bottom: 1px solid var(--bgcolor);
 }
 
@@ -163,11 +158,12 @@ iframe {
 }
 
 #footer-bottom {
-    margin-top: 1.2em;
+    background-color: var(--txtcolor);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    padding: 1em;
 }
 
 #footer-bottom #footer-logo {
@@ -183,55 +179,8 @@ iframe {
 HOME PAGE
 ------------------
 */
-#intro {
-    background-image: url('../../assets/pizze/sfondomarghe.png');
-    background-color: gray;
-    background-size: cover;
-    background-attachment: scroll;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    font-size: 1.5em;
-    height: 100vh; /* CAPIRE SE POSSIAMO USARE vh */
-    margin-bottom: 1.5em;
-}
-
-#intro h1{
-    font-size: 2em;
-    margin-top: 2em;
-}
-
-#intro h2{
-    font-size: 0.9em;
-    padding-top: 1em;
-    padding-bottom: 2em;
-}
-
-#intro a {
-    display: inline-block;
-    margin: 0.5em auto;
-    width: 15em;
-    padding: 0.5em;
-    background-color: transparent;
-    border: white 0.1em solid;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5em;
-    text-align: center;
-    font-size: 0.7em;
-}
-
-#intro a:hover {
-    background-color: black;
-}
-
 .home-section {
     padding: 3em;
-    background-color: var(--bgcolor);
     text-align: center;
     color: var(--txtcolor);
 }
@@ -244,6 +193,54 @@ HOME PAGE
 
 .home-section:not(:last-of-type) {
     margin-bottom: 3em;
+}
+
+.home-section:not(:first-child) {
+    background-color: var(--bgcolor);
+}
+
+#intro {
+    /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
+    padding: 0.7em;
+    margin-bottom: 0;
+}
+
+#titolo {
+    /*background-color: var(--bgcolor);*/
+    background-image: url(../../assets/pagine/index/titolo.png);
+    background-color: gray;
+    background-size: cover;
+    color: var(--bgcolor);
+    text-align: right;
+    font-size: 1.5em;
+    padding: 2em;
+}
+
+#titolo h2 {
+    text-align: right;
+}
+
+#titolo img {
+    height: 7em;
+}
+
+#important-info {
+    background-color: var(--bgcolor2);
+    margin-top: 1em;
+    display: flex;
+    color: var(--bgcolor);
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#important-info section {
+    padding: 3em;
+    width: 30em;
+}
+
+#important-info section:hover {
+    background-color: var(--bgcolor);
+    color: var(--bgcolor2);
 }
 
 #download {
@@ -426,16 +423,15 @@ CHI SIAMO PAGE
 }
 
 #chi-siamo-contenitore{
-    display:flex;
+    display: flex;
     justify-content: flex-start;
     background-color: #007BFF;
     /*flex-wrap: wrap;*/
-
 }
 
 .chi-siamo-items{
     flex-grow: 1;
-    padding:3em;
+    padding: 3em;
 }
 
 .chi-siamo-items:hover{
@@ -483,17 +479,26 @@ CHI SIAMO PAGE
 RIEPILOGO-ORDINI PAGE
 ------------------
 */
+#RO {
+    min-height: 70vh;
+}
+
 #RO-intro {
     padding-bottom: 2em;
     text-align: center;
-    width: 100%;
     line-height: 2em;
     background-color: var(--bgcolor);
     color: var(--txtcolor);
+    margin: 0.7em;
 }
 
 #RO-intro h1 {
     padding: 2em;
+}
+
+.tabella-ordini {
+    background-color: var(--bgcolor);
+    padding: 3em;
 }
 
 .tabella-ordini caption{
@@ -538,6 +543,12 @@ DETTAGLI-ORDINE PAGE
 #DO{
     display: flex;
     align-items: center;
+    min-height: 70vh;
+}
+
+#DO-intro{
+    margin: 0.7em;
+    background-color: var(--bgcolor);
 }
 
 #DO-intro h1{
@@ -547,9 +558,7 @@ DETTAGLI-ORDINE PAGE
 #DO-intro a{
     display: inline-block;
     padding: 0.7em;
-    margin-left: 3em;
-    margin-bottom: 3em;
-    margin-top: 3em;
+    margin: 3em;
     background-color: var(--buttoncolor);
     color: var(--bgcolor);
     text-decoration: none;
@@ -559,4 +568,8 @@ DETTAGLI-ORDINE PAGE
 
 #DO-intro a:hover {
     background-color: var(--txtcolor);
+}
+
+#DO .tabella-ordini{
+    margin-right: 0.7em;
 }
