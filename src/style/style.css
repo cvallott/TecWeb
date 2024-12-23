@@ -512,7 +512,25 @@ CARRELLO
 .sezTotali{
     flex:0.4;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+}
 
+#primadisp{
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+#totaleSpesa{
+    display: flex;
+    align-items: center;
+}
+
+.totColumn {
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+    padding-bottom:0.6em;
 }
 
 .sezTotali button{
