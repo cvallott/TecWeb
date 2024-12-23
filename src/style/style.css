@@ -470,3 +470,190 @@ CHI SIAMO PAGE
     flex-direction: column;
     justify-content:flex-start;
 }
+
+/*
+---------------------
+MENU-PRENOTA-PAGE
+---------------------
+*/
+
+.MP-intro{
+    background-image: url('../../assets/altre/menu-prenota/menu-prenota.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    /*color: var(--txtcolor);*/
+    text-align: center;
+    font-size: 1.5em;
+    height: 63vh;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    display: flex;
+    /*justify-content: flex-start;
+    align-items: center;*/
+}
+
+#smallMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    background-color: #ffa520;
+    width: 28%
+}
+
+#smallMenu #prenota{
+    font-weight: bold;
+    color: red;
+    margin-top: 1em;
+}
+
+#smallMenu #infoOrdini{
+    font-size: 0.67em;
+}
+
+.MP-box {
+    background-color: #ffc878;
+    border: solid #ddd;
+    padding: 0.5em;
+    margin-top: 1em;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-box:hover {
+    background-color: #eaeaea;
+}
+
+.pizze-classiche {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-classiche h2 {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.pizze-classiche p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizze-speciali{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-speciali h2 {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.pizze-speciali p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizze-stagionali{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-stagionali h2 {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.pizze-stagionali p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizza {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: #FF5500 inset;
+    margin-bottom: 1em;
+    width: 47%;
+}
+
+.pizza img {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    width: 8em;
+    height: 5em;
+}
+
+.pizze-classiche .pizza-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.pizze-speciali .pizza-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.pizze-stagionali .pizza-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cucina {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.cucina h2 {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.cucina p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.cucina .piatti-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.piatti-cucina {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: #FF5500 inset;
+    margin-bottom: 1em;
+    width: 47%;
+}
+
+.cucina img {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    width: 8em;
+    height: 6em;
+}
