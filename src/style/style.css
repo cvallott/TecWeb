@@ -408,18 +408,14 @@ CHI SIAMO PAGE
     font-size: 1.5em;
     height: 50vh;
     width: 100%;
-    margin: 0;
-    left: 0;
+    /*margin: 0;
+    left: 0;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#chi-siamo-intro img {
-    max-width: 100%;
-    height: auto;
-}
 
 #chi-siamo-contenitore{
     display:flex;
@@ -467,6 +463,8 @@ CHI SIAMO PAGE
     gap:10em;
     padding-top:2.5em;
     padding-bottom:2.5em;
+    margin-top:2.5em;
+    margin-bottom: 2.5em;
     }
 
 .chi-siamo-boxes img {
