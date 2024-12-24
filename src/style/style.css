@@ -566,6 +566,269 @@ DETTAGLI-ORDINE PAGE
 
 
 /*
+
+---------------------
+MENU-PRENOTA-PAGE
+---------------------
+*/
+
+.MP-intro{
+    background-image: url('../../assets/altre/menu-prenota/menu-prenota.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    /*color: var(--txtcolor);*/
+    text-align: center;
+    font-size: 1.5em;
+    height: 63vh;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    display: flex;
+    /*justify-content: flex-start;
+    align-items: center;*/
+}
+
+#smallMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    background-color: #d13a2a;
+    width: 28%;
+    overflow-wrap: break-word;
+}
+
+#smallMenu #prenota{
+    font-weight: bold;
+    color: white;
+    margin-top: 1em;
+}
+
+#smallMenu #infoOrdini{
+    font-size: 0.67em;
+    color: white;
+    overflow-wrap: break-word;
+}
+
+.MP-box {
+    background-color: #db5042;
+    border: solid #ddd;
+    padding: 0.5em;
+    margin-top: 1em;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+    text-decoration: none;
+}
+
+.MP-box a{
+    color: white;
+    text-decoration: none;
+}
+
+.pizze-classiche {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-classiche h2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.pizze-classiche p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizze-speciali{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-speciali h2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.pizze-speciali p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizze-stagionali{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-stagionali h2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.pizze-stagionali p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizza {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 0.1vh #DC1C08 solid;
+    margin-bottom: 1em;
+    width: 65%;
+}
+
+
+.pizza img {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    margin-bottom: 0.2em;
+    width: 10em;
+    height: 7em;
+}
+
+
+.pizze-classiche .pizza-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*flex-wrap: wrap;
+    /*justify-content: space-between;*/
+}
+
+.pizze-speciali .pizza-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*flex-wrap: wrap;
+    /*justify-content: space-between;*/
+}
+
+.pizze-stagionali .pizza-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*flex-wrap: wrap;
+    /*justify-content: space-between;*/
+}
+
+.cucina {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.cucina h2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.cucina p{
+    text-align: center;
+    margin-bottom: 1em;
+    border-bottom: #DC1C08;
+}
+
+.cucina .piatti-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*flex-wrap: wrap;
+    /*justify-content: space-between;*/
+}
+
+.piatti-cucina {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 0.3vh #DC1C08 solid;
+    margin-bottom: 1em;
+    width: 65%;
+}
+
+.cucina img {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    width: 8em;
+    height: 6em;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em; /* Spaziatura tra i pulsanti e il campo input */
+    margin-top: 1em; /* Distanza dal contenuto precedente */
+}
+
+.quantity-control button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FF5500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity-control button:hover {
+    background-color: #FF3300; /* Colore più scuro al passaggio del mouse */
+}
+
+.quantity-control input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    padding: 0.2em;
+}
+=======
 ------------------
 CARRELLO
 ------------------
@@ -716,8 +979,3 @@ CARRELLO
 #proposta-mese button{
     border: none;
 }
-
-
-
-
-
