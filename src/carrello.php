@@ -1,7 +1,7 @@
 <?php
 
 include_once 'template/components/loadComponents.php';
-require 'script/gestioneCarrello.php';
+require 'script/PHP/gestioneCarrello.php';
 $template = file_get_contents('template/pageTemplate/carrelloTemplate.html');
 
 $header = printHeader();
