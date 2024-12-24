@@ -17,29 +17,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
-CREATE TABLE `categoria` (
+CREATE TABLE IF NOT EXISTS `categoria` (
   `cat` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `cucina` (
+CREATE TABLE IF NOT EXISTS `cucina` (
   `id` int NOT NULL,
   `nome` varchar(250) NOT NULL,
   `prezzo` double NOT NULL,
   `veget` tinyint(1) NOT NULL DEFAULT (0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `cucina_ingrediente` (
+CREATE TABLE IF NOT EXISTS `cucina_ingrediente` (
   `piatto` int NOT NULL,
   `ingrediente` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `ingrediente` (
+CREATE TABLE IF NOT EXISTS `ingrediente` (
   `nome` varchar(250) NOT NULL,
   `veget` tinyint(1) DEFAULT (0),
   `pagg` double NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `ordine` (
+CREATE TABLE IF NOT EXISTS `ordine` (
   `id` int NOT NULL,
   `utente` varchar(250) NOT NULL,
   `data` date NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `ordine` (
   `stato` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `pizza` (
+CREATE TABLE IF NOT EXISTS `pizza` (
   `id` int NOT NULL,
   `nome` varchar(250) NOT NULL,
   `prezzo` double NOT NULL,
@@ -56,12 +56,12 @@ CREATE TABLE `pizza` (
   `descrizione` mediumtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `pizza_ingredente` (
+CREATE TABLE IF NOT EXISTS `pizza_ingredente` (
   `pizza` int NOT NULL,
   `ingrediente` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `prodotti_ordine` (
+CREATE TABLE IF NOT EXISTS `prodotti_ordine` (
   `id` int NOT NULL,
   `ordine` int NOT NULL,
   `pizza` int DEFAULT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE `prodotti_ordine` (
   `quantita` int NOT NULL DEFAULT (1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `utente` (
+CREATE TABLE IF NOT EXISTS `utente` (
   `email` varchar(250) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
