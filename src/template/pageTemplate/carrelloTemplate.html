@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="utf-8">
+	<title>Non solo pizza</title>
+	<meta name="description" content=""><!--TODO-->
+	<meta name="keywords" content="">
+	<meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
+	<link rel="stylesheet" href="../../style/style.css" media="screen">
+	<script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+[header]
+<nav id="breadcrumb">
+	<p>Sei in: <a lang="en" href="../../index.php">Home</a> / <a lang="en"
+																 href="../../menu-prenota.php">Menu-Prenota</a> /
+		Carrello</p>
+</nav>
+<main id="mainCarrello">
+	<section id="carrello-titolo">
+		<h1>Riepilogo carrello</h1>
+		<p>Controlla il tuo carrello e procedi all'ordine!</p>
+	</section>
+	<section id="sez-carrello">
+          <div class="sezCarrello sezDettaglio">
+			  [rowsCarrello]
+			  <!--
+            <div class="row" data-id="pizza1">
+              <div class="dettaglioItem">
+                <h4>Margherita</h4>
+                <p>extra mozzarella</p>
+              </div>
+              <div class="dettaglioItem">
+                <h4>10€</h4>
+              </div>
+              <div class="dettaglioItem">
+				  <div class="controlloQuantita">
+					  <button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
+					  <input type="number" class="quantity" value="1" min="1">
+					  <button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
+					  <button class="btnRimuovi" onclick="remove(this, 'pizza1')"><i class="fa fa-trash"></i></button>
+				  </div>
+              </div>
+            </div>
+            <div class="row" data-id="pizza2">
+              <div class="dettaglioItem">
+                <h4>Margherita</h4>
+                <p>extra mozzarella</p>
+              </div>
+              <div class="dettaglioItem">
+                <h4>10€</h4>
+              </div>
+				<div class="dettaglioItem">
+					<div class="controlloQuantita">
+						<button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
+						<input type="number" class="quantity" value="1" min="1">
+						<button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
+						<button class="btnRimuovi" onclick="remove(this, 'pizza2')"><i class="fa fa-trash"></i></button>
+					</div>
+				</div>
+            </div>
+			  <div class="row" data-id="pizza3">
+				  <div class="dettaglioItem">
+					  <h4>Margherita</h4>
+					  <p>extra mozzarella</p>
+				  </div>
+				  <div class="dettaglioItem">
+					  <h4>10€</h4>
+				  </div>
+				  <div class="dettaglioItem">
+					  <div class="controlloQuantita">
+						  <button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
+						  <input type="number" class="quantity" value="1" min="1">
+						  <button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
+						  <button class="btnRimuovi" onclick="remove(this, 'pizza3')"><i class="fa fa-trash"></i></button>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="row" data-id="pizza4">
+				  <div class="dettaglioItem">
+					  <h4>Margherita</h4>
+					  <p>extra mozzarella</p>
+				  </div>
+				  <div class="dettaglioItem">
+					  <h4>10€</h4>
+				  </div>
+				  <div class="dettaglioItem">
+					  <div class="controlloQuantita">
+						  <button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
+						  <input type="number" class="quantity" value="1" min="1">
+						  <button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
+						  <button class="btnRimuovi" onclick="remove(this, 'pizza4')"><i class="fa fa-trash"></i></button>
+					  </div>
+				  </div>
+			  </div>
+			  -->
+          </div>
+
+          <div class="sezCarrello sezTotali">
+			  <div id="totaleSpesa">
+				  <div class="totColumn">
+					  <p>Totale carrello: </p>
+				  </div>
+				  <div class="totColumn">
+					  <h4>[tot] €</h4>
+				  </div>
+			  </div>
+			  <p id="primadisp">La prima disponibilità è alle ore 20.00</p>
+			  <button>Ordina</button>
+          </div>
+	</section>
+	<section id="proposta-mese" class="home-section">
+		<h2>Hai già provato le nostre pizze del mese?</h2>
+		<div id="FM-content">
+			<ul id="lista-FM">
+				<li>
+						<img src="../../../assets/pizze/FM-zuccagorgo.jpeg" alt="TODO">
+						<p><strong>Zucca e gorgonzola</strong></p>
+						<p>Gusto unico e deciso, non fartela scappare!</p>
+						<form method="POST" action="">
+							<input type="hidden" name="id" value="1001">
+							<input type="hidden" name="nome" value="PMese1">
+							<input type="hidden" name="quantita" value="1" >
+							<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>
+						</form>
+				</li>
+				<li>
+						<img src="../../../assets/pizze/FM-pestobufala.jpeg" alt="TODO">
+						<p><strong>Pesto e mozzarella di bufala</strong></p>
+						<p>Sapore fresco e delicato nato dall'unione della tradizione italiana</p>
+						<form method="POST" action="">
+							<input type="hidden" name="id" value="1002">
+							<input type="hidden" name="nome" value="PMese2">
+							<input type="hidden" name="quantita" value="1" >
+							<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>
+						</form>
+				</li>
+				<li>
+						<img src="../../../assets/pizze/FM-calzonenutella.jpeg" alt="TODO">
+						<p><strong>Calzone alla Nutella</strong></p>
+						<p>C'è sempre spazio per il dolce, no?</p>
+						<form method="POST" action="">
+							<input type="hidden" name="id" value="1003">
+							<input type="hidden" name="nome" value="PMese3">
+							<input type="hidden" name="quantita" value="1" >
+							<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>
+						</form>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+</main>
+[footer]
+</body>
+
+<script>
+    function updateQuantity(button, operation) {
+        const row = button.closest('.row'); // Trova la riga corrente
+        const input = row.querySelector('.quantity'); // Seleziona l'input corrispondente
+        let currentValue = parseInt(input.value); // Ottieni il valore attuale
+        if (operation === 'increase') {
+            currentValue += 1; // Aumenta il valore
+        } else if (operation === 'decrease' && currentValue > 1) {
+            currentValue -= 1; // Diminuisci il valore
+        }
+        input.value = currentValue; // Aggiorna l'input
+    }
+
+    function remove(button, id){
+		console.log(id);
+	}
+</script>
