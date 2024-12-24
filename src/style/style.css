@@ -571,6 +571,14 @@ CARRELLO
     align-items: center;
 }
 
+.controlloQuantita form{
+    padding: 1.5em;
+}
+
+.controlloQuantita p{
+    width: 5em;
+}
+
 .controlloQuantita button {
     background-color: transparent;
     padding: 0.5em;
@@ -587,12 +595,36 @@ CARRELLO
 
 }
 
-.controlloQuantita input {
-    width: 4em;
-    text-align: center;
-    font-size: 1em;
+#proposta-mese{
+    border-top: black 0.1em solid;
+    margin-top: 2em;
 }
 
+#proposta-mese #FM-content {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#proposta-mese #FM-content li img {
+    max-width: 100%;
+    height: 8em;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
+#proposta-mese #FM-content li {
+    transition: 0.8s ease;
+}
+
+#proposta-mese button{
+    border: none;
+}
 
 
 
