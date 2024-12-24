@@ -692,17 +692,17 @@ MENU-PRENOTA-PAGE
 */
 
 .MP-intro{
-    background-image: url('../../assets/altre/menu-prenota/menu-prenota.jpg');
+    /*background-image: url('../../assets/altre/menu-prenota/menu-prenota.jpg');*/
+    background-image: url('../../assets/altre/menu-prenota/blurred.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
     /*color: var(--txtcolor);*/
     text-align: center;
-    font-size: 1.5em;
-    height: 63vh;
+    font-size: 1.2em;
+    height: 30em;
     width: 100%;
     margin: 0;
-    left: 0;
     display: flex;
     /*justify-content: flex-start;
     align-items: center;*/
@@ -712,38 +712,38 @@ MENU-PRENOTA-PAGE
     display: flex;
     flex-direction: column;
     padding: 1em;
-    background-color: #d13a2a;
     width: 28%;
     overflow-wrap: break-word;
+    justify-content: center;
+    color: var(--bgcolor);
 }
 
 #smallMenu #prenota{
     font-weight: bold;
-    color: white;
     margin-top: 1em;
 }
 
 #smallMenu #infoOrdini{
-    font-size: 0.67em;
-    color: white;
+    font-size: 0.76em;
+    color: var(--bgcolor);
     overflow-wrap: break-word;
 }
 
-.MP-box {
-    background-color: #db5042;
-    border: solid #ddd;
+#smallMenu a{
+    color: var(--bgcolor);
+    background-color: transparent;
+    border: var(--bgcolor) 0.125em solid;
+    border-radius: 0.4em;
     padding: 0.5em;
     margin-top: 1em;
     text-align: center;
-    cursor: pointer;
     transition: background-color 0.3s;
-    color: white;
     text-decoration: none;
 }
 
-.MP-box a{
-    color: white;
-    text-decoration: none;
+#smallMenu a:hover{
+    color: var(--txtcolor);
+    background-color: var(--bgcolor);
 }
 
 .pizze-classiche {
