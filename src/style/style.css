@@ -5,18 +5,19 @@
 }
 
 :root{
-    --bgcolor: #FFF;
-    --txtcolor: #985342;
-    --linkcolor: #000;
-    --visitedcolor: #666;
-    --menucolor: #115783;
+    --bgcolor: #FAF3E0;
+    --txtcolor: #414143;
+    --buttoncolor: #DC1C08;
+    --bgcolor2: #DC1C08;
 }
 
 html{
     /*background-image: url(../../assets/grafiche/sfondo.jpg);*/
-    background-image: url(../../assets/grafiche/sfondo-nero.jpg);
+    /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
+    /*background-image: url(../../assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
     background-size: contain;
+    background-image: url(../../assets/grafiche/sfondo-nero.jpg);
 }
 
 body{
@@ -36,11 +37,11 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: var(--bgcolor);
+    height: 5em;
     position: fixed;
     top: 0;
-    height: 5em;
     width: 100%;
-    /*z-index: 10;*/
+    z-index: 10;
 }
 
 header img {
@@ -56,7 +57,7 @@ header img {
 
 #menu li a {
     text-decoration: none;
-    color: green;
+    color: var(--buttoncolor);
     position: relative;
 }
 
@@ -68,7 +69,7 @@ header img {
     bottom: -0.2em;
     width: 0;
     height: 0.1em;
-    background-color: green;
+    background-color: var(--buttoncolor);
     transition: width 0.3s ease;
 }
 
@@ -110,8 +111,8 @@ SEZIONE BREADCRUMB
 */
 #breadcrumb {
     margin-top: 5em;
-    background-color: cadetblue;
-    color: #985342;
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
     height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
@@ -123,16 +124,16 @@ SEZIONE FOOTER
 ------------------
 */
 footer {
-    background-color: #f8f9fa;
-    padding: 3em 4em 1em 4em;
-    color: #333;
+    padding: 0 0.7em 0.7em;
+    color: var(--bgcolor);
 }
 
 #footer-top {
+    background-color: var(--txtcolor);
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 3em;
-    border-bottom: 1px solid black;
+    padding: 3em;
+    border-bottom: 1px solid var(--bgcolor);
 }
 
 .footer-column {
@@ -143,7 +144,7 @@ footer {
 .footer-column h3 {
     margin-bottom: 1.5em;
     font-size: 1.2em;
-    color: #007bff;
+    color: var(--bgcolor);
 }
 
 .footer-column p {
@@ -157,19 +158,20 @@ iframe {
 }
 
 #footer-bottom {
-    margin-top: 1.2em;
+    background-color: var(--txtcolor);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    padding: 1em;
 }
 
 #footer-bottom #footer-logo {
     height: 4em;
 }
 
-#footer-top img {
-    height: 2em;
+.social:hover {
+    opacity: .4;
 }
 
 /*
@@ -177,56 +179,10 @@ iframe {
 HOME PAGE
 ------------------
 */
-#intro {
-    background-image: url('../../assets/pizze/sfondomarghe.png');
-    background-color: gray;
-    background-size: cover;
-    background-attachment: scroll;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    font-size: 1.5em;
-    height: 100vh; /* CAPIRE SE POSSIAMO USARE vh */
-    margin-bottom: 1.5em;
-}
-
-#intro h1{
-    font-size: 2em;
-    margin-top: 2em;
-}
-
-#intro h2{
-    font-size: 0.9em;
-    padding-top: 1em;
-    padding-bottom: 2em;
-}
-
-#intro a {
-    display: inline-block;
-    margin: 0.5em auto;
-    width: 15em;
-    padding: 0.5em;
-    background-color: transparent;
-    border: white 0.1em solid;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5em;
-    text-align: center;
-    font-size: 0.7em;
-}
-
-#intro a:hover {
-    background-color: black;
-}
-
 .home-section {
     padding: 3em;
-    background-color: #FAF3E0;
     text-align: center;
+    color: var(--txtcolor);
 }
 
 .home-section h2 {
@@ -237,6 +193,54 @@ HOME PAGE
 
 .home-section:not(:last-of-type) {
     margin-bottom: 3em;
+}
+
+.home-section:not(:first-child) {
+    background-color: var(--bgcolor);
+}
+
+#intro {
+    /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
+    padding: 0.7em;
+    margin-bottom: 0;
+}
+
+#titolo {
+    /*background-color: var(--bgcolor);*/
+    background-image: url(../../assets/pagine/index/titolo.png);
+    background-color: gray;
+    background-size: cover;
+    color: var(--bgcolor);
+    text-align: right;
+    font-size: 1.5em;
+    padding: 2em;
+}
+
+#titolo h2 {
+    text-align: right;
+}
+
+#titolo img {
+    height: 7em;
+}
+
+#important-info {
+    background-color: var(--bgcolor2);
+    margin-top: 1em;
+    display: flex;
+    color: var(--bgcolor);
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#important-info section {
+    padding: 3em;
+    width: 30em;
+}
+
+#important-info section:hover {
+    background-color: var(--bgcolor);
+    color: var(--bgcolor2);
 }
 
 #download {
@@ -266,52 +270,19 @@ HOME PAGE
     object-fit: cover;
 }
 
-/* COMMENTO INIZIA QUI
-#container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 60%;
-    gap: 1em;
-    align-items: center;
-    padding-bottom: 2em;
-    padding-top: 2em;
-    margin: 0 auto;
-    /*flex-wrap: wrap;*/
-/*}
-#container img {
-    /*max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    flex-grow: 1;
-    margin: 0 auto;*/
-    /*width: 100%; /* Adatta l'immagine alla cella */
-    /*height: auto; /* Mantieni le proporzioni */
-    /*object-fit: cover;
-    /*border-radius: 5px;*/
-    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-#container img {
-    aspect-ratio: 5 / 3; /* Forza proporzioni uniformi (orizzontale 4:3) */
-    /*height: auto; /* Mantiene la dimensione proporzionata */
-
-/*}
-E FINISCE QUI*/
-
 .home-section .home-button {
     display: inline-block;
     margin: 0.5em auto;
     width: 15em;
     padding: 0.5em;
-    background-color: #007BFF;
-    color: black;
+    background-color: var(--buttoncolor);
+    color: var(--bgcolor);
     text-decoration: none;
     border-radius: 0.5em;
 }
 
 .home-section .home-button:hover {
-    background-color: white;
+    background-color: var(--txtcolor);
 }
 
 #fuori-menu #FM-content {
@@ -337,12 +308,17 @@ E FINISCE QUI*/
 }
 
 #fuori-menu #FM-content li:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+
+#fuori-menu #FM-content:hover li:not(:hover) {
+    opacity: 0.5;
+    transform: scale(0.8);
 }
 
 #fuori-menu #FM-content a {
     text-decoration: none;
-    color: black;
+    color: var(--txtcolor);
 }
 
 #lista-FM li {
@@ -372,7 +348,7 @@ E FINISCE QUI*/
 .download-column h2 {
     font-size: 1.8em;
     font-weight: bold;
-    color: #000; /* Testo nero */
+    color: var(--txtcolor);
 }
 
 .download-column p {
@@ -387,7 +363,7 @@ E FINISCE QUI*/
 }
 
 .torna-su:hover {
-    background-color: orange;
+    background-color: var(--buttoncolor);
 }
 
 /*
@@ -396,7 +372,7 @@ CHI SIAMO PAGE
 ------------------
 */
 #chi-siamo-intro {
-    background-image: url('../../assets/altre/chi-siamo/chi-siamo-intro.jpg');
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-intro.jpg');
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -405,30 +381,30 @@ CHI SIAMO PAGE
     font-size: 1.5em;
     height: 50vh;
     width: 100%;
-    margin: 0;
-    left: 0;
+    /*margin: 0;
+    left: 0;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#chi-siamo-intro img {
-    max-width: 100%;
-    height: auto;
-}
 
 #chi-siamo-contenitore{
-    display:flex;
+    display: flex;
     justify-content: flex-start;
     background-color: #007BFF;
     /*flex-wrap: wrap;*/
-
+}
+@media screen and (max-width: 768px){
+    #chi-siamo-contenitore{
+        flex-wrap: wrap;
+    }
 }
 
 .chi-siamo-items{
     flex-grow: 1;
-    padding:3em;
+    padding: 3em;
 }
 
 .chi-siamo-items:hover{
@@ -442,7 +418,7 @@ CHI SIAMO PAGE
 }
 
 .chi-siamo-titoli h2{
-    margin:auto;
+   margin:auto;
 }
 
 .chi-siamo-items p{
@@ -457,8 +433,11 @@ CHI SIAMO PAGE
     justify-content:flex-start;
     align-items:center;
     gap:10em;
-
-}
+    padding-top:2.5em;
+    padding-bottom:2.5em;
+    margin-top:2.5em;
+    margin-bottom: 2.5em;
+    }
 
 .chi-siamo-boxes img {
     width: 35%;
@@ -470,6 +449,121 @@ CHI SIAMO PAGE
     flex-direction: column;
     justify-content:flex-start;
 }
+
+.chi-siamo-testo h3{
+    padding-bottom:0.5em;
+    align-self: center;
+
+}
+
+.chi-siamo-boxes img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.chi-siamo-boxes img:hover {
+    transform: scale(1.1);
+}
+
+/*
+------------------
+RIEPILOGO-ORDINI PAGE
+------------------
+*/
+#RO {
+    min-height: 70vh;
+}
+
+#RO-intro {
+    padding-bottom: 2em;
+    text-align: center;
+    line-height: 2em;
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+    margin: 0.7em;
+}
+
+#RO-intro h1 {
+    padding: 2em;
+}
+
+.tabella-ordini {
+    background-color: var(--bgcolor);
+    padding: 3em;
+}
+
+.tabella-ordini caption{
+    font-weight: bold;
+    color: var(--txtcolor);
+}
+
+.tabella-ordini thead{
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
+}
+
+.tabella-ordini tbody{
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+}
+
+.tabella-ordini table{
+    width: 90%;
+    margin: auto auto 2em;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.tabella-ordini td, th{
+    padding: 0.8em;
+}
+
+.tabella-ordini th, td {
+    border-bottom: 1px solid var(--txtcolor);
+}
+
+.tabella-ordini tfoot{
+    color: var(--txtcolor);
+}
+
+/*
+------------------
+DETTAGLI-ORDINE PAGE
+------------------
+*/
+#DO{
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+}
+
+#DO-intro{
+    margin: 0.7em;
+    background-color: var(--bgcolor);
+}
+
+#DO-intro h1{
+    padding: 3em;
+}
+
+#DO-intro a{
+    display: inline-block;
+    padding: 0.7em;
+    margin: 3em;
+    background-color: var(--buttoncolor);
+    color: var(--bgcolor);
+    text-decoration: none;
+    border-radius: 0.5em;
+    text-align: center;
+}
+
+#DO-intro a:hover {
+    background-color: var(--txtcolor);
+}
+
+#DO .tabella-ordini{
+    margin-right: 0.7em;
+}
+
 
 /*
 ---------------------
