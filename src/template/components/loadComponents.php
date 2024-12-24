@@ -25,17 +25,7 @@ function printHeader()
         $menu = "<li><a href='menu-prenota.php'>Menù-Prenota</a></li>";
     }
 
-    /*
-    <div id="dropdown">
-                    <li><button id="droplink">Area riservata</button></li>
-                    <div id="dropdown-content">
-                        <li><a href="login.html"><span lang=en>Login</span></a></li>
-                        <li><a href="registrati.html">Registrati</a></li>
-                    </div>
-                </div>
-    */
-
-    $areaRis = "<li><a href='../login.html'>Area riservata</a></li>";
+    $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
 
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);
