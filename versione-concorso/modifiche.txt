@@ -1,0 +1,53 @@
+main indexTemplate.html
+<section id="intro">
+    <h1>Non solo pizza</h1>
+    <h2>Pizzeria e friggitoria Scandolara</h2>
+    <a href="menu.html">Scopri il nostro menù</a>
+</section>
+
+css
+#intro {
+    background-image: url('../../assets/pizze/sfondomarghe.png');
+    background-color: gray;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    height: 100vh; /* CAPIRE SE POSSIAMO USARE vh */
+    margin-bottom: 1.5em;
+}
+
+#intro h1{
+    font-size: 2em;
+    margin-top: 2em;
+}
+
+#intro h2{
+    font-size: 0.9em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+#intro a {
+    display: inline-block;
+    margin: 0.5em auto;
+    width: 15em;
+    padding: 0.5em;
+    background-color: transparent;
+    border: white 0.1em solid;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5em;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+#intro a:hover {
+    background-color: black;
+}

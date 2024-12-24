@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Riepilogo Ordini - Non solo Pizza</title>
+    <meta name="description" content=""><!--TODO-->
+    <meta name="keywords" content="">
+    <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+    <link rel="stylesheet" href="../../style/style.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+[header]
+<nav id="breadcrumb">
+    <p>Sei in: <span lang="en">Home</span></p>
+</nav>
+<main id="DO">
+    <section id="DO-intro">
+        <h1>Dettagli ordine numero NUM-ORDINE</h1>
+        <a href="riepilogo-ordini.php">Torna al riepilogo ordini</a>
+    </section>
+    <section class="tabella-ordini">
+        <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
+        <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
+        <span id="descrTabella">In questa tabella vengono riassunti gli ultimi 5 ordini effettuati ORGANIZZATI PER COLONNE: Numero ordine, Data e orario, Stato ordine, Totale ordine e Dettagli</span>
+        <table aria-describedby="descrTabella">
+            <caption>Dettagli ordine</caption>
+            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+            <tr>
+                <th scope="col">Prodotto</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Prezzo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Margherita</th>
+                <td data-title="Quantità">3</td>
+                <td data-title="Prezzo">16,5€</td>
+            </tr>
+            <tr>
+                <th scope="row">Viennese</th>
+                <td data-title="Quantità">1</td>
+                <td data-title="Prezzo">7€</td>
+            </tr>
+            <tr>
+                <th scope="row">Patate fritte</th>
+                <td data-title="Quantità">1</td>
+                <td data-title="Prezzo">4€</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th scope="row" colspan="2">Totale Prezzo</th>
+                <td data-title="Totale Prezzo">27,5€</td>
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+</main>
+[footer]
+</body>
