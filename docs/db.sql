@@ -19,25 +19,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `cat` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `cucina` (
   `id` int NOT NULL,
   `nome` varchar(250) NOT NULL,
   `prezzo` double NOT NULL,
   `veget` tinyint(1) NOT NULL DEFAULT (0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `cucina_ingrediente` (
   `piatto` int NOT NULL,
   `ingrediente` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `ingrediente` (
   `nome` varchar(250) NOT NULL,
   `veget` tinyint(1) DEFAULT (0),
   `pagg` double NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `ordine` (
   `id` int NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `ordine` (
   `data` date NOT NULL,
   `ora` time NOT NULL,
   `stato` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `pizza` (
   `id` int NOT NULL,
@@ -54,12 +54,12 @@ CREATE TABLE `pizza` (
   `veget` tinyint(1) NOT NULL DEFAULT (0),
   `categoria` varchar(250) NOT NULL,
   `descrizione` mediumtext
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `pizza_ingredente` (
   `pizza` int NOT NULL,
   `ingrediente` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `prodotti_ordine` (
   `id` int NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE `prodotti_ordine` (
   `pizza` int DEFAULT NULL,
   `cucina` int DEFAULT NULL,
   `quantita` int NOT NULL DEFAULT (1)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `utente` (
   `email` varchar(250) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE `utente` (
   `nome` varchar(250) NOT NULL,
   `cognome` varchar(250) NOT NULL,
   `ruolo` tinyint(1) NOT NULL DEFAULT (0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Indici e vincoli
 
