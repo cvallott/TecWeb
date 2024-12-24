@@ -393,7 +393,7 @@ CHI SIAMO PAGE
 #chi-siamo-contenitore{
     display: flex;
     justify-content: flex-start;
-    background-color: #007BFF;
+    background-color: var(--buttoncolor);;
     /*flex-wrap: wrap;*/
 }
 @media screen and (max-width: 768px){
