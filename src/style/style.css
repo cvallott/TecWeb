@@ -11,6 +11,7 @@
     --visitedcolor: #666;
     --menucolor: #115783;
     --buttoncolor: #DC1C08;
+
 }
 
 html{
@@ -491,6 +492,122 @@ CHI SIAMO PAGE
 .chi-siamo-boxes img:hover {
     transform: scale(1.1);
 }
+
+/*
+------------------
+AREA-RISERVATA PAGE
+------------------
+*/
+:root {
+    --primary-color: #4158d0;
+    --primary-dark: #3448b0;
+    --accent-color: #c850c0;
+    --text-dark: #3c3c3c;
+    --text-light: #666;
+    --border-color: #ddd;
+    --white: #fff;
+}
+
+
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0.625em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-box {
+    width: 90%;
+    max-width: 28.125em;
+    background: var(--white);
+    padding: 3.125em 3.75em;
+    border-radius: 0.625em;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.875em;
+    color: var(--text-dark);
+    font-size: 1.5em;
+}
+
+.input-group {
+    margin-bottom: 1.875em;
+}
+
+.input-field {
+    margin-bottom: 1.25em;
+}
+
+.input-field label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: var(--text-light);
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 0.75em;
+    border: 0.125em solid var(--border-color);
+    border-radius: 0.3125em;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+.input-field input:focus {
+    border-color: var(--primary-color);
+}
+
+.btn-field button {
+    width: 100%;
+    padding: 0.9375em 0;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0.3125em;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-field button:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 0.125em 0.3125em rgba(65, 88, 208, 0.2);
+}
+
+.switch-text {
+    text-align: center;
+    margin-top: 1.25em;
+    color: var(--text-light);
+    font-size: 0.875em;
+}
+
+.switch-text a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.switch-text a:hover {
+    color: var(--primary-dark);
+}
+
+#registerForm,#loginForm {
+    display: none;
+}
+
+#loginForm.active,
+#registerForm.active {
+    display: block;
+}
+
 
 
 
