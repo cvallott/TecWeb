@@ -563,3 +563,161 @@ DETTAGLI-ORDINE PAGE
 #DO .tabella-ordini{
     margin-right: 0.7em;
 }
+
+
+/*
+------------------
+CARRELLO
+------------------
+*/
+
+#carrello-titolo{
+    padding-top: 3em;
+    padding-left: 2em;
+}
+
+#mainCarrello{
+    background-color: var(--bgcolor);
+}
+
+#sez-carrello {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.sezCarrello {
+    margin-left: 5em;
+    display: flex;
+    flex-direction: column;
+    max-width: 50em;
+}
+
+.sezDettaglio{
+    flex-direction: column;
+    flex:1.6;
+}
+
+.sezTotali{
+    flex:0.4;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#primadisp{
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+#totaleSpesa{
+    display: flex;
+    align-items: center;
+}
+
+.totColumn {
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+    padding-bottom:0.6em;
+}
+
+.sezTotali button{
+    width: 16em;
+    text-align: center;
+    height: 2.2em;
+    margin-top:0.5em
+}
+
+.sezTotali p{
+    text-align: center;
+}
+
+.dettaglioItem h4, .dettaglioItem p {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -2em;
+}
+
+.dettaglioItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+}
+
+
+.controlloQuantita {
+    display: flex;
+    align-items: center;
+}
+
+.controlloQuantita form{
+    padding: 1.5em;
+}
+
+.controlloQuantita p{
+    width: 5em;
+}
+
+.controlloQuantita button {
+    background-color: transparent;
+    padding: 0.5em;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: black;
+    border: none;
+    border-radius: 0.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6em;
+    height: 1.6em;
+
+}
+
+#proposta-mese{
+    border-top: black 0.1em solid;
+    margin-top: 2em;
+}
+
+#proposta-mese #FM-content {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#proposta-mese #FM-content li img {
+    max-width: 100%;
+    height: 8em;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
+#proposta-mese #FM-content li {
+    transition: 0.8s ease;
+}
+
+#proposta-mese button{
+    border: none;
+}
+
+
+
+
+
