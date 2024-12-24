@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Riepilogo Ordini - Non solo Pizza</title>
+    <meta name="description" content=""><!--TODO-->
+    <meta name="keywords" content="">
+    <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+    <link rel="stylesheet" href="../../style/style.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+[header]
+<nav id="breadcrumb">
+    <p>Sei in: <span lang="en">Home</span></p>
+</nav>
+<main id="RO">
+    <section id="RO-intro">
+        <h1>RIEPILOGO ORDINI</h1>
+        <h2>Ordine confermato!</h2>
+        <p>Ti aspettiamo alle ore ORARIO SCELTO</p>
+        <p>Grazie per aver scelto Non solo pizza!</p>
+    </section>
+    <section class="tabella-ordini">
+        <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
+        <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
+        <span id="descrTabella">In questa tabella vengono riassunti gli ultimi 5 ordini effettuati ORGANIZZATI PER COLONNE: Numero ordine, Data e orario, Stato ordine, Totale ordine e Dettagli</span>
+        <table aria-describedby="descrTabella">
+            <caption>Ultimi ordini effettuati</caption>
+            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+            <tr>
+                <th scope="col">Numero ordine</th>
+                <th scope="col">Data e orario</th>
+                <th scope="col">Stato ordine</th>
+                <th scope="col">Totale ordine</th>
+                <th scope="col">Dettagli</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00
+                </td>
+                <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">
+                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
+                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
+                <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">
+                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
+                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
+                <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">
+                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
+                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
+                <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">
+                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
+                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td data-title="Data e orario">12/12/12 - 20:00</td>
+                <td data-title="Stato">Consegnato</td>
+                <td data-title="Totale">5 prodotti - 43€</td>
+                <td data-title="Dettagli">
+                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
+                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+[footer]
+</body>
