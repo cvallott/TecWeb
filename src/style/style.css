@@ -16,9 +16,10 @@ html{
     /*background-image: url(../../assets/grafiche/sfondo-nero.jpg);*/
     /*background-image: url(../../assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
-    background-size: contain;
+    background-size: cover; /**/
     background-image: url(../../assets/grafiche/sfondo-nero.jpg);
     background-repeat: no-repeat;
+
 }
 
 body{
@@ -193,7 +194,7 @@ HOME PAGE
 }
 
 .home-section:not(:last-of-type) {
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
 }
 
 .home-section:not(:first-child) {
@@ -406,6 +407,7 @@ CHI SIAMO PAGE
 .chi-siamo-items{
     flex-grow: 1;
     padding: 3em;
+    width: 33.3%;
 }
 
 .chi-siamo-items:hover{
@@ -436,8 +438,8 @@ CHI SIAMO PAGE
     gap:10em;
     padding-top:2.5em;
     padding-bottom:2.5em;
-    margin-top:2.5em;
-    margin-bottom: 2.5em;
+    margin-top:1.5em;
+    margin-bottom: 1.5em;
     }
 
 .chi-siamo-boxes img {
