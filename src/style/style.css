@@ -499,7 +499,8 @@ MENU-PRENOTA-PAGE
     flex-direction: column;
     padding: 1em;
     background-color: #d13a2a;
-    width: 28%
+    width: 28%;
+    overflow-wrap: break-word;
 }
 
 #smallMenu #prenota{
@@ -511,6 +512,7 @@ MENU-PRENOTA-PAGE
 #smallMenu #infoOrdini{
     font-size: 0.67em;
     color: white;
+    overflow-wrap: break-word;
 }
 
 .MP-box {
@@ -521,10 +523,13 @@ MENU-PRENOTA-PAGE
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
+    color: white;
+    text-decoration: none;
 }
 
-.menu-box:hover {
-    background-color: #eaeaea;
+.MP-box a{
+    color: white;
+    text-decoration: none;
 }
 
 .pizze-classiche {
@@ -693,4 +698,38 @@ MENU-PRENOTA-PAGE
     margin-left: 0.5em;
     width: 8em;
     height: 6em;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em; /* Spaziatura tra i pulsanti e il campo input */
+    margin-top: 1em; /* Distanza dal contenuto precedente */
+}
+
+.quantity-control button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FF5500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity-control button:hover {
+    background-color: #FF3300; /* Colore più scuro al passaggio del mouse */
+}
+
+.quantity-control input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    padding: 0.2em;
 }
