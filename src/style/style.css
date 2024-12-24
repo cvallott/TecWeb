@@ -381,24 +381,25 @@ CHI SIAMO PAGE
     font-size: 1.5em;
     height: 50vh;
     width: 100%;
-    margin: 0;
-    left: 0;
+    /*margin: 0;
+    left: 0;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#chi-siamo-intro img {
-    max-width: 100%;
-    height: auto;
-}
 
 #chi-siamo-contenitore{
     display: flex;
     justify-content: flex-start;
     background-color: #007BFF;
     /*flex-wrap: wrap;*/
+}
+@media screen and (max-width: 768px){
+    #chi-siamo-contenitore{
+        flex-wrap: wrap;
+    }
 }
 
 .chi-siamo-items{
@@ -417,7 +418,7 @@ CHI SIAMO PAGE
 }
 
 .chi-siamo-titoli h2{
-    margin:auto;
+   margin:auto;
 }
 
 .chi-siamo-items p{
@@ -432,8 +433,11 @@ CHI SIAMO PAGE
     justify-content:flex-start;
     align-items:center;
     gap:10em;
-
-}
+    padding-top:2.5em;
+    padding-bottom:2.5em;
+    margin-top:2.5em;
+    margin-bottom: 2.5em;
+    }
 
 .chi-siamo-boxes img {
     width: 35%;
@@ -444,6 +448,20 @@ CHI SIAMO PAGE
     display:flex;
     flex-direction: column;
     justify-content:flex-start;
+}
+
+.chi-siamo-testo h3{
+    padding-bottom:0.5em;
+    align-self: center;
+
+}
+
+.chi-siamo-boxes img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.chi-siamo-boxes img:hover {
+    transform: scale(1.1);
 }
 
 /*
