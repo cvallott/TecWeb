@@ -220,6 +220,7 @@ HOME PAGE
 
 #titolo h2 {
     text-align: right;
+    color: var(--bgcolor);
 }
 
 #titolo img {
@@ -235,14 +236,13 @@ HOME PAGE
     justify-content: space-between;
 }
 
+#important-info h3{
+    padding-bottom: 1em;
+}
+
 #important-info section {
     padding: 3em;
     width: 30em;
-}
-
-#important-info section:hover {
-    background-color: var(--bgcolor);
-    color: var(--bgcolor2);
 }
 
 #download {
@@ -357,6 +357,11 @@ HOME PAGE
     font-style: italic;
 }
 
+#download .home-button{
+    margin-left: 1em;
+    padding: 0;
+}
+
 .torna-su {
     position: absolute;
     right: 1em;
@@ -374,11 +379,11 @@ CHI SIAMO PAGE
 ------------------
 */
 #chi-siamo-intro {
-    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-intro.jpg');
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
-    /*color: var(--txtcolor);*/
+    color: var(--txtcolor);
     text-align: center;
     font-size: 1.5em;
     height: 50vh;
@@ -408,20 +413,21 @@ CHI SIAMO PAGE
     flex-grow: 1;
     padding: 3em;
     width: 33.3%;
+    color: var(--bgcolor);
 }
 
 .chi-siamo-items:hover{
-    background-color: #666;
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
 }
 
 .chi-siamo-titoli{
     display:flex;
     justify-content:flex-start;
-
 }
 
 .chi-siamo-titoli h2{
-   margin:auto;
+    margin:auto;
 }
 
 .chi-siamo-items p{
@@ -440,31 +446,27 @@ CHI SIAMO PAGE
     padding-bottom:2.5em;
     margin-top:1.5em;
     margin-bottom: 1.5em;
-    }
+}
 
 .chi-siamo-boxes img {
     width: 35%;
     height:70%;
-  }
+}
 
 .chi-siamo-testo{
     display:flex;
     flex-direction: column;
     justify-content:flex-start;
+    transition: transform 0.3s ease-in-out;
+}
+
+.chi-siamo-testo:hover{
+    transform: scale(1.1);
 }
 
 .chi-siamo-testo h3{
     padding-bottom:0.5em;
     align-self: center;
-
-}
-
-.chi-siamo-boxes img {
-    transition: transform 0.3s ease-in-out;
-}
-
-.chi-siamo-boxes img:hover {
-    transform: scale(1.1);
 }
 
 /*
