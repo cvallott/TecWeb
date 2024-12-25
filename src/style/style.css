@@ -435,7 +435,7 @@ CHI SIAMO PAGE
 }
 
 .chi-siamo-boxes{
-    background-color: #FFF;
+    background-color: var(--bgcolor);
     padding-left:5%;
     padding-right:5%;
     display:flex;
