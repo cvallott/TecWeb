@@ -1,23 +1,35 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const showRegister = document.getElementById('showRegister');
     const showLogin = document.getElementById('showLogin');
 
-    showRegister.addEventListener('click', function(e) {
+    // Aggiungi la classe js-hidden ai form -> segnale che JS funziona->altrimenti viene visualizzato form di login e registrazione
+    loginForm.classList.add('js-hidden');
+    registerForm.classList.add('js-hidden');
+
+    loginForm.classList.add('active');
+    loginForm.classList.remove('js-hidden');
+
+    showRegister.addEventListener('click', function (e) {
         e.preventDefault();
         loginForm.classList.remove('active');
+        loginForm.classList.add('js-hidden');
         registerForm.classList.add('active');
+        registerForm.classList.remove('js-hidden');
     });
 
-    showLogin.addEventListener('click', function(e) {
+    showLogin.addEventListener('click', function (e) {
         e.preventDefault();
         registerForm.classList.remove('active');
+        registerForm.classList.add('js-hidden');
         loginForm.classList.add('active');
+        loginForm.classList.remove('js-hidden');
     });
-
-
 });
+
+
+
 
 // //NASCONDERE LOGIN FORM O REGISTER FORM
 // document.addEventListener('DOMContentLoaded', function() {

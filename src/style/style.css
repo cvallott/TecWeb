@@ -635,7 +635,13 @@ h2 {
     color: var(--primary-dark);
 }
 
-#registerForm,#loginForm {
+#registerForm,
+#loginForm {
+    display: block;
+}
+
+#registerForm.js-hidden,
+#loginForm.js-hidden{
     display: none;
 }
 
