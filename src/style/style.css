@@ -272,7 +272,7 @@ HOME PAGE
     object-fit: cover;
 }
 
-.home-section .home-button {
+.home-button {
     display: inline-block;
     margin: 0.5em auto;
     width: 15em;
@@ -283,7 +283,7 @@ HOME PAGE
     border-radius: 0.5em;
 }
 
-.home-section .home-button:hover {
+.home-button:hover {
     background-color: var(--txtcolor);
 }
 
@@ -1100,4 +1100,156 @@ CARRELLO
 
 #proposta-mese button{
     border: none;
+}
+
+/*
+------------------
+AGGIUNGI PRODOTTO PAGE
+------------------
+*/
+#AP-main{
+    background-color: var(--bgcolor);
+    margin: 1em;
+}
+
+#AP-main h1{
+    font-size: 2em;
+    padding: 2em;
+    text-align: center;
+    color: var(--txtcolor);
+}
+
+#link-container{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3em;
+    padding: 1em;
+}
+
+#link-container .home-button{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#link-container .home-button img {
+    margin-left: auto;
+}
+
+/*
+------------------
+AGGIUNGI INGREDIENTE PAGE
+------------------
+*/
+#AI-content{
+    background-color: var(--bgcolor);
+    padding: 3em;
+    margin: 5em;
+    border-radius: 0.4em;
+}
+
+#AI-content h1{
+    color: var(--txtcolor);
+    text-align: center;
+}
+
+/*
+#AI-content form fieldset{
+    margin: 1em;
+    border-radius: 0.4em;
+    padding: 3em;
+}
+
+#AI-content form fieldset div{
+    padding: 1em;
+}
+
+#AI-content form fieldset div label{
+    display: block;
+    margin-bottom: 0.5em;
+    color: var(--text-light);
+    font-size: 0.875em;
+    padding: 1em;
+}
+*/
+
+#AI-content form {
+    background-color: var(--bgcolor);
+    border: 2px solid var(--bgcolor2);
+    border-radius: 0.4em;
+    padding: 2em;
+    margin-top: 1em;
+}
+
+#AI-content fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#AI-content div {
+    margin-bottom: 1em;
+}
+
+#AI-content label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    color: var(--txtcolor);
+    font-size: 1.2em;
+}
+
+#AI-content #check label{
+    display: inline;
+}
+
+#AI-content input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 0.1em solid var(--txtcolor);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#AI-content input[type="text"]:focus, input[type="number"]:focus {
+    border: 0.125em solid var(--bgcolor2);
+    outline: none;
+}
+
+#AI-content input[type="radio"] {
+}
+
+#AI-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--txtcolor);
+}
+
+/* Submit button styling */
+#AI-content input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#AI-contentinput[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+#AI-content input:checked + label {
+    color: var(--bgcolor2);
+    font-weight: bold;
+}
+
+#AI-content input:checked + label {
+    color: var(--bgcolor2);
+    font-weight: bold;
 }

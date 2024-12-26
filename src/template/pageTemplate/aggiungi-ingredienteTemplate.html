@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Aggiungi Prodotto-Non solo pizza</title>
+    <meta name="description" content=""><!--TODO-->
+    <meta name="keywords" content="">
+    <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
+    <link rel="stylesheet" href="../../style/style.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body id="aggiungi-prodottoPage">
+<nav id="breadcrumb">
+    <p>Sei in: <a lang="en" href="../../index.php">Home</a></p>
+</nav>
+
+[header]
+
+<main id="AI-content">
+    <h1>Inserisci un nuovo ingrediente</h1>
+    <form method="post" action="FILE DESTINAZIONE">
+        <fieldset>
+            <div>
+                <label for="nome">Inserisci il nome: </label>
+                <input type="text" name="nome" id="nome"  value="[valoreNome]" >
+            </div>
+            <p>L'ingrediente contiene carne o pesce? </p>
+            <div id="check">
+                <input type="radio" id="veget_si" name="veget" value="1" >
+                <label for="veget_si">Si</label>
+            </div>
+            <div id="check">
+                <input type="radio" id="veget_no" name="veget" value="0" checked>
+                <label for="veget_no">No</label>
+            </div>
+            <div>
+                <label for="pagg">Inserisci il prezzo: </label>
+                <input type="number" min="0.5" max="2.5" name="pagg" id="pagg" value="[valorePrezzo]">
+            </div>
+        </fieldset>
+    </form>
+</main>
+
+[footer]
+</body>
+</html>
