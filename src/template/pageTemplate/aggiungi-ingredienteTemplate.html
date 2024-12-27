@@ -18,8 +18,10 @@
 [header]
 
 <main id="AI-content">
-    <h1>Inserisci un nuovo ingrediente</h1>
-    <form method="post" action="FILE DESTINAZIONE">
+    <section id="AI-intro">
+        <h1>Inserisci un nuovo ingrediente</h1>
+    </section>
+    <form method="post" action="FILE DESTINAZIONE" class="form-aggiunta">
         <div>
             <label for="nome">Inserisci il nome: </label>
             <input type="text" name="nome" id="nome">
@@ -37,6 +39,8 @@
             <label for="pagg">Inserisci il prezzo: </label>
             <input type="number" min="0.5" max="2.5" name="pagg" id="pagg">
         </div>
+        <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci ingrediente" >
+        <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
     </form>
 </main>
 

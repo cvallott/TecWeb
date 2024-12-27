@@ -666,19 +666,10 @@ DETTAGLI-ORDINE PAGE
     padding: 3em;
 }
 
-#DO-intro a{
+#DO-intro .home-button{
     display: inline-block;
     padding: 0.7em;
     margin: 3em;
-    background-color: var(--buttoncolor);
-    color: var(--bgcolor);
-    text-decoration: none;
-    border-radius: 0.5em;
-    text-align: center;
-}
-
-#DO-intro a:hover {
-    background-color: var(--txtcolor);
 }
 
 #DO .tabella-ordini{
@@ -1104,6 +1095,82 @@ CARRELLO
 
 /*
 ------------------
+VISUALIZZA ORDINI PAGE
+------------------
+*/
+#VO-intro{
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
+    text-align: center;
+    padding: 3em;
+    margin: 1em;
+}
+
+#VO select {
+    padding: 0.5em;
+    font-size: 0.9em;
+    border: 0.125em solid var(--txtcolor);
+    border-radius: 0.4em;
+    background-color: var(--bgcolor);
+    outline: none;
+}
+
+#VO select:focus {
+    border-color: var(--bgcolor2);
+}
+
+.invia-button{
+    padding: 0.5em;
+    font-size: 0.8em;
+    color: var(--bgcolor);
+    background-color: var(--bgcolor2);
+    border: none;
+    border-radius: 0.4em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.invia-button:hover {
+    background-color: var(--txtcolor);
+    transform: translateY(-2px);
+}
+
+#VO #filtri input{
+    border: 0.1em solid var(--txtcolor);
+}
+
+#VO #filtri .invia-button{
+    background-color: var(--bgcolor);
+    color: var(--bgcolor2);
+    font-size: 1.1em;
+}
+
+#VO #filtri .invia-button:hover {
+    color: var(--txtcolor);
+}
+
+#VO #filtri input{ /*CAPIRE PERCHE' METTE BORDI META DI UN COLORE E META' DI UN ALTRO*/
+    padding: 0.7em;
+    border-radius: 0.4em;
+}
+
+#VO #filtri{
+    background-color: var(--bgcolor2);
+    margin: 0;
+    color: var(--bgcolor);
+}
+#VO #filtri form{
+    padding: 1em;
+}
+#VO #filtri form label {
+    margin-right: 0.7em;
+}
+#VO #filtri form  input, #VO #filtri form  select {
+    margin-right: 0.9em;
+}
+
+/*
+------------------
 AGGIUNGI PRODOTTO PAGE
 ------------------
 */
@@ -1142,16 +1209,19 @@ AGGIUNGI PRODOTTO PAGE
 AGGIUNGI INGREDIENTE PAGE
 ------------------
 */
-#AI-content{
+.form-aggiunta{
     background-color: var(--bgcolor);
     padding: 3em;
     margin: 5em;
     border-radius: 0.4em;
 }
 
-#AI-content h1{
-    color: var(--txtcolor);
+#AI-intro{
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
     text-align: center;
+    padding: 3em;
+    margin: 1em;
 }
 
 /*
@@ -1176,7 +1246,6 @@ AGGIUNGI INGREDIENTE PAGE
 
 #AI-content form {
     background-color: var(--bgcolor);
-    border: 2px solid var(--bgcolor2);
     border-radius: 0.4em;
     padding: 2em;
     margin-top: 1em;
@@ -1220,23 +1289,6 @@ AGGIUNGI INGREDIENTE PAGE
     color: var(--txtcolor);
 }
 
-/* Submit button styling */
-#AI-content input[type="submit"] {
-    background-color: #007bff;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-#AI-contentinput[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 
 #AI-content input:checked + label {
     color: var(--bgcolor2);
@@ -1247,3 +1299,8 @@ AGGIUNGI INGREDIENTE PAGE
     color: var(--bgcolor2);
     font-weight: bold;
 }
+
+#AI-content .invia-button{
+    font-size: 1em;
+}
+
