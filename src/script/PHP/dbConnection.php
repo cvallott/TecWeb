@@ -40,4 +40,20 @@ class DBConnection {
         }
         return false;
     }
+
+    public function getPizzeSpeciali() {
+        $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='speciale'";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<li>";
+                $stringaReturn .= "<a href='menu-prenota.php'><img src='../../../assets/".$row['path']."' alt='TODO'>";
+                $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
+                $stringaReturn .= "<p>".$row['descrizione']."</p>";
+                $stringaReturn .= "</a></li>";
+            }
+        }
+        return $stringaReturn;
+    }
 }
