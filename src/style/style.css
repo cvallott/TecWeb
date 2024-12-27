@@ -650,6 +650,22 @@ h2 {
     display: block;
 }
 
+.default-text {
+    color: #666;
+    font-size: 0.875em;
+}
+
+.errorSuggestion {
+    color: red;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
+.successMessage {
+    color: green;
+    font-size: 0.875em;
+    font-weight: 500;
+}
 
 
 /*
