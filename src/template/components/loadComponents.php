@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 function printHeader()
 {
     $headerHtml = file_get_contents(__DIR__ . "/headerTemplate.html");

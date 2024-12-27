@@ -30,4 +30,14 @@ class DBConnection {
     public function closeConnection() {
         mysqli_close($this->connection);
     }
+    public function userLogin($username, $password) {
+        $query = "SELECT ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
+        $result = mysqli_query($this->connection, $query);
+        if(mysqli_num_rows($result) == 1) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                return $row['ruolo'];
+            }
+        }
+        return false;
+    }
 }
