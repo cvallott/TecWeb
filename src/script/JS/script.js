@@ -38,102 +38,7 @@ var dettagli_form = {
     "register-confirm-password": ["Conferma la password", /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Le password non coincidono"]
 };
 
-//1
-// function caricamento() {
-//     for(var key in dettagli_form) {
-//         var input = document.getElementById(key);
-//         if(input) {
-//             messaggio(input, 0);
-//             input.onblur = function() { validazioneCampo(this); };
-//         }
-//     }
-//     var confirmPwd = document.getElementById('register-confirm-password');
-//     if(confirmPwd) {
-//         confirmPwd.onblur = function() { validazionePassword(); };
-//     }
-//     document.getElementById('registerForm').onsubmit = validazioneRegistrazione;
-//     document.getElementById('loginForm').onsubmit = validazioneLogin;
-// }
 
-function caricamento() {
-    for (var key in dettagli_form) {
-        var input = document.getElementById(key);
-        if (input) {
-            messaggio(input, 0); // Messaggio di aiuto
-            input.onblur = function() {
-                validazioneCampo(this);
-            };
-        }
-    }
-
-    var pwd = document.getElementById('register-password');
-    var confirmPwd = document.getElementById('register-confirm-password');
-
-    // Validazione password in tempo reale
-    if (pwd && confirmPwd) {
-        pwd.oninput = function() {
-            validazionePassword();
-        };
-        confirmPwd.oninput = function() {
-            validazionePassword();
-        };
-    }
-
-    // Associazione onsubmit ai form
-    document.getElementById('registerForm').onsubmit = validazioneRegistrazione;
-    document.getElementById('loginForm').onsubmit = validazioneLogin;
-}
-
-
-
-// function validazioneCampo(input) {
-//     var regexp = dettagli_form[input.id][1];
-//     var text = input.value;
-//
-//     var p = input.parentNode;
-//     if(p.children.length > 2) {
-//         p.removeChild(p.children[2]);
-//     }
-//
-//     if(text.search(regexp) != 0) {
-//         messaggio(input, 1);
-//         input.focus();
-//         input.select();
-//         return false;
-//     }
-//
-//     return true;
-// }
-
-//1
-// function validazionePassword() {
-//     var pwd = document.getElementById('register-password');
-//     var confirm = document.getElementById('register-confirm-password');
-//
-//     if(pwd.value !== confirm.value) {
-//         var p = confirm.parentNode;
-//         if(p.children.length > 2) {
-//             p.removeChild(p.children[2]);
-//         }
-//         messaggio(confirm, 1);
-//         return false;
-//     }
-//     return true;
-// }
-
-// function validazioneRegistrazione() {
-//     var fields = ['register-name', 'register-surname', 'register-email',
-//         'register-password', 'register-confirm-password'];
-//
-//     for(var i = 0; i < fields.length; i++) {
-//         var input = document.getElementById(fields[i]);
-//         if(!validazioneCampo(input)) {
-//             return false;
-//         }
-//     }
-//
-//     return validazionePassword();
-// }
 
 function validazionePassword() {
     var pwd = document.getElementById('register-password');
@@ -173,7 +78,7 @@ function validazioneRegistrazione() {
         }
     }
 
-    return true; // La validazione della password avviene al blur
+    return true;
 }
 
 
@@ -189,45 +94,7 @@ function validazioneLogin() {
     return true;
 }
 
-// function messaggio(input, mode) {
-//     var node;
-//     var p = input.parentNode;
-//
-//     if(!mode) {
-//         node = document.createElement("span");
-//         node.className = "default-text";
-//         node.appendChild(document.createTextNode(dettagli_form[input.id][0]));
-//     } else {
-//         node = document.createElement("strong");
-//         node.className = "errorSuggestion";
-//         node.appendChild(document.createTextNode(dettagli_form[input.id][2]));
-//     }
-//     p.appendChild(node);
-// }
 
-function messaggio(input, mode) {
-    var node;
-    var p = input.parentNode;
-    var label = p.querySelector('label');
-
-    // Rimuovo eventuali messaggi esistenti
-    var existing = p.querySelector('.default-text, .errorSuggestion');
-    if(existing) {
-        p.removeChild(existing);
-    }
-
-    if(!mode) {
-        node = document.createElement("span");
-        node.className = "default-text";
-        node.appendChild(document.createTextNode(dettagli_form[input.id][0]));
-    } else {
-        node = document.createElement("strong");
-        node.className = "errorSuggestion";
-        node.appendChild(document.createTextNode(dettagli_form[input.id][2]));
-    }
-
-    label.parentNode.insertBefore(node, label.nextSibling);
-}
 
 function validazioneCampo(input) {
     var regexp = dettagli_form[input.id][1];
@@ -243,6 +110,58 @@ function validazioneCampo(input) {
     // Se la validazione passa, rimettiamo il messaggio di help
     messaggio(input, 0);
     return true;
+}
+
+function caricamento() {
+    for (var key in dettagli_form) {
+        var input = document.getElementById(key);
+        if (input) {
+            messaggio(input, 0);
+            input.onblur = function() {
+                validazioneCampo(this);
+            };
+        }
+    }
+
+    var confirmPwd = document.getElementById('register-confirm-password');
+    if (confirmPwd) {
+        confirmPwd.onblur = function() {
+            validazionePassword();
+        };
+    }
+
+    document.getElementById('registerForm').onsubmit = validazioneRegistrazione;
+    document.getElementById('loginForm').onsubmit = validazioneLogin;
+}
+
+function messaggio(input, mode) {
+    var node;
+    var p = input.parentNode;
+    var label = p.querySelector('label');
+
+    // Rimuovo eventuali messaggi esistenti
+    var existing = p.querySelector('.default-text, .errorSuggestion, .successMessage');
+    if(existing) {
+        p.removeChild(existing);
+    }
+
+    if(!mode) {
+        node = document.createElement("span");
+        node.className = "default-text";
+        node.appendChild(document.createTextNode(dettagli_form[input.id][0]));
+    } else {
+        node = document.createElement("strong");
+        node.className = "errorSuggestion";
+        node.appendChild(document.createTextNode(dettagli_form[input.id][2]));
+    }
+
+    if(node.className === "errorSuggestion")
+        input.parentNode.insertBefore(node, input.nextSibling);
+
+    if(node.className === "default-text")
+        label.parentNode.insertBefore(node, label.nextSibling);
+
+
 }
 
 document.addEventListener('DOMContentLoaded', caricamento);
