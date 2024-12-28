@@ -9,7 +9,7 @@ class DBConnection {
 
     private $connection;
 
-    public function openDBConnection() {
+    public function openDBConnection(): bool {
 
         mysqli_report(MYSQLI_REPORT_ERROR);
 
@@ -27,21 +27,20 @@ class DBConnection {
 
     }
 
-    public function closeConnection() {
+    public function closeConnection(): void {
         mysqli_close($this->connection);
     }
     public function userLogin($username, $password) {
         $query = "SELECT ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
         $result = mysqli_query($this->connection, $query);
         if(mysqli_num_rows($result) == 1) {
-            while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                return $row['ruolo'];
-            }
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            return $row['ruolo'];
         }
         return false;
     }
 
-    public function getPizzeSpeciali() {
+    public function getPizzeSpeciali(): string {
         $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='speciale'";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
