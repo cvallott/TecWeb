@@ -360,6 +360,7 @@ HOME PAGE
 #download .home-button{
     margin-left: 1em;
     padding: 0;
+    width: 3em;
 }
 
 .torna-su {
@@ -478,17 +479,15 @@ RIEPILOGO-ORDINI PAGE
     min-height: 70vh;
 }
 
-#RO-intro {
+#RO .general-intro {
     padding-bottom: 2em;
     text-align: center;
     line-height: 2em;
-    background-color: var(--bgcolor);
-    color: var(--txtcolor);
     margin: 0.7em;
 }
 
-#RO-intro h1 {
-    padding: 2em;
+#RO .general-intro h1 {
+    padding-bottom: 2em;
 }
 
 .tabella-ordini {
@@ -563,7 +562,7 @@ AREA-RISERVATA PAGE
     border-radius: 0.625em;
 }
 
-h2 {
+#chi-siamoPage h2 {
     text-align: center;
     margin-bottom: 1.875em;
     color: var(--text-dark);
@@ -660,6 +659,7 @@ DETTAGLI-ORDINE PAGE
 #DO-intro{
     margin: 0.7em;
     background-color: var(--bgcolor);
+    color: var(--txtcolor);
 }
 
 #DO-intro h1{
@@ -1104,6 +1104,7 @@ VISUALIZZA ORDINI PAGE
     text-align: center;
     padding: 3em;
     margin: 1em;
+    line-height: 2em;
 }
 
 .select {
@@ -1116,7 +1117,7 @@ VISUALIZZA ORDINI PAGE
     outline: none;
 }
 
-#VO input {
+#VO #filtri input {
     background-color: var(--bgcolor);
     color: var(--txtcolor);
 }
@@ -1149,13 +1150,13 @@ VISUALIZZA ORDINI PAGE
     border: 0.1em solid var(--bgcolor2);
 }
 
-#VO #filtri .invia-button{
+#VO #filtri form .invia-button{
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     font-size: 1.1em;
 }
 
-#VO #filtri .invia-button:hover {
+#VO #filtri form .invia-button:hover {
     color: var(--txtcolor);
 }
 
@@ -1209,7 +1210,7 @@ AGGIUNGI PRODOTTO PAGE
 CSS PER I FORM DI AGGIUNTA
 ------------------
 */
-.form-aggiunta{
+.aggiunta-content{
     background-color: var(--bgcolor);
     padding: 3em;
     border-radius: 0.4em;
@@ -1275,8 +1276,17 @@ CSS PER I FORM DI AGGIUNTA
 AGGIUNGI PIZZA PAGE
 ------------------
 */
-#API-content .select{
+.aggiunta-page .select{
     background-color: white;
 }
 
+.aggiunta-page .home-button{
+    margin-top: 3em;
+    width: auto;
+    background-color: var(--txtcolor);
+}
+
+.aggiunta-page .home-button:hover{
+    background-color: var(--bgcolor2);
+}
 
