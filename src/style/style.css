@@ -1098,7 +1098,7 @@ CARRELLO
 VISUALIZZA ORDINI PAGE
 ------------------
 */
-#VO-intro{
+.general-intro{
     background-color: var(--txtcolor);
     color: var(--bgcolor);
     text-align: center;
@@ -1106,16 +1106,26 @@ VISUALIZZA ORDINI PAGE
     margin: 1em;
 }
 
-#VO select {
+.select {
     padding: 0.5em;
     font-size: 0.9em;
     border: 0.125em solid var(--txtcolor);
     border-radius: 0.4em;
     background-color: var(--bgcolor);
+    color: var(--txtcolor);
     outline: none;
 }
 
-#VO select:focus {
+#VO input {
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+}
+
+.select:focus {
+    border-color: var(--bgcolor2);
+}
+
+#VO #filtri .select{
     border-color: var(--bgcolor2);
 }
 
@@ -1136,7 +1146,7 @@ VISUALIZZA ORDINI PAGE
 }
 
 #VO #filtri input{
-    border: 0.1em solid var(--txtcolor);
+    border: 0.1em solid var(--bgcolor2);
 }
 
 #VO #filtri .invia-button{
@@ -1149,7 +1159,7 @@ VISUALIZZA ORDINI PAGE
     color: var(--txtcolor);
 }
 
-#VO #filtri input{ /*CAPIRE PERCHE' METTE BORDI META DI UN COLORE E META' DI UN ALTRO*/
+#VO #filtri input{
     padding: 0.7em;
     border-radius: 0.4em;
 }
@@ -1165,7 +1175,7 @@ VISUALIZZA ORDINI PAGE
 #VO #filtri form label {
     margin-right: 0.7em;
 }
-#VO #filtri form  input, #VO #filtri form  select {
+#VO #filtri form  input, #VO #filtri form select {
     margin-right: 0.9em;
 }
 
@@ -1177,85 +1187,36 @@ AGGIUNGI PRODOTTO PAGE
 #AP-main{
     background-color: var(--bgcolor);
     margin: 1em;
-}
-
-#AP-main h1{
-    font-size: 2em;
-    padding: 2em;
-    text-align: center;
-    color: var(--txtcolor);
-}
-
-#link-container{
     display: flex;
     flex-direction: column;
     font-size: 1.3em;
     padding: 1em;
 }
 
-#link-container .home-button{
+#AP-main .home-button{
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#link-container .home-button img {
+#AP-main .home-button img {
     margin-left: auto;
 }
 
 /*
 ------------------
-AGGIUNGI INGREDIENTE PAGE
+CSS PER I FORM DI AGGIUNTA
 ------------------
 */
 .form-aggiunta{
     background-color: var(--bgcolor);
     padding: 3em;
-    margin: 5em;
     border-radius: 0.4em;
+    margin: 1em 5em 5em;
 }
 
-#AI-intro{
-    background-color: var(--txtcolor);
-    color: var(--bgcolor);
-    text-align: center;
-    padding: 3em;
-    margin: 1em;
-}
-
-/*
-#AI-content form fieldset{
-    margin: 1em;
-    border-radius: 0.4em;
-    padding: 3em;
-}
-
-#AI-content form fieldset div{
-    padding: 1em;
-}
-
-#AI-content form fieldset div label{
-    display: block;
-    margin-bottom: 0.5em;
-    color: var(--text-light);
-    font-size: 0.875em;
-    padding: 1em;
-}
-*/
-
-#AI-content form {
-    background-color: var(--bgcolor);
-    border-radius: 0.4em;
-    padding: 2em;
-    margin-top: 1em;
-}
-
-#AI-content div {
-    margin-bottom: 1em;
-}
-
-#AI-content label{
+.form-aggiunta label{
     display: block;
     font-weight: bold;
     margin-bottom: 0.3em;
@@ -1263,11 +1224,11 @@ AGGIUNGI INGREDIENTE PAGE
     font-size: 1.2em;
 }
 
-#AI-content #check label{
+.form-aggiunta .check label{
     display: inline;
 }
 
-#AI-content input[type="text"], input[type="number"] {
+.form-aggiunta input[type="text"], input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 0.1em solid var(--txtcolor);
@@ -1275,32 +1236,47 @@ AGGIUNGI INGREDIENTE PAGE
     font-size: 1em;
 }
 
-#AI-content input[type="text"]:focus, input[type="number"]:focus {
+.form-aggiunta input[type="text"]:focus, input[type="number"]:focus {
     border: 0.125em solid var(--bgcolor2);
     outline: none;
 }
 
-#AI-content input[type="radio"] {
-}
-
-#AI-content p {
+.form-aggiunta p {
     font-size: 1.2em;
     font-weight: bold;
     color: var(--txtcolor);
 }
 
-
-#AI-content input:checked + label {
+.form-aggiunta input:checked + label {
     color: var(--bgcolor2);
     font-weight: bold;
 }
 
-#AI-content input:checked + label {
+.form-aggiunta input:checked + label {
     color: var(--bgcolor2);
     font-weight: bold;
 }
 
-#AI-content .invia-button{
+.form-aggiunta .invia-button{
     font-size: 1em;
 }
+
+.form-aggiunta div{
+    margin-bottom: 1em;
+}
+
+.form-aggiunta input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 0.7em;
+}
+
+/*
+------------------
+AGGIUNGI PIZZA PAGE
+------------------
+*/
+#API-content .select{
+    background-color: white;
+}
+
 
