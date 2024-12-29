@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Aggiungi Piatto-Non solo pizza</title>
+    <meta name="description" content=""><!--TODO-->
+    <meta name="keywords" content="">
+    <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
+    <link rel="stylesheet" href="../../style/style.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body id="aggiungi-prodottoPage">
+<nav id="breadcrumb">
+    <p>Sei in: <a lang="en" href="../../index.php">Home</a></p>
+</nav>
+
+[header]
+
+<main class="aggiunta-page">
+    <section class="general-intro">
+        <h1>INSERISCI UN NUOVO PIATTO DI CUCINA</h1>
+    </section>
+    <section class="aggiunta-content">
+        <form method="post" action="FILE DESTINAZIONE" class="form-aggiunta">
+            <div>
+                <label for="nome">Inserisci il nome: </label>
+                <input type="text" name="nome" id="nome">
+            </div>
+            <div>
+                <label for="pagg">Inserisci il prezzo: </label>
+                <input type="number" min="0.5" max="2.5" name="pagg" id="pagg">
+            </div>
+            <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci piatto" >
+            <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+        </form>
+        <a class="home-button" href="../../aggiungi-prodotto.php">Torna indietro</a>
+    </section>
+</main>
+
+[footer]
+</body>
+</html>
