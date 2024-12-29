@@ -232,7 +232,6 @@ HOME PAGE
     margin-top: 1em;
     display: flex;
     color: var(--bgcolor);
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -292,7 +291,6 @@ HOME PAGE
     align-items: center;
     padding-bottom: 2em;
     padding-top: 2em;
-    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -301,7 +299,6 @@ HOME PAGE
     height: 8em;
     object-fit: cover;
     border-radius: 5px;
-    flex-grow: 1;
     margin: 0 auto;
 }
 
