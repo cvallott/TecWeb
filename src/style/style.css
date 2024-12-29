@@ -643,8 +643,6 @@ AREA-RISERVATA PAGE
     display: block;
 }
 
-
-
 /*
 ------------------
 DETTAGLI-ORDINE PAGE
@@ -1095,7 +1093,7 @@ CARRELLO
 
 /*
 ------------------
-VISUALIZZA ORDINI PAGE
+VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 ------------------
 */
 .general-intro{
@@ -1117,7 +1115,7 @@ VISUALIZZA ORDINI PAGE
     outline: none;
 }
 
-#VO #filtri input {
+.filtri input {
     background-color: var(--bgcolor);
     color: var(--txtcolor);
 }
@@ -1126,7 +1124,7 @@ VISUALIZZA ORDINI PAGE
     border-color: var(--bgcolor2);
 }
 
-#VO #filtri .select{
+.filtri .select{
     border-color: var(--bgcolor2);
 }
 
@@ -1146,37 +1144,40 @@ VISUALIZZA ORDINI PAGE
     transform: translateY(-2px);
 }
 
-#VO #filtri input{
+.filtri input{
     border: 0.1em solid var(--bgcolor2);
 }
 
-#VO #filtri form .invia-button{
+.filtri form .invia-button{
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     font-size: 1.1em;
 }
 
-#VO #filtri form .invia-button:hover {
+.filtri form .invia-button:hover {
     color: var(--txtcolor);
 }
 
-#VO #filtri input{
+.filtri input{
     padding: 0.7em;
     border-radius: 0.4em;
 }
 
-#VO #filtri{
+.filtri{
     background-color: var(--bgcolor2);
     margin: 0;
     color: var(--bgcolor);
 }
-#VO #filtri form{
+
+.filtri form{
     padding: 1em;
 }
-#VO #filtri form label {
+
+.filtri form label {
     margin-right: 0.7em;
 }
-#VO #filtri form  input, #VO #filtri form select {
+
+.filtri form  input, .filtri form select {
     margin-right: 0.9em;
 }
 
@@ -1273,7 +1274,7 @@ CSS PER I FORM DI AGGIUNTA
 
 /*
 ------------------
-AGGIUNGI PIZZA PAGE
+CSS PER LE PAGINE DI AGGIUNTA
 ------------------
 */
 .aggiunta-page .select{
