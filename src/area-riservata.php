@@ -12,17 +12,11 @@ if(!empty($_POST['login-user']) && !empty($_POST['login-password'])){
     $conn = $connessione->openDBConnection();
     if($conn){
         $tipoUtente = $connessione->userLogin($_POST['login-user'], $_POST['login-password']);
-        if($tipoUtente == 0){
-            echo "LOGGATO USER";
-            $_SESSION['user'] = $_POST['login-user'];
-            $_SESSION['tipo'] = $tipoUtente;
-        }else if($tipoUtente == 1){
-            echo "LOGGATO ADMIN";
-            $_SESSION['user'] = $_POST['login-user'];
-            $_SESSION['tipo'] = $tipoUtente;
-        }
-        else{
+        if($tipoUtente!= 0 && $tipoUtente != 1){
             echo "ERROR";
+        }else {
+            $_SESSION['user'] = $_POST['login-user'];
+            $_SESSION['tipo'] = $tipoUtente;
         }
     }else{
         echo "Connection error";
