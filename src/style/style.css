@@ -90,7 +90,8 @@ header img {
     position: absolute;
     background-color: var(--bgcolor);
     width: 7em;
-    height: 6em;
+    padding: 0;
+    z-index: 1000; /
 }
 
 #dropdown-content a {
@@ -100,12 +101,29 @@ header img {
     display: block;
 }
 
-#dropdown-content a:hover {color: green;}
 
 #dropdown:hover #dropdown-content {display: block;}
 
-#dropdown:hover #droplink {background-color: #3e8e41;}
+#droplink {
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    color: var(--buttoncolor); /* Use the same color as menu links */
+    font: inherit; /* Match the font style of the menu links */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Indicate it's clickable */
+    position: relative;
+}
 
+#droplink:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--buttoncolor);
+    transition: width 0.3s ease;
+}
 /*
 ------------------
 SEZIONE BREADCRUMB

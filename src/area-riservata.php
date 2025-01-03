@@ -16,6 +16,7 @@ if(!empty($_POST['login-user']) && !empty($_POST['login-password'])){
             $_SESSION['nome']=$dettagliutente[0];
             $_SESSION['cognome']=$dettagliutente[1];
             $_SESSION['tipo']=$dettagliutente[2];
+            header('location: index.php');
         }
         else{
             echo "errore autenticazione";
