@@ -25,8 +25,11 @@ function printHeader()
     }else{
         $menu = "<li><a href='menu-prenota.php'>Menù-Prenota</a></li>";
     }
-
-    $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
+    if(isset($_SESSION['tipo'])){
+        $areaRis = $_SESSION['nome']. " " .$_SESSION['cognome']; ;
+    }else{
+        $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
+    }
 
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);

@@ -31,11 +31,11 @@ class DBConnection {
         mysqli_close($this->connection);
     }
     public function userLogin($username, $password) {
-        $query = "SELECT ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
+        $query = "SELECT nome,cognome,ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
         $result = mysqli_query($this->connection, $query);
         if(mysqli_num_rows($result) == 1) {
             $row = $result->fetch_array(MYSQLI_ASSOC);
-            return $row['ruolo'];
+            return array($row['nome'], $row['cognome'], $row['ruolo']);
         }
         return false;
     }
