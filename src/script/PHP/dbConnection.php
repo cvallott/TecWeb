@@ -55,4 +55,35 @@ class DBConnection {
         }
         return $stringaReturn;
     }
+
+    public function getIngredienti(): string {
+        $query = "SELECT nome FROM ingrediente";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        $conta=1;
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<div class=\"check\">";
+                $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"".$row['nome']."\" value=\"Pomodoro\">";
+                $stringaReturn .= "<label for=\"ingr".$conta."\">".$row['nome']."</label>";
+                $stringaReturn .= "</div>";
+                $conta++;
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function insertIngredient($nome, $veget, $pagg) {
+
+        $queryInsert = "INSERT INTO ingrediente(nome, veget, pagg) " .
+            "VALUES (\"$nome\", \"$veget\", \"$pagg\")";
+
+        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
