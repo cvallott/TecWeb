@@ -30,9 +30,9 @@ function printHeader()
             $areaRis .= "<div id='dropdown'>";
             $areaRis .= "<li><button id='droplink'>".$_SESSION['nome']. " " .$_SESSION['cognome']." </button></li>";
             $areaRis .= "<div id='dropdown-content'>";
-            $areaRis .= "<li><a href='visualizza-ordini.php'>Ordini</span></a></li>";
-            $areaRis .= "<li><a href='aggiungi-prodotto.php'>Gestione menù</span></a></li>";
-            $areaRis .= "<li><a href='gestisci-utenti.php'>Utenti</span></a></li>";
+            $areaRis .= "<li><a href='admin/visualizza-ordini.php'>Ordini</span></a></li>";
+            $areaRis .= "<li><a href='admin/aggiungi-prodotto.php'>Gestione menù</span></a></li>";
+            $areaRis .= "<li><a href='admin/gestisci-utenti.php'>Utenti</span></a></li>";
             $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";
             $areaRis .= "</div></div>";
         }else{
