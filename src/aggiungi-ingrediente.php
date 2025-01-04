@@ -9,6 +9,7 @@ $template = file_get_contents('template/pageTemplate/aggiungi-ingredienteTemplat
 $header = printHeader();
 $footer = printFooter();
 
+/*MANCANO I CONTROLLI PH PE JS*/
 if (isset($_POST['submit'])) {
     $nome = $_POST['nome'];
     $veget = $_POST['veget'];
@@ -16,7 +17,7 @@ if (isset($_POST['submit'])) {
     $connessione = new DBConnection();
     $conn = $connessione->openDBConnection();
     if($conn){
-        $pizzeSpeciali = $connessione->insertIngredient($nome, $veget, $pagg);
+        $connessione->insertIngrediente($nome, $veget, $pagg);
         $connessione->closeConnection();
     }
 }
