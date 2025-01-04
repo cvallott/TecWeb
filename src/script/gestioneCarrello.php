@@ -9,16 +9,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($_POST['azione'] === 'aggiungi' && $id && $nome) {
         aggiornaCarrello($id, $nome, $quantita,20);
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     } elseif ($_POST['azione'] === 'incrementa' && $id) {
         aggiornaCarrello($id, '', 1,'');
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     } elseif ($_POST['azione'] === 'decrementa' && $id) {
         if (isset($_SESSION['carrello'][$id]) && $_SESSION['carrello'][$id]['quantita'] > 1) {
             $_SESSION['carrello'][$id]['quantita']--;
         } else {
             rimuoviDalCarrello($id);
         }
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     }
 }
 
