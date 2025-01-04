@@ -35,7 +35,7 @@
 
   <section class="pizze-classiche" id="le_classiche">
     <h2>Le Nostre Pizze Classiche</h2>
-    <p>
+    <p class="sez-intro">
       I gusti classici non tramontano mai: questi sapori sono la prova che le cose migliori non hanno bisogno di complicazioni.
     </p>
     <div class="pizza-container">
@@ -45,12 +45,28 @@
           <h3>Asparagi</h3>
           <p>Pomodoro, Mozzarella, Asparagi</p>
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('asparagi', -1)">-</button>
+            <span id="quantity-asparagi">0</span>
+            <button class="increase" onclick="updateQuantity('asparagi', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('asparagi')">Aggiungi al carrello</button>
+        </div>
       </div>
       <div class="pizza">
         <div><img src="../../../assets/icons/pizza_icon.png" alt="Bufalina"></div>
         <div class="pizza-testo">
           <h3>Bufalina</h3>
           <p>Pomodoro, Mozzarella, Mozzarella di Bufala</p>
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('bufalina', -1)">-</button>
+            <span id="quantity-bufalina">0</span>
+            <button class="increase" onclick="updateQuantity('bufalina', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('bufalina')">Aggiungi al carrello</button>
         </div>
       </div>
       <div class="pizza">
@@ -59,13 +75,28 @@
           <h3>Brie e Speck</h3>
           <p>Pomodoro, Mozzarella, Brie, Speck</p>
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('briespeck', -1)">-</button>
+            <span id="quantity-briespeck">0</span>
+            <button class="increase" onclick="updateQuantity('briespeck', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('briespeck')">Aggiungi al carrello</button>
+        </div>
       </div>
       <div class="pizza">
         <div><img src="../../../assets/icons/pizza_icon.png"/></div>
         <div class="pizza-testo">
           <h3>Bresaola</h3>
           <p>Pomodoro, Mozzarella, Bresaola</p>
-
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('bresaola', -1)">-</button>
+            <span id="quantity-bresaola">0</span>
+            <button class="increase" onclick="updateQuantity('bresaola', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('bresaola')">Aggiungi al carrello</button>
         </div>
       </div>
     </div>
@@ -73,13 +104,21 @@
 
   <section class="pizze-speciali" id="le_speciali">
     <h2>Le Nostre Pizze Speciali</h2>
-    <p>Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.</p>
+    <p class="sez-intro">Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.</p>
     <div class="pizza-container">
       <div class="pizza">
         <div><img src="../../../assets/pizze/asparagiuova.jpeg" alt="Asparagi e Uova"></div>
         <div class="pizza-testo">
           <h3>Asparagi e uova</h3>
           <p>Pomodoro, Mozzarella, Asparagi, Uova</p>
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('asparagiuova', -1)">-</button>
+            <span id="quantity-asparagiuova">0</span>
+            <button class="increase" onclick="updateQuantity('asparagiuova', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('asparagiuova')">Aggiungi al carrello</button>
         </div>
       </div>
       <div class="pizza">
@@ -88,12 +127,28 @@
           <h3>Amalfi</h3>
           <p>Pomodoro, Mozzarella, Pomodoro a fette, Rucola, Basilico</p>
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('amalfi', -1)">-</button>
+            <span id="quantity-amalfi">0</span>
+            <button class="increase" onclick="updateQuantity('amalfi', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('amalfi')">Aggiungi al carrello</button>
+        </div>
       </div>
       <div class="pizza">
         <div><img src="../../../assets/icons/pizza_icon.png"/></div>
         <div class="pizza-testo">
           <h3>Bella Napoli</h3>
           <p>Pomodoro, Mozzarella, Mozzarella di Bufala, Pomodoro a fette, Rucola</p>
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('bellanapoli', -1)">-</button>
+            <span id="quantity-bellanapoli">0</span>
+            <button class="increase" onclick="updateQuantity('bellanapoli', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('bellanapoli')">Aggiungi al carrello</button>
         </div>
       </div>
       <div class="pizza">
@@ -102,19 +157,35 @@
           <h3>Burrata, Acciughe e Pomodorini</h3>
           <p>Pomodoro, Mozzarella, Burrata, Acciughe, Pomodorini</p>
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('burraccpom', -1)">-</button>
+            <span id="quantity-burraccpom">0</span>
+            <button class="increase" onclick="updateQuantity('burraccpom', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('burraccpom')">Aggiungi al carrello</button>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="pizze-stagionali" id="le_stagionali">
     <h2>Le Nostre Pizze Stagionali</h2>
-    <p>La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!</p>
+    <p class="sez-intro">La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!</p>
     <div class="pizza-container">
       <div class="pizza">
         <div><img src="../../../assets/icons/pizza_icon.png"></div>
         <div class="pizza-testo">
           <h3>Padana</h3>
           <p>Pomodoro, Mozzarella, Porchetta, Radicchio di Treviso, Grana</p>
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('padana', -1)">-</button>
+            <span id="quantity-padana">0</span>
+            <button class="increase" onclick="updateQuantity('padana', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('padana')">Aggiungi al carrello</button>
         </div>
       </div>
       <div class="pizza">
@@ -123,12 +194,28 @@
           <h3>Radicchio</h3>
           <p>Pomodoro, Mozzarella, Radicchio di Treviso</p>
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('radicchio', -1)">-</button>
+            <span id="quantity-radicchio">0</span>
+            <button class="increase" onclick="updateQuantity('radicchio', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('radicchio')">Aggiungi al carrello</button>
+        </div>
       </div>
       <div class="pizza">
         <div><img src="../../../assets/icons/pizza_icon.png"></div>
         <div class="pizza-testo">
           <h3>Radicchio e Salsiccia</h3>
           <p>Pomodoro, Mozzarella, Radicchio di Treviso, Salsiccia</p>
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('radicchiosalsiccia', -1)">-</button>
+            <span id="quantity-radicchiosalsiccia">0</span>
+            <button class="increase" onclick="updateQuantity('radicchiosalsiccia', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('radicchiosalsiccia')">Aggiungi al carrello</button>
         </div>
       </div>
       <div class="pizza">
@@ -137,19 +224,35 @@
           <h3>Treviso</h3>
           <p>Pomodoro, Mozzarella, Radicchio di Treviso, Grana</p>
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('treviso', -1)">-</button>
+            <span id="quantity-treviso">0</span>
+            <button class="increase" onclick="updateQuantity('treviso', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('treviso')">Aggiungi al carrello</button>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="cucina" id="la_cucina">
     <h2>I Nostri Piatti Della Cucina</h2>
-    <p>La nostra passione, coltivata a 360°: Non Solo Pizza!</p>
+    <p class="sez-intro">La nostra passione, coltivata a 360°: Non Solo Pizza!</p>
     <div class="piatti-container">
       <div class="piatti-cucina">
         <div><img src="../../../assets/pizze/calamari.jpeg" alt="Frittura di Calamari"></div>
         <div class="cucina-testo">
           <h3>Frittura di Calamari</h3>
           <!--<p></p>-->
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('frittcal', -1)">-</button>
+            <span id="quantity-frittcal">0</span>
+            <button class="increase" onclick="updateQuantity('frittcal', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('frittcal')">Aggiungi al carrello</button>
         </div>
       </div>
       <div class="piatti-cucina">
@@ -158,6 +261,14 @@
           <h3>Frittura di Calamari con verdure pastellate</h3>
           <!--<p></p>-->
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('frittcalverdure', -1)">-</button>
+            <span id="quantity-frittcalverdure">0</span>
+            <button class="increase" onclick="updateQuantity('frittcalverdure', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('frittcalverdure')">Aggiungi al carrello</button>
+        </div>
       </div>
       <div class="piatti-cucina">
         <div><img src="../../../assets/pizze/frittomisto.jpeg"></div>
@@ -165,12 +276,28 @@
           <h3>Frittura mista di pesce</h3>
           <!--<p></p>-->
         </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('frittpesce', -1)">-</button>
+            <span id="quantity-frittpesce">0</span>
+            <button class="increase" onclick="updateQuantity('frittpesce', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('frittpesce')">Aggiungi al carrello</button>
+        </div>
       </div>
       <div class="piatti-cucina">
         <div><img src="../../../assets/icons/piatto_icon.png"></div>
         <div class="cucina-testo">
           <h3>Baccalà alla vicentina</h3>
           <p>300g</p>
+        </div>
+        <div class="order-actions">
+          <div class="quantity-controls">
+            <button class="decrease" onclick="updateQuantity('baccala', -1)">-</button>
+            <span id="quantity-baccala\">0</span>
+            <button class="increase" onclick="updateQuantity('baccala', 1)">+</button>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('baccala')">Aggiungi al carrello</button>
         </div>
       </div>
     </div>
