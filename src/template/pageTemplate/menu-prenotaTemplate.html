@@ -51,7 +51,13 @@
             <span id="quantity-asparagi">0</span>
             <button class="increase" onclick="updateQuantity('asparagi', 1)">+</button>
           </div>
-          <button class="add-to-cart" onclick="addToCart('asparagi')">Aggiungi al carrello</button>
+          <form method="POST" action="carrello.php">
+            <input type="hidden" name="id" value="asparagi"> <!-- ID della pizza -->
+            <input type="hidden" name="nome" value="Asparagi"> <!-- Nome della pizza -->
+            <input type="hidden" name="quantita" value="1"> <!-- Quantità predefinita -->
+            <button type="submit" name="azione" value="aggiungi" class="add-to-cart">Aggiungi al carrello</button>
+          </form>
+          <!--<button class="add-to-cart" onclick="addToCart('asparagi')">Aggiungi al carrello</button>-->
         </div>
       </div>
       <div class="pizza">
