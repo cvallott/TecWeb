@@ -124,6 +124,11 @@ header img {
     background-color: var(--buttoncolor);
     transition: width 0.3s ease;
 }
+
+#dropdown i{
+    padding-left: 0.4em;
+}
+
 /*
 ------------------
 SEZIONE BREADCRUMB

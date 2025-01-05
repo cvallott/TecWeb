@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
     }
+
 }
 
 if (!isset($_SESSION['carrello'])) {
