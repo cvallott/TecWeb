@@ -1280,11 +1280,11 @@ CSS PER I FORM DI AGGIUNTA
     display: inline;
 }
 
-.form-aggiunta input[type="text"], input[type="number"] {
+.form-aggiunta input[type="text"], input[type="number"]{
     width: 100%;
-    padding: 10px;
+    padding: 0.5em;
     border: 0.1em solid var(--txtcolor);
-    border-radius: 4px;
+    border-radius: 0.4em;
     font-size: 1em;
 }
 
@@ -1320,6 +1320,11 @@ CSS PER I FORM DI AGGIUNTA
 .form-aggiunta input[type="checkbox"] {
     transform: scale(1.5);
     margin-right: 0.7em;
+}
+
+.form-aggiunta input[type="text"], input[type="number"], input[type="file"] {
+    font-size: 1em;
+    margin-bottom: 2em;
 }
 
 /*

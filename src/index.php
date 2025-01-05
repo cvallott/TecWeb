@@ -14,7 +14,7 @@ $conn = $connessione->openDBConnection();
 $pizzeSpeciali = "";
 if($conn){
     echo "connesso";
-    $pizzeSpeciali = $connessione->getPizzeSpeciali();
+    $pizzeSpeciali = $connessione->getPizzeFM();
     $connessione->closeConnection();
 }
 

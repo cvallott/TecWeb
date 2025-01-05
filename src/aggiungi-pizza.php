@@ -31,14 +31,22 @@ if (isset($_POST['submit'])) {
     } /*else {
         echo "Non hai selezionato nessuna opzione";
     }*/
-    $path = 'da fare';
+    /*$image = $_FILES['file'];*/
+    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+        $path = '../../../assets/icons/pizza_icon.png';
+    }else{
+        $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
+    }
+
     $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
     $conn = $connessione->openDBConnection();
-    $veget = $connessione->isVeget($ingr);
     if($conn){
+        $veget = $connessione->isVeget($ingr);
+        $connessione->uploadImage();
         $connessione->insertPizza($nome, $prezzo, $veget, $cat, $descrizione, $path);
-        $connessione->insertPizzaIngrediente($nome, $ingr);
+        $connessione->insertProdottoIngrediente($nome, $ingr, 'pizza');
         $connessione->closeConnection();
+        header('Location: aggiungi-pizza.php'); /*NON VA*/
     }
 }
 

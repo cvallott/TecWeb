@@ -40,8 +40,8 @@ class DBConnection {
         return false;
     }
 
-    public function getPizzeSpeciali(): string {
-        $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='speciale'";
+    public function getPizzeFM(): string {
+        $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
@@ -128,32 +128,102 @@ class DBConnection {
         }
     }
 
-    public function insertPizzaIngrediente($nome, $ingredienti) {
+    public function insertProdottoIngrediente($nome, $ingredienti, $table) {
         // Sanitizza il nome della pizza
         /*$nome = mysqli_real_escape_string($this->connection, $nome);*/
-        $query = "SELECT id FROM pizza WHERE nome='$nome'";
+        $query = "SELECT id FROM ". $table . " WHERE nome='$nome'";
         $result = mysqli_query($this->connection, $query);
 
         if (!$result) {
-            die("Errore nella query per trovare l'ID della pizza: " . mysqli_error($this->connection));
+            die("Errore nella query per trovare l'ID del prodotto: " . mysqli_error($this->connection));
         }
 
         if (mysqli_num_rows($result) === 0) {
-            die("Errore: Nessuna pizza trovata con il nome '$nome'.");
+            die("Errore: Nessun prodotto trovato con il nome '$nome'.");
         }
 
         $row = mysqli_fetch_assoc($result);
-        $pizzaId = $row['id'];
+        $prodottoId = $row['id'];
 
         // Itera sugli ingredienti e inseriscili
         foreach ($ingredienti as $ingrediente) {
             $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
-            $queryInsert = "INSERT INTO pizza_ingredente (pizza, ingrediente) VALUES ('$pizzaId', '$ingrediente')";
+            $queryInsert = "INSERT INTO ". $table . "_ingrediente (" . $table . ", ingrediente) VALUES ('$prodottoId', '$ingrediente')";
 
             if (!mysqli_query($this->connection, $queryInsert)) {
                 die("Errore nell'inserimento dell'ingrediente '$ingrediente': " . mysqli_error($this->connection));
             }
         }
         return true;
+    }
+
+    public function insertCucina($nome, $prezzo, $veget, $path) {
+
+        $queryInsert = "INSERT INTO cucina(nome, prezzo, veget, path) " .
+            "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$path\")";
+
+        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function uploadImage() {
+        // Controlla se un file è stato caricato
+        if (!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE) {
+            /*echo "Nessun file caricato.<br>";*/
+            return;
+        }
+
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/pizze/';
+        $target_file = $uploadDir . basename($_FILES["file"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["file"]["tmp_name"]);
+            if($check !== false) {
+                /*echo "File is an image - " . $check["mime"] . ".";*/
+                $uploadOk = 1;
+            } else {
+                /*echo "File is not an image.";*/
+                $uploadOk = 0;
+            }
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            /*echo "Sorry, file already exists.";*/
+            $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["file"]["size"] > 500000) {
+            /*echo "Sorry, your file is too large.";*/
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+            /*echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";*/
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            /*echo "Sorry, your file was not uploaded.";*/
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                /*echo "The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.";*/
+            } else {
+                /*echo "Sorry, there was an error uploading your file.";*/
+            }
+        }
     }
 }
