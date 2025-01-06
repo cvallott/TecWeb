@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     }*/
     /*$image = $_FILES['file'];*/
     if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = '../../../assets/icons/pizza_icon.png';
+        $path = '../../../assets/icons/piatto_icon.png';
     }else{
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
@@ -38,7 +38,9 @@ if (isset($_POST['submit'])) {
     $conn = $connessione->openDBConnection();
     if($conn){
         $veget = $connessione->isVeget($ingr);
-        $connessione->uploadImage();
+        if($path != '../../../assets/icons/piatto_icon.png'){
+            $connessione->uploadImage();
+        }
         $connessione->insertCucina($nome, $prezzo, $veget, $path);
         $connessione->insertProdottoIngrediente($nome, $ingr, 'cucina');
         $connessione->closeConnection();

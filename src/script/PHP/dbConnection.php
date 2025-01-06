@@ -114,7 +114,7 @@ class DBConnection {
         }
     }
 
-    public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path) {
+    public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path): bool {
 
         $queryInsert = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) " .
             "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$categoria\", \"$descrizione\", \"$path\")";

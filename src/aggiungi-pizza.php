@@ -42,11 +42,19 @@ if (isset($_POST['submit'])) {
     $conn = $connessione->openDBConnection();
     if($conn){
         $veget = $connessione->isVeget($ingr);
-        $connessione->uploadImage();
-        $connessione->insertPizza($nome, $prezzo, $veget, $cat, $descrizione, $path);
-        $connessione->insertProdottoIngrediente($nome, $ingr, 'pizza');
+        if($path != '../../../assets/icons/pizza_icon.png'){
+            $connessione->uploadImage();
+        }
+        $okPizza = $connessione->insertPizza($nome, $prezzo, $veget, $cat, $descrizione, $path);
+        $okIngredienti = $connessione->insertProdottoIngrediente($nome, $ingr, 'pizza');
         $connessione->closeConnection();
-        header('Location: aggiungi-pizza.php'); /*NON VA*/
+        if($okPizza && $okIngredienti){
+            $message = "Prodotto inserito con successo";
+            header("Location: aggiungi-prodotto.php?message=$message"); /*NON VA*/
+            exit;
+        } else {
+            /* BUUUU ERRORE */
+        }
     }
 }
 
