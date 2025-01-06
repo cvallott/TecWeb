@@ -85,6 +85,52 @@ class DBConnection {
         return $stringaReturn;
     }
 
+    public function queryUtenti($filtro = null): string {
+        if($filtro != null){
+            $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
+        }else if ($filtro == null){
+            $query = "SELECT nome, cognome, username, email, ruolo FROM utente";
+        }
+        return $query;
+    }
+
+    public function getUtenti($query): string {
+        /*$query = "SELECT nome, cognome, username, email, ruolo FROM utente";*/
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']." ".$row['cognome']."</th>";
+                $stringaReturn .= "<td data-title=\"Username\">".$row['username']."</td>";
+                $stringaReturn .= "<td data-title=\"Email\">".$row['email']."</td>";
+                if($row['ruolo']==0){
+                    $stringaReturn .= "<td data-title=\"Ruolo\">Cliente</td>";
+                }else{
+                    $stringaReturn .= "<td data-title=\"Ruolo\">Amministratore</td>";
+                }
+                $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
+                $stringaReturn .= "<form action=\"../../gestisci-utenti.php?action=update\" method=\"post\">";
+                $stringaReturn .= "<select name=\"ruolo\" class=\"select\">";
+                $stringaReturn .= "<option value=\"0\">Cliente</option>";
+                $stringaReturn .= "<option value=\"1\">Amministratore</option>";
+                $stringaReturn .= "</select>";
+                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "<td data-title=\"Elimina Utente\">";
+                $stringaReturn .= "<form action=\"../../gestisci-utenti.php?action=delete\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina utente\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
     public function isVeget(array $ingredienti) {
         $veget = 0;
         foreach($ingredienti as $ingrediente) {
@@ -224,6 +270,39 @@ class DBConnection {
             } else {
                 /*echo "Sorry, there was an error uploading your file.";*/
             }
+        }
+    }
+
+    public function updateUtente($ruolo) {
+        $queryUpdate = "UPDATE utente SET ruolo='".$ruolo."' WHERE email='".$_POST['email']."'";
+
+        $query = "SELECT ruolo FROM utente WHERE email='".$_POST['email']."'";
+        $result = mysqli_query($this->connection, $query);
+        $queryResult = mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+            if($ruolo == $row['ruolo']){
+                return false;
+            }else if(mysqli_affected_rows($this->connection) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteUtente() {
+        $queryDelete = "DELETE FROM utente WHERE email='".$_POST['email']."'";
+
+        $queryResult = mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

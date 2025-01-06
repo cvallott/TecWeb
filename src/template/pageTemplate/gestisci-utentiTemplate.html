@@ -17,9 +17,10 @@
 <main id="GU">
     <section class="general-intro">
         <h1>GESTISCI UTENTI</h1>
+        [operazione-successo]
     </section>
     <section class="filtri">
-        <form method="GET" action="">
+        <form method="post" action="../../gestisci-utenti.php">
             <label for="ruolo">Ruolo:</label>
             <select name="ruolo" id="ruolo" class="select">
                 <option value="0">Cliente</option>
@@ -51,106 +52,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Luigi De Giovanni</th>
-                <td data-title="Username">Luigi-il-grande</td>
-                <td data-title="Email">luigi@luigi.com</td>
-                <td data-title="Ruolo">Amministratore</td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <select name="ruolo" class="select">
-                            <option value="0">Cliente</option>
-                            <option value="1">Amministratore</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button" />
-                    </form>
-                </td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <input type="submit" value="Elimina utente" class="invia-button" />
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Luigi De Giovanni</th>
-                <td data-title="Username">Luigi-il-grande</td>
-                <td data-title="Email">luigi@luigi.com</td>
-                <td data-title="Ruolo">Amministratore</td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <select name="ruolo" class="select">
-                            <option value="0">Cliente</option>
-                            <option value="1">Amministratore</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button" />
-                    </form>
-                </td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <input type="submit" value="Elimina utente" class="invia-button" />
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Luigi De Giovanni</th>
-                <td data-title="Username">Luigi-il-grande</td>
-                <td data-title="Email">luigi@luigi.com</td>
-                <td data-title="Ruolo">Amministratore</td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <select name="ruolo" class="select">
-                            <option value="0">Cliente</option>
-                            <option value="1">Amministratore</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button" />
-                    </form>
-                </td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <input type="submit" value="Elimina utente" class="invia-button" />
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Luigi De Giovanni</th>
-                <td data-title="Username">Luigi-il-grande</td>
-                <td data-title="Email">luigi@luigi.com</td>
-                <td data-title="Ruolo">Amministratore</td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <select name="ruolo" class="select">
-                            <option value="0">Cliente</option>
-                            <option value="1">Amministratore</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button" />
-                    </form>
-                </td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <input type="submit" value="Elimina utente" class="invia-button" />
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Luigi De Giovanni</th>
-                <td data-title="Username">Luigi-il-grande</td>
-                <td data-title="Email">luigi@luigi.com</td>
-                <td data-title="Ruolo">Amministratore</td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <select name="ruolo" class="select">
-                            <option value="0">Cliente</option>
-                            <option value="1">Amministratore</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button" />
-                    </form>
-                </td>
-                <td data-title="Modifica ruolo">
-                    <form action="#">
-                        <input type="submit" value="Elimina utente" class="invia-button" />
-                    </form>
-                </td>
-            </tr>
+                [listaUtenti]
             </tbody>
         </table>
     </section>
