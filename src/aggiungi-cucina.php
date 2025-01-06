@@ -41,10 +41,16 @@ if (isset($_POST['submit'])) {
         if($path != '../../../assets/icons/piatto_icon.png'){
             $connessione->uploadImage();
         }
-        $connessione->insertCucina($nome, $prezzo, $veget, $path);
-        $connessione->insertProdottoIngrediente($nome, $ingr, 'cucina');
+        $okCucina = $connessione->insertCucina($nome, $prezzo, $veget, $path);
+        $okIngredienti = $connessione->insertProdottoIngrediente($nome, $ingr, 'cucina');
         $connessione->closeConnection();
-        /*header('Location: aggiungi-pizza.php'); /*NON VA*/
+        if($okCucina && $okIngredienti){
+            $message = "Prodotto inserito con successo";
+            header("Location: aggiungi-prodotto.php?message=$message"); /*NON VA*/
+            exit;
+        } else {
+            /* BUUUU ERRORE */
+        }
     }
 }
 

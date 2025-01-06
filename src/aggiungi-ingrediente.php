@@ -17,8 +17,15 @@ if (isset($_POST['submit'])) {
     $connessione = new DBConnection();
     $conn = $connessione->openDBConnection();
     if($conn){
-        $connessione->insertIngrediente($nome, $veget, $pagg);
+        $okIngredienti = $connessione->insertIngrediente($nome, $veget, $pagg);
         $connessione->closeConnection();
+        if($okIngredienti){
+            $message = "Prodotto inserito con successo";
+            header("Location: aggiungi-prodotto.php?message=$message"); /*NON VA*/
+            exit;
+        } else {
+            /* BUUUU ERRORE */
+        }
     }
 }
 
