@@ -1366,3 +1366,12 @@ CSS PER LE PAGINE DI AGGIUNTA
     background-color: var(--bgcolor2);
 }
 
+/*
+------------------
+CSS PER LA GESTIONE DEI PRODOTTI IN CARRELLO
+------------------
+*/
+
+.inlineComponents{
+    display:inline;
+}
