@@ -65,7 +65,6 @@ class DBConnection {
 
 
                         if(isset($_SESSION['carrello'][$riga['id']])){
-                            //$stringaReturn .= $_SESSION['carrello'][$riga['id']['quantita']];
                             $stringaReturn .= '<form method="POST" action="?scroll=p-'.$riga['id'].'" class="inlineComponents">
                         <div class="quantity-controls">
                         <input type="hidden" name="id" value="'.$riga['id'].'">
