@@ -1,6 +1,10 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(!isset($_SESSION['nome'])){
+        header("location: area-riservata.php");
+    }
+
     $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'] ?? null;
     $quantita = intval($_POST['quantita'] ?? 1);
