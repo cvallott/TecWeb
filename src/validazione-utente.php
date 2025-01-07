@@ -150,7 +150,7 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
             else {
                 $hashedPassword = password_hash($registerPassword, PASSWORD_DEFAULT);
                 if ($connessione->registerUser($registerName, $registerSurname, $registerUser, $registerEmail, $hashedPassword)) {
-                    header("Location: area-riservata.php?registration=success");
+                    header("Location: index.php?registration=success");
                     exit();
                 } else {
                     $messaggiPerForm .= "<li>" . $errorMessages['db-error'] . "</li>";
