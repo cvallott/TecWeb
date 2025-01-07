@@ -314,6 +314,7 @@ HOME PAGE
     align-items: center;
     padding-bottom: 2em;
     padding-top: 2em;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -322,6 +323,7 @@ HOME PAGE
     height: 8em;
     object-fit: cover;
     border-radius: 5px;
+    flex-grow: 1;
     margin: 0 auto;
 }
 
@@ -654,7 +656,13 @@ AREA-RISERVATA PAGE
     color: var(--primary-dark);
 }
 
-#registerForm,#loginForm {
+#registerForm,
+#loginForm {
+    display: block;
+}
+
+#registerForm.js-hidden,
+#loginForm.js-hidden{
     display: none;
 }
 
@@ -662,6 +670,24 @@ AREA-RISERVATA PAGE
 #registerForm.active {
     display: block;
 }
+
+.default-text {
+    color: #666;
+    font-size: 0.875em;
+}
+
+.errorSuggestion {
+    color: red;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
+.successMessage {
+    color: green;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
 
 /*
 ------------------
@@ -800,7 +826,7 @@ MENU-PRENOTA-PAGE
 }
 
 .pizze-speciali p{
-    /*text-align: center;*/
+    text-align: center;
     margin-bottom: 1em;
 }
 
@@ -989,6 +1015,7 @@ MENU-PRENOTA-PAGE
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
 }
+
 /*
 ------------------
 CARRELLO
