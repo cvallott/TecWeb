@@ -1,10 +1,10 @@
 <?php
 
-if(!isset($_SESSION['nome'])){
-    header("location: area-riservata.php");
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(!isset($_SESSION['nome'])){
+        header("location: area-riservata.php");
+    }
+
     $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'] ?? null;
     $quantita = intval($_POST['quantita'] ?? 1);
@@ -22,7 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
     }
-    header('Location: carrello.php');
+    echo $_GET['scroll'];
+    if(isset($_GET['scroll'])){
+        header('Location:' . basename($_SERVER['PHP_SELF']) . '?' . $_GET['scroll']);
+    }else{
+        header('Location:' . basename($_SERVER['PHP_SELF']));
+    }
+
 }
 
 if (!isset($_SESSION['carrello'])) {
@@ -52,22 +58,29 @@ function getCarrello(){
         $rowsCarrello .= '</div><div class="dettaglioItem">';
         $rowsCarrello .= '<h4>'. $item['prezzo'] .' €</h4>';
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
-        $rowsCarrello .= '<form method="POST" action="" style="display:inline;">
+        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
                     </form>';
         $rowsCarrello .= '<h4>'. $item['quantita'] .'</h4>';
-        $rowsCarrello .= '<form method="POST" action="" style="display:inline;">
+        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
                     </form>';
-        $rowsCarrello .= '<form method="POST" action="" style="display:inline;">
+        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="rimuovi"><i class="fa fa-trash"></i></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }
     return $rowsCarrello;
+}
+
+function getQuantita($id){
+    if(isset($_SESSION['carrello'][$id]['quantita'])){
+        return $_SESSION['carrello'][$id]['quantita'];
+    }
+    return 0;
 }
 
 function getTotale(){
