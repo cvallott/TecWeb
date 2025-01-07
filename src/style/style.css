@@ -90,7 +90,8 @@ header img {
     position: absolute;
     background-color: var(--bgcolor);
     width: 7em;
-    height: 6em;
+    padding: 0;
+    z-index: 1000; /
 }
 
 #dropdown-content a {
@@ -100,11 +101,33 @@ header img {
     display: block;
 }
 
-#dropdown-content a:hover {color: green;}
 
 #dropdown:hover #dropdown-content {display: block;}
 
-#dropdown:hover #droplink {background-color: #3e8e41;}
+#droplink {
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    color: var(--buttoncolor); /* Use the same color as menu links */
+    font: inherit; /* Match the font style of the menu links */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Indicate it's clickable */
+    position: relative;
+}
+
+#droplink:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--buttoncolor);
+    transition: width 0.3s ease;
+}
+
+#dropdown i{
+    padding-left: 0.4em;
+}
 
 /*
 ------------------
@@ -291,6 +314,7 @@ HOME PAGE
     align-items: center;
     padding-bottom: 2em;
     padding-top: 2em;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -299,6 +323,7 @@ HOME PAGE
     height: 8em;
     object-fit: cover;
     border-radius: 5px;
+    flex-grow: 1;
     margin: 0 auto;
 }
 
@@ -540,8 +565,6 @@ AREA-RISERVATA PAGE
     --white: #fff;
 }
 
-
-
 .container {
     width: 100%;
     min-height: 100vh;
@@ -631,7 +654,13 @@ AREA-RISERVATA PAGE
     color: var(--primary-dark);
 }
 
-#registerForm,#loginForm {
+#registerForm,
+#loginForm {
+    display: block;
+}
+
+#registerForm.js-hidden,
+#loginForm.js-hidden{
     display: none;
 }
 
@@ -639,6 +668,24 @@ AREA-RISERVATA PAGE
 #registerForm.active {
     display: block;
 }
+
+.default-text {
+    color: #666;
+    font-size: 0.875em;
+}
+
+.errorSuggestion {
+    color: red;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
+.successMessage {
+    color: green;
+    font-size: 0.875em;
+    font-weight: 500;
+}
+
 
 /*
 ------------------
@@ -733,7 +780,8 @@ MENU-PRENOTA-PAGE
     color: var(--txtcolor);
     background-color: var(--bgcolor);
 }
-.menu-prodpercat{
+
+.menu-prodpercat {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -753,6 +801,53 @@ MENU-PRENOTA-PAGE
 }
 
 .menu-prodpercat p{
+    margin-bottom: 1em;
+}
+
+.pizze-speciali{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-speciali h2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.pizze-speciali p{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.pizze-stagionali{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #FAF3E0;
+}
+
+.pizze-stagionali h2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.pizze-stagionali p{
     /*text-align: center;*/
     margin-bottom: 1em;
 }
@@ -778,7 +873,7 @@ MENU-PRENOTA-PAGE
 }
 
 
-.pizze-classiche .pizza-container {
+.menu-prodpercat .pizza-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -786,7 +881,7 @@ MENU-PRENOTA-PAGE
     /*justify-content: space-between;*/
 }
 
-.menu-prodpercat .pizza-container {
+.pizze-speciali .pizza-container {
     display: flex;
     flex-direction: column;
     align-items: center;
