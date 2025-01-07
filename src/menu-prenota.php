@@ -26,7 +26,6 @@ if($conn){
     $connessione->closeConnection();
 }
 
-$scroll = $_GET['scroll'] ?? null;
 if (isset($_GET['scroll'])) {
     echo "entrato";
     $script = "<script>
