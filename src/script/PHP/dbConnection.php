@@ -41,13 +41,69 @@ class DBConnection {
     }
 
     public function getPizzeClassiche(): string{
+        $queryCategorie = "SELECT * FROM categoria";
+        $categorie = mysqli_query($this->connection, $queryCategorie);
+        $stringaReturn = "";
+        if(mysqli_num_rows($categorie) > 0) {
+            while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
+                $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
+                $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
+                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
+                $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
+                $pizze = mysqli_query($this->connection, $queryPizze);
+                if(mysqli_num_rows($pizze) > 0) {
+                    $stringaReturn .= "<div class='pizza-container'>";
+                    while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
+                        $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
+                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
+                        $stringaReturn .= "<div class='pizza-testo'>";
+                        $stringaReturn .= "<h3>" . $riga['nome'] . "</h3>";
+                        $stringaReturn .= "<p>" . $riga['descrizione'] . "</p>";
+                        $stringaReturn .= "</div>";
+
+                        $stringaReturn .= "<div class='order-actions'>";
+
+
+                        if(isset($_SESSION['carrello'][$riga['id']])){
+                            //$stringaReturn .= $_SESSION['carrello'][$riga['id']['quantita']];
+                            $stringaReturn .= '<form method="POST" action="?scroll=p-'.$riga['id'].'" class="inlineComponents">
+                        <div class="quantity-controls">
+                        <input type="hidden" name="id" value="'.$riga['id'].'">
+                        <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                        
+                        </form>';
+                            $stringaReturn .= '<h4>';
+                            $stringaReturn .= $_SESSION['carrello'][$riga['id']]['quantita'];
+                            $stringaReturn .= '</h4>';
+                            $stringaReturn .= '<form method="POST" action="?scroll=p-'.$riga['id'].'" class="inlineComponents">
+                        <input type="hidden" name="id" value="'.$riga['id'].'">
+                        <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                        </div>
+                     </form>';
+                        }else{
+                            $stringaReturn .= '<form method="POST" action="?scroll=p-'.$riga['id'].'">';
+                            $stringaReturn .= '<input type="hidden" name="id" value="'.$riga['id'].'">';
+                            $stringaReturn .= '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
+                            $stringaReturn .= '<input type="hidden" name="quantita" value="1">';
+                            $stringaReturn .= '<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>';
+                            $stringaReturn .= '</form>';
+                        }
+                        $stringaReturn .= '</div>';
+                        $stringaReturn .= '</div>';
+                    }
+                    $stringaReturn .= '</div>';
+                }
+            }
+            $stringaReturn .= '</section>';
+        }
+        /*
         $query = "SELECT * FROM pizza WHERE categoria='classica'";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if (mysqli_num_rows($result) > 0) {
             $stringaReturn .= "<div class='pizza-container'>";
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                $stringaReturn .= "<div class='pizza' id='p-".$row['id']."' >";
+                $stringaReturn .= "<div class='pizza' id='p-" . $row['id'] . "' >";
                 $stringaReturn .= "<div><img src='" . $row['path'] . "' alt='" . $row['nome'] . "'></div>";
                 $stringaReturn .= "<div class='pizza-testo'>";
                 $stringaReturn .= "<h3>" . $row['nome'] . "</h3>";
@@ -57,26 +113,26 @@ class DBConnection {
                 $stringaReturn .= "<div class='order-actions'>";
 
 
-                if(isset($_SESSION['carrello'][$row['id']])){
+                if (isset($_SESSION['carrello'][$row['id']])) {
                     //$stringaReturn .= $_SESSION['carrello'][$row['id']['quantita']];
-                    $stringaReturn .= '<form method="POST" action="?scroll=p-'.$row['id'].'" class="inlineComponents">
+                    $stringaReturn .= '<form method="POST" action="?scroll=p-' . $row['id'] . '" class="inlineComponents">
                         <div class="quantity-controls">
-                        <input type="hidden" name="id" value="'.$row['id'].'">
+                        <input type="hidden" name="id" value="' . $row['id'] . '">
                         <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
                         
                     </form>';
                     $stringaReturn .= '<h4>';
                     $stringaReturn .= $_SESSION['carrello'][$row['id']]['quantita'];
                     $stringaReturn .= '</h4>';
-                    $stringaReturn .= '<form method="POST" action="?scroll=p-'.$row['id'].'" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.$row['id'].'">
+                    $stringaReturn .= '<form method="POST" action="?scroll=p-' . $row['id'] . '" class="inlineComponents">
+                        <input type="hidden" name="id" value="' . $row['id'] . '">
                         <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
                         </div>
                     </form>';
-                }else{
-                    $stringaReturn .= '<form method="POST" action="?scroll=p-'.$row['id'].'">';
-                    $stringaReturn .= '<input type="hidden" name="id" value="'.$row['id'].'">';
-                    $stringaReturn .= '<input type="hidden" name="nome" value="'.$row['nome'].'">';
+                } else {
+                    $stringaReturn .= '<form method="POST" action="?scroll=p-' . $row['id'] . '">';
+                    $stringaReturn .= '<input type="hidden" name="id" value="' . $row['id'] . '">';
+                    $stringaReturn .= '<input type="hidden" name="nome" value="' . $row['nome'] . '">';
                     $stringaReturn .= '<input type="hidden" name="quantita" value="1">';
                     $stringaReturn .= '<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>';
                     $stringaReturn .= '</form>';
@@ -119,11 +175,25 @@ class DBConnection {
                 //$stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='add-to-cart'>Aggiungi al carrello</button>";
                 $stringaReturn .= "</form>";
                 */
+                /*
                 $stringaReturn .= "</div>";
                 $stringaReturn .= "</div>";
             }
 
             $stringaReturn .= "</div>";
+        }
+               */
+        return $stringaReturn;
+    }
+
+    public function getMenuCategorie(): string {
+        $query = "SELECT cat, nomeEsteso FROM categoria";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $stringaReturn .= "<a href='#".str_replace(' ','',$row['cat'])."'>".$row['nomeEsteso']."</a>";
+            }
         }
         return $stringaReturn;
     }
