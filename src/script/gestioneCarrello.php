@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+//session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
@@ -61,16 +61,16 @@ function getCarrello(){
         $rowsCarrello .= '</div><div class="dettaglioItem">';
         $rowsCarrello .= '<h4>'. $item['prezzo'] .' €</h4>';
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
-        $rowsCarrello .= '<form method="POST" action="" style="display:inline;">
+        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
                     </form>';
         $rowsCarrello .= '<h4>'. $item['quantita'] .'</h4>';
-        $rowsCarrello .= '<form method="POST" action="" style="display:inline;">
+        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
                     </form>';
-        $rowsCarrello .= '<form method="POST" action="" style="display:inline;">
+        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="rimuovi"><i class="fa fa-trash"></i></button>
                     </form>';
