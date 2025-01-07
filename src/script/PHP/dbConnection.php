@@ -40,7 +40,7 @@ class DBConnection {
         return false;
     }
 
-    public function getPizzeClassiche(): string{
+    public function getMenuPizze(): string{
         $queryCategorie = "SELECT * FROM categoria";
         $categorie = mysqli_query($this->connection, $queryCategorie);
         $stringaReturn = "";

@@ -10,17 +10,19 @@ $header = printHeader();
 $footer = printFooter();
 
 $connessione = new DBConnection();
-$conn = $connessione->openDBConnection();
-$pizzeClassiche = "";
-if($conn){
-    $pizzeClassiche = $connessione->getPizzeClassiche();
-    $connessione->closeConnection();
-}
 
 $conn = $connessione->openDBConnection();
 $menuCategorie = "";
 if($conn){
     $menuCategorie = $connessione->getMenuCategorie();
+    $connessione->closeConnection();
+}
+
+
+$conn = $connessione->openDBConnection();
+$pizzeClassiche = "";
+if($conn){
+    $pizzeClassiche = $connessione->getMenuPizze();
     $connessione->closeConnection();
 }
 
