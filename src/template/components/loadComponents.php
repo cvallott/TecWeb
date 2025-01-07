@@ -51,6 +51,7 @@ function printHeader()
         }
     }else{
         $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
+        //$areaRis = "<li><a href='validazione-utente.php'>Area riservata</a></li>";
     }
 
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
