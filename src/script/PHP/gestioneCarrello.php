@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'] ?? null;
@@ -20,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
     }
+    header('Location: carrello.php');
 }
 
 if (!isset($_SESSION['carrello'])) {

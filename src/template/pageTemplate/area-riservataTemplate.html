@@ -7,6 +7,7 @@
   <meta name="keywords" content="">
   <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
   <link rel="stylesheet" href="../../style/style.css" media="screen">
+  <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../script/JS/script.js"></script>
 
@@ -24,7 +25,7 @@
   <div class="container">
     <div class="form-box">
       <!-- Form Login -->
-      <form id="loginForm" action="login.php" method="POST" class="active">
+      <form id="loginForm" action="" method="POST" class="active">
         <h2>Accedi</h2>
         <div class="input-group">
           <div class="input-field">
@@ -41,6 +42,27 @@
         </div>
         <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
       </form>
+
+<div class="container">
+  <div class="form-box">
+    <!-- Form Login -->
+    <form id="loginForm" action="" method="POST" class="active">
+      <h2>Accedi</h2>
+      <div class="input-group">
+        <div class="input-field">
+          <label for="login-user">Username</label>
+          <input type="text" id="login-user" name="login-user" required>
+        </div>
+        <div class="input-field">
+          <label for="login-password" lang="en">Password</label>
+          <input type="password" id="login-password" name="login-password" required>
+        </div>
+      </div>
+      <div class="btn-field">
+        <button type="submit">Accedi</button>
+      </div>
+      <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
+    </form>
 
       <!-- Form Registrazione -->
       <form id="registerForm" action="register.php" method="POST">

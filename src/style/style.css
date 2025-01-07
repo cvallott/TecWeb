@@ -90,7 +90,8 @@ header img {
     position: absolute;
     background-color: var(--bgcolor);
     width: 7em;
-    height: 6em;
+    padding: 0;
+    z-index: 1000; /
 }
 
 #dropdown-content a {
@@ -100,11 +101,33 @@ header img {
     display: block;
 }
 
-#dropdown-content a:hover {color: green;}
 
 #dropdown:hover #dropdown-content {display: block;}
 
-#dropdown:hover #droplink {background-color: #3e8e41;}
+#droplink {
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    color: var(--buttoncolor); /* Use the same color as menu links */
+    font: inherit; /* Match the font style of the menu links */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Indicate it's clickable */
+    position: relative;
+}
+
+#droplink:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--buttoncolor);
+    transition: width 0.3s ease;
+}
+
+#dropdown i{
+    padding-left: 0.4em;
+}
 
 /*
 ------------------
@@ -232,7 +255,6 @@ HOME PAGE
     margin-top: 1em;
     display: flex;
     color: var(--bgcolor);
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -272,7 +294,7 @@ HOME PAGE
     object-fit: cover;
 }
 
-.home-section .home-button {
+.home-button {
     display: inline-block;
     margin: 0.5em auto;
     width: 15em;
@@ -283,7 +305,7 @@ HOME PAGE
     border-radius: 0.5em;
 }
 
-.home-section .home-button:hover {
+.home-button:hover {
     background-color: var(--txtcolor);
 }
 
@@ -360,6 +382,7 @@ HOME PAGE
 #download .home-button{
     margin-left: 1em;
     padding: 0;
+    width: 3em;
 }
 
 .torna-su {
@@ -435,7 +458,7 @@ CHI SIAMO PAGE
 }
 
 .chi-siamo-boxes{
-    background-color: #FFF;
+    background-color: var(--bgcolor);
     padding-left:5%;
     padding-right:5%;
     display:flex;
@@ -478,17 +501,15 @@ RIEPILOGO-ORDINI PAGE
     min-height: 70vh;
 }
 
-#RO-intro {
+#RO .general-intro {
     padding-bottom: 2em;
     text-align: center;
     line-height: 2em;
-    background-color: var(--bgcolor);
-    color: var(--txtcolor);
     margin: 0.7em;
 }
 
-#RO-intro h1 {
-    padding: 2em;
+#RO .general-intro h1 {
+    padding-bottom: 2em;
 }
 
 .tabella-ordini {
@@ -563,7 +584,7 @@ AREA-RISERVATA PAGE
     border-radius: 0.625em;
 }
 
-h2 {
+#chi-siamoPage h2 {
     text-align: center;
     margin-bottom: 1.875em;
     color: var(--text-dark);
@@ -682,25 +703,17 @@ DETTAGLI-ORDINE PAGE
 #DO-intro{
     margin: 0.7em;
     background-color: var(--bgcolor);
+    color: var(--txtcolor);
 }
 
 #DO-intro h1{
     padding: 3em;
 }
 
-#DO-intro a{
+#DO-intro .home-button{
     display: inline-block;
     padding: 0.7em;
     margin: 3em;
-    background-color: var(--buttoncolor);
-    color: var(--bgcolor);
-    text-decoration: none;
-    border-radius: 0.5em;
-    text-align: center;
-}
-
-#DO-intro a:hover {
-    background-color: var(--txtcolor);
 }
 
 #DO .tabella-ordini{
@@ -790,7 +803,6 @@ MENU-PRENOTA-PAGE
 }
 
 .pizze-classiche p{
-    text-align: center;
     margin-bottom: 1em;
 }
 
@@ -838,7 +850,7 @@ MENU-PRENOTA-PAGE
 }
 
 .pizze-stagionali p{
-    text-align: center;
+    /*text-align: center;*/
     margin-bottom: 1em;
 }
 
@@ -907,9 +919,8 @@ MENU-PRENOTA-PAGE
 }
 
 .cucina p{
-    text-align: center;
     margin-bottom: 1em;
-    border-bottom: #DC1C08;
+    /*border-bottom: #DC1C08;*/
 }
 
 .cucina .piatti-container {
@@ -938,38 +949,71 @@ MENU-PRENOTA-PAGE
     height: 6em;
 }
 
-.quantity-control {
+.sez-intro{
+    text-align: center;
+}
+
+.pizza-testo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40em;
+}
+.cucina-testo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40em;
+}
+
+.order-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.5em;
+}
+
+.quantity-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5em; /* Spaziatura tra i pulsanti e il campo input */
-    margin-top: 1em; /* Distanza dal contenuto precedente */
+    gap: 0.5em;
 }
 
-.quantity-control button {
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #FF5500;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.quantity-controls button {
+    padding: 0.3em 0.6em;
+    font-size: 1em;
     cursor: pointer;
+    border: 0.1em solid #ccc;
+    border-radius: 0.2em;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
 }
 
-.quantity-control button:hover {
-    background-color: #FF3300; /* Colore più scuro al passaggio del mouse */
+.quantity-controls button:hover {
+    background-color: #ddd;
 }
 
-.quantity-control input {
-    width: 50px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #fff;
-    padding: 0.2em;
+.quantity-controls span {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.add-to-cart {
+    padding: 0.4em 1em;
+    font-size: 1em;
+    background-color: var(--buttoncolor);
+    color: var(--bgcolor);
+    border: none;
+    border-radius: 0.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    color: var(--bgcolor);
+    background-color: var(--bgcolor2);
 }
 
 /*
@@ -1123,3 +1167,204 @@ CARRELLO
 #proposta-mese button{
     border: none;
 }
+
+/*
+------------------
+VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
+------------------
+*/
+.general-intro{
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
+    text-align: center;
+    padding: 3em;
+    margin: 1em;
+    line-height: 2em;
+}
+
+.select {
+    padding: 0.5em;
+    font-size: 0.9em;
+    border: 0.125em solid var(--txtcolor);
+    border-radius: 0.4em;
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+    outline: none;
+}
+
+.filtri input {
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+}
+
+.select:focus {
+    border-color: var(--bgcolor2);
+}
+
+.filtri .select{
+    border-color: var(--bgcolor2);
+}
+
+.invia-button{
+    padding: 0.5em;
+    font-size: 0.8em;
+    color: var(--bgcolor);
+    background-color: var(--bgcolor2);
+    border: none;
+    border-radius: 0.4em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.invia-button:hover {
+    background-color: var(--txtcolor);
+    transform: translateY(-2px);
+}
+
+.filtri input{
+    border: 0.1em solid var(--bgcolor2);
+}
+
+.filtri form .invia-button{
+    background-color: var(--bgcolor);
+    color: var(--bgcolor2);
+    font-size: 1.1em;
+}
+
+.filtri form .invia-button:hover {
+    color: var(--txtcolor);
+}
+
+.filtri input{
+    padding: 0.7em;
+    border-radius: 0.4em;
+}
+
+.filtri{
+    background-color: var(--bgcolor2);
+    margin: 0;
+    color: var(--bgcolor);
+}
+
+.filtri form{
+    padding: 1em;
+}
+
+.filtri form label {
+    margin-right: 0.7em;
+}
+
+.filtri form  input, .filtri form select {
+    margin-right: 0.9em;
+}
+
+/*
+------------------
+AGGIUNGI PRODOTTO PAGE
+------------------
+*/
+#AP-main{
+    background-color: var(--bgcolor);
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3em;
+    padding: 1em;
+}
+
+#AP-main .home-button{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#AP-main .home-button img {
+    margin-left: auto;
+}
+
+/*
+------------------
+CSS PER I FORM DI AGGIUNTA
+------------------
+*/
+.aggiunta-content{
+    background-color: var(--bgcolor);
+    padding: 3em;
+    border-radius: 0.4em;
+    margin: 1em 5em 5em;
+}
+
+.form-aggiunta label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    color: var(--txtcolor);
+    font-size: 1.2em;
+}
+
+.form-aggiunta .check label{
+    display: inline;
+}
+
+.form-aggiunta input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 0.1em solid var(--txtcolor);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-aggiunta input[type="text"]:focus, input[type="number"]:focus {
+    border: 0.125em solid var(--bgcolor2);
+    outline: none;
+}
+
+.form-aggiunta p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--txtcolor);
+}
+
+.form-aggiunta input:checked + label {
+    color: var(--bgcolor2);
+    font-weight: bold;
+}
+
+.form-aggiunta input:checked + label {
+    color: var(--bgcolor2);
+    font-weight: bold;
+}
+
+.form-aggiunta .invia-button{
+    font-size: 1em;
+}
+
+.form-aggiunta div{
+    margin-bottom: 1em;
+}
+
+.form-aggiunta input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 0.7em;
+}
+
+/*
+------------------
+CSS PER LE PAGINE DI AGGIUNTA
+------------------
+*/
+.aggiunta-page .select{
+    background-color: white;
+}
+
+.aggiunta-page .home-button{
+    margin-top: 3em;
+    width: auto;
+    background-color: var(--txtcolor);
+}
+
+.aggiunta-page .home-button:hover{
+    background-color: var(--bgcolor2);
+}
+

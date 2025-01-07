@@ -2,6 +2,8 @@
 
 include_once 'template/components/loadComponents.php';
 require 'script/PHP/gestioneCarrello.php';
+require 'script/PHP/checkUserLogin.php';
+
 $template = file_get_contents('template/pageTemplate/carrelloTemplate.html');
 
 $header = printHeader();
