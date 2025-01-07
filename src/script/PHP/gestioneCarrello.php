@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
     }
-    echo $_GET['scroll'];
     if(isset($_GET['scroll'])){
         header('Location:' . basename($_SERVER['PHP_SELF']) . '?' . $_GET['scroll']);
     }else{
