@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var dettagli_form = {
     "login-user": ["Inserisci username", /^[A-Za-z0-9_]{3,20}$/, "Username deve contenere tra 3 e 20 caratteri alfanumerici"],
-    "login-password": ["Inserisci password", /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Password deve contenere almeno 8 caratteri, una lettera e un numero"],
+    "login-password": ["Inserisci password", /^.{4,}$/, "Password deve contenere almeno 4 caratteri"],
     "register-name": ["Es: Mario", /^[A-Za-z\u00C0-\u024F\s']{2,}$/, "Nome deve contenere almeno 2 caratteri, solo lettere"],
     "register-surname": ["Es: Rossi", /^[A-Za-z\u00C0-\u024F\s']{2,}$/, "Cognome deve contenere almeno 2 caratteri, solo lettere"],
     "register-email": ["Es: mario.rossi@email.com", /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Formato email non valido"],
-    "register-password": ["Inserisci password", /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Password deve contenere almeno 8 caratteri, una lettera e un numero"],
-    "register-confirm-password": ["Conferma la password", /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Le password non coincidono"]
+    "register-password": ["Inserisci password", /^.{4,}$/, "Password deve contenere almeno 4 caratteri"],
+    "register-confirm-password": ["Conferma la password", /^.{4,}$/, "Le password non coincidono"]
 };
 
 
