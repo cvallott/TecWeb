@@ -30,15 +30,15 @@ class DBConnection {
     public function closeConnection(): void {
         mysqli_close($this->connection);
     }
-    public function userLogin($username, $password) {
-        $query = "SELECT nome,cognome,ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
-        $result = mysqli_query($this->connection, $query);
-        if(mysqli_num_rows($result) == 1) {
-            $row = $result->fetch_array(MYSQLI_ASSOC);
-            return array($row['nome'], $row['cognome'], $row['ruolo']);
-        }
-        return false;
-    }
+//    public function userLogin($username, $password) {
+//        $query = "SELECT nome,cognome,ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
+//        $result = mysqli_query($this->connection, $query);
+//        if(mysqli_num_rows($result) == 1) {
+//            $row = $result->fetch_array(MYSQLI_ASSOC);
+//            return array($row['nome'], $row['cognome'], $row['ruolo']);
+//        }
+//        return false;
+//    }
 
     public function getPizzeSpeciali(): string {
         $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='speciale'";
@@ -55,4 +55,72 @@ class DBConnection {
         }
         return $stringaReturn;
     }
+
+
+
+    public function checkUserExists($username) {
+        $query = "SELECT username FROM utente WHERE username = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    public function checkEmailExists($email) {
+        $query = "SELECT email FROM utente WHERE email = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    public function registerUser($name, $surname, $username, $email, $hashedPassword) {
+        $ruolo = 0; // ruolo default
+        $query = "INSERT INTO utente (nome, cognome, username, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param('sssssi', $name, $surname, $username, $email, $hashedPassword, $ruolo);
+        return $stmt->execute();
+    }
+
+    public function userLogin($username, $password) {
+        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['password'])) {
+                return array($user['nome'], $user['cognome'], $user['ruolo']);
+            }
+        }
+        return false;
+    }
+//    public function userLogin($username, $password) {
+//        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
+//        $stmt = $this->connection->prepare($query);
+//        $stmt->bind_param('s', $username);
+//        $stmt->execute();
+//        $result = $stmt->get_result();
+//
+//        // Debug
+//        error_log("Login attempt for user: " . $username);
+//        error_log("Query result rows: " . $result->num_rows);
+//
+//        if ($result->num_rows === 1) {
+//            $user = $result->fetch_assoc();
+//            if (password_verify($password, $user['password'])) {
+//                return array($user['nome'], $user['cognome'], $user['ruolo']);
+//            }
+//            error_log("Password verification failed");
+//        }
+//        return false;
+//    }
+
 }
+
+
+

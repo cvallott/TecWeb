@@ -27,10 +27,11 @@
       <!-- Form Login -->
       <form id="loginForm" action="" method="POST" class="active">
         <h2>Accedi</h2>
+        [messaggiForm]
         <div class="input-group">
           <div class="input-field">
             <label for="login-user">Username</label>
-            <input type="text" id="login-user" name="login-user" required>
+            <input type="text" id="login-user" name="login-user" value="[valLoginUser]" required>
           </div>
           <div class="input-field">
             <label for="login-password" lang="en">Password</label>
@@ -43,42 +44,26 @@
         <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
       </form>
 
-<div class="container">
-  <div class="form-box">
-    <!-- Form Login -->
-    <form id="loginForm" action="" method="POST" class="active">
-      <h2>Accedi</h2>
-      <div class="input-group">
-        <div class="input-field">
-          <label for="login-user">Username</label>
-          <input type="text" id="login-user" name="login-user" required>
-        </div>
-        <div class="input-field">
-          <label for="login-password" lang="en">Password</label>
-          <input type="password" id="login-password" name="login-password" required>
-        </div>
-      </div>
-      <div class="btn-field">
-        <button type="submit">Accedi</button>
-      </div>
-      <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
-    </form>
-
       <!-- Form Registrazione -->
-      <form id="registerForm" action="register.php" method="POST">
+      <form id="registerForm" action="" method="POST">
         <h2>Registrati</h2>
+        [messaggiForm]
         <div class="input-group">
           <div class="input-field">
             <label for="register-name">Nome</label>
-            <input type="text" id="register-name" name="register-name" required>
+            <input type="text" id="register-name" name="register-name" value="[valRegisterName]" required>
           </div>
           <div class="input-field">
             <label for="register-surname">Cognome</label>
-            <input type="text" id="register-surname" name="register-surname" required>
+            <input type="text" id="register-surname" name="register-surname" value="[valRegisterSurname]" required>
+          </div>
+          <div class="input-field">
+            <label for="register-user">Username</label>
+            <input type="text" id="register-user" name="register-user" value="[valRegisterUser]" required>
           </div>
           <div class="input-field">
             <label for="register-email" lang="en">Email</label>
-            <input type="email" id="register-email" name="register-email" required>
+            <input type="email" id="register-email" name="register-email" value="[valRegisterEmail]" required>
           </div>
           <div class="input-field">
             <label for="register-password" lang="en">Password</label>

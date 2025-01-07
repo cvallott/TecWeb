@@ -33,7 +33,8 @@ var dettagli_form = {
     "login-password": ["Inserisci password", /^.{4,}$/, "Password deve contenere almeno 4 caratteri"],
     "register-name": ["Es: Mario", /^[A-Za-z\u00C0-\u024F\s']{2,}$/, "Nome deve contenere almeno 2 caratteri, solo lettere"],
     "register-surname": ["Es: Rossi", /^[A-Za-z\u00C0-\u024F\s']{2,}$/, "Cognome deve contenere almeno 2 caratteri, solo lettere"],
-    "register-email": ["Es: mario.rossi@email.com", /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Formato email non valido"],
+    "register-user": ["Inserisci username", /^[A-Za-z0-9_]{3,20}$/, "Username deve contenere tra 3 e 20 caratteri alfanumerici"],
+    "register-email": ["Es: mario.rossi@email.com", /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Formato email non valido"],
     "register-password": ["Inserisci password", /^.{4,}$/, "Password deve contenere almeno 4 caratteri"],
     "register-confirm-password": ["Conferma la password", /^.{4,}$/, "Le password non coincidono"]
 };
@@ -69,7 +70,7 @@ function validazionePassword() {
 
 
 function validazioneRegistrazione() {
-    var fields = ['register-name', 'register-surname', 'register-email', 'register-password', 'register-confirm-password'];
+    var fields = ['register-name', 'register-surname', 'register-user', 'register-email', 'register-password', 'register-confirm-password'];
 
     for (var i = 0; i < fields.length; i++) {
         var input = document.getElementById(fields[i]);
