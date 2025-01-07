@@ -17,15 +17,16 @@
 <main id="VO">
     <section class="general-intro">
         <h1>ORDINI</h1>
+        [operazione-successo]
     </section>
     <section class="filtri">
-        <form method="GET" action="">
+        <form method="post" action="">
             <label for="stato">Stato:</label>
             <select name="stato" id="stato" class="select">
                 <option value="">Tutti</option>
-                <option value="completato">Completato</option>
-                <option value="in-corso">In corso</option>
-                <option value="annullato">Annullato</option>
+                <option value="1">Completato</option>
+                <option value="0">In corso</option>
+                <option value="-1">Annullato</option>
             </select>
 
             <label for="cliente">Nome cliente:</label>
@@ -55,111 +56,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">12</th>
-                <td data-title="Cliente">Luigi</td>
-                <td data-title="Data e orario">12/12/24 - 19.00</td>
-                <td data-title="Totale">5 prodotti - 43€</td>
-                <td data-title="Stato">Consegnato</td>
-                <td data-title="Modifica stato">
-                    <form action="#">
-                        <select name="stato" class="select"> <!-- NON HO MESSO LABEL PERCHè GHI NON CI VEDE HA LO SCREEN READER, CHI CI VEDE HA IL NOME DELLA COLONNA-->
-                            <option value="Consegnato">Consegnato</option>
-                            <option value="In corso">In corso</option>
-                            <option value="Annullato">Annullato</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button" />
-                    </form>
-                </td>
-                <td data-title="Dettagli">
-                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
-                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">12</th>
-                <td data-title="Cliente">Luigi</td>
-                <td data-title="Data e orario">12/12/24 - 19.00</td>
-                <td data-title="Totale">5 prodotti - 43€</td>
-                <td data-title="Stato">Consegnato</td>
-                <td data-title="Modifica stato">
-                    <form action="#">
-                        <select name="stato" class="select"> <!-- NON HO MESSO LABEL PERCHè GHI NON CI VEDE HA LO SCREEN READER, CHI CI VEDE HA IL NOME DELLA COLONNA-->
-                            <option value="Consegnato">Consegnato</option>
-                            <option value="In corso">In corso</option>
-                            <option value="Annullato">Annullato</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button"/>
-                    </form>
-                </td>
-                <td data-title="Dettagli">
-                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
-                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">12</th>
-                <td data-title="Cliente">Luigi</td>
-                <td data-title="Data e orario">12/12/24 - 19.00</td>
-                <td data-title="Totale">5 prodotti - 43€</td>
-                <td data-title="Stato">Consegnato</td>
-                <td data-title="Modifica stato">
-                    <form action="#">
-                        <select name="stato" class="select"> <!-- NON HO MESSO LABEL PERCHè GHI NON CI VEDE HA LO SCREEN READER, CHI CI VEDE HA IL NOME DELLA COLONNA-->
-                            <option value="Consegnato">Consegnato</option>
-                            <option value="In corso">In corso</option>
-                            <option value="Annullato">Annullato</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button"/>
-                    </form>
-                </td>
-                <td data-title="Dettagli">
-                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
-                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">12</th>
-                <td data-title="Cliente">Luigi</td>
-                <td data-title="Data e orario">12/12/24 - 19.00</td>
-                <td data-title="Totale">5 prodotti - 43€</td>
-                <td data-title="Stato">Consegnato</td>
-                <td data-title="Modifica stato">
-                    <form action="#">
-                        <select name="stato" class="select"> <!-- NON HO MESSO LABEL PERCHè GHI NON CI VEDE HA LO SCREEN READER, CHI CI VEDE HA IL NOME DELLA COLONNA-->
-                            <option value="Consegnato">Consegnato</option>
-                            <option value="In corso">In corso</option>
-                            <option value="Annullato">Annullato</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button"/>
-                    </form>
-                </td>
-                <td data-title="Dettagli">
-                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
-                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">12</th>
-                <td data-title="Cliente">Luigi</td>
-                <td data-title="Data e orario">12/12/24 - 19.00</td>
-                <td data-title="Totale">5 prodotti - 43€</td>
-                <td data-title="Stato">Consegnato</td>
-                <td data-title="Modifica stato">
-                    <form action="#">
-                        <select name="stato" class="select"> <!-- NON HO MESSO LABEL PERCHè GHI NON CI VEDE HA LO SCREEN READER, CHI CI VEDE HA IL NOME DELLA COLONNA-->
-                            <option value="Consegnato">Consegnato</option>
-                            <option value="In corso">In corso</option>
-                            <option value="Annullato">Annullato</option>
-                        </select>
-                        <input type="submit" value="Conferma" class="invia-button"/>
-                    </form>
-                </td>
-                <td data-title="Dettagli">
-                    <img src="../../../assets/icons/see-more.png" alt="" height="15"> <!-- VA MESSO L'ALT? -->
-                    <a href="../../dettagli-ordine.php">Visualizza dettagli</a>
-                </td>
-            </tr>
+                [visOrdini]
             </tbody>
         </table>
     </section>

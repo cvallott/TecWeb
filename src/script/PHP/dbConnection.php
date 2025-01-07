@@ -87,7 +87,17 @@ class DBConnection {
 
     public function queryUtenti($filtro = null): string {
         if($filtro != null){
-            $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
+            if(isset($_POST['ruolo']) && $_POST['ruolo'] == ''){
+                $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE (ruolo=0 OR ruolo=1)";
+            }else{
+                $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
+            }
+            if(isset($_POST['nome_utente']) && $_POST['nome_utente'] != ''){
+                $query .= " AND nome LIKE '".$_POST['nome_utente']."'";
+            }
+            if(isset($_POST['username_utente']) && $_POST['username_utente'] != ''){
+                $query .= " AND username LIKE '".$_POST['username_utente']."'";
+            }
         }else if ($filtro == null){
             $query = "SELECT nome, cognome, username, email, ruolo FROM utente";
         }
@@ -124,6 +134,65 @@ class DBConnection {
                 $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina utente\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function queryOrdini($filtro = null): string {
+        if($filtro != null){
+            if(isset($_POST['stato']) && $_POST['stato'] == ''){
+                $query = "SELECT id, utente, data, ora, stato FROM ordine WHERE (stato=0 OR stato=1 OR stato=-1)";
+            }else{
+                $query = "SELECT id, utente, data, ora, stato FROM ordine WHERE stato='".$_POST['stato']."'";
+            }
+            if(isset($_POST['cliente']) && $_POST['cliente'] != ''){
+                $query .= " AND nome LIKE '".$_POST['cliente']."'"; /*DA SISTEMARE*/
+            }
+            if(isset($_POST['data']) && $_POST['data'] != ''){
+                $query .= " AND data LIKE '".$_POST['data']."'";
+            }
+        }else if ($filtro == null){
+            $query = "SELECT id, utente, data, ora, stato FROM ordine";
+        }
+        echo $query;
+        return $query;
+    }
+
+    public function getOrdini($query): string {
+        //$query = "SELECT id, utente, data, ora, stato FROM ordine";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Cliente\">".$row['utente']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Totale\">TODO</td>";
+                if($row['stato']==0){
+                    $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
+                }else if($row['stato']==1){
+                    $stringaReturn .= "<td data-title=\"Stato\">Consegnato</td>";
+                }else{
+                    $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
+                }
+                $stringaReturn .= "<td data-title=\"Modifica stato\">";
+                $stringaReturn .= "<form action=\"../../visualizza-ordini.php?action=update\" method=\"post\">";
+                $stringaReturn .= "<select name=\"stato\" class=\"select\">";
+                $stringaReturn .= "<option value=\"1\">Consegnato</option>";
+                $stringaReturn .= "<option value=\"0\">In corso</option>";
+                $stringaReturn .= "<option value=\"-1\">Annullato</option>";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
+                $stringaReturn .= "</select>";
+                $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "<td data-title=\"Dettagli\">";
+                $stringaReturn .= "<img src=\"../../../assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<a href=\"../../dettagli-ordine.php\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
             }
@@ -282,6 +351,27 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
             if($ruolo == $row['ruolo']){
+                return false;
+            }else if(mysqli_affected_rows($this->connection) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function updateOrdine($stato) {
+        $queryUpdate = "UPDATE ordine SET stato='".$stato."' WHERE id='".$_POST['id']."'";
+
+        $query = "SELECT stato FROM ordine WHERE id='".$_POST['id']."'";
+        $result = mysqli_query($this->connection, $query);
+        $queryResult = mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+            if($stato == $row['stato']){
                 return false;
             }else if(mysqli_affected_rows($this->connection) > 0){
                 return true;
