@@ -13,7 +13,6 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $pizzeSpeciali = "";
 if($conn){
-    echo "connesso";
     $pizzeSpeciali = $connessione->getPizzeFM();
     $connessione->closeConnection();
 }
