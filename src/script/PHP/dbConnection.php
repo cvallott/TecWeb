@@ -40,6 +40,47 @@ class DBConnection {
         return false;
     }
 
+    public function getPizzeClassiche(): string{
+        $query = "SELECT * FROM pizza WHERE categoria='classica'";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if (mysqli_num_rows($result) > 0) {
+            $stringaReturn .= "<div class='pizza-container'>";
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $stringaReturn .= "<div class='pizza'>";
+                $stringaReturn .= "<div><img src='../../../assets/" . $row['path'] . "' alt='" . $row['nome'] . "'></div>";
+                $stringaReturn .= "<div class='pizza-testo'>";
+                $stringaReturn .= "<h3>" . $row['nome'] . "</h3>";
+                $stringaReturn .= "<p>" . $row['descrizione'] . "</p>";
+                $stringaReturn .= "</div>";
+
+                $stringaReturn .= "<div class='order-actions'>";
+                $stringaReturn .= '<form method="POST" action="" style="display:inline;">
+                        <input type="hidden" name="id" value="'.$row['id'].'">
+                        <button type="submit" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                    </form>';
+                $stringaReturn .= '<h4>'. ['quantita'] .'</h4>';
+                $stringaReturn .= '<form method="POST" action="" style="display:inline;">
+                        <input type="hidden" name="id" value="'.$row['id'].'">
+                        <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                    </form>';
+                // Form per il carrello
+                $stringaReturn .= "<form method='POST' action='carrello.php'>";
+                $stringaReturn .= "<input type='hidden' name='id' value='" . $row['id'] . "'>"; // id
+                $stringaReturn .= "<input type='hidden' name='nome' value='" . $row['nome'] . "'>";
+                $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
+                $stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='add-to-cart'>Aggiungi al carrello</button>";
+                $stringaReturn .= "</form>";
+
+                $stringaReturn .= "</div>";
+                $stringaReturn .= "</div>";
+            }
+
+            $stringaReturn .= "</div>";
+        }
+        return $stringaReturn;
+    }
+
     public function getPizzeSpeciali(): string {
         $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='speciale'";
         $result = mysqli_query($this->connection, $query);
