@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Creato il: Dic 27, 2024 alle 10:34
+-- Creato il: Gen 08, 2025 alle 15:17
 -- Versione del server: 10.6.7-MariaDB-1:10.6.7+maria~focal
 -- Versione PHP: 8.2.8
 
@@ -28,16 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categoria` (
-  `cat` varchar(250) NOT NULL
+  `cat` varchar(250) NOT NULL,
+  `nomeEsteso` varchar(250) NOT NULL,
+  `descrizione` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `categoria`
 --
 
-INSERT INTO `categoria` (`cat`) VALUES
-('classica'),
-('speciale');
+INSERT INTO `categoria` (`cat`, `nomeEsteso`, `descrizione`) VALUES
+('Classica', 'Le nostre pizze classiche', 'I gusti classici non tramontano mai: questi sapori sono la prova che le cose migliori non hanno bisogno di complicazioni.'),
+('Fuori menù', 'I nostri fuori menù', 'Descrizione fuori menù'),
+('Speciale', 'Le nostre pizze speciali', 'Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.'),
+('Stagionale', 'Le nostre pizze stagionali', 'La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!');
 
 -- --------------------------------------------------------
 
@@ -49,8 +53,23 @@ CREATE TABLE `cucina` (
   `id` int(11) NOT NULL,
   `nome` varchar(250) NOT NULL,
   `prezzo` double NOT NULL,
-  `veget` tinyint(1) NOT NULL DEFAULT 0
+  `veget` tinyint(1) NOT NULL DEFAULT 0,
+  `path` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `cucina`
+--
+
+INSERT INTO `cucina` (`id`, `nome`, `prezzo`, `veget`, `path`) VALUES
+(1, 'frittura', 11, 1, '../../../assets/icons/pizza_icon.png'),
+(2, 'frittura2', 11, 1, '../../../assets/icons/pizza_icon.png'),
+(3, 'prova', 23, 0, '../../../assets/icons/piatto_icon.png'),
+(4, 'prova5', 3, 0, '../../../assets/icons/piatto_icon.png'),
+(5, 'prova456', 5, 0, '../../../assets/icons/piatto_icon.png'),
+(6, 'prova47', 25, 0, '../../../assets/icons/piatto_icon.png'),
+(7, 'grhgdjh', 15, 0, '../../../assets/pizze/'),
+(8, 'jtdfhmhfmhykf', 0, 0, '../../../assets/pizze/');
 
 -- --------------------------------------------------------
 
@@ -59,9 +78,26 @@ CREATE TABLE `cucina` (
 --
 
 CREATE TABLE `cucina_ingrediente` (
-  `piatto` int(11) NOT NULL,
+  `cucina` int(11) NOT NULL,
   `ingrediente` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `cucina_ingrediente`
+--
+
+INSERT INTO `cucina_ingrediente` (`cucina`, `ingrediente`) VALUES
+(2, 'cesco'),
+(2, 'crudo'),
+(3, 'fior di latte'),
+(4, 'Mozzarella'),
+(5, 'patate fritte'),
+(6, 'fior di latte'),
+(6, 'mozzarella di bufala'),
+(7, 'Mozzarella'),
+(7, 'mozzarella di bufala'),
+(7, 'patate fritte'),
+(8, 'mozzarella di bufala');
 
 -- --------------------------------------------------------
 
@@ -71,6 +107,7 @@ CREATE TABLE `cucina_ingrediente` (
 
 CREATE TABLE `ingrediente` (
   `nome` varchar(250) NOT NULL,
+  `peso` int(11) NOT NULL DEFAULT 3,
   `veget` tinyint(1) DEFAULT 0,
   `pagg` double NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -79,12 +116,17 @@ CREATE TABLE `ingrediente` (
 -- Dump dei dati per la tabella `ingrediente`
 --
 
-INSERT INTO `ingrediente` (`nome`, `veget`, `pagg`) VALUES
-('crudo', 0, 2),
-('fior di latte', 0, 1.5),
-('mozzarella di bufala', 0, 1),
-('patate fritte', 0, 2),
-('pomodoro', 0, 0);
+INSERT INTO `ingrediente` (`nome`, `peso`, `veget`, `pagg`) VALUES
+('carciofi', 3, 0, 0.5),
+('cesco', 3, 1, 0.5),
+('crudo', 3, 0, 2),
+('fior di latte', 3, 0, 1.5),
+('funghi', 3, 0, 0.5),
+('mascarpone', 3, 0, 2.5),
+('Mozzarella', 2, 0, 1.5),
+('mozzarella di bufala', 3, 0, 1),
+('patate fritte', 3, 0, 2),
+('pomodoro', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -121,32 +163,78 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`id`, `nome`, `prezzo`, `veget`, `categoria`, `descrizione`, `path`) VALUES
-(1, 'Bufalina', 7, 0, 'classica', NULL, ''),
-(2, 'Crudo e fior di latte', 11, 0, 'classica', NULL, ''),
-(3, 'Zucca e gorgonzolaaaaa', 10.5, 1, 'speciale', 'Gusto unico e deciso, non fartela scappare!', 'pizze/FM-zuccagorgo.jpeg'),
-(4, 'Pesto e mozzarella di bufala', 11, 1, 'speciale', 'Sapore fresco e delicato nato dall\'unione della tradizione italiana', 'pizze/FM-pestobufala.jpeg'),
-(5, 'Calzone alla nutella', 6.9, 0, 'speciale', 'C\'è sempre spazio per il dolce, no?', 'pizze/FM-calzonenutella.jpeg');
+(21, 'Zucca e Gorgonzola', 10, 0, 'Fuori menù', 'aaaaaaaaaaaa', '../../../assets/pizze/FM-zuccagorgo.jpeg'),
+(22, 'Pesto e Bufala', 9, 0, 'Fuori menù', 'aaaaaaaaaaaaaaaaaaaa', '../../../assets/pizze/FM-pestobufala.jpeg'),
+(36, 'provapath', 8, 0, 'Fuori menù', 'kihilhj', '../../../assets/pizze/FM-calzonenutella.jpeg'),
+(41, 'provafm3', 6, 0, 'Fuori menù', 'jdjy', '../../../assets/icons/pizza_icon.png'),
+(42, 'yjjyjy', 56, 0, 'Speciale', 'ytjy', '../../../assets/icons/pizza_icon.png'),
+(43, 'hmgmh', 3, 0, 'Classica', 'fjhfh', '../../../assets/icons/pizza_icon.png'),
+(44, 'pgrkjfbefbett', 5, 0, 'Classica', 'i0+k00ih', '../../../assets/icons/pizza_icon.png'),
+(45, 'fbfbgnrtg', 7, 0, 'Classica', 'jtuujt', '../../../assets/icons/pizza_icon.png'),
+(46, 'gfgggg3', 3, 0, 'Speciale', 'gvg', '../../../assets/pizze/FM-calzonenutella.jpeg'),
+(47, 'prova', 1515, 0, 'Classica', 'grgr', '../../../assets/icons/pizza_icon.png'),
+(48, 'francesco', 5, 1, 'Classica', 'ge', '../../../assets/icons/pizza_icon.png'),
+(49, 'prova3343', 5, 0, 'Classica', 'ttr', '../../../assets/icons/pizza_icon.png'),
+(50, 'jiewijvi jifewier', 44, 1, 'Classica', 'hh', '../../../assets/icons/pizza_icon.png'),
+(51, 'prova', 4, 0, 'Classica', 'yyy', '../../../assets/icons/pizza_icon.png'),
+(52, 'prova4535', 56, 1, 'Classica', 'jhyj', '../../../assets/icons/pizza_icon.png'),
+(53, 'prova567', 564, 0, 'Classica', 'jj', '../../../assets/icons/pizza_icon.png'),
+(54, 'rgrggrt', 4, 0, 'Classica', 'tt', '../../../assets/icons/pizza_icon.png'),
+(55, '009', 3, 0, 'Classica', 'mnj,b', '../../../assets/icons/pizza_icon.png');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `pizza_ingredente`
+-- Struttura della tabella `pizza_ingrediente`
 --
 
-CREATE TABLE `pizza_ingredente` (
+CREATE TABLE `pizza_ingrediente` (
   `pizza` int(11) NOT NULL,
   `ingrediente` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `pizza_ingredente`
+-- Dump dei dati per la tabella `pizza_ingrediente`
 --
 
-INSERT INTO `pizza_ingredente` (`pizza`, `ingrediente`) VALUES
-(1, 'mozzarella di bufala'),
-(1, 'pomodoro'),
-(2, 'crudo'),
-(2, 'fior di latte');
+INSERT INTO `pizza_ingrediente` (`pizza`, `ingrediente`) VALUES
+(22, 'Mozzarella'),
+(22, 'mozzarella di bufala'),
+(22, 'patate fritte'),
+(22, 'pomodoro'),
+(36, 'mascarpone'),
+(36, 'mozzarella di bufala'),
+(36, 'patate fritte'),
+(41, 'mascarpone'),
+(41, 'mozzarella di bufala'),
+(41, 'patate fritte'),
+(42, 'crudo'),
+(43, 'crudo'),
+(43, 'mascarpone'),
+(43, 'Mozzarella'),
+(43, 'patate fritte'),
+(43, 'pomodoro'),
+(45, 'carciofi'),
+(45, 'crudo'),
+(45, 'funghi'),
+(45, 'Mozzarella'),
+(45, 'patate fritte'),
+(45, 'pomodoro'),
+(46, 'fior di latte'),
+(48, 'cesco'),
+(48, 'fior di latte'),
+(48, 'funghi'),
+(49, 'fior di latte'),
+(49, 'pomodoro'),
+(50, 'cesco'),
+(50, 'funghi'),
+(50, 'pomodoro'),
+(52, 'cesco'),
+(52, 'fior di latte'),
+(52, 'pomodoro'),
+(53, 'carciofi'),
+(54, 'fior di latte'),
+(55, 'Mozzarella');
 
 -- --------------------------------------------------------
 
@@ -182,8 +270,8 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`email`, `username`, `password`, `nome`, `cognome`, `ruolo`) VALUES
-('admin@prova.com', 'admin', 'admin', 'Admin', 'Adminone', 1),
-('prova@prova.com', 'prova', 'prova', 'Prova', 'Provona', 0);
+('admin@admin.com', 'admin', '$2y$10$w65KHkkqwPxnZ/3ntng6puxHt/YCh4uK0jn54iNyw3KclXQRiTqhO', 'Admin', 'Admin', 0),
+('utente@utente.it', 'utente', '$2y$10$wxE2jEUpUH7FV25sdaImhOeuodxzE5VH7WEmEOD6L5eIffnK1dYgW', 'Utente', 'Utente', 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -205,7 +293,7 @@ ALTER TABLE `cucina`
 -- Indici per le tabelle `cucina_ingrediente`
 --
 ALTER TABLE `cucina_ingrediente`
-  ADD PRIMARY KEY (`piatto`,`ingrediente`),
+  ADD PRIMARY KEY (`cucina`,`ingrediente`),
   ADD KEY `fk_cucina_ingrediente` (`ingrediente`);
 
 --
@@ -229,9 +317,9 @@ ALTER TABLE `pizza`
   ADD KEY `fk_pizza_categoria` (`categoria`);
 
 --
--- Indici per le tabelle `pizza_ingredente`
+-- Indici per le tabelle `pizza_ingrediente`
 --
-ALTER TABLE `pizza_ingredente`
+ALTER TABLE `pizza_ingrediente`
   ADD PRIMARY KEY (`pizza`,`ingrediente`),
   ADD KEY `fk_pizza_ingredenti` (`ingrediente`);
 
@@ -258,7 +346,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `cucina`
 --
 ALTER TABLE `cucina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -270,7 +358,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotti_ordine`
@@ -287,7 +375,7 @@ ALTER TABLE `prodotti_ordine`
 --
 ALTER TABLE `cucina_ingrediente`
   ADD CONSTRAINT `fk_cucina_ingrediente` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_cucina_ingrediente_cucina` FOREIGN KEY (`piatto`) REFERENCES `cucina` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_cucina_ingrediente_cucina` FOREIGN KEY (`cucina`) REFERENCES `cucina` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `ordine`
@@ -302,9 +390,9 @@ ALTER TABLE `pizza`
   ADD CONSTRAINT `fk_pizza_categoria` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`cat`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `pizza_ingredente`
+-- Limiti per la tabella `pizza_ingrediente`
 --
-ALTER TABLE `pizza_ingredente`
+ALTER TABLE `pizza_ingrediente`
   ADD CONSTRAINT `fk_pizza_ingredenti` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_pizza_ingredenti_pizza` FOREIGN KEY (`pizza`) REFERENCES `pizza` (`id`) ON DELETE CASCADE;
 
