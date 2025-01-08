@@ -48,8 +48,8 @@ class DBConnection {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
                 $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
                 $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
-                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>"
-                ;$queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
+                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
+                $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
                 $pizze = mysqli_query($this->connection, $queryPizze);
                 if(mysqli_num_rows($pizze) > 0) {
                     $stringaReturn .= "<div class='pizza-container'>";
@@ -58,7 +58,16 @@ class DBConnection {
                         $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
                         $stringaReturn .= "<div class='pizza-testo'>";
                         $stringaReturn .= "<h3>" . $riga['nome'] . "</h3>";
-                        $stringaReturn .= "<p>" . $riga['descrizione'] . "</p>";
+                        $queryIngredienti = "SELECT * FROM pizza_ingrediente WHERE pizza='".$riga['id']."'";
+                        $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
+                        $stringaIngredienti = "";
+                        if(mysqli_num_rows($ingredientiPizza) > 0) {
+                            while ($ingrediente = $ingredientiPizza->fetch_array(MYSQLI_ASSOC)) {
+                                $stringaIngredienti .= $ingrediente['ingrediente'].",";
+                            }
+                        }
+                        $stringaIngredienti = substr($stringaIngredienti, 0, -1);
+                        $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                         $stringaReturn .= "</div>";
 
                         $stringaReturn .= "<div class='order-actions'>";
