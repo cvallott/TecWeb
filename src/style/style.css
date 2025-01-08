@@ -781,7 +781,7 @@ MENU-PRENOTA-PAGE
     background-color: var(--bgcolor);
 }
 
-.pizze-classiche {
+.menu-prodpercat {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -789,7 +789,7 @@ MENU-PRENOTA-PAGE
     background-color: #FAF3E0;
 }
 
-.pizze-classiche h2 {
+.menu-prodpercat h2 {
     text-align: center;
     margin-top: 1em;
     margin-left: auto;
@@ -800,7 +800,7 @@ MENU-PRENOTA-PAGE
     padding: 0.5em 5em;
 }
 
-.pizze-classiche p{
+.menu-prodpercat p{
     margin-bottom: 1em;
 }
 
@@ -873,7 +873,7 @@ MENU-PRENOTA-PAGE
 }
 
 
-.pizze-classiche .pizza-container {
+.menu-prodpercat .pizza-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -957,6 +957,11 @@ MENU-PRENOTA-PAGE
     justify-content: space-between;
     width: 40em;
 }
+
+.pizza-prezzo{
+    font-weight: bold;
+    width: 10em;
+}
 .cucina-testo{
     display: flex;
     flex-direction: column;
@@ -1013,7 +1018,6 @@ MENU-PRENOTA-PAGE
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
 }
-
 /*
 ------------------
 CARRELLO

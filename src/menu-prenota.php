@@ -10,14 +10,22 @@ $header = printHeader();
 $footer = printFooter();
 
 $connessione = new DBConnection();
+
 $conn = $connessione->openDBConnection();
-$pizzeClassiche = "";
+$menuCategorie = "";
 if($conn){
-    $pizzeClassiche = $connessione->getPizzeClassiche();
+    $menuCategorie = $connessione->getMenuCategorie();
     $connessione->closeConnection();
 }
 
-$scroll = $_GET['scroll'] ?? null;
+
+$conn = $connessione->openDBConnection();
+$pizzeClassiche = "";
+if($conn){
+    $pizzeClassiche = $connessione->getMenuPizze();
+    $connessione->closeConnection();
+}
+
 if (isset($_GET['scroll'])) {
     echo "entrato";
     $script = "<script>
@@ -34,7 +42,8 @@ if (isset($_GET['scroll'])) {
 }
 
 $template = str_replace('[header]', $header, $template);
-$template = str_replace('[pizzeClassiche]', $pizzeClassiche, $template);
+$template = str_replace('[linkMenu]', $menuCategorie, $template);
+$template = str_replace('[menu]', $pizzeClassiche, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;
