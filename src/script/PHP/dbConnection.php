@@ -58,7 +58,7 @@ class DBConnection {
                         $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
                         $stringaReturn .= "<div class='pizza-testo'>";
                         $stringaReturn .= "<h3>" . $riga['nome'] . "</h3>";
-                        $queryIngredienti = "SELECT * FROM pizza_ingrediente WHERE pizza='".$riga['id']."'";
+                        $queryIngredienti = "SELECT pizza_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM pizza_ingrediente JOIN ingrediente ON pizza_ingrediente.ingrediente=ingrediente.nome WHERE pizza='".$riga['id']."' ORDER BY peso";
                         $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
                         $stringaIngredienti = "";
                         if(mysqli_num_rows($ingredientiPizza) > 0) {
