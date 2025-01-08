@@ -1,33 +1,37 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(!isset($_SESSION['nome'])){
-        header("location: area-riservata.php");
-    }
+//session_start();
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'] ?? null;
     $quantita = intval($_POST['quantita'] ?? 1);
 
     if ($_POST['azione'] === 'aggiungi' && $id && $nome) {
         aggiornaCarrello($id, $nome, $quantita,20);
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     } elseif ($_POST['azione'] === 'incrementa' && $id) {
         aggiornaCarrello($id, '', 1,'');
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     } elseif ($_POST['azione'] === 'decrementa' && $id) {
         if (isset($_SESSION['carrello'][$id]) && $_SESSION['carrello'][$id]['quantita'] > 1) {
             $_SESSION['carrello'][$id]['quantita']--;
         } else {
             rimuoviDalCarrello($id);
         }
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
-    }
-    if(isset($_GET['scroll'])){
-        header('Location:' . basename($_SERVER['PHP_SELF']) . '?' . $_GET['scroll']);
-    }else{
-        header('Location:' . basename($_SERVER['PHP_SELF']));
-    }
 
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
+    }
 }
 
 if (!isset($_SESSION['carrello'])) {
@@ -73,13 +77,6 @@ function getCarrello(){
         $rowsCarrello .= '</div></div></div>';
     }
     return $rowsCarrello;
-}
-
-function getQuantita($id){
-    if(isset($_SESSION['carrello'][$id]['quantita'])){
-        return $_SESSION['carrello'][$id]['quantita'];
-    }
-    return 0;
 }
 
 function getTotale(){

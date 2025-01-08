@@ -19,79 +19,69 @@
 
 [header]
 
-<!--<main>-->
-<!--  <div id="area-riservata-intro">-->
-<!--    <h1>Area Riservata</h1>-->
-<!--  </div>-->
+<h1>Area Riservata</h1>
 
-<!--  <div id="area-riservata-login">-->
-<!--    <h2>ACCEDI</h2>-->
-<!--    <form action=“" method=“post" >-->
-<!--      <fieldset>-->
-<!--        <label for="user">User</label>-->
-<!--        <input type="text" id="user" name="user" placeholder="User" required>-->
-<!--        <label for="psw" lang="en">Password</label>-->
-<!--        <input type="password" id="psw" name="psw" placeholder="Password" required>-->
-<!--        <input type="submit" value="Accedi">-->
-<!--      </fieldset>-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</main>-->
+<main>
+  <div class="container">
+    <div class="form-box">
+      <!-- Form Login -->
+      <form id="loginForm" action="" method="POST" class="active">
+        <h2>Accedi</h2>
+        [messaggiForm]
+        <div class="input-group">
+          <div class="input-field">
+            <label for="login-user">Username</label>
+            <input type="text" id="login-user" name="login-user" value="[valLoginUser]" required>
+          </div>
+          <div class="input-field">
+            <label for="login-password" lang="en">Password</label>
+            <input type="password" id="login-password" name="login-password" required>
+          </div>
+        </div>
+        <div class="btn-field">
+          <button type="submit">Accedi</button>
+        </div>
+        <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
+      </form>
 
-
-<div class="container">
-  <div class="form-box">
-    <!-- Form Login -->
-    <form id="loginForm" action="" method="POST" class="active">
-      <h2>Accedi</h2>
-      <div class="input-group">
-        <div class="input-field">
-          <label for="login-user">Username</label>
-          <input type="text" id="login-user" name="login-user" required>
+      <!-- Form Registrazione -->
+      <form id="registerForm" action="" method="POST">
+        <h2>Registrati</h2>
+        [messaggiForm]
+        <div class="input-group">
+          <div class="input-field">
+            <label for="register-name">Nome</label>
+            <input type="text" id="register-name" name="register-name" value="[valRegisterName]" required>
+          </div>
+          <div class="input-field">
+            <label for="register-surname">Cognome</label>
+            <input type="text" id="register-surname" name="register-surname" value="[valRegisterSurname]" required>
+          </div>
+          <div class="input-field">
+            <label for="register-user">Username</label>
+            <input type="text" id="register-user" name="register-user" value="[valRegisterUser]" required>
+          </div>
+          <div class="input-field">
+            <label for="register-email" lang="en">Email</label>
+            <input type="email" id="register-email" name="register-email" value="[valRegisterEmail]" required>
+          </div>
+          <div class="input-field">
+            <label for="register-password" lang="en">Password</label>
+            <input type="password" id="register-password" name="register-password" required>
+          </div>
+          <div class="input-field">
+            <label for="register-confirm-password">Conferma <span lang="en">Password</span></label>
+            <input type="password" id="register-confirm-password" name="register-confirm_password" required>
+          </div>
         </div>
-        <div class="input-field">
-          <label for="login-password" lang="en">Password</label>
-          <input type="password" id="login-password" name="login-password" required>
+        <div class="btn-field">
+          <button type="submit">Registrati</button>
         </div>
-      </div>
-      <div class="btn-field">
-        <button type="submit">Accedi</button>
-      </div>
-      <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
-    </form>
-
-    <!-- Form Registrazione -->
-    <form id="registerForm" action="register.php" method="POST">
-      <h2>Registrati</h2>
-      <div class="input-group">
-        <div class="input-field">
-          <label for="register-name">Nome</label>
-          <input type="text" id="register-name" name="register-name" required>
-        </div>
-        <div class="input-field">
-          <label for="register-surname">Cognome</label>
-          <input type="text" id="register-surname" name="register-surname" required>
-        </div>
-        <div class="input-field">
-          <label for="register-email" lang="en">Email</label>
-          <input type="email" id="register-email" name="register-email" required>
-        </div>
-        <div class="input-field">
-          <label for="register-password" lang="en">Password</label>
-          <input type="password" id="register-password" name="register-password" required>
-        </div>
-        <div class="input-field">
-          <label for="register-confirm-password">Conferma <span lang="en">Password</span></label>
-          <input type="password" id="register-confirm-password" name="register-confirm_password" required>
-        </div>
-      </div>
-      <div class="btn-field">
-        <button type="submit">Registrati</button>
-      </div>
-      <p class="switch-text">Hai già un account? <a href="#" id="showLogin">Accedi</a></p>
-    </form>
+        <p class="switch-text">Hai già un account? <a href="#" id="showLogin">Accedi</a></p>
+      </form>
+    </div>
   </div>
-</div>
+</main>
 
 [footer]
 </body>
