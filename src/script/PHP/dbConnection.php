@@ -69,13 +69,8 @@ class DBConnection {
                         $stringaIngredienti = substr($stringaIngredienti, 0, -2);
                         $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                         $stringaReturn .= "</div>";
-                        $queryPrezzo = "SELECT prezzo FROM pizza WHERE id='".$riga['id']."'";
-                        $prezzoPizza = mysqli_query($this->connection, $queryPrezzo);
-                        if (mysqli_num_rows($prezzoPizza) > 0) {
-                            $prezzo = $prezzoPizza->fetch_assoc();
-                            $stringaReturn .= "<p class='pizza-prezzo'>€ " . number_format($prezzo['prezzo'], 2, ',', '.') . "</p>";
-                        }
-                        //$stringaReturn .= "</div>";
+
+                        $stringaReturn .= "<p class='pizza-prezzo'>€ " . number_format($riga['prezzo'], 2, ',', '.') . "</p>";
 
                         $stringaReturn .= "<div class='order-actions'>";
 
@@ -97,6 +92,7 @@ class DBConnection {
                         }else{
                             $stringaReturn .= '<form method="POST" action="?scroll=p-'.$riga['id'].'">';
                             $stringaReturn .= '<input type="hidden" name="id" value="'.$riga['id'].'">';
+                            $stringaReturn .= '<input type="hidden" name="prezzo" value="'.$riga['prezzo'].'">';
                             $stringaReturn .= '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
                             $stringaReturn .= '<input type="hidden" name="quantita" value="1">';
                             $stringaReturn .= '<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>';
@@ -143,7 +139,7 @@ class DBConnection {
 
     public function getFuoriMenuPerCarrello(): string
     {
-        $query = "SELECT id, nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
+        $query = "SELECT * FROM pizza WHERE categoria='Fuori menù'";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
@@ -155,23 +151,11 @@ class DBConnection {
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "<form method='POST' action='' >";
                 $stringaReturn .= "<input type='hidden' name='id' value='".$row['id']."'>";
+                $stringaReturn .= "<input type='hidden' name='prezzo' value='".$row['prezzo']."'>";
                 $stringaReturn .= "<input type='hidden' name='nome' value='".$row['nome']."'>";
                 $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
                 $stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='home-button'>Aggiungi</button>";
                 $stringaReturn .= "</form></li>";
-                /*
-                 <li>
-						<img src="../../../assets/pizze/FM-zuccagorgo.jpeg" alt="TODO">
-						<p><strong>Zucca e gorgonzola</strong></p>
-						<p>Gusto unico e deciso, non fartela scappare!</p>
-						<form method="POST" action="">
-							<input type="hidden" name="id" value="1001">
-							<input type="hidden" name="nome" value="PMese1">
-							<input type="hidden" name="quantita" value="1" >
-							<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>
-						</form>
-				</li>
-                 */
             }
         }
         return $stringaReturn;
