@@ -48,8 +48,8 @@ class DBConnection {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
                 $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
                 $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
-                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
-                $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
+                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>"
+                ;$queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
                 $pizze = mysqli_query($this->connection, $queryPizze);
                 if(mysqli_num_rows($pizze) > 0) {
                     $stringaReturn .= "<div class='pizza-container'>";
