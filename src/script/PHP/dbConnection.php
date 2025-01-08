@@ -68,13 +68,14 @@ class DBConnection {
                         }
                         $stringaIngredienti = substr($stringaIngredienti, 0, -1);
                         $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
+                        $stringaReturn .= "</div>";
                         $queryPrezzo = "SELECT prezzo FROM pizza WHERE id='".$riga['id']."'";
                         $prezzoPizza = mysqli_query($this->connection, $queryPrezzo);
                         if (mysqli_num_rows($prezzoPizza) > 0) {
                             $prezzo = $prezzoPizza->fetch_assoc();
-                            $stringaReturn .= "<p class='pizza-prezzo'>Prezzo: €" . number_format($prezzo['prezzo'], 2, ',', '.') . "</p>";
+                            $stringaReturn .= "<p class='pizza-prezzo'>€ " . number_format($prezzo['prezzo'], 2, ',', '.') . "</p>";
                         }
-                        $stringaReturn .= "</div>";
+                        //$stringaReturn .= "</div>";
 
                         $stringaReturn .= "<div class='order-actions'>";
 

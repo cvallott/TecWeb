@@ -960,6 +960,7 @@ MENU-PRENOTA-PAGE
 
 .pizza-prezzo{
     font-weight: bold;
+    width: 10em;
 }
 .cucina-testo{
     display: flex;
