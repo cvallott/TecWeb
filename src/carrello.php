@@ -1,5 +1,8 @@
 <?php
 
+use DB\DBConnection;
+include_once 'script/PHP/dbConnection.php';
+
 include_once 'template/components/loadComponents.php';
 require 'script/PHP/gestioneCarrello.php';
 require 'script/PHP/checkUserLogin.php';
@@ -19,10 +22,19 @@ $_SESSION['carrello'][4] = ['nome' => "provaquattro", 'quantita' => 50, 'prezzo'
 $totale = getTotale();
 $rowsCarrello = getCarrello();
 
+$connessione = new DBConnection();
+
+$connessioneOK = $connessione->openDBConnection();
+$consiglioPizze = "";
+if ($connessioneOK) {
+    $consiglioPizze = $connessione->getPizzeSpecialiPerCarrello();
+    $connessione->closeConnection();
+}
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[rowsCarrello]', $rowsCarrello, $template);
 $template = str_replace('[tot]', $totale, $template);
+$template = str_replace('[pizzeMese]', $consiglioPizze, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;

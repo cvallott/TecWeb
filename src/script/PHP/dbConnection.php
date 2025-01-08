@@ -141,7 +141,41 @@ class DBConnection {
         return $stringaReturn;
     }
 
+    public function getPizzeSpecialiPerCarrello(): string
+    {
+        $query = "SELECT id, nome,descrizione,path FROM pizza WHERE categoria='speciale'";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
+                $stringaReturn .= "<li>";
+                $stringaReturn .= "<img src='.".$row['path']."'>";
+                $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
+                $stringaReturn .= "<p>".$row['descrizione']."</p>";
+                $stringaReturn .= "<form method='POST' action='' >";
+                $stringaReturn .= "<input type='hidden' name='id' value='".$row['id']."'>";
+                $stringaReturn .= "<input type='hidden' name='nome' value='".$row['nome']."'>";
+                $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
+                $stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='home-button'>Aggiungi</button>";
+                $stringaReturn .= "</form></li>";
+                /*
+                 <li>
+						<img src="../../../assets/pizze/FM-zuccagorgo.jpeg" alt="TODO">
+						<p><strong>Zucca e gorgonzola</strong></p>
+						<p>Gusto unico e deciso, non fartela scappare!</p>
+						<form method="POST" action="">
+							<input type="hidden" name="id" value="1001">
+							<input type="hidden" name="nome" value="PMese1">
+							<input type="hidden" name="quantita" value="1" >
+							<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>
+						</form>
+				</li>
+                 */
+            }
+        }
+        return $stringaReturn;
+    }
 
     public function checkUserExists($username) {
         $query = "SELECT username FROM utente WHERE username = ?";
