@@ -8,22 +8,12 @@ $template = file_get_contents('template/pageTemplate/gestisci-utentiTemplate.htm
 
 $header = printHeader();
 $footer = printFooter();
-
+$message = null;
 $connessione = new DBConnection();
-$conn = $connessione->openDBConnection();
 $listaUtenti = "";
-if($conn){
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $listaUtenti = $connessione->getUtenti($connessione->queryUtenti(1));
-    }else{
-        $listaUtenti = $connessione->getUtenti($connessione->queryUtenti());
-    }
-    $connessione->closeConnection();
-}
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
-    $action = $_GET['action'];
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
     if ($action == 'update') {
         $ruolo = $_POST['ruolo'];
         $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
@@ -32,13 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
             $okUpdate = $connessione->updateUtente($ruolo);
             $connessione->closeConnection();
             if($okUpdate){
-                $message = "Ruolo modificato con successo";
-                header("Location: gestisci-utenti.php?message=$message"); /*NON VA*/
-                exit;
+                $message = "<p class=\"messaggio\">Ruolo modificato con successo</p>"; /*DA FARE CSS DI .messaggio*/
             } else {
-                $message = "Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!";
-                header("Location: gestisci-utenti.php?message=$message"); /*NON VA*/
-                exit;
+                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
             }
         }
     } else if ($action == 'delete') {
@@ -48,19 +34,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
             $okDelete = $connessione->deleteUtente();
             $connessione->closeConnection();
             if($okDelete){
-                $message = "Utente eliminato con successo";
-                header("Location: gestisci-utenti.php?message=$message"); /*NON VA*/
-                exit;
+                $message = "<p class=\"messaggio\">Utente eliminato con successo</p>";
             } else {
-                $message = "Oops..qualcosa è andato storto. Riprova!";
-                header("Location: gestisci-utenti.php?message=$message"); /*NON VA*/
-                exit;
+                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
             }
+        }
+    } else if ($action == 'filter') {
+        $conn = $connessione->openDBConnection();
+        if($conn){
+            $listaUtenti = $connessione->getUtenti($connessione->queryUtenti(1));
         }
     }
 }
+$conn = $connessione->openDBConnection();
 
-if($message = isset($_GET['message']) ? urldecode($_GET['message']) : ""){
+if($conn){
+    if($listaUtenti == ""){
+        $listaUtenti = $connessione->getUtenti($connessione->queryUtenti());
+    }
+    $connessione->closeConnection();
+}
+if(isset($message)){
     $template = str_replace('[operazione-successo]', $message, $template);
 }else{
     $template = str_replace('[operazione-successo]', '', $template);

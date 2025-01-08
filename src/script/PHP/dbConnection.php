@@ -208,7 +208,8 @@ class DBConnection {
                     $stringaReturn .= "<td data-title=\"Ruolo\">Amministratore</td>";
                 }
                 $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
-                $stringaReturn .= "<form action=\"../../gestisci-utenti.php?action=update\" method=\"post\">";
+                $stringaReturn .= "<form action=\"../../gestisci-utenti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
                 $stringaReturn .= "<select name=\"ruolo\" class=\"select\">";
                 $stringaReturn .= "<option value=\"0\">Cliente</option>";
                 $stringaReturn .= "<option value=\"1\">Amministratore</option>";
@@ -218,8 +219,9 @@ class DBConnection {
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Elimina Utente\">";
-                $stringaReturn .= "<form action=\"../../gestisci-utenti.php?action=delete\" method=\"post\">";
+                $stringaReturn .= "<form action=\"../../gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina utente\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -229,28 +231,18 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function getNomeUtente(){
-        $query = "SELECT nome, email FROM utente";
-        $result = mysqli_query($this->connection, $query);
-        if(mysqli_num_rows($result) > 0) {
-            return $result->fetch_array(MYSQLI_ASSOC);
-        } else {
-            return null;
-        }
-    }
-
     public function queryOrdini($filtro = null): string {
         if($filtro != null){
             if(isset($_POST['stato']) && $_POST['stato'] == ''){
                 $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND (stato=0 OR stato=1 OR stato=-1)";
             }else{
-                $query = "SELECT id, utente, data, ora, stato FROM ordine WHERE stato='".$_POST['stato']."'";
+                $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
             }
             if(isset($_POST['data']) && $_POST['data'] != ''){
                 $query .= " AND data LIKE '".$_POST['data']."'";
             }
             if(isset($_POST['cliente']) && $_POST['cliente'] != ''){
-                $query .= " AND u.nome LIKE '".$_POST['cliente']."'"; /*DA SISTEMARE*/
+                $query .= " AND u.nome LIKE '".$_POST['cliente']."'";
             }
         }else if ($filtro == null){
             $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
@@ -259,18 +251,13 @@ class DBConnection {
     }
 
     public function getTotalePrezzoOrdine($idOrdine){
-        $query = "SELECT PO.quantita, P.prezzo AS pPizza, C.prezzo AS pCucina FROM prodotti_ordine AS PO, pizza AS P, cucina AS C WHERE PO.ordine='".$idOrdine."' AND (PO.pizza=P.id OR PO.cucina=C.id)"; /*MANCA DA CONSIDERARE L'AGGIUNTA*/
+        $query = "SELECT PO.quantita, COALESCE(P.prezzo, C.prezzo) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
         $result = mysqli_query($this->connection, $query);
         $prezzo = 0;
         if(mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                if($row['pPizza'] > 0){
-                    $prezzo += ($row['quantita']*$row['pCucina']);
-                }else if($row['pCucina'] > 0){
-                    $prezzo += ($row['quantita']*$row['pPizza']);
-                }
+                $prezzo += ($row['quantita']*$row['prezzo']);
             }
-            echo $prezzo; /*NON CORRETTO*/
             return $prezzo;
         }else{
             /*qualche errore*/
@@ -292,7 +279,6 @@ class DBConnection {
     }
 
     public function getOrdini($query): string {
-
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
@@ -303,7 +289,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
-                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." - ".$tot." prodotti</td>";
+                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." &euro; - ".$tot." prodotti</td>";
                 if($row['stato']==0){
                     $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
                 }else if($row['stato']==1){
@@ -312,7 +298,8 @@ class DBConnection {
                     $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
                 }
                 $stringaReturn .= "<td data-title=\"Modifica stato\">";
-                $stringaReturn .= "<form action=\"../../visualizza-ordini.php?action=update\" method=\"post\">";
+                $stringaReturn .= "<form action=\"../../visualizza-ordini.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
                 $stringaReturn .= "<select name=\"stato\" class=\"select\">";
                 $stringaReturn .= "<option value=\"1\">Consegnato</option>";
                 $stringaReturn .= "<option value=\"0\">In corso</option>";
@@ -324,7 +311,52 @@ class DBConnection {
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
                 $stringaReturn .= "<img src=\"../../../assets/icons/see-more.png\" alt=\"\" height=\"15\">";
-                $stringaReturn .= "<a href=\"../../dettagli-ordine.php\">Visualizza dettagli</a>";
+                $stringaReturn .= "<a href=\"../../dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function getDettagliOrdine($idOrdine): string {
+        $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['prodotto']."</th>";
+                $stringaReturn .= "<td data-title= \"Quantità\">".$row['quantita']."</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']." &euro;</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function getOrdiniUtente($email): string {
+        $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '".$email."' = o.utente";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC) ){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
+                if($row['stato']==0){
+                    $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
+                }else if($row['stato']==1){
+                    $stringaReturn .= "<td data-title=\"Stato\">Consegnato</td>";
+                }else{
+                    $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
+                }
+                $tot = $this->getTotaleProdottiOrdine($row['id']);
+                $prezzo = $this->getTotalePrezzoOrdine($row['id']);
+                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." &euro; - ".$tot." prodotti</td>";
+                $stringaReturn .= "<td data-title=\"Dettagli\">";
+                $stringaReturn .= "<img src=\"../../../assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<a href=\"../../dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
             }
@@ -479,7 +511,7 @@ class DBConnection {
 
         $query = "SELECT ruolo FROM utente WHERE email='".$_POST['email']."'";
         $result = mysqli_query($this->connection, $query);
-        $queryResult = mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
             if($ruolo == $row['ruolo']){
@@ -528,8 +560,6 @@ class DBConnection {
         }
     }
 
-
-
     public function checkUserExists($username) {
         $query = "SELECT username FROM utente WHERE username = ?";
         $stmt = $this->connection->prepare($query);
@@ -552,12 +582,12 @@ class DBConnection {
         $ruolo = 0; // ruolo default
         $query = "INSERT INTO utente (nome, cognome, username, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('sssssi', $name, $surname, $username, $email, $hashedPassword, $ruolo);
+        $stmt->bind_param('sssssi', $name, $surname, $username, $email, $hashedPassword, $ruolo); /* è normale ci sia scritto sssssi?*/
         return $stmt->execute();
     }
 
     public function userLogin($username, $password) {
-        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
+        $query = "SELECT nome, cognome, ruolo, password, email FROM utente WHERE username = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -566,7 +596,7 @@ class DBConnection {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
-                return array($user['nome'], $user['cognome'], $user['ruolo']);
+                return array($user['nome'], $user['cognome'], $user['ruolo'], $user['email']);
             }
         }
         return false;

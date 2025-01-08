@@ -17,10 +17,10 @@
 <main id="GU">
     <section class="general-intro">
         <h1>GESTISCI UTENTI</h1>
-        [operazione-successo]
     </section>
     <section class="filtri">
         <form method="post" action="../../gestisci-utenti.php">
+            <input type="hidden" name="action" value="filter" />
             <label for="ruolo">Ruolo:</label>
             <select name="ruolo" id="ruolo" class="select">
                 <option value="">Tutti</option>
@@ -29,16 +29,17 @@
             </select>
 
             <label for="nome">Nome utente:</label>
-            <input type="text" name="nome_utente" id="nome">
+            <input type="text" name="nome_utente" id="nome" />
 
             <label for="username">Username utente:</label>
-            <input type="text" name="username_utente" id="username">
+            <input type="text" name="username_utente" id="username" />
             <button type="submit" class="invia-button">Filtra</button>
         </form>
     </section>
     <section class="tabella-ordini">
         <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
         <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
+        [operazione-successo]
         <span id="descrTabella">TODO</span>
         <table aria-describedby="descrTabella">
             <caption>Utenti</caption>

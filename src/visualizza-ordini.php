@@ -8,21 +8,12 @@ $template = file_get_contents('template/pageTemplate/visualizza-ordiniTemplate.h
 
 $header = printHeader();
 $footer = printFooter();
-
+$message = null;
 $connessione = new DBConnection();
-$conn = $connessione->openDBConnection();
 $listaOrdini = "";
-if($conn){
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $listaOrdini = $connessione->getOrdini($connessione->queryOrdini(1));
-    }else{
-        $listaOrdini = $connessione->getOrdini($connessione->queryOrdini());
-    }
-    $connessione->closeConnection();
-}
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
-    $action = $_GET['action'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
 
     if ($action == 'update') {
         $stato = $_POST['stato'];
@@ -32,19 +23,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action'])) {
             $okUpdate = $connessione->updateOrdine($stato);
             $connessione->closeConnection();
             if($okUpdate){
-                $message = "<p>Stato modificato con successo</p>";
-                header("Location: visualizza-ordini.php?message=$message"); /*NON VA*/
-                exit;
+                $message = "<p class=\"messaggio\">Stato modificato con successo</p>";
             } else {
                 $message = "<p>Oops..qualcosa è andato storto. Assicurati che lo stato selezionato non fosse già quello giusto, altrimenti riprova!</p>";
-                header("Location: visualizza-ordini.php?message=$message"); /*NON VA*/
-                exit;
             }
+        }
+    } else if ($action == 'filter') {
+        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
+        $conn = $connessione->openDBConnection();
+        if($conn) {
+            $listaOrdini = $connessione->getOrdini($connessione->queryOrdini(1));
         }
     }
 }
 
-if($message = isset($_GET['message']) ? urldecode($_GET['message']) : ""){
+$conn = $connessione->openDBConnection();
+if($conn){
+    if($listaOrdini == "") {
+        $listaOrdini = $connessione->getOrdini($connessione->queryOrdini());
+    }
+    $connessione->closeConnection();
+}
+
+if(isset($message)){
     $template = str_replace('[operazione-successo]', $message, $template);
 }else{
     $template = str_replace('[operazione-successo]', '', $template);
