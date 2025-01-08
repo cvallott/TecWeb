@@ -63,10 +63,10 @@ class DBConnection {
                         $stringaIngredienti = "";
                         if(mysqli_num_rows($ingredientiPizza) > 0) {
                             while ($ingrediente = $ingredientiPizza->fetch_array(MYSQLI_ASSOC)) {
-                                $stringaIngredienti .= $ingrediente['ingrediente'].",";
+                                $stringaIngredienti .= $ingrediente['ingrediente'].", ";
                             }
                         }
-                        $stringaIngredienti = substr($stringaIngredienti, 0, -1);
+                        $stringaIngredienti = substr($stringaIngredienti, 0, -2);
                         $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                         $stringaReturn .= "</div>";
                         $queryPrezzo = "SELECT prezzo FROM pizza WHERE id='".$riga['id']."'";
