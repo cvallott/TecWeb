@@ -27,7 +27,7 @@ $connessione = new DBConnection();
 $connessioneOK = $connessione->openDBConnection();
 $consiglioPizze = "";
 if ($connessioneOK) {
-    $consiglioPizze = $connessione->getPizzeSpecialiPerCarrello();
+    $consiglioPizze = $connessione->getFuoriMenuPerCarrello();
     $connessione->closeConnection();
 }
 

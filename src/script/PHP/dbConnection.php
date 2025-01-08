@@ -125,8 +125,8 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function getPizzeSpeciali(): string {
-        $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='speciale'";
+    public function getFuoriMenu(): string {
+        $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
@@ -141,9 +141,9 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function getPizzeSpecialiPerCarrello(): string
+    public function getFuoriMenuPerCarrello(): string
     {
-        $query = "SELECT id, nome,descrizione,path FROM pizza WHERE categoria='speciale'";
+        $query = "SELECT id, nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
