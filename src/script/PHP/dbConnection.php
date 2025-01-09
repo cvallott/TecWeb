@@ -162,7 +162,11 @@ class DBConnection {
     }
 
     public function queryIngredienti($filtro = null): string {
-        return "SELECT * FROM ingrediente";
+
+            $query = "SELECT * FROM ingrediente";
+
+
+        return $query;
     }
 
     public function getIngredienti($query): string {
@@ -243,6 +247,38 @@ class DBConnection {
         return $stringaReturn;
     }
 
+    public function filtraProdotti() {
+        if ($_POST['tipo'] == '0') {
+            $query = "SELECT * FROM ingrediente WHERE 1=1";
+            if (!empty($_POST['nome'])) {
+                $query .= " AND nome = '". $_POST['nome'] ."'";
+            }
+            return $this->getIngredientiTabella($query);
+        } elseif ($_POST['tipo'] == '1') {
+            $query = "SELECT * FROM pizza WHERE 1=1";
+            if (!empty($_POST['nome'])) {
+                $query .= " AND nome = '". $_POST['nome'] ."'";
+            }
+            if (!empty($_POST['cat'])) {
+                $query .= " AND categoria = ". $_POST['cat'];
+            }
+            return $this->getPizzeTabella($query);
+        } elseif ($_POST['tipo'] == '2') {
+            $query = "SELECT * FROM cucina WHERE 1=1";
+            if (!empty($_POST['nome'])) {
+                $query .= " AND nome = ". $_POST['nome'];
+            }
+            return $this->getCucinaTabella($query);
+        } else {
+            $query = "SELECT id, nome, prezzo, categoria FROM pizza WHERE 1=1 UNION ALL SELECT id, nome, prezzo, NULL AS categoria FROM cucina WHERE 1=1 UNION ALL SELECT NULL AS id, nome, NULL AS prezzo, NULL AS categoria FROM ingrediente WHERE 1=1";
+            if (!empty($_POST['nome'])) {
+                $query .= " AND nome = ". $_POST['nome'];
+            }
+        }
+        echo $query;
+        return $query;
+    }
+
     public function queryPizze($filtro = null): string {
         return "SELECT * FROM pizza";
     }
@@ -271,11 +307,12 @@ class DBConnection {
     }
 
     public function queryUtenti($filtro = null): string {
+        $query = "";
         if($filtro != null){
             if(isset($_POST['ruolo']) && $_POST['ruolo'] == ''){
-                $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE (ruolo=0 OR ruolo=1)";
+                $query .= "SELECT nome, cognome, username, email, ruolo FROM utente WHERE (ruolo=0 OR ruolo=1)";
             }else{
-                $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
+                $query .= "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
             }
             if(isset($_POST['nome_utente']) && $_POST['nome_utente'] != ''){
                 $query .= " AND nome LIKE '".$_POST['nome_utente']."'";
@@ -284,7 +321,7 @@ class DBConnection {
                 $query .= " AND username LIKE '".$_POST['username_utente']."'";
             }
         }else if ($filtro == null){
-            $query = "SELECT nome, cognome, username, email, ruolo FROM utente";
+            $query .= "SELECT nome, cognome, username, email, ruolo FROM utente";
         }
         return $query;
     }

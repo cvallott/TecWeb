@@ -68,22 +68,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } else if ($action == 'filter') {
         $conn = $connessione->openDBConnection();
         if($conn){
-            $listaIngredienti = $connessione->getIngredientiTabella($connessione->queryIngredienti(1));
-            $listaPizze = $connessione->getPizzeTabella($connessione->queryPizze(1));
-            $listaCucina = $connessione->getCucinaTabella($connessione->queryCucina(1));
+            $query = $connessione->filtraProdotti();
+            $listaIngredienti = $connessione->filtraProdotti();
+            $listaPizze = $connessione->filtraProdotti();
+            $listaCucina = $connessione->filtraProdotti();
         }
     }
 }
 $conn = $connessione->openDBConnection();
 
 if($conn){
-    if($listaIngredienti == "" ){
+    /*if($listaIngredienti == "" ){
         $listaIngredienti = $connessione->getIngredientiTabella($connessione->queryIngredienti());
     } if($listaCucina == "" ){
         $listaCucina = $connessione->getCucinaTabella($connessione->queryCucina());
     } if($listaPizze == "" ){
         $listaPizze = $connessione->getPizzeTabella($connessione->queryPizze());
-    }
+    }*/
     $connessione->closeConnection();
 }
 if(isset($message)){
