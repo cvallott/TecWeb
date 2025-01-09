@@ -14,7 +14,7 @@ $conn = $connessione->openDBConnection();
 $listaIngredienti = "";
 $categorie = "";
 if($conn){
-    $listaIngredienti = $connessione->getIngredienti();
+    $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
     $categorie = $connessione->getCategorie();
     $connessione->closeConnection();
 }

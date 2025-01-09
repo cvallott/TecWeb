@@ -13,7 +13,7 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $listaIngredienti = "";
 if($conn){
-    $listaIngredienti = $connessione->getIngredienti();
+    $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
     $connessione->closeConnection();
 }
 

@@ -160,8 +160,12 @@ class DBConnection {
         }
         return $stringaReturn;
     }
-    public function getIngredienti(): string {
-        $query = "SELECT nome FROM ingrediente";
+
+    public function queryIngredienti(): string {
+        return "SELECT * FROM ingrediente";
+    }
+
+    public function getIngredienti($query): string {
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         $conta=1;
@@ -184,6 +188,83 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<option value='".$row['cat']."'>".$row['cat']."</option>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function getIngredientiTabella($query): string {
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
+                $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
+                $stringaReturn .= "<td></td>";
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['nome']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function queryCucina(): string {
+        return "SELECT * FROM cucina";
+    }
+
+    public function getCucinaTabella($query): string {
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']."</td>";
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-cucina.php\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto cucina\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function queryPizze(): string {
+        return "SELECT * FROM pizza";
+    }
+
+    public function getPizzeTabella($query): string {
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']."</td>";
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-pizza.php\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina pizza\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
             }
         }
         return $stringaReturn;
