@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Creato il: Gen 08, 2025 alle 15:17
+-- Creato il: Gen 09, 2025 alle 15:06
 -- Versione del server: 10.6.7-MariaDB-1:10.6.7+maria~focal
 -- Versione PHP: 8.2.8
 
@@ -102,6 +102,42 @@ INSERT INTO `cucina_ingrediente` (`cucina`, `ingrediente`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `disponiblitaorarie`
+--
+
+CREATE TABLE `disponiblitaorarie` (
+  `fascia` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `disponiblitaorarie`
+--
+
+INSERT INTO `disponiblitaorarie` (`fascia`) VALUES
+('18.00-18.10'),
+('18.10-18.20'),
+('18.20-18.30'),
+('18.30-18.40'),
+('18.40-18.50'),
+('18.50-19.00'),
+('19.00-19.10'),
+('19.02-19.30'),
+('19.10-19.20'),
+('19.30-19.40'),
+('19.40-19.50'),
+('19.50-20.00'),
+('20.00-20.10'),
+('20.10-20.20'),
+('20.20-20.30'),
+('20.30-20.40'),
+('20.40-20.50'),
+('20.50-21.00'),
+('21.00-21.10'),
+('21.10-21.20');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `ingrediente`
 --
 
@@ -138,7 +174,7 @@ CREATE TABLE `ordine` (
   `id` int(11) NOT NULL,
   `utente` varchar(250) NOT NULL,
   `data` date NOT NULL,
-  `ora` time NOT NULL,
+  `ora` varchar(250) NOT NULL,
   `stato` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -270,7 +306,7 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`email`, `username`, `password`, `nome`, `cognome`, `ruolo`) VALUES
-('admin@admin.com', 'admin', '$2y$10$w65KHkkqwPxnZ/3ntng6puxHt/YCh4uK0jn54iNyw3KclXQRiTqhO', 'Admin', 'Admin', 0),
+('admin@admin.com', 'admin', '$2y$10$w65KHkkqwPxnZ/3ntng6puxHt/YCh4uK0jn54iNyw3KclXQRiTqhO', 'Admin', 'Admin', 1),
 ('utente@utente.it', 'utente', '$2y$10$wxE2jEUpUH7FV25sdaImhOeuodxzE5VH7WEmEOD6L5eIffnK1dYgW', 'Utente', 'Utente', 0);
 
 --
@@ -297,6 +333,12 @@ ALTER TABLE `cucina_ingrediente`
   ADD KEY `fk_cucina_ingrediente` (`ingrediente`);
 
 --
+-- Indici per le tabelle `disponiblitaorarie`
+--
+ALTER TABLE `disponiblitaorarie`
+  ADD PRIMARY KEY (`fascia`);
+
+--
 -- Indici per le tabelle `ingrediente`
 --
 ALTER TABLE `ingrediente`
@@ -307,7 +349,8 @@ ALTER TABLE `ingrediente`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_ordine_cucina` (`utente`);
+  ADD KEY `fk_ordine_cucina` (`utente`),
+  ADD KEY `fk_ordine_disponiblitaorarie` (`ora`);
 
 --
 -- Indici per le tabelle `pizza`
@@ -381,7 +424,8 @@ ALTER TABLE `cucina_ingrediente`
 -- Limiti per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  ADD CONSTRAINT `fk_ordine_cucina` FOREIGN KEY (`utente`) REFERENCES `utente` (`email`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_ordine_cucina` FOREIGN KEY (`utente`) REFERENCES `utente` (`email`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_ordine_disponiblitaorarie` FOREIGN KEY (`ora`) REFERENCES `disponiblitaorarie` (`fascia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `pizza`
