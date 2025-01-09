@@ -657,14 +657,15 @@ class DBConnection {
     }
 
     public function queryDeleteIngrediente(): string{
-        $query = "SELECT pizza, cucina FROM pizza_ingrediente AS PI, cucina_ingrediente AS CI WHERE PI.ingrediente='".$_POST['nome']."' AND CI.ingrediente='".$_POST['nome']."'";
+        $query = "SELECT pizza, cucina FROM pizza_ingrediente AS PI, cucina_ingrediente AS CI WHERE PI.ingrediente='".$_POST['nome']."' OR CI.ingrediente='".$_POST['nome']."'";
         $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Processa ogni riga del risultato
-                // Ad esempio, puoi fare qualcosa con $row['pizza'] e $row['cucina']
-                $queryDelete = "DELETE FROM pizza as p, cucina as c WHERE p.pizza='".$row['pizza']."' OR c.cucina'".$row['cucina']."'";
+                $queryDelete = "DELETE FROM pizza WHERE id=".$row['pizza'];
+                $this->delete($queryDelete);
+                $queryDelete = "DELETE FROM cucina WHERE id=".$row['cucina'];
                 $this->delete($queryDelete);
             }
         }
