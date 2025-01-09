@@ -1173,6 +1173,51 @@ CARRELLO
 
 /*
 ------------------
+CONFERMA-ORDINE PAGE
+------------------
+*/
+
+#confOrdine{
+    display: flex;
+    background-color: var(--bgcolor);
+    flex-direction: column;
+}
+
+#confOrdine h1{
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+.boxConferma{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#contenutoOrd{
+    width: 30em;
+    margin: 2em;
+    /*display: flex;
+    flex-direction: row;*/
+}
+
+#contenutoOrd ol {
+    margin-left: 3em;
+}
+
+#orario{
+    margin-right: 3em;
+    text-align: center;
+}
+
+/*
+------------------
 VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 ------------------
 */

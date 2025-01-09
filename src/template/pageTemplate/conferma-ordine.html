@@ -10,8 +10,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<nav id="breadcrumb">
+    <p>Sei in: <a lang="en" href="../../index.php">Home</a> / <a href="../../menu-prenota.php">Menù-Prenota</a> /
+        <a href="../../carrello.php">Carrello</a> / Riepilogo Ordine</p>
+</nav>
 [header]
-<h1>Riepilogo ordine</h1>
-<p>A seguire un riepilogo del tuo ordine</p>
+<main>
+    <section id="confOrdine">
+        <h1>Riepilogo ordine</h1>
+        <div class="boxConferma">
+            <div id="contenutoOrd">
+                <p>Il riepilogo del tuo ordine:</p>
+                <ol>
+                    <li>Margherita</li>
+                    <li>Asparagi</li>
+                    <li>Culo</li>
+                </ol>
+                <p id="outro">Se intendi confermare il tuo ordine, seleziona un orario di consegna (tra quelli disponibili)!</p>
+            </div>
+
+            <div id="orario">
+                <p>Seleziona un orario di consegna</p>
+                <select name="menuOra" id="menuOra">
+                    <option value="h19.00">19:00</option>
+                    <option value="h19.10">19:10</option>
+                    <option value="h19.20">19:20</option>
+                </select>
+            </div>
+        </div>
+    </section>
+</main>
 [footer]
 </body>
