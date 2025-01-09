@@ -161,7 +161,7 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function queryIngredienti(): string {
+    public function queryIngredienti($filtro = null): string {
         return "SELECT * FROM ingrediente";
     }
 
@@ -205,8 +205,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['nome']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -216,7 +216,7 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function queryCucina(): string {
+    public function queryCucina($filtro = null): string {
         return "SELECT * FROM cucina";
     }
 
@@ -233,7 +233,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto cucina\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -243,7 +243,7 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function queryPizze(): string {
+    public function queryPizze($filtro = null): string {
         return "SELECT * FROM pizza";
     }
 
@@ -260,7 +260,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina pizza\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -628,8 +628,7 @@ class DBConnection {
         $queryUpdate = "UPDATE ordine SET stato='".$stato."' WHERE id='".$_POST['id']."'";
 
         $query = "SELECT stato FROM ordine WHERE id='".$_POST['id']."'";
-        $result = mysqli_query($this->connection, $query);
-        $queryResult = mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
             if($stato == $row['stato']){
@@ -645,9 +644,35 @@ class DBConnection {
         }
     }
 
-    public function deleteUtente() {
-        $queryDelete = "DELETE FROM utente WHERE email='".$_POST['email']."'";
+    public function queryDeleteUtente(): string{
+        return "DELETE FROM utente WHERE email='".$_POST['email']."'";
+    }
 
+    public function queryDeletePizza(): string{
+        return "DELETE FROM pizza WHERE id='".$_POST['id']."'";
+    }
+
+    public function queryDeleteCucina(): string{
+        return "DELETE FROM cucina WHERE id='".$_POST['id']."'";
+    }
+
+    public function queryDeleteIngrediente(): string{
+        $query = "SELECT pizza, cucina FROM pizza_ingrediente AS PI, cucina_ingrediente AS CI WHERE PI.ingrediente='".$_POST['nome']."' AND CI.ingrediente='".$_POST['nome']."'";
+        $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Processa ogni riga del risultato
+                // Ad esempio, puoi fare qualcosa con $row['pizza'] e $row['cucina']
+                $queryDelete = "DELETE FROM pizza as p, cucina as c WHERE p.pizza='".$row['pizza']."' OR c.cucina'".$row['cucina']."'";
+                $this->delete($queryDelete);
+            }
+        }
+
+        return "DELETE FROM ingrediente WHERE nome='".$_POST['nome']."'";
+    }
+
+    public function delete($queryDelete) {
         $queryResult = mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         if(mysqli_affected_rows($this->connection) > 0){
             return true;

@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
         $conn = $connessione->openDBConnection();
         if($conn){
-            $okDelete = $connessione->deleteUtente();
+            $okDelete = $connessione->delete($connessione->queryDeleteUtente());
             $connessione->closeConnection();
             if($okDelete){
                 $message = "<p class=\"messaggio\">Utente eliminato con successo</p>";

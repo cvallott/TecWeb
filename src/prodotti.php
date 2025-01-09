@@ -29,23 +29,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
             }
         }*/
-    } else if ($action == 'delete') {
-        /*$connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
+    } else if ($action == 'deletePizza') {
+        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
         $conn = $connessione->openDBConnection();
         if($conn){
-            $okDelete = $connessione->deleteUtente();
+            $okDelete = $connessione->delete($connessione->queryDeletePizza());
             $connessione->closeConnection();
             if($okDelete){
-                $message = "<p class=\"messaggio\">Utente eliminato con successo</p>";
+                $message = "<p class=\"messaggio\">Pizza eliminata con successo</p>";
             } else {
                 $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
             }
-        }*/
-    } else if ($action == 'filter') {
-        /*$conn = $connessione->openDBConnection();
+        }
+    } else if ($action == 'deleteCucina') {
+        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
+        $conn = $connessione->openDBConnection();
         if($conn){
-            $listaUtenti = $connessione->getUtenti($connessione->queryUtenti(1));
-        }*/
+            $okDelete = $connessione->delete($connessione->queryDeleteCucina());
+            $connessione->closeConnection();
+            if($okDelete){
+                $message = "<p class=\"messaggio\">Piatto eliminato con successo</p>";
+            } else {
+                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+            }
+        }
+    } else if ($action == 'deleteIngrediente') {
+        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
+        $conn = $connessione->openDBConnection();
+        if($conn){
+            $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
+            $connessione->closeConnection();
+            if($okDelete){
+                $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";
+            } else {
+                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+            }
+        }
+    } else if ($action == 'filter') {
+        $conn = $connessione->openDBConnection();
+        if($conn){
+            $listaIngredienti = $connessione->getIngredientiTabella($connessione->queryIngredienti(1));
+            $listaPizze = $connessione->getPizzeTabella($connessione->queryPizze(1));
+            $listaCucina = $connessione->getCucinaTabella($connessione->queryCucina(1));
+        }
     }
 }
 $conn = $connessione->openDBConnection();
