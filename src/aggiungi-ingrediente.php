@@ -20,12 +20,11 @@ if (isset($_POST['submit'])) {
         $okIngredienti = $connessione->insertIngrediente($nome, $veget, $pagg);
         $connessione->closeConnection();
         if($okIngredienti){
-            $message = "Prodotto inserito con successo";
-            header("Location: aggiungi-prodotto.php?message=$message"); /*NON VA*/
-            exit;
+            $_SESSION['messaggio'] = "Prodotto inserito con successo";
         } else {
-            /* BUUUU ERRORE */
+            $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
         }
+        header("Location: aggiungi-prodotto.php");
     }
 }
 
