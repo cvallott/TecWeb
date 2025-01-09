@@ -103,31 +103,6 @@ class DBConnection {
                     }
                     $stringaReturn .= '</div>';
                 }
-                $stringaReturn .='</h4>';
-                $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.row['id]'.'">
-                        <button type="submit" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
-                    </form>';
-                $rowsCarrello .= '<h4>'. $item['quantita'] .'</h4>';
-                $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
-                    </form>';
-                /*
-                $stringaReturn .= '<form method="POST" action="" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.$row['id'].'">
-                        <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
-                    </form>';
-                // Form per il carrello
-                $stringaReturn .= "<form method='POST' action='carrello.php'>";
-                $stringaReturn .= "<input type='hidden' name='id' value='" . $row['id'] . "'>"; // id
-                $stringaReturn .= "<input type='hidden' name='nome' value='" . $row['nome'] . "'>";
-                $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
-                //$stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='add-to-cart'>Aggiungi al carrello</button>";
-                $stringaReturn .= "</form>";
-                */
-                $stringaReturn .= "</div>";
-                $stringaReturn .= "</div>";
             }
             $stringaReturn .= '</section>';
         }
