@@ -1,16 +1,18 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(!isset($_SESSION['nome'])){
+
+    if(!isset($_SESSION['nome'])||!isset($_SESSION['cognome'])||!isset($_SESSION['tipo'])){
         header("location: area-riservata.php");
     }
 
     $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'] ?? null;
+    $prezzo = $_POST['prezzo'] ?? null;
     $quantita = intval($_POST['quantita'] ?? 1);
 
-    if ($_POST['azione'] === 'aggiungi' && $id && $nome) {
-        aggiornaCarrello($id, $nome, $quantita,20);
+    if ($_POST['azione'] === 'aggiungi' && $id && $nome && $prezzo) {
+        aggiornaCarrello($id, $nome, $quantita,$prezzo);
     } elseif ($_POST['azione'] === 'incrementa' && $id) {
         aggiornaCarrello($id, '', 1,'');
     } elseif ($_POST['azione'] === 'decrementa' && $id) {

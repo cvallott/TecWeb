@@ -13,7 +13,7 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $pizzeSpeciali = "";
 if($conn){
-    $pizzeSpeciali = $connessione->getPizzeFM();
+    $pizzeSpeciali = $connessione->getFuoriMenu();
     $connessione->closeConnection();
 }
 
