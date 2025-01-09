@@ -160,6 +160,421 @@ class DBConnection {
         }
         return $stringaReturn;
     }
+    public function getIngredienti(): string {
+        $query = "SELECT nome FROM ingrediente";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        $conta=1;
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<div class=\"check\">";
+                $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
+                $stringaReturn .= "<label for=\"ingr".$conta."\">".$row['nome']."</label>";
+                $stringaReturn .= "</div>";
+                $conta++;
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function getCategorie(): string {
+        $query = "SELECT cat FROM categoria";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<option value='".$row['cat']."'>".$row['cat']."</option>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function queryUtenti($filtro = null): string {
+        if($filtro != null){
+            if(isset($_POST['ruolo']) && $_POST['ruolo'] == ''){
+                $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE (ruolo=0 OR ruolo=1)";
+            }else{
+                $query = "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
+            }
+            if(isset($_POST['nome_utente']) && $_POST['nome_utente'] != ''){
+                $query .= " AND nome LIKE '".$_POST['nome_utente']."'";
+            }
+            if(isset($_POST['username_utente']) && $_POST['username_utente'] != ''){
+                $query .= " AND username LIKE '".$_POST['username_utente']."'";
+            }
+        }else if ($filtro == null){
+            $query = "SELECT nome, cognome, username, email, ruolo FROM utente";
+        }
+        return $query;
+    }
+
+    public function getUtenti($query): string {
+        /*$query = "SELECT nome, cognome, username, email, ruolo FROM utente";*/
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']." ".$row['cognome']."</th>";
+                $stringaReturn .= "<td data-title=\"Username\">".$row['username']."</td>";
+                $stringaReturn .= "<td data-title=\"Email\">".$row['email']."</td>";
+                if($row['ruolo']==0){
+                    $stringaReturn .= "<td data-title=\"Ruolo\">Cliente</td>";
+                }else{
+                    $stringaReturn .= "<td data-title=\"Ruolo\">Amministratore</td>";
+                }
+                $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
+                $stringaReturn .= "<form action=\"../../gestisci-utenti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
+                $stringaReturn .= "<select name=\"ruolo\" class=\"select\">";
+                $stringaReturn .= "<option value=\"0\">Cliente</option>";
+                $stringaReturn .= "<option value=\"1\">Amministratore</option>";
+                $stringaReturn .= "</select>";
+                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "<td data-title=\"Elimina Utente\">";
+                $stringaReturn .= "<form action=\"../../gestisci-utenti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina utente\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function queryOrdini($filtro = null): string {
+        if($filtro != null){
+            if(isset($_POST['stato']) && $_POST['stato'] == ''){
+                $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND (stato=0 OR stato=1 OR stato=-1)";
+            }else{
+                $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
+            }
+            if(isset($_POST['data']) && $_POST['data'] != ''){
+                $query .= " AND data LIKE '".$_POST['data']."'";
+            }
+            if(isset($_POST['cliente']) && $_POST['cliente'] != ''){
+                $query .= " AND u.nome LIKE '".$_POST['cliente']."'";
+            }
+        }else if ($filtro == null){
+            $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
+        }
+        return $query;
+    }
+
+    public function getTotalePrezzoOrdine($idOrdine){
+        $query = "SELECT PO.quantita, COALESCE(P.prezzo, C.prezzo) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
+        $result = mysqli_query($this->connection, $query);
+        $prezzo = 0;
+        if(mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $prezzo += ($row['quantita']*$row['prezzo']);
+            }
+            return $prezzo;
+        }else{
+            /*qualche errore*/
+        }
+    }
+
+    public function getTotaleProdottiOrdine($idOrdine){
+        $query = "SELECT PO.quantita FROM prodotti_ordine AS PO WHERE PO.ordine='".$idOrdine."'";
+        $result = mysqli_query($this->connection, $query);
+        $conta = 0;
+        if(mysqli_num_rows($result) > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $conta += $row['quantita'];
+            }
+            return $conta;
+        }else{
+            /*qualche errore*/
+        }
+    }
+
+    public function getOrdini($query): string {
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Cliente\">".$row['cliente']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
+                $tot = $this->getTotaleProdottiOrdine($row['id']);
+                $prezzo = $this->getTotalePrezzoOrdine($row['id']);
+                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." &euro; - ".$tot." prodotti</td>";
+                if($row['stato']==0){
+                    $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
+                }else if($row['stato']==1){
+                    $stringaReturn .= "<td data-title=\"Stato\">Consegnato</td>";
+                }else{
+                    $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
+                }
+                $stringaReturn .= "<td data-title=\"Modifica stato\">";
+                $stringaReturn .= "<form action=\"../../visualizza-ordini.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
+                $stringaReturn .= "<select name=\"stato\" class=\"select\">";
+                $stringaReturn .= "<option value=\"1\">Consegnato</option>";
+                $stringaReturn .= "<option value=\"0\">In corso</option>";
+                $stringaReturn .= "<option value=\"-1\">Annullato</option>";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">"; /*POSSO METTERLI???*/
+                $stringaReturn .= "</select>";
+                $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "<td data-title=\"Dettagli\">";
+                $stringaReturn .= "<img src=\"../../../assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<a href=\"../../dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function getDettagliOrdine($idOrdine): string {
+        $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['prodotto']."</th>";
+                $stringaReturn .= "<td data-title= \"Quantità\">".$row['quantita']."</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']." &euro;</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function getOrdiniUtente($email): string {
+        $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '".$email."' = o.utente";
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC) ){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
+                if($row['stato']==0){
+                    $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
+                }else if($row['stato']==1){
+                    $stringaReturn .= "<td data-title=\"Stato\">Consegnato</td>";
+                }else{
+                    $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
+                }
+                $tot = $this->getTotaleProdottiOrdine($row['id']);
+                $prezzo = $this->getTotalePrezzoOrdine($row['id']);
+                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." &euro; - ".$tot." prodotti</td>";
+                $stringaReturn .= "<td data-title=\"Dettagli\">";
+                $stringaReturn .= "<img src=\"../../../assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<a href=\"../../dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+    public function isVeget(array $ingredienti) {
+        $veget = 0;
+        foreach($ingredienti as $ingrediente) {
+            $query = "SELECT veget FROM ingrediente WHERE nome='".$ingrediente."'";
+            $result = mysqli_query($this->connection, $query);
+            if(mysqli_num_rows($result) > 0) {
+                $row = $result->fetch_assoc();
+                if ($row['veget'] == 1) {
+                    $veget = 1;
+                }
+            }
+        }
+        return $veget;
+    }
+
+    public function insertIngrediente($nome, $veget, $pagg) {
+
+        $queryInsert = "INSERT INTO ingrediente(nome, veget, pagg) " .
+            "VALUES (\"$nome\", \"$veget\", \"$pagg\")";
+
+        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path): bool {
+
+        $queryInsert = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) " .
+            "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$categoria\", \"$descrizione\", \"$path\")";
+
+        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function insertProdottoIngrediente($nome, $ingredienti, $table) {
+        // Sanitizza il nome della pizza
+        /*$nome = mysqli_real_escape_string($this->connection, $nome);*/
+        $query = "SELECT id FROM ". $table . " WHERE nome='$nome'";
+        $result = mysqli_query($this->connection, $query);
+
+        if (!$result) {
+            die("Errore nella query per trovare l'ID del prodotto: " . mysqli_error($this->connection));
+        }
+
+        if (mysqli_num_rows($result) === 0) {
+            die("Errore: Nessun prodotto trovato con il nome '$nome'.");
+        }
+
+        $row = mysqli_fetch_assoc($result);
+        $prodottoId = $row['id'];
+
+        // Itera sugli ingredienti e inseriscili
+        foreach ($ingredienti as $ingrediente) {
+            $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
+            $queryInsert = "INSERT INTO ". $table . "_ingrediente (" . $table . ", ingrediente) VALUES ('$prodottoId', '$ingrediente')";
+
+            if (!mysqli_query($this->connection, $queryInsert)) {
+                die("Errore nell'inserimento dell'ingrediente '$ingrediente': " . mysqli_error($this->connection));
+            }
+        }
+        return true;
+    }
+
+    public function insertCucina($nome, $prezzo, $veget, $path) {
+
+        $queryInsert = "INSERT INTO cucina(nome, prezzo, veget, path) " .
+            "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$path\")";
+
+        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function uploadImage() {
+        // Controlla se un file è stato caricato
+        if (!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE) {
+            /*echo "Nessun file caricato.<br>";*/
+            return;
+        }
+
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/pizze/';
+        $target_file = $uploadDir . basename($_FILES["file"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["file"]["tmp_name"]);
+            if($check !== false) {
+                /*echo "File is an image - " . $check["mime"] . ".";*/
+                $uploadOk = 1;
+            } else {
+                /*echo "File is not an image.";*/
+                $uploadOk = 0;
+            }
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            /*echo "Sorry, file already exists.";*/
+            $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["file"]["size"] > 500000) {
+            /*echo "Sorry, your file is too large.";*/
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+            /*echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";*/
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            /*echo "Sorry, your file was not uploaded.";*/
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                /*echo "The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.";*/
+            } else {
+                /*echo "Sorry, there was an error uploading your file.";*/
+            }
+        }
+    }
+
+    public function updateUtente($ruolo) {
+        $queryUpdate = "UPDATE utente SET ruolo='".$ruolo."' WHERE email='".$_POST['email']."'";
+
+        $query = "SELECT ruolo FROM utente WHERE email='".$_POST['email']."'";
+        $result = mysqli_query($this->connection, $query);
+        mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+            if($ruolo == $row['ruolo']){
+                return false;
+            }else if(mysqli_affected_rows($this->connection) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function updateOrdine($stato) {
+        $queryUpdate = "UPDATE ordine SET stato='".$stato."' WHERE id='".$_POST['id']."'";
+
+        $query = "SELECT stato FROM ordine WHERE id='".$_POST['id']."'";
+        $result = mysqli_query($this->connection, $query);
+        $queryResult = mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+            if($stato == $row['stato']){
+                return false;
+            }else if(mysqli_affected_rows($this->connection) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteUtente() {
+        $queryDelete = "DELETE FROM utente WHERE email='".$_POST['email']."'";
+
+        $queryResult = mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($this->connection) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     public function checkUserExists($username) {
         $query = "SELECT username FROM utente WHERE username = ?";
@@ -188,7 +603,7 @@ class DBConnection {
     }
 
     public function userLogin($username, $password) {
-        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
+        $query = "SELECT nome, cognome, ruolo, password, email FROM utente WHERE username = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -197,7 +612,7 @@ class DBConnection {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
-                return array($user['nome'], $user['cognome'], $user['ruolo']);
+                return array($user['nome'], $user['cognome'], $user['ruolo'], $user['email']);
             }
         }
         return false;

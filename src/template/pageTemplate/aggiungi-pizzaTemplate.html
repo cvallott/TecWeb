@@ -23,7 +23,7 @@
     <h1>INSERISCI UNA NUOVA PIZZA</h1>
   </section>
   <section class="aggiunta-content">
-    <form method="post" action="FILE DESTINAZIONE" class="form-aggiunta">
+    <form method="post" action="../../aggiungi-pizza.php" class="form-aggiunta" enctype="multipart/form-data">
       <div>
         <label for="nome">Inserisci il nome: </label>
         <input type="text" name="nome" id="nome">
@@ -33,30 +33,20 @@
         <input type="number" min="0" name="prezzo" id="prezzo">
       </div>
       <p>Inserisci gli ingredienti: </p>
-      <div class="check">
-        <input type="checkbox" id="ingr1" name="ingr1" value="Mozzarella">
-        <label for="ingr1"> Mozzarella</label>
-      </div>
-      <div class="check">
-        <input type="checkbox" id="ingr2" name="ingr2" value="Fanculo">
-        <label for="ingr2"> Fanculo</label>
-      </div>
-      <div class="check">
-        <input type="checkbox" id="ingr3" name="ingr3" value="Pomodoro">
-        <label for="ingr3"> Pomodoro</label>
-      </div>
+        [listaIngredienti]
       <div>
         <label for="cat">Categoria: </label>
         <select name="cat" id="cat" class="select">
-          <option value="classica">Classica</option>
-          <option value="speciale">Speciale</option>
-          <option value="stagionale">Stagionale</option>
-          <option value="FM">Fuori menù</option>
+          [categorie]
         </select>
       </div>
       <div>
         <label for="descr">Descrizione:</label>
         <textarea id="descr" name="descr" rows="5" cols="50"></textarea>
+      </div>
+      <div>
+        <label for="file">Carica un'immagine:</label>
+        <input type="file" name="file" id="file" accept="image/*">
       </div>
       <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
       <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >

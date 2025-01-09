@@ -18,12 +18,12 @@
     <section id="DO-intro">
         <h1>Dettagli ordine numero NUM-ORDINE</h1>
         <a href="../../riepilogo-ordini.php" class="home-button">Torna al riepilogo ordini</a>
-        <a href="../../admin/visualizza-ordini.php" class="home-button">Torna alla visualizzazione ordini</a>
+        <a href="../../visualizza-ordini.php" class="home-button">Torna alla visualizzazione ordini</a>
     </section>
     <section class="tabella-ordini">
         <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
         <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
-        <span id="descrTabella">In questa tabella vengono riassunti gli ultimi 5 ordini effettuati ORGANIZZATI PER COLONNE: Numero ordine, Data e orario, Stato ordine, Totale ordine e Dettagli</span>
+        <span id="descrTabella">TODO</span>
         <table aria-describedby="descrTabella">
             <caption>Dettagli ordine</caption>
             <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
@@ -34,26 +34,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Margherita</th>
-                <td data-title="Quantità">3</td>
-                <td data-title="Prezzo">16,5€</td>
-            </tr>
-            <tr>
-                <th scope="row">Viennese</th>
-                <td data-title="Quantità">1</td>
-                <td data-title="Prezzo">7€</td>
-            </tr>
-            <tr>
-                <th scope="row">Patate fritte</th>
-                <td data-title="Quantità">1</td>
-                <td data-title="Prezzo">4€</td>
-            </tr>
+                [dettaglioOrdine]
             </tbody>
             <tfoot>
             <tr>
                 <th scope="row" colspan="2">Totale Prezzo</th>
-                <td data-title="Totale Prezzo">27,5€</td>
+                <td data-title="Totale Prezzo">[totOrdine] &euro;</td>
             </tr>
             </tfoot>
         </table>

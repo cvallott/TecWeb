@@ -11,15 +11,15 @@ $footer = printFooter();
 
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
-$pizzeSpeciali = "";
+$pizzeFM = "";
 if($conn){
-    $pizzeSpeciali = $connessione->getFuoriMenu();
+    $pizzeFM = $connessione->getFuoriMenu();
     $connessione->closeConnection();
 }
 
 
 $template = str_replace('[header]', $header, $template);
-$template = str_replace('[pizzeMese]', $pizzeSpeciali, $template);
+$template = str_replace('[pizzeMese]', $pizzeFM, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;

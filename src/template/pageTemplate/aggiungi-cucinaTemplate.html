@@ -23,14 +23,20 @@
         <h1>INSERISCI UN NUOVO PIATTO DI CUCINA</h1>
     </section>
     <section class="aggiunta-content">
-        <form method="post" action="FILE DESTINAZIONE" class="form-aggiunta">
+        <form method="post" action="../../aggiungi-cucina.php" class="form-aggiunta">
             <div>
                 <label for="nome">Inserisci il nome: </label>
                 <input type="text" name="nome" id="nome">
             </div>
             <div>
-                <label for="pagg">Inserisci il prezzo: </label>
-                <input type="number" min="0.5" max="2.5" name="pagg" id="pagg">
+                <label for="prezzo">Inserisci il prezzo: </label>
+                <input type="number" min="0" name="prezzo" id="prezzo">
+            </div>
+            <p>Inserisci gli ingredienti: </p>
+            [listaIngredienti]
+            <div>
+                <label for="file">Carica un'immagine:</label>
+                <input type="file" name="file" id="file" accept="image/*">
             </div>
             <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci piatto" >
             <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >

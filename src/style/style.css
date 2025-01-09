@@ -716,6 +716,7 @@ DETTAGLI-ORDINE PAGE
 
 #DO .tabella-ordini{
     margin-right: 0.7em;
+    width: 60%;
 }
 
 
@@ -1309,11 +1310,11 @@ CSS PER I FORM DI AGGIUNTA
     display: inline;
 }
 
-.form-aggiunta input[type="text"], input[type="number"] {
+.form-aggiunta input[type="text"], input[type="number"]{
     width: 100%;
-    padding: 10px;
+    padding: 0.5em;
     border: 0.1em solid var(--txtcolor);
-    border-radius: 4px;
+    border-radius: 0.4em;
     font-size: 1em;
 }
 
@@ -1351,6 +1352,11 @@ CSS PER I FORM DI AGGIUNTA
     margin-right: 0.7em;
 }
 
+.form-aggiunta input[type="text"], input[type="number"], input[type="file"] {
+    font-size: 1em;
+    margin-bottom: 2em;
+}
+
 /*
 ------------------
 CSS PER LE PAGINE DI AGGIUNTA
@@ -1378,4 +1384,17 @@ CSS PER LA GESTIONE DEI PRODOTTI IN CARRELLO
 
 .inlineComponents{
     display:inline;
+}
+
+/*
+------------------
+CSS PER MESSAGGIO DI SUCCESSO O ERRORE
+------------------
+*/
+.messaggio{
+    font-size: 1em;
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
+    padding: 0.5em;
+    border-radius: 0.2em;
 }
