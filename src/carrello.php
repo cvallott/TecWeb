@@ -31,9 +31,17 @@ if ($connessioneOK) {
     $connessione->closeConnection();
 }
 
+$connessioneOK = $connessione->openDBConnection();
+$primadisp = "";
+if ($connessioneOK) {
+    $primadisp = $connessione->getFasceOrarie()[0];
+    $connessione->closeConnection();
+}
+
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[rowsCarrello]', $rowsCarrello, $template);
 $template = str_replace('[tot]', $totale, $template);
+$template = str_replace('[fasciaOraria]', $primadisp, $template);
 $template = str_replace('[pizzeMese]', $consiglioPizze, $template);
 $template = str_replace('[footer]', $footer, $template);
 

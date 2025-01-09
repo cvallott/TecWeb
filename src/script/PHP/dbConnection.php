@@ -617,6 +617,24 @@ class DBConnection {
         }
         return false;
     }
+
+    public function getFasceOrarie(){
+        $query = "SELECT * FROM disponiblitaorarie WHERE STR_TO_DATE(SUBSTRING_INDEX(fascia, '-', 1), '%H.%i') >= CURTIME();";
+        $risultato = mysqli_query($this->connection, $query);
+        $selectReturn ="";
+        $primadisponibilita = "";
+        if(mysqli_num_rows($risultato) > 0){
+            $selectReturn .= "<select name='orario' id='orario'>";
+            while($row = mysqli_fetch_assoc($risultato)){
+                if($primadisponibilita==""){
+                    $primadisponibilita = $row["fascia"];
+                }
+                $selectReturn .= "<option value='".$row['fascia']."'>".$row['fascia']."</option>";
+            }
+            $selectReturn .= "</select>";
+        }
+        return array($primadisponibilita, $selectReturn);
+    }
 //    public function userLogin($username, $password) {
 //        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
 //        $stmt = $this->connection->prepare($query);
