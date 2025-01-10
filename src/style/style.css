@@ -128,6 +128,25 @@ header img {
 #dropdown i{
     padding-left: 0.4em;
 }
+/*
+=============
+AIUTI ALLA NAVIGAZIONE
+=============
+*/
+
+.navigationHelp{
+    position: absolute;
+    text-indent: -999em;
+}
+
+.navigationHelp:focus{
+    position: static;
+    text-indent: 0;
+}
+
+.listHelp{
+    list-style-type: none;
+}
 
 /*
 ------------------
