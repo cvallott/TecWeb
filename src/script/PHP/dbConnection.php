@@ -220,9 +220,6 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function queryCucina($filtro = null): string {
-        return "SELECT * FROM cucina";
-    }
 
     public function getCucinaTabella($query): string {
         $result = mysqli_query($this->connection, $query);
@@ -247,40 +244,64 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function filtraProdotti() {
-        if ($_POST['tipo'] == '0') {
-            $query = "SELECT * FROM ingrediente WHERE 1=1";
-            if (!empty($_POST['nome'])) {
-                $query .= " AND nome = '". $_POST['nome'] ."'";
+    public function filtraProdotti($val = null, $filtro = 1) {
+        if ($filtro > 0) {
+            echo "siamo qui";
+            if ($_POST['tipo'] == '0') {
+                $query = "SELECT * FROM ingrediente WHERE 1=1";
+                if (!empty($_POST['nome'])) {
+                    $query .= " AND nome = '". $_POST['nome'] ."'";
+                }
+                return $this->getIngredientiTabella($query);
+            } elseif ($_POST['tipo'] == '1') {
+                $query = "SELECT * FROM pizza WHERE 1=1";
+                if (!empty($_POST['nome'])) {
+                    $query .= " AND nome = '". $_POST['nome'] ."'";
+                }
+                return $this->getPizzeTabella($query);
+            } elseif ($_POST['tipo'] == '2') {
+                $query = "SELECT * FROM cucina WHERE 1=1";
+                if (!empty($_POST['nome'])) {
+                    $query .= " AND nome = '". $_POST['nome']."'";
+                }
+                return $this->getCucinaTabella($query);
+            } else {
+                if($val == 0) {
+                    $query = "SELECT * FROM pizza WHERE 1=1";
+                    if (!empty($_POST['nome'])) {
+                        $query .= " AND nome = '". $_POST['nome']."'";
+                    }
+                    return $this->getPizzeTabella($query);
+                }
+                if($val == 1) {
+                    $query = "SELECT * FROM cucina WHERE 1=1";
+                    if (!empty($_POST['nome'])) {
+                        $query .= " AND nome = '". $_POST['nome']."'";
+                    }
+                    return $this->getCucinaTabella($query);
+                }
+                if($val == 2) {
+                    $query = "SELECT * FROM ingrediente WHERE 1=1";
+                    if (!empty($_POST['nome'])) {
+                        $query .= " AND nome = '". $_POST['nome']."'";
+                    }
+                    return $this->getIngredientiTabella($query);
+                }
             }
-            return $this->getIngredientiTabella($query);
-        } elseif ($_POST['tipo'] == '1') {
-            $query = "SELECT * FROM pizza WHERE 1=1";
-            if (!empty($_POST['nome'])) {
-                $query .= " AND nome = '". $_POST['nome'] ."'";
-            }
-            if (!empty($_POST['cat'])) {
-                $query .= " AND categoria = ". $_POST['cat'];
-            }
-            return $this->getPizzeTabella($query);
-        } elseif ($_POST['tipo'] == '2') {
-            $query = "SELECT * FROM cucina WHERE 1=1";
-            if (!empty($_POST['nome'])) {
-                $query .= " AND nome = ". $_POST['nome'];
-            }
-            return $this->getCucinaTabella($query);
         } else {
-            $query = "SELECT id, nome, prezzo, categoria FROM pizza WHERE 1=1 UNION ALL SELECT id, nome, prezzo, NULL AS categoria FROM cucina WHERE 1=1 UNION ALL SELECT NULL AS id, nome, NULL AS prezzo, NULL AS categoria FROM ingrediente WHERE 1=1";
-            if (!empty($_POST['nome'])) {
-                $query .= " AND nome = ". $_POST['nome'];
+            if($val == 0) {
+                $query = "SELECT * FROM pizza";
+                return $this->getPizzeTabella($query);
+            }
+            if($val == 1) {
+                $query = "SELECT * FROM cucina";
+                return $this->getCucinaTabella($query);
+            }
+            if($val == 2) {
+                $query = "SELECT * FROM ingrediente";
+                return $this->getIngredientiTabella($query);
             }
         }
-        echo $query;
-        return $query;
-    }
-
-    public function queryPizze($filtro = null): string {
-        return "SELECT * FROM pizza";
     }
 
     public function getPizzeTabella($query): string {

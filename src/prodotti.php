@@ -10,9 +10,7 @@ $header = printHeader();
 $footer = printFooter();
 $message = null;
 $connessione = new DBConnection();
-$listaPizze = "";
-$listaCucina = "";
-$listaIngredienti = "";
+$listaProdotti = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -56,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } else if ($action == 'deleteIngrediente') {
         $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
         $conn = $connessione->openDBConnection();
-        if($conn){
+        if ($conn) {
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             $connessione->closeConnection();
-            if($okDelete){
+            if ($okDelete) {
                 $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";
             } else {
                 $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
@@ -67,24 +65,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         }
     } else if ($action == 'filter') {
         $conn = $connessione->openDBConnection();
-        if($conn){
-            $query = $connessione->filtraProdotti();
-            $listaIngredienti = $connessione->filtraProdotti();
-            $listaPizze = $connessione->filtraProdotti();
-            $listaCucina = $connessione->filtraProdotti();
+        if ($conn) {
+            if($_POST['tipo'] == ''){
+                for($conta = 0; $conta < 3; $conta++) {
+                    $listaProdotti .= $connessione->filtraProdotti($conta);
+                }
+            } else {
+                $listaProdotti = $connessione->filtraProdotti();
+            }
         }
     }
 }
 $conn = $connessione->openDBConnection();
 
 if($conn){
-    /*if($listaIngredienti == "" ){
-        $listaIngredienti = $connessione->getIngredientiTabella($connessione->queryIngredienti());
-    } if($listaCucina == "" ){
-        $listaCucina = $connessione->getCucinaTabella($connessione->queryCucina());
-    } if($listaPizze == "" ){
-        $listaPizze = $connessione->getPizzeTabella($connessione->queryPizze());
-    }*/
+    if(empty($_POST['action'])){
+        for($conta = 0; $conta < 3; $conta++) {
+            $listaProdotti .= $connessione->filtraProdotti($conta, 0);
+        }
+    }
     $connessione->closeConnection();
 }
 if(isset($message)){
@@ -94,9 +93,7 @@ if(isset($message)){
 }
 
 $template = str_replace('[header]', $header, $template);
-$template = str_replace('[visIngredienti]', $listaIngredienti, $template);
-$template = str_replace('[visCucina]', $listaCucina, $template);
-$template = str_replace('[visPizze]', $listaPizze, $template);
+$template = str_replace('[visProdotti]', $listaProdotti, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;
