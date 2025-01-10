@@ -534,10 +534,10 @@ class DBConnection {
         return $veget;
     }
 
-    public function insertIngrediente($nome, $veget, $pagg) {
+    public function insertIngrediente($nome, $veget) {
 
-        $queryInsert = "INSERT INTO ingrediente(nome, veget, pagg) " .
-            "VALUES (\"$nome\", \"$veget\", \"$pagg\")";
+        $queryInsert = "INSERT INTO ingrediente(nome, veget) " .
+            "VALUES (\"$nome\", \"$veget\")";
 
         $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         if(mysqli_affected_rows($this->connection) > 0){
