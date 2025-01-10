@@ -29,6 +29,6 @@ $template = str_replace('[header]', $header, $template);
 $template = str_replace('[oraridisp]', $selectOrari, $template);
 $template = str_replace('[footer]', $footer, $template);
 $template = str_replace('[nameClient]', $_SESSION['nome'], $template);
-//$template = str_replace('[surnameClient]', $_SESSION['cognome'], $template);
+$template = str_replace('[surnameClient]', $_SESSION['cognome'], $template);
 
 echo $template;
