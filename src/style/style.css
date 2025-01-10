@@ -1181,6 +1181,7 @@ CONFERMA-ORDINE PAGE
     display: flex;
     background-color: var(--bgcolor);
     flex-direction: column;
+    /*font-size: 1em;*/
 }
 
 #confOrdine h1{
@@ -1194,26 +1195,100 @@ CONFERMA-ORDINE PAGE
     padding: 0.5em 5em;
 }
 
-.boxConferma{
+.containerRiepilogo{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    padding-top: 3em;
+    font-size: 1.3em;
 }
 
-#contenutoOrd{
-    width: 30em;
-    margin: 2em;
-    /*display: flex;
-    flex-direction: row;*/
+.boxConferma{
+    display:flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    padding-left: 2em;
+    width: 33.3%;
+}
+#nomecognUtente{
+    border-bottom:  0.1em solid black;
+    text-align: center;
+    width: 100%;
 }
 
-#contenutoOrd ol {
-    margin-left: 3em;
+.boxConferma #pConferma{
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+#boxForm{
+    display:flex;
+    justify-content: center;
+    width: 33.33%;
 }
 
 #orario{
-    margin-right: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    flex-direction: column;
+    padding-top: 0.5em;
+}
+
+/* container del form */
+.form-container {
+    width: 20em;
+    margin: 1.25em;
+    padding: 1em;
+    background-color: #f9f9f9;
+    border: 0.1vh solid #ddd;
+    border-radius: 0.83vh; /* crea dei bellissimi angoli arrotondati*/
+    box-shadow: 0 0.25em 0.375em #ff180061;
+}
+
+/* etichetta-"titolo" */
+.form-label {
+    display: block; /* Rende l'etichetta un blocco */
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px; /* Spazio tra l'etichetta e l'input */
+}
+
+/* testo inserito dall'utente */
+.form-input {
+    width: 100%; /* Occupa tutta la larghezza del contenitore */
+    padding: 10px; /* Spazio interno */
+    font-size: 14px; /* Dimensione del testo */
+    color: #555; /* Colore del testo */
+    border: 1px solid #ccc; /* Bordo grigio chiaro */
+    border-radius: 5px; /* Angoli arrotondati */
+    box-sizing: border-box; /* Considera padding e border nella larghezza */
+    transition: border-color 0.3s ease; /* utile per animazione */
+}
+
+/* focus del campo-testo */
+.form-input:focus {
+    border-color: #ff180061;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+#totOrdine{
+    width: 33.3%;
+    padding-top: 1em;
+    text-align: center;
+}
+#totOrdine button{
+    font-size: 0.7em;
+    margin-top: 1em;
+    width: 5em;
+    height: 2em;
 }
 
 /*
