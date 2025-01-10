@@ -31,10 +31,15 @@ if ($connessioneOK) {
     $connessione->closeConnection();
 }
 
+$totQuant = 0;
+foreach ($_SESSION['carrello'] as $prodotto) {
+    $totQuant += $prodotto['quantita'];
+}
+
 $connessioneOK = $connessione->openDBConnection();
 $primadisp = "";
 if ($connessioneOK) {
-    $primadisp = $connessione->getFasceOrarie()[0];
+    $primadisp = $connessione->getFasceOrarie($totQuant)[0];
     $connessione->closeConnection();
 }
 
