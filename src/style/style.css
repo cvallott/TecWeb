@@ -516,18 +516,18 @@ CHI SIAMO PAGE
 RIEPILOGO-ORDINI PAGE
 ------------------
 */
-#RO {
-    min-height: 70vh;
+#RO-tabella {
+    min-height: 30vh;
 }
 
-#RO .general-intro {
+#RO-intro {
     padding-bottom: 2em;
     text-align: center;
     line-height: 2em;
     margin: 0.7em;
 }
 
-#RO .general-intro h1 {
+#RO-intro h1 {
     padding-bottom: 2em;
 }
 
@@ -733,14 +733,13 @@ DETTAGLI-ORDINE PAGE
     margin: 3em;
 }
 
-#DO .tabella-ordini{
+#DO-tabella {
     margin-right: 0.7em;
     width: 60%;
 }
 
 
 /*
-
 ---------------------
 MENU-PRENOTA-PAGE
 ---------------------
