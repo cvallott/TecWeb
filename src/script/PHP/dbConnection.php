@@ -246,7 +246,6 @@ class DBConnection {
 
     public function filtraProdotti($val = null, $filtro = 1) {
         if ($filtro > 0) {
-            echo "siamo qui";
             if ($_POST['tipo'] == '0') {
                 $query = "SELECT * FROM ingrediente WHERE 1=1";
                 if (!empty($_POST['nome'])) {

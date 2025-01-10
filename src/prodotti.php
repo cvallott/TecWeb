@@ -84,13 +84,20 @@ if($conn){
             $listaProdotti .= $connessione->filtraProdotti($conta, 0);
         }
     }
+    if(isset($message)){
+        $template = str_replace('[operazione-successo]', $message, $template);
+        for($conta = 0; $conta < 3; $conta++) {
+            $listaProdotti .= $connessione->filtraProdotti($conta, 0);
+        }
+    }else{
+        $template = str_replace('[operazione-successo]', '', $template);
+        for($conta = 0; $conta < 3; $conta++) {
+            $listaProdotti .= $connessione->filtraProdotti($conta, 0);
+        }
+    }
     $connessione->closeConnection();
 }
-if(isset($message)){
-    $template = str_replace('[operazione-successo]', $message, $template);
-}else{
-    $template = str_replace('[operazione-successo]', '', $template);
-}
+
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visProdotti]', $listaProdotti, $template);
