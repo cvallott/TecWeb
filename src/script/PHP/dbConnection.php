@@ -197,53 +197,6 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function getIngredientiTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
-        $stringaReturn = "";
-        if(mysqli_num_rows($result) > 0) {
-            while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                $stringaReturn .= "<tr>";
-                $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
-                $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
-                $stringaReturn .= "<td></td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
-                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\">";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
-                $stringaReturn .= "</form>";
-                $stringaReturn .= "</td>";
-                $stringaReturn .= "</tr>";
-            }
-        }
-        return $stringaReturn;
-    }
-
-
-    public function getCucinaTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
-        $stringaReturn = "";
-        if(mysqli_num_rows($result) > 0) {
-            while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                $stringaReturn .= "<tr>";
-                $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
-                $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
-                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-cucina.php\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
-                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\">";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto cucina\" class=\"invia-button\" />";
-                $stringaReturn .= "</form>";
-                $stringaReturn .= "</td>";
-                $stringaReturn .= "</tr>";
-            }
-        }
-        return $stringaReturn;
-    }
-
     public function filtraProdotti($val = null, $filtro = 1) {
         if ($filtro > 0) {
             if ($_POST['tipo'] == '0') {
@@ -303,6 +256,54 @@ class DBConnection {
         }
     }
 
+
+    public function getIngredientiTabella($query): string {
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
+                $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
+                $stringaReturn .= "<td></td>";
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
+
+    public function getCucinaTabella($query): string {
+        $result = mysqli_query($this->connection, $query);
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                $stringaReturn .= "<tr>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
+                $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-cucina.php\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\">";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto cucina\" class=\"invia-button\" />";
+                $stringaReturn .= "</form>";
+                $stringaReturn .= "</td>";
+                $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+
     public function getPizzeTabella($query): string {
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
@@ -311,7 +312,7 @@ class DBConnection {
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
-                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']."</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-pizza.php\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
@@ -443,7 +444,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
-                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." &euro; - ".$tot." prodotti</td>";
+                $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
                 if($row['stato']==0){
                     $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
                 }else if($row['stato']==1){
@@ -482,7 +483,7 @@ class DBConnection {
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['prodotto']."</th>";
                 $stringaReturn .= "<td data-title= \"Quantità\">".$row['quantita']."</td>";
-                $stringaReturn .= "<td data-title=\"Prezzo\">".$row['prezzo']." &euro;</td>";
+                $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
                 $stringaReturn .= "</tr>";
             }
         }
@@ -497,7 +498,7 @@ class DBConnection {
             while($row = $result->fetch_array(MYSQLI_ASSOC) ){
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
-                $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e ora\">".$row['data']." - ".$row['ora']."</td>";
                 if($row['stato']==0){
                     $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
                 }else if($row['stato']==1){
@@ -507,7 +508,7 @@ class DBConnection {
                 }
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
-                $stringaReturn .= "<td data-title=\"Totale\">".$prezzo." &euro; - ".$tot." prodotti</td>";
+                $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
                 $stringaReturn .= "<img src=\"../../../assets/icons/see-more.png\" alt=\"\" height=\"15\">";
                 $stringaReturn .= "<a href=\"../../dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
