@@ -618,20 +618,20 @@ class DBConnection {
         return false;
     }
 
-    public function getFasceOrarie(){
-        $query = "SELECT * FROM disponiblitaorarie WHERE STR_TO_DATE(SUBSTRING_INDEX(fascia, '-', 1), '%H.%i') >= CURTIME();";
+    public function getFasceOrarie($daOrdinare){
+        $query = "SELECT disponiblitaorarie.fascia AS fascia, pizzePerFascia.pizze AS pizze FROM disponiblitaorarie LEFT JOIN pizzePerFascia ON disponiblitaorarie.fascia = pizzePerFascia.fascia WHERE disponiblitaorarie.fascia NOT IN (SELECT orario FROM checkOrari);";
         $risultato = mysqli_query($this->connection, $query);
         $selectReturn ="";
         $primadisponibilita = "";
         if(mysqli_num_rows($risultato) > 0){
-            $selectReturn .= "<select name='orario' id='orario'>";
             while($row = mysqli_fetch_assoc($risultato)){
                 if($primadisponibilita==""){
                     $primadisponibilita = $row["fascia"];
                 }
-                $selectReturn .= "<option value='".$row['fascia']."'>".$row['fascia']."</option>";
+                if($daOrdinare + $row["pizze"] < 20) {
+                    $selectReturn .= "<option value='" . $row['fascia'] . "'>" . $row['fascia'] . "</option>";
+                }
             }
-            $selectReturn .= "</select>";
         }
         return array($primadisponibilita, $selectReturn);
     }
