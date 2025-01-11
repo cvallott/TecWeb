@@ -386,12 +386,13 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function queryOrdini($filtro = null): string {
+    public function queryOrdini($filtro = 0): string {
+        $query = '';
         if($filtro != null){
             if(isset($_POST['stato']) && $_POST['stato'] == ''){
-                $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND (stato=0 OR stato=1 OR stato=-1)";
+                $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND (stato=0 OR stato=1 OR stato=-1)";
             }else{
-                $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
+                $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
             }
             if(isset($_POST['data']) && $_POST['data'] != ''){
                 $query .= " AND data LIKE '".$_POST['data']."'";
@@ -399,8 +400,8 @@ class DBConnection {
             if(isset($_POST['cliente']) && $_POST['cliente'] != ''){
                 $query .= " AND u.nome LIKE '".$_POST['cliente']."'";
             }
-        }else if ($filtro == null){
-            $query = "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
+        }else if ($filtro == 0){
+            $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
         }
         return $query;
     }
@@ -666,40 +667,31 @@ class DBConnection {
 
         $query = "SELECT ruolo FROM utente WHERE email='".$_POST['email']."'";
         $result = mysqli_query($this->connection, $query);
-        mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
-            if($ruolo == $row['ruolo']){
-                return false;
-            }else if(mysqli_affected_rows($this->connection) > 0){
+            if ($ruolo != $row['ruolo']) {
+                mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
                 return true;
             }
-            else {
-                return false;
-            }
-        }else{
             return false;
         }
+        return false;
     }
 
     public function updateOrdine($stato) {
         $queryUpdate = "UPDATE ordine SET stato='".$stato."' WHERE id='".$_POST['id']."'";
 
         $query = "SELECT stato FROM ordine WHERE id='".$_POST['id']."'";
-        $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        $result = mysqli_query($this->connection, $query);
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
-            if($stato == $row['stato']){
-                return false;
-            }else if(mysqli_affected_rows($this->connection) > 0){
+            if ($stato != $row['stato']) {
+                mysqli_query($this->connection, $queryUpdate) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
                 return true;
             }
-            else {
-                return false;
-            }
-        }else{
             return false;
         }
+        return false;
     }
 
     public function queryDeleteUtente(): string{
@@ -715,15 +707,12 @@ class DBConnection {
     }
 
     public function queryDeleteIngrediente(): string{
-        $query = "SELECT pizza, cucina FROM pizza_ingrediente AS PI, cucina_ingrediente AS CI WHERE PI.ingrediente='".$_POST['nome']."' OR CI.ingrediente='".$_POST['nome']."'";
+        $query = "SELECT pizza AS id, 'pizza' AS tipo FROM pizza_ingrediente WHERE ingrediente = '".$_POST['nome']."' UNION SELECT cucina AS id, 'cucina' AS tipo FROM cucina_ingrediente WHERE ingrediente = '".$_POST['nome']."'";
         $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-
+        echo $query;
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                // Processa ogni riga del risultato
-                $queryDelete = "DELETE FROM pizza WHERE id=".$row['pizza'];
-                $this->delete($queryDelete);
-                $queryDelete = "DELETE FROM cucina WHERE id=".$row['cucina'];
+                $queryDelete = "DELETE FROM ".$row['tipo']." WHERE id=".$row['id'];
                 $this->delete($queryDelete);
             }
         }

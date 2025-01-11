@@ -11,6 +11,7 @@ $footer = printFooter();
 $message = null;
 $connessione = new DBConnection();
 $listaOrdini = "";
+$action = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okUpdate){
                 $message = "<p class=\"messaggio\">Stato modificato con successo</p>";
             } else {
-                $message = "<p>Oops..qualcosa è andato storto. Assicurati che lo stato selezionato non fosse già quello giusto, altrimenti riprova!</p>";
+                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che lo stato selezionato non fosse già quello giusto, altrimenti riprova!</p>";
             }
         }
     } else if ($action == 'filter') {
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
 $conn = $connessione->openDBConnection();
 if($conn){
-    if($listaOrdini == "") {
+    if($listaOrdini == "" && $action != 'filter') {
         $listaOrdini = $connessione->getOrdini($connessione->queryOrdini());
     }
     $connessione->closeConnection();

@@ -11,6 +11,7 @@ $footer = printFooter();
 $message = null;
 $connessione = new DBConnection();
 $listaProdotti = "";
+$action = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -79,18 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 $conn = $connessione->openDBConnection();
 
 if($conn){
-    if(empty($_POST['action'])){
-        for($conta = 0; $conta < 3; $conta++) {
-            $listaProdotti .= $connessione->filtraProdotti($conta, 0);
-        }
-    }
-    if(isset($message)){
-        $template = str_replace('[operazione-successo]', $message, $template);
-        for($conta = 0; $conta < 3; $conta++) {
-            $listaProdotti .= $connessione->filtraProdotti($conta, 0);
-        }
-    }else{
-        $template = str_replace('[operazione-successo]', '', $template);
+    if($listaProdotti == '' && $action != 'filter'){
         for($conta = 0; $conta < 3; $conta++) {
             $listaProdotti .= $connessione->filtraProdotti($conta, 0);
         }
@@ -98,6 +88,11 @@ if($conn){
     $connessione->closeConnection();
 }
 
+if(isset($message)){
+    $template = str_replace('[operazione-successo]', $message, $template);
+}else{
+    $template = str_replace('[operazione-successo]', '', $template);
+}
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visProdotti]', $listaProdotti, $template);
