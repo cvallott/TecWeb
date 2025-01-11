@@ -11,6 +11,12 @@ function pulisciInput($value) {
     }
 }
 
+function pulisciDescrizione($value){
+    $value = trim($value);
+    $value = htmlentities($value);
+    return $value;
+}
+
 function checkImage() {
     // Controlla se un file è stato caricato
     if (!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE) {

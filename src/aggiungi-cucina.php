@@ -30,6 +30,11 @@ if (isset($_POST['submit'])) {
     } else {
         $ingr = '';
     }
+    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+        $path = '../../../assets/icons/piatto_icon.png';
+    }else{
+        $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
+    }
 
     $messaggiPerForm .= "<ul>";
     $nomePiatto = pulisciInput($nome);
@@ -37,20 +42,14 @@ if (isset($_POST['submit'])) {
     $ingredientiPiatto = pulisciInput($ingr);
     $nomePiatto = ucfirst($nomePiatto);
 
-    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = '../../../assets/icons/piatto_icon.png';
-    }else{
-        $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
-    }
-
     if (strlen($nomePiatto) == 0) {
-        $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
+        $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
         if (strlen($nomePiatto) < 2) {
-            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePiatto)) {
-            $messaggiPerForm .= "<li>Il nome del prodotto non può contenere numeri</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto non può contenere numeri</li>";
         }
     }
     if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {
