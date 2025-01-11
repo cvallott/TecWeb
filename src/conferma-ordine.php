@@ -4,7 +4,8 @@ include_once 'template/components/loadComponents.php';
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 
-$template = file_get_contents('template/pageTemplate/conferma-ordine.html');
+//$template = file_get_contents('template/pageTemplate/conferma-ordine.html');
+$template = file_get_contents('template/pageTemplate/conferma-ordine-2.html');
 
 $header = printHeader();
 $footer = printFooter();
