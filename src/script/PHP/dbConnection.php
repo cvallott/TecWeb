@@ -605,62 +605,46 @@ class DBConnection {
             return false;
         }
     }
-
+    /*
     public function uploadImage() {
         // Controlla se un file è stato caricato
         if (!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE) {
-            /*echo "Nessun file caricato.<br>";*/
-            return;
+            return ["success" => false, "message" => "Nessun file caricato"];
         }
 
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/pizze/';
         $target_file = $uploadDir . basename($_FILES["file"]["name"]);
-        $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
         // Check if image file is a actual image or fake image
-        if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["file"]["tmp_name"]);
-            if($check !== false) {
-                /*echo "File is an image - " . $check["mime"] . ".";*/
-                $uploadOk = 1;
-            } else {
-                /*echo "File is not an image.";*/
-                $uploadOk = 0;
-            }
+        $check = getimagesize($_FILES["file"]["tmp_name"]);
+        if ($check === false) {
+            return ["success" => false, "message" => "Il file caricato non è un'immagine valida"];
         }
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            /*echo "Sorry, file already exists.";*/
-            $uploadOk = 0;
+            return ["success" => false, "message" => "Il file esiste già"];
         }
 
         // Check file size
         if ($_FILES["file"]["size"] > 500000) {
-            /*echo "Sorry, your file is too large.";*/
-            $uploadOk = 0;
+            return ["success" => false, "message" => "Il file è troppo grande. Dimensione massima: 500KB"];
         }
 
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
-            /*echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";*/
-            $uploadOk = 0;
+            return ["success" => false, "message" => "Solo i formati JPG, JPEG, PNG e GIF sono consentiti"];
         }
 
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            /*echo "Sorry, your file was not uploaded.";*/
-        // if everything is ok, try to upload file
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+            return ["success" => true, "message" => "File caricato con successo"];
         } else {
-            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                /*echo "The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.";*/
-            } else {
-                /*echo "Sorry, there was an error uploading your file.";*/
-            }
+            return ["success" => false, "message" => "Errore durante il caricamento del file"];
         }
-    }
+    }*/
 
     public function updateUtente($ruolo) {
         $queryUpdate = "UPDATE utente SET ruolo='".$ruolo."' WHERE email='".$_POST['email']."'";

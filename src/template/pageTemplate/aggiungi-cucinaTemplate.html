@@ -23,7 +23,7 @@
         <h1>INSERISCI UN NUOVO PIATTO DI CUCINA</h1>
     </section>
     <section class="aggiunta-content">
-        <form method="post" action="../../aggiungi-cucina.php" class="form-aggiunta">
+        <form method="post" action="../../aggiungi-cucina.php" class="form-aggiunta" enctype="multipart/form-data">
             <div>
                 <label for="nome">Inserisci il nome: </label>
                 <input type="text" name="nome" id="nome">
@@ -37,6 +37,9 @@
             <div>
                 <label for="file">Carica un'immagine:</label>
                 <input type="file" name="file" id="file" accept="image/*">
+            </div>
+            <div class="errore-form">
+                [messaggiForm]
             </div>
             <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci piatto" >
             <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >

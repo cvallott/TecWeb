@@ -3,6 +3,7 @@
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
+include_once 'script/PHP/checkForm.php';
 //require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-cucinaTemplate.html');
 
@@ -11,50 +12,84 @@ $footer = printFooter();
 
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
+$messaggiPerForm = "";
+$nomePiatto = "";
+$prezzoPiatto = "";
+$ingredientiPiatto[] = "";
 $listaIngredienti = "";
 if($conn){
     $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
     $connessione->closeConnection();
 }
 
-/*MANCANO I CONTROLLI PHP E JS*/
 if (isset($_POST['submit'])) {
     $nome = $_POST['nome'];
     $prezzo = $_POST['prezzo'];
     if (!empty($_POST['ingredienti'])) {
-        // Popola un array con le scelte selezionate
         $ingr = $_POST['ingredienti'];
-    } /*else {
-        echo "Non hai selezionato nessuna opzione";
-    }*/
-    /*$image = $_FILES['file'];*/
+    } else {
+        $ingr = '';
+    }
+
+    $messaggiPerForm .= "<ul>";
+    $nomePiatto = pulisciInput($nome);
+    $prezzoPiatto = pulisciInput($prezzo);
+    $ingredientiPiatto = pulisciInput($ingr);
+    $nomePiatto = ucfirst($nomePiatto);
+
     if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
         $path = '../../../assets/icons/piatto_icon.png';
     }else{
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-    $conn = $connessione->openDBConnection();
-    if($conn){
-        $veget = $connessione->isVeget($ingr);
-        if($path != '../../../assets/icons/piatto_icon.png'){
-            $connessione->uploadImage();
+    if (strlen($nomePiatto) == 0) {
+        $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
+    } else {
+        if (strlen($nomePiatto) < 2) {
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
         }
-        $okCucina = $connessione->insertCucina($nome, $prezzo, $veget, $path);
-        $okIngredienti = $connessione->insertProdottoIngrediente($nome, $ingr, 'cucina');
-        $connessione->closeConnection();
-        if($okCucina && $okIngredienti){
-            $_SESSION['messaggio'] = "Prodotto inserito con successo";
+        if (preg_match("/\d/", $nomePiatto)) {
+            $messaggiPerForm .= "<li>Il nome del prodotto non può contenere numeri</li>";
+        }
+    }
+    if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {
+        $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+    }
+    if ($ingredientiPiatto == '') {
+        $messaggiPerForm .= "<li>Il piatto deve avere almeno un ingrediente</li>";
+    }
+    if($path != '../../../assets/icons/piatto_icon.png'){
+        $imageUploadResult = checkImage();
+        if ($imageUploadResult["success"]) {
+            $path = $imageUploadResult["path"];
         } else {
-            $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
         }
-        header("Location: aggiungi-prodotto.php");
+    }
+    $messaggiPerForm .= "</ul>";
+
+    if(trim($messaggiPerForm) == "<ul></ul>"){
+        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
+        $conn = $connessione->openDBConnection();
+        if($conn){
+            $veget = $connessione->isVeget($ingredientiPiatto);
+            $okCucina = $connessione->insertCucina($nomePiatto, $prezzoPiatto, $veget, $path);
+            $okIngredienti = $connessione->insertProdottoIngrediente($nomePiatto, $ingredientiPiatto, 'cucina');
+            $connessione->closeConnection();
+            if($okCucina && $okIngredienti){
+                $_SESSION['messaggio'] = "Prodotto inserito con successo";
+            } else {
+                $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+            }
+            header("Location: aggiungi-prodotto.php");
+        }
     }
 }
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
+$template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;

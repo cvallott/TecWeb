@@ -51,11 +51,15 @@ if (isset($_POST['submit'])) {
 
     $messaggiPerForm .= "<ul>";
     $nomeIngr = pulisciInput($nome);
+    $isVeget = pulisciInput($veget);
     $nomeIngr = ucfirst($nomeIngr);
 
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
+        if (strlen($nomeIngr) < 2) {
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
+        }
         if (preg_match("/\d/", $nomeIngr)) {
             $messaggiPerForm .= "<li>Il nome del prodotto non può contenere numeri</li>";
         }
@@ -66,7 +70,7 @@ if (isset($_POST['submit'])) {
         $connessione = new DBConnection();
         $conn = $connessione->openDBConnection();
         if ($conn) {
-            $okIngredienti = $connessione->insertIngrediente($nomeIngr, $veget);
+            $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
             $connessione->closeConnection();
             if ($okIngredienti) {
                 $_SESSION['messaggio'] = "Prodotto inserito con successo";
@@ -79,7 +83,7 @@ if (isset($_POST['submit'])) {
 }
 
 $template = str_replace('[header]', $header, $template);
-$paginaHTML = str_replace('[messaggiForm]', $messaggiPerForm, $template);
+$template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;
