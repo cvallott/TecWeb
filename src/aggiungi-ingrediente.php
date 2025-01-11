@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
     $nome = $_POST['nome'];
     $veget = $_POST['veget'];
 
-    $messaggiPerForm .= "<ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomeIngr = pulisciInput($nome);
     $isVeget = pulisciInput($veget);
     $nomeIngr = ucfirst($nomeIngr);
@@ -57,6 +57,12 @@ if (isset($_POST['submit'])) {
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
+        $connessione = new DBConnection();
+        $conn = $connessione->openDBConnection();
+        if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente inserito è già presente</li>";
+        }
+        $connessione->closeConnection();
         if (strlen($nomeIngr) < 2) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
         }
@@ -64,9 +70,9 @@ if (isset($_POST['submit'])) {
             $messaggiPerForm .= "<li>Il nome del prodotto non può contenere numeri</li>";
         }
     }
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 
-    if (trim($messaggiPerForm) == "<ul></ul>") {
+    if (trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>") {
         $connessione = new DBConnection();
         $conn = $connessione->openDBConnection();
         if ($conn) {

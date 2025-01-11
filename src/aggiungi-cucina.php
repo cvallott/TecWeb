@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $messaggiPerForm .= "<ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomePiatto = pulisciInput($nome);
     $prezzoPiatto = pulisciInput($prezzo);
     $ingredientiPiatto = pulisciInput($ingr);
@@ -66,9 +66,9 @@ if (isset($_POST['submit'])) {
             $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
         }
     }
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<ul></ul>"){
+    if(trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>"){
         $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
         $conn = $connessione->openDBConnection();
         if($conn){

@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $messaggiPerForm .= "<ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomePizza = pulisciInput($nome);
     $prezzoPizza = pulisciInput($prezzo);
     $ingredientiPizza = pulisciInput($ingr);
@@ -73,9 +73,9 @@ if (isset($_POST['submit'])) {
             $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
         }
     }
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<ul></ul>"){
+    if(trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPizza);
             $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path);

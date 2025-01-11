@@ -1398,3 +1398,30 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
     padding: 0.5em;
     border-radius: 0.2em;
 }
+
+.errore-form{
+    border-color: var(--bgcolor2);
+    border-radius: 0.4em;
+    margin-bottom: 1.5em;
+}
+
+.errore-form legend{
+    margin-left: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 1.2em;
+    color: var(--bgcolor2);
+}
+
+.errore-form ul{
+    list-style-type: none;
+}
+
+.errore-form li{
+    margin-left: 0.5em;
+    background-image: url("../../assets/icons/x-icon.png");
+    background-position: left center;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    padding-left: 1.7em;
+}
