@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../../style/style.css" media="screen">
     <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="../../script/JS/checkFormJS.js"></script>
 </head>
-<body id="aggiungi-prodottoPage">
+<body id="aggiungi-prodottoPage" onload="caricamento();">
 <nav id="breadcrumb">
     <p>Sei in: <a lang="en" href="../../index.php">Home</a></p>
 </nav>
@@ -23,7 +23,7 @@
         <h1>INSERISCI UN NUOVO INGREDIENTE</h1>
     </section>
     <section class="aggiunta-content">
-        <form method="post" action="../../aggiungi-ingrediente.php" class="form-aggiunta">
+        <form method="post" action="../../aggiungi-ingrediente.php" class="form-aggiunta" onsubmit="return validazioneForm();">
             <div>
                 <label for="nome">Inserisci il nome: </label>
                 <input type="text" name="nome" id="nome">

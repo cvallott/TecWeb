@@ -1425,3 +1425,11 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
     background-repeat: no-repeat;
     padding-left: 1.7em;
 }
+
+.default-text {
+    color: black;
+}
+
+.errorSuggestion {
+    color: black;
+}

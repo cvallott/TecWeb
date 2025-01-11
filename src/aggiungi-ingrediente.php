@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomeIngr)) {
-            $messaggiPerForm .= "<li>Il nome del prodotto non può contenere numeri</li>";
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente non può contenere numeri</li>";
         }
     }
     $messaggiPerForm .= "</ul></fieldset>";
