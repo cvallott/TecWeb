@@ -1091,7 +1091,9 @@ CARRELLO
     margin: 0;
     padding: 0;
     text-align: left;
+    min-width: 6em;
 }
+
 
 .row{
     display: flex;
@@ -1100,12 +1102,9 @@ CARRELLO
 }
 
 .dettaglioItem {
-    flex: 1;
     flex-direction: column;
-    justify-content: center;
     padding: 2em;
 }
-
 
 .controlloQuantita {
     display: flex;
@@ -1113,7 +1112,8 @@ CARRELLO
 }
 
 .controlloQuantita form{
-    padding: 1.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .controlloQuantita p{
@@ -1169,18 +1169,14 @@ CARRELLO
 
 /*PROVA*/
 
-#mainCarrello{
-    display: flex;
-    justify-content: center;
-    padding: 2em;
-}
+
 
 .order-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 800px;
     width: 100%;
+    justify-content: center;
 }
 
 .order-form, .order-summary {
@@ -1192,12 +1188,12 @@ CARRELLO
 }
 
 .order-form {
-    flex: 2;
+    width: 40%;
 }
 
 .order-summary {
     flex: 1;
-    max-width: 300px;
+    max-width: 40%;
 }
 
 .order-summary h2 {

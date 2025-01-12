@@ -23,7 +23,15 @@
 		<h1>Riepilogo carrello</h1>
 		<p>Controlla il tuo carrello e procedi all'ordine!</p>
 	</section>
+
 	<section class="order-container">
+		<div class="order-summary">
+			<h2>Il tuo ordine</h2>
+			<div>
+				[rowsCarrello]
+			</div>
+			<h3>Totale: €18</h3>
+		</div>
 		<div class="order-form">
 			<h2>Informazioni richieste</h2>
 			<form>
@@ -31,18 +39,7 @@
 					<label for="nome">Nome e cognome:</label>
 					<input type="text" id="nome" placeholder="Inserisci il tuo nome">
 				</div>
-				<div>
-					<label for="telefono">Telefono:</label>
-					<input type="text" id="telefono" placeholder="Inserisci il tuo telefono">
-				</div>
-				<div>
-					<label for="email">E-mail:</label>
-					<input type="email" id="email" placeholder="Inserisci la tua email">
-				</div>
-				<div>
-					<label for="giorno">Giorno:</label>
-					<input type="date" id="giorno">
-				</div>
+
 				<div>
 					<label for="ora">Ora di ritiro:</label>
 					<input type="time" id="ora">
@@ -53,13 +50,6 @@
 				</div>
 				<button type="submit">Conferma ordine</button>
 			</form>
-		</div>
-		<div class="order-summary">
-			<h2>Il tuo ordine</h2>
-			<div>
-				[rowsCarrello]
-			</div>
-			<h3>Totale: €18</h3>
 		</div>
 	</section>
 	<!--
@@ -92,7 +82,7 @@
 			  <p id="primadisp">La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
 			  <button>Ordina</button>
           </div>
-	</section>
+	</section>-->
 	<section id="proposta-mese" class="home-section">
 		<h2>Hai già provato le nostre pizze del mese?</h2>
 		<div id="FM-content">
@@ -100,7 +90,7 @@
 				[pizzeMese]
 			</ul>
 		</div>
-	</section> -->
+	</section>
 
 </main>
 [footer]
