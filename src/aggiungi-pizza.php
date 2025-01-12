@@ -26,15 +26,12 @@ if($conn){
 }
 
 if (isset($_POST['submit'])) {
-    $nome = $_POST['nome'];
-    $prezzo = $_POST['prezzo'];
-    $cat = $_POST['cat'];
-    $descrizione = $_POST['descr'];
     if (!empty($_POST['ingredienti'])) {
-        $ingr = $_POST['ingredienti'];
+        $ingredientiPizza = pulisciInput($_POST['ingredienti']);
     } else {
-        $ingr = '';
+        $ingredientiPizza = '';
     }
+
     if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
         $path = '../../../assets/icons/pizza_icon.png';
     }else{
@@ -42,12 +39,15 @@ if (isset($_POST['submit'])) {
     }
 
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
-    $nomePizza = pulisciInput($nome);
-    $prezzoPizza = pulisciInput($prezzo);
-    $ingredientiPizza = pulisciInput($ingr);
-    $categoriaPizza = pulisciInput($ingr);
-    $descrizionePizza = pulisciDescrizione($descrizione);
-    $nomePizza = ucfirst($nomePizza);
+    $nomePizza = pulisciInput($_POST['nome']);
+    $prezzoPizza = pulisciInput($_POST['prezzo']);
+    if (!empty($ingr)) {
+        $ingredientiPizza = pulisciInput($ingr);
+    } else {
+        $ingredientiPizza = '';
+    }
+    $categoriaPizza = pulisciInput($_POST['cat']);
+    $descrizionePizza = pulisciDescrizione($_POST['descr']);
 
     if (strlen($nomePizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
@@ -58,12 +58,21 @@ if (isset($_POST['submit'])) {
         if (preg_match("/\d/", $nomePizza)) {
             $messaggiPerForm .= "<li>Il nome della pizza non può contenere numeri</li>";
         }
+        if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $nomePizza)) {
+            $messaggiPerForm .= "<li>Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+        }
     }
-    if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
-        $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+    if (strlen($nomePizza) == 0) {
+        $messaggiPerForm .= "<li>Inserire il prezzo della pizza</li>";
+        if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
+            $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+        }
     }
     if ($ingredientiPizza == '') {
         $messaggiPerForm .= "<li>La pizza deve avere almeno un ingrediente</li>";
+    }
+    if (strlen($categoriaPizza) == 0) {
+        $messaggiPerForm .= "<li>Inserire la categoria della pizza</li>";
     }
     if($path != '../../../assets/icons/pizza_icon.png'){
         $imageUploadResult = checkImage();

@@ -1,15 +1,16 @@
-/**
- * chiave: nome dell'input che cerco
- * [0]: Prima indicazione per la compilazione dell'input
- * [1]: espressione regolare da controllare
- * [2]: Hint nel caso in cui input fornito sia sbagliato
- */
-
 var dettagli_form = {
-    "nome" : ['Ex: Carciofi', /^[A-Z][a-zA-Z\u00C0-\u024F\ '\-]*$/, 'Inserire un nome con l\'iniziale maiuscola di lunghezza almeno 2. Non può contenere numeri o caratteri speciali.'],
+    "nome": ['Ex: Carciofi', /^[A-Z][a-z\u00C0-\u024F]*(?: [a-z\u00C0-\u024F]+)*$/, 'Inserire un nome con solo l\'iniziale maiuscola di lunghezza almeno 2. Non può contenere numeri o caratteri speciali.'],
+    "prezzo": ['Ex: 8.50', /^[1-9]\d*(\.\d+)?$/, 'Inserire un numero maggiore di zero.'],
 };
 
 function caricamento() {
+    var dataFormValue = document.body.getAttribute('data-form'); // O il nodo pertinente
+    if (dataFormValue === 'pizze') {
+        dettagli_form.nome[0] = 'Ex: Capricciosa';
+    } else if (dataFormValue === 'cucina') {
+        dettagli_form.nome[0] = 'Ex: Anelli di cipolla';
+    }
+
     for(var key in dettagli_form){
         var input = document.getElementById(key);
         messaggio(input, 0);

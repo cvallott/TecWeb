@@ -40,7 +40,6 @@ if (isset($_POST['submit'])) {
     $nomePiatto = pulisciInput($nome);
     $prezzoPiatto = pulisciInput($prezzo);
     $ingredientiPiatto = pulisciInput($ingr);
-    $nomePiatto = ucfirst($nomePiatto);
 
     if (strlen($nomePiatto) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
@@ -50,6 +49,9 @@ if (isset($_POST['submit'])) {
         }
         if (preg_match("/\d/", $nomePiatto)) {
             $messaggiPerForm .= "<li>Il nome del piatto non può contenere numeri</li>";
+        }
+        if (!preg_match("/^[A-Z][a-z\u00C0-\u024F]*(?: [a-z\u00C0-\u024F]+)*$/", $nomePiatto)) {
+            $messaggiPerForm .= "<li>Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {

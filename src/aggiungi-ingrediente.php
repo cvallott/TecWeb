@@ -17,7 +17,6 @@ if (isset($_POST['submit'])) {
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomeIngr = pulisciInput($_POST['nome']);
     $isVeget = pulisciInput($_POST['veget']);
-    $nomeIngr = ucfirst($nomeIngr);
 
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
@@ -33,6 +32,9 @@ if (isset($_POST['submit'])) {
         }
         if (preg_match("/\d/", $nomeIngr)) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente non può contenere numeri</li>";
+        }
+        if (!preg_match("/^[A-Z][a-z\u00C0-\u024F]*(?: [a-z\u00C0-\u024F]+)*$/", $nomeIngr)) {
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (strlen($isVeget) == 0) {
