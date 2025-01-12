@@ -1037,7 +1037,6 @@ CARRELLO
 #sez-carrello {
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
@@ -1057,7 +1056,6 @@ CARRELLO
 .sezTotali{
     flex:0.4;
     align-items: center;
-    display: flex;
     flex-direction: column;
 }
 
@@ -1067,7 +1065,6 @@ CARRELLO
 }
 
 #totaleSpesa{
-    display: flex;
     align-items: center;
 }
 
@@ -1104,7 +1101,6 @@ CARRELLO
 
 .dettaglioItem {
     flex: 1;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 2em;
@@ -1169,6 +1165,66 @@ CARRELLO
 
 #proposta-mese button{
     border: none;
+}
+
+/*PROVA*/
+
+#mainCarrello{
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.order-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 800px;
+    width: 100%;
+}
+
+.order-form, .order-summary {
+    background: #fff;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-form {
+    flex: 2;
+}
+
+.order-summary {
+    flex: 1;
+    max-width: 300px;
+}
+
+.order-summary h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.order-container button {
+    background-color: #dc1c08;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-container button:hover {
+    background-color: #b81707;
+}
+
+.order-container input, textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 /*
