@@ -14,6 +14,10 @@ $nomeIngr = '';
 $isVeget = '';
 
 if (isset($_POST['submit'])) {
+    if(isset($_SESSION['modificaAttiva'])){
+        
+    }
+
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomeIngr = pulisciInput($_POST['nome']);
     $isVeget = pulisciInput($_POST['veget']);
