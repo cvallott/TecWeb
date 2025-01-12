@@ -6,7 +6,7 @@
  */
 
 var dettagli_form = {
-    "nome" : ['Ex: Carciofi', /^[A-Z][a-zA-Z\u00C0-\u024F\ '\-]*$/, 'Inserire un nome con lettera maiuscola di lunghezza almeno 2. Non può contenere numeri o caratteri speciali.'],
+    "nome" : ['Ex: Carciofi', /^[A-Z][a-zA-Z\u00C0-\u024F\ '\-]*$/, 'Inserire un nome con l\'iniziale maiuscola di lunghezza almeno 2. Non può contenere numeri o caratteri speciali.'],
 };
 
 function caricamento() {
@@ -22,8 +22,10 @@ function validazioneCampo(input) {
     var text = input.value;
 
     // Tolgo suggerimento o errore precedente
-    var p = input.parentNode;
-    p.removeChild(p.children[2]);
+    var nodesToRemove = p.querySelectorAll('.mex'); // Seleziona tutti gli elementi con la classe .mex
+    nodesToRemove.forEach(function(node) {
+        p.removeChild(node); // Rimuove ogni nodo trovato
+    });
 
     if(text.search(regex) !== 0){
         messaggio(input, 1);

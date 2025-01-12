@@ -1352,11 +1352,6 @@ CSS PER I FORM DI AGGIUNTA
     margin-right: 0.7em;
 }
 
-.form-aggiunta input[type="text"], input[type="number"], input[type="file"] {
-    font-size: 1em;
-    margin-bottom: 2em;
-}
-
 /*
 ------------------
 CSS PER LE PAGINE DI AGGIUNTA
@@ -1427,9 +1422,9 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 }
 
 .default-text {
-    color: black;
+    color: var(--txtcolor);
 }
 
 .errorSuggestion {
-    color: black;
+    color: var(--bgcolor2);
 }

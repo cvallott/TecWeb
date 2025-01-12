@@ -13,45 +13,10 @@ $messaggiPerForm = "";
 $nomeIngr = '';
 $isVeget = '';
 
-// Validation patterns matching JavaScript
-$patterns = [
-    /*
-    'user' => '/^[A-Za-z0-9_]{3,20}$/',
-    'password' => '/^.{4,}$/',
-    'register-name' => '/^[A-Za-zÀ-ÿ\s\']{2,}$/',
-    'register-surname' => '/^[A-Za-zÀ-ÿ\s\']{2,}$/',
-    //'register-email' => '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/'
-    'register-email' => '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'
-    */
-];
-$errorMessages = [
-    /*
-    'user' => 'Username deve contenere tra 3 e 20 caratteri alfanumerici',
-    'password' => 'Password deve contenere almeno 4 caratteri',
-    'register-name' => 'Nome deve contenere almeno 2 caratteri, solo lettere',
-    'register-surname' => 'Cognome deve contenere almeno 2 caratteri, solo lettere',
-    'register-email' => 'Formato email non valido',
-    'register-confirm-password' => 'Le password non coincidono',
-    'user-exists' => 'Username già in uso',
-    'email-exists' => 'Email già registrata',
-    'db-error' => 'Errore di connessione al database'*/
-];
-
-function pulisciInput($value) {
-    $value = trim($value);
-    $value = strip_tags($value);
-    $value = htmlentities($value);
-    return $value;
-}
-
-
 if (isset($_POST['submit'])) {
-    $nome = $_POST['nome'];
-    $veget = $_POST['veget'];
-
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
-    $nomeIngr = pulisciInput($nome);
-    $isVeget = pulisciInput($veget);
+    $nomeIngr = pulisciInput($_POST['nome']);
+    $isVeget = pulisciInput($_POST['veget']);
     $nomeIngr = ucfirst($nomeIngr);
 
     if (strlen($nomeIngr) == 0) {
@@ -69,6 +34,9 @@ if (isset($_POST['submit'])) {
         if (preg_match("/\d/", $nomeIngr)) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente non può contenere numeri</li>";
         }
+    }
+    if (strlen($isVeget) == 0) {
+        $messaggiPerForm .= "<li>Indicare se l'ingrediente è vegetariano o no</li>";
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
