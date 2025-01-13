@@ -746,7 +746,7 @@ class DBConnection {
         return array($primadisponibilita, $selectReturn);
     }
 
-    public function insertOrder($orario, $nota){
+    public function insertOrder($orario, $nota = ""){
         if($nota != ""){
             $query = "INSERT INTO ordine (utente, ora, nota) VALUES (?, ?, ?)";
             $stmt = $this->connection->prepare($query);

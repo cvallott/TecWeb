@@ -52,7 +52,7 @@ if(isset($_POST['ora'])){
         if(isset($_POST['note'])){
             $succ = $connessione->insertOrder($_POST['ora'],$_POST['note']);
         }else{
-            $succ = $connessione->insertOrder($_POST['ora'],"");
+            $succ = $connessione->insertOrder($_POST['ora']);
         }
         $connessione->closeConnection();
         if($succ){
