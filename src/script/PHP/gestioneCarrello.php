@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
 
     if(!isset($_SESSION['nome'])||!isset($_SESSION['cognome'])||!isset($_SESSION['tipo'])){
         header("location: area-riservata.php");

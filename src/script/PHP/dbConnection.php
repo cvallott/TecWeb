@@ -635,6 +635,21 @@ class DBConnection {
         }
         return array($primadisponibilita, $selectReturn);
     }
+
+    public function insertOrder($orario, $nota){
+        if($nota != ""){
+            $query = "INSERT INTO ordine (utente, ora, nota) VALUES (".$_SESSION['email'].", $orario, ?)";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $nota);
+            //$stmt->execute();
+            echo $query;
+        }else{
+            $query = "INSERT INTO ordine (utente, ora) VALUES (".$_SESSION['email'].", $orario)";
+            $stmt = $this->connection->prepare($query);
+            //$stmt->execute();
+            echo $query;
+        }
+    }
 //    public function userLogin($username, $password) {
 //        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
 //        $stmt = $this->connection->prepare($query);

@@ -45,6 +45,18 @@ if ($connessioneOK) {
     $connessione->closeConnection();
 }
 
+if(isset($_POST['ora'])){
+    $connessioneOK = $connessione->openDBConnection();
+    if($connessioneOK){
+        if(isset($_POST['nota'])){
+            $connessione->insertOrder($_POST['ora'],$_POST['nota']);
+        }else{
+            $connessione->insertOrder($_POST['ora'],"");
+        }
+
+    }
+}
+
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[nomeCognome]', $_SESSION['nome']. " " . $_SESSION['cognome'], $template);
 $template = str_replace('[rowsCarrello]', $rowsCarrello, $template);
