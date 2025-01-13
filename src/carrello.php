@@ -38,15 +38,19 @@ foreach ($_SESSION['carrello'] as $prodotto) {
 
 $connessioneOK = $connessione->openDBConnection();
 $primadisp = "";
+$optionOrario = "";
 if ($connessioneOK) {
     $primadisp = $connessione->getFasceOrarie($totQuant)[0];
+    $optionOrario = $connessione->getFasceOrarie($totQuant)[1];
     $connessione->closeConnection();
 }
 
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[nomeCognome]', $_SESSION['nome']. " " . $_SESSION['cognome'], $template);
 $template = str_replace('[rowsCarrello]', $rowsCarrello, $template);
 $template = str_replace('[tot]', $totale, $template);
 $template = str_replace('[fasciaOraria]', $primadisp, $template);
+$template = str_replace('[optionOrario]', $optionOrario, $template);
 $template = str_replace('[pizzeMese]', $consiglioPizze, $template);
 $template = str_replace('[footer]', $footer, $template);
 

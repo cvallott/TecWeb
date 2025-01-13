@@ -33,16 +33,18 @@
 			<h3>Totale: €18</h3>
 		</div>
 		<div class="order-form">
-			<h2>Informazioni richieste</h2>
+			<h2>Informazioni necessarie</h2>
+				<div>
+					<h4>Nome e Cognome</h4>
+					<p>[nomeCognome]</p>
+				</div>
 			<form>
 				<div>
-					<label for="nome">Nome e cognome:</label>
-					<input type="text" id="nome" placeholder="Inserisci il tuo nome">
-				</div>
-
-				<div>
+					<p>La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
 					<label for="ora">Ora di ritiro:</label>
-					<input type="time" id="ora">
+					<select name="ora" id="ora">
+					[optionOrario]
+					</select>
 				</div>
 				<div>
 					<label for="note">Note:</label>
