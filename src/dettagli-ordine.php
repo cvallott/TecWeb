@@ -21,7 +21,6 @@ $conn = $connessione->openDBConnection();
 $dettaglioOrdine = "";
 $totOrdine = "";
 $id = $_GET['idOrdine'] ?? "";
-echo $id;
 if($conn){
     if(!empty($id)){
         $dettaglioOrdine = $connessione->getDettagliOrdine($id);

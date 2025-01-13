@@ -171,14 +171,37 @@ class DBConnection {
         return $query;
     }
 
-    public function getIngredienti($query): string {
+    public function getIngredienti($query, $id = null, $cucina = 0): string {
+        $ingredienti = array();
+        if($id != null){
+            if($cucina == 0){
+                $querySelect = "SELECT ingrediente FROM pizza_ingrediente WHERE pizza = ".$id;
+            } else{
+                $querySelect = "SELECT ingrediente FROM cucina_ingrediente WHERE cucina = ".$id;
+            }
+            $resultSelect = mysqli_query($this->connection, $querySelect);
+            if(mysqli_num_rows($resultSelect) > 0) {
+                while($row = $resultSelect->fetch_array(MYSQLI_ASSOC)){
+                    $ingredienti[] = $row['ingrediente'];
+                }
+            }
+        }
+
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         $conta=1;
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<div class=\"check\">";
-                $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
+                if(count($ingredienti) > 0) {
+                    if(array_search($row['nome'], $ingredienti)){
+                        $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\" checked>";
+                    } else {
+                        $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
+                    }
+                } else{
+                    $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
+                }
                 $stringaReturn .= "<label for=\"ingr".$conta."\">".$row['nome']."</label>";
                 $stringaReturn .= "</div>";
                 $conta++;
