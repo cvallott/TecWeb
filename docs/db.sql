@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Creato il: Gen 08, 2025 alle 15:17
+-- Creato il: Gen 10, 2025 alle 11:23
 -- Versione del server: 10.6.7-MariaDB-1:10.6.7+maria~focal
 -- Versione PHP: 8.2.8
 
@@ -42,6 +42,17 @@ INSERT INTO `categoria` (`cat`, `nomeEsteso`, `descrizione`) VALUES
 ('Fuori menù', 'I nostri fuori menù', 'Descrizione fuori menù'),
 ('Speciale', 'Le nostre pizze speciali', 'Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.'),
 ('Stagionale', 'Le nostre pizze stagionali', 'La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura stand-in per le viste `checkOrari`
+-- (Vedi sotto per la vista effettiva)
+--
+CREATE TABLE `checkOrari` (
+`orario` varchar(250)
+,`pizze` decimal(32,0)
+);
 
 -- --------------------------------------------------------
 
@@ -102,6 +113,46 @@ INSERT INTO `cucina_ingrediente` (`cucina`, `ingrediente`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `disponiblitaorarie`
+--
+
+CREATE TABLE `disponiblitaorarie` (
+  `fascia` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `disponiblitaorarie`
+--
+
+INSERT INTO `disponiblitaorarie` (`fascia`) VALUES
+('16:00-16:10'),
+('16:10-16:20'),
+('16:20-16:30'),
+('17:10-17:20'),
+('18.00-18.10'),
+('18.10-18.20'),
+('18.20-18.30'),
+('18.30-18.40'),
+('18.40-18.50'),
+('18.50-19.00'),
+('19.00-19.10'),
+('19.02-19.30'),
+('19.10-19.20'),
+('19.30-19.40'),
+('19.40-19.50'),
+('19.50-20.00'),
+('20.00-20.10'),
+('20.10-20.20'),
+('20.20-20.30'),
+('20.30-20.40'),
+('20.40-20.50'),
+('20.50-21.00'),
+('21.00-21.10'),
+('21.10-21.20');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `ingrediente`
 --
 
@@ -138,9 +189,19 @@ CREATE TABLE `ordine` (
   `id` int(11) NOT NULL,
   `utente` varchar(250) NOT NULL,
   `data` date NOT NULL,
-  `ora` time NOT NULL,
+  `ora` varchar(250) NOT NULL,
   `stato` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `ordine`
+--
+
+INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`) VALUES
+(1, 'utente@utente.it', '2025-01-09', '19.40-19.50', 0),
+(2, 'utente@utente.it', '2025-01-09', '19.50-20.00', 0),
+(3, 'utente@utente.it', '2025-01-10', '19.50-20.00', 0),
+(4, 'utente@utente.it', '2025-01-09', '20.10-20.20', 0);
 
 -- --------------------------------------------------------
 
@@ -239,6 +300,17 @@ INSERT INTO `pizza_ingrediente` (`pizza`, `ingrediente`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura stand-in per le viste `pizzePerFascia`
+-- (Vedi sotto per la vista effettiva)
+--
+CREATE TABLE `pizzePerFascia` (
+`fascia` varchar(250)
+,`pizze` decimal(32,0)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `prodotti_ordine`
 --
 
@@ -249,6 +321,16 @@ CREATE TABLE `prodotti_ordine` (
   `cucina` int(11) DEFAULT NULL,
   `quantita` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `prodotti_ordine`
+--
+
+INSERT INTO `prodotti_ordine` (`id`, `ordine`, `pizza`, `cucina`, `quantita`) VALUES
+(1, 1, 46, NULL, 10),
+(2, 2, 46, NULL, 10),
+(3, 3, 46, NULL, 20),
+(4, 4, 46, NULL, 6);
 
 -- --------------------------------------------------------
 
@@ -270,8 +352,26 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`email`, `username`, `password`, `nome`, `cognome`, `ruolo`) VALUES
-('admin@admin.com', 'admin', '$2y$10$w65KHkkqwPxnZ/3ntng6puxHt/YCh4uK0jn54iNyw3KclXQRiTqhO', 'Admin', 'Admin', 0),
+('admin@admin.com', 'admin', '$2y$10$w65KHkkqwPxnZ/3ntng6puxHt/YCh4uK0jn54iNyw3KclXQRiTqhO', 'Admin', 'Admin', 1),
 ('utente@utente.it', 'utente', '$2y$10$wxE2jEUpUH7FV25sdaImhOeuodxzE5VH7WEmEOD6L5eIffnK1dYgW', 'Utente', 'Utente', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per vista `checkOrari`
+--
+DROP TABLE IF EXISTS `checkOrari`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tecweb`@`%` SQL SECURITY DEFINER VIEW `checkOrari`  AS SELECT `ordine`.`ora` AS `orario`, sum(`prodotti_ordine`.`quantita`) AS `pizze` FROM (`ordine` join `prodotti_ordine` on(`ordine`.`id` = `prodotti_ordine`.`ordine`)) WHERE `ordine`.`data` = curdate() AND `prodotti_ordine`.`pizza` > 0 GROUP BY `ordine`.`ora` HAVING `pizze` >= 10 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per vista `pizzePerFascia`
+--
+DROP TABLE IF EXISTS `pizzePerFascia`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tecweb`@`%` SQL SECURITY DEFINER VIEW `pizzePerFascia`  AS SELECT `disponiblitaorarie`.`fascia` AS `fascia`, sum(`prodotti_ordine`.`quantita`) AS `pizze` FROM ((`disponiblitaorarie` join `ordine` on(`disponiblitaorarie`.`fascia` = `ordine`.`ora`)) join `prodotti_ordine` on(`ordine`.`id` = `prodotti_ordine`.`ordine`)) WHERE `ordine`.`data` = curdate() GROUP BY `disponiblitaorarie`.`fascia` ;
 
 --
 -- Indici per le tabelle scaricate
@@ -297,6 +397,12 @@ ALTER TABLE `cucina_ingrediente`
   ADD KEY `fk_cucina_ingrediente` (`ingrediente`);
 
 --
+-- Indici per le tabelle `disponiblitaorarie`
+--
+ALTER TABLE `disponiblitaorarie`
+  ADD PRIMARY KEY (`fascia`);
+
+--
 -- Indici per le tabelle `ingrediente`
 --
 ALTER TABLE `ingrediente`
@@ -307,7 +413,8 @@ ALTER TABLE `ingrediente`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_ordine_cucina` (`utente`);
+  ADD KEY `fk_ordine_cucina` (`utente`),
+  ADD KEY `fk_ordine_disponiblitaorarie` (`ora`);
 
 --
 -- Indici per le tabelle `pizza`
@@ -352,7 +459,7 @@ ALTER TABLE `cucina`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `pizza`
@@ -364,7 +471,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT per la tabella `prodotti_ordine`
 --
 ALTER TABLE `prodotti_ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Limiti per le tabelle scaricate
@@ -381,7 +488,8 @@ ALTER TABLE `cucina_ingrediente`
 -- Limiti per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  ADD CONSTRAINT `fk_ordine_cucina` FOREIGN KEY (`utente`) REFERENCES `utente` (`email`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_ordine_cucina` FOREIGN KEY (`utente`) REFERENCES `utente` (`email`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_ordine_disponiblitaorarie` FOREIGN KEY (`ora`) REFERENCES `disponiblitaorarie` (`fascia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `pizza`
