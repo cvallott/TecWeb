@@ -69,6 +69,7 @@ function validazioneForm() {
 function messaggio(input, mode) {
     var node;
     var p = input;
+    // Bisognerebbe anche introdurre aria-alert perche' venga letto dallo screen reader !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     if (!mode) {
         // Messaggio di aiuto
