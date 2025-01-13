@@ -1428,3 +1428,7 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 .errorSuggestion {
     color: var(--bgcolor2);
 }
+
+input .error {
+    border: 2px solid var(--bgcolor2);
+}
