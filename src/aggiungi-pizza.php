@@ -100,6 +100,10 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if(isset($_SESSION['modificaAttiva'])){
+    // unset($_SESSION['modificaAttiva']);
+}
+
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[categorie]', $categorie, $template);
