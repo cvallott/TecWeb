@@ -1352,11 +1352,6 @@ CSS PER I FORM DI AGGIUNTA
     margin-right: 0.7em;
 }
 
-.form-aggiunta input[type="text"], input[type="number"], input[type="file"] {
-    font-size: 1em;
-    margin-bottom: 2em;
-}
-
 /*
 ------------------
 CSS PER LE PAGINE DI AGGIUNTA
@@ -1397,4 +1392,43 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
     color: var(--bgcolor);
     padding: 0.5em;
     border-radius: 0.2em;
+}
+
+.errore-form{
+    border-color: var(--bgcolor2);
+    border-radius: 0.4em;
+    margin-bottom: 1.5em;
+}
+
+.errore-form legend{
+    margin-left: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 1.2em;
+    color: var(--bgcolor2);
+}
+
+.errore-form ul{
+    list-style-type: none;
+}
+
+.errore-form li{
+    margin-left: 0.5em;
+    background-image: url("../../assets/icons/x-icon.png");
+    background-position: left center;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    padding-left: 1.7em;
+}
+
+.default-text {
+    color: var(--txtcolor);
+}
+
+.errorSuggestion {
+    color: var(--bgcolor2);
+}
+
+input .error {
+    border: 2px solid var(--bgcolor2);
 }

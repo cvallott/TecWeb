@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Prodotti - Non solo Pizza</title>
+  <meta name="description" content=""><!--TODO-->
+  <meta name="keywords" content="">
+  <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+  <link rel="stylesheet" href="../../style/style.css" media="screen">
+  <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+[header]
+<nav id="breadcrumb">
+  <p>Sei in: <span lang="en">Home</span></p>
+</nav>
+<main id="P">
+  <section class="general-intro">
+    <h1>PRODOTTI</h1>
+  </section>
+  <section class="filtri">
+    <form method="post" action="../../prodotti.php">
+      <input type="hidden" name="action" value="filter" />
+      <label for="tipo">Tipo:</label>
+      <select name="tipo" id="tipo" class="select">
+        <option value="">Tutti</option>
+        <option value="0">Ingredienti</option>
+        <option value="1">Pizze</option>
+        <option value="2">Cucina</option>
+      </select>
+
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome">
+
+      <button type="submit" class="invia-button">Filtra</button>
+    </form>
+  </section>
+  <section class="tabella-ordini">
+    [operazione-successo]
+    <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
+    <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
+    <span id="descrTabella">In questa tabella vengono riassunti tutti i prodotti organizzati per colonne: Informazioni sul prodotto, Tipo, Prezzo, Modifica del prodotto ed Eliminazione.</span>
+    <table aria-describedby="descrTabella">
+      <caption>Ordini</caption>
+      <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+      <tr>
+        <th scope="col" abbr="Info">Info prodotto</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Prezzo</th>
+        <th scope="col">Modifica</th>
+        <th scope="col">Elimina</th>
+      </tr>
+      </thead>
+      <tbody>
+      [visProdotti]
+      </tbody>
+    </table>
+  </section>
+</main>
+[footer]
+</body>

@@ -2,7 +2,7 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-
+//require 'script/PHP/checkAdminLogin.php';
 include_once 'template/components/loadComponents.php';
 $template = file_get_contents('template/pageTemplate/gestisci-utentiTemplate.html');
 
@@ -11,6 +11,7 @@ $footer = printFooter();
 $message = null;
 $connessione = new DBConnection();
 $listaUtenti = "";
+$action = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $okUpdate = $connessione->updateUtente($ruolo);
             $connessione->closeConnection();
             if($okUpdate){
-                $message = "<p class=\"messaggio\">Ruolo modificato con successo</p>"; /*DA FARE CSS DI .messaggio*/
+                $message = "<p class=\"messaggio\">Ruolo modificato con successo</p>";
             } else {
                 $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
             }
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
         $conn = $connessione->openDBConnection();
         if($conn){
-            $okDelete = $connessione->deleteUtente();
+            $okDelete = $connessione->delete($connessione->queryDeleteUtente());
             $connessione->closeConnection();
             if($okDelete){
                 $message = "<p class=\"messaggio\">Utente eliminato con successo</p>";
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 $conn = $connessione->openDBConnection();
 
 if($conn){
-    if($listaUtenti == ""){
+    if($listaUtenti == ""  && $action != 'filter'){
         $listaUtenti = $connessione->getUtenti($connessione->queryUtenti());
     }
     $connessione->closeConnection();

@@ -2,8 +2,9 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-
+//require 'script/PHP/checkAdminLogin.php';
 include_once 'template/components/loadComponents.php';
+include_once 'script/PHP/checkForm.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-pizzaTemplate.html');
 
 $header = printHeader();
@@ -11,49 +12,90 @@ $footer = printFooter();
 
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
+$messaggiPerForm = "";
+$nomePizza= "";
+$prezzoPizza = "";
+$ingredientiPizza[] = "";
+$descrizionePizza = "";
 $listaIngredienti = "";
 $categorie = "";
 if($conn){
-    $listaIngredienti = $connessione->getIngredienti();
+    $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
     $categorie = $connessione->getCategorie();
     $connessione->closeConnection();
 }
 
-/*MANCANO I CONTROLLI PHP E JS*/
 if (isset($_POST['submit'])) {
-    $nome = $_POST['nome'];
-    $prezzo = $_POST['prezzo'];
-    $cat = $_POST['cat'];
-    $descrizione = $_POST['descr'];
     if (!empty($_POST['ingredienti'])) {
-        // Popola un array con le scelte selezionate
-        $ingr = $_POST['ingredienti'];
-    } /*else {
-        echo "Non hai selezionato nessuna opzione";
-    }*/
-    /*$image = $_FILES['file'];*/
+        $ingredientiPizza = pulisciInput($_POST['ingredienti']);
+    } else {
+        $ingredientiPizza = '';
+    }
+
     if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
         $path = '../../../assets/icons/pizza_icon.png';
     }else{
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-    $conn = $connessione->openDBConnection();
-    if($conn){
-        $veget = $connessione->isVeget($ingr);
-        if($path != '../../../assets/icons/pizza_icon.png'){
-            $connessione->uploadImage();
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $nomePizza = pulisciInput($_POST['nome']);
+    $prezzoPizza = pulisciInput($_POST['prezzo']);
+    if (!empty($ingr)) {
+        $ingredientiPizza = pulisciInput($ingr);
+    } else {
+        $ingredientiPizza = '';
+    }
+    $categoriaPizza = pulisciInput($_POST['cat']);
+    $descrizionePizza = pulisciDescrizione($_POST['descr']);
+
+    if (strlen($nomePizza) == 0) {
+        $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
+    } else {
+        if (strlen($nomePizza) < 2) {
+            $messaggiPerForm .= "<li>Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }
-        $okPizza = $connessione->insertPizza($nome, $prezzo, $veget, $cat, $descrizione, $path);
-        $okIngredienti = $connessione->insertProdottoIngrediente($nome, $ingr, 'pizza');
-        $connessione->closeConnection();
-        if($okPizza && $okIngredienti){
-            $message = "Prodotto inserito con successo";
-            header("Location: aggiungi-prodotto.php?message=$message"); /*NON VA*/
-            exit;
+        if (preg_match("/\d/", $nomePizza)) {
+            $messaggiPerForm .= "<li>Il nome della pizza non può contenere numeri</li>";
+        }
+        if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $nomePizza)) {
+            $messaggiPerForm .= "<li>Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+        }
+    }
+    if (strlen($nomePizza) == 0) {
+        $messaggiPerForm .= "<li>Inserire il prezzo della pizza</li>";
+        if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
+            $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+        }
+    }
+    if ($ingredientiPizza == '') {
+        $messaggiPerForm .= "<li>La pizza deve avere almeno un ingrediente</li>";
+    }
+    if (strlen($categoriaPizza) == 0) {
+        $messaggiPerForm .= "<li>Inserire la categoria della pizza</li>";
+    }
+    if($path != '../../../assets/icons/pizza_icon.png'){
+        $imageUploadResult = checkImage();
+        if ($imageUploadResult["success"]) {
+            $path = $imageUploadResult["path"];
         } else {
-            /* BUUUU ERRORE */
+            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+        }
+    }
+    $messaggiPerForm .= "</ul></fieldset>";
+
+    if(trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>"){
+        if($conn){
+            $veget = $connessione->isVeget($ingredientiPizza);
+            $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path);
+            $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza');
+            $connessione->closeConnection();
+            if($okPizza && $okIngredienti){
+                $_SESSION['messaggio'] = "Prodotto inserito con successo";
+            } else {
+                $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+            }
+            header("Location: aggiungi-prodotto.php");
         }
     }
 }
@@ -61,6 +103,7 @@ if (isset($_POST['submit'])) {
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[categorie]', $categorie, $template);
+$template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;
