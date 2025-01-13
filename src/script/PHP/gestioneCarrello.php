@@ -56,7 +56,7 @@ function getCarrello(){
         $rowsCarrello .= '<div class="dettaglioItem">';
         $rowsCarrello .= '<h4>'. $item['nome'] .'</h4>';
         $rowsCarrello .= '</div><div class="dettaglioItem">';
-        $rowsCarrello .= '<h4>'. $item['prezzo'] .' €</h4>';
+        $rowsCarrello .= '<p>'. $item['prezzo'] .' €</p>';
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
         $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">

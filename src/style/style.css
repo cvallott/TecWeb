@@ -1086,12 +1086,15 @@ CARRELLO
     text-align: center;
 }
 
-.dettaglioItem h4, .dettaglioItem p {
-    display: block;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    min-width: 6em;
+.dettaglioItem h4{
+    /*max-width: 7em;
+    min-width: 6em;*/
+    width: 7em;
+    margin-right: 1em;
+}
+
+.dettaglioItem p{
+    width: 2em;
 }
 
 
