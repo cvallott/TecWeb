@@ -111,6 +111,70 @@ class DBConnection {
         return $stringaReturn;
     }
 
+    public function getMenuCucina() :string{
+        $stringaReturn = "";
+        $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
+        $stringaReturn .= "<h2>La nostra cucina</h2>";
+        $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";
+        $queryPizze = "SELECT * FROM cucina";
+        $pizze = mysqli_query($this->connection, $queryPizze);
+        if(mysqli_num_rows($pizze) > 0) {
+            $stringaReturn .= "<div class='pizza-container'>";
+            while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
+                $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
+                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
+                $stringaReturn .= "<div class='pizza-testo'>";
+                $stringaReturn .= "<h3>" . $riga['nome'] . "</h3>";
+                $queryIngredienti = "SELECT cucina_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM cucina_ingrediente JOIN ingrediente ON cucina_ingrediente.ingrediente=ingrediente.nome WHERE cucina='".$riga['id']."' ORDER BY peso";
+                $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
+                $stringaIngredienti = "";
+                if(mysqli_num_rows($ingredientiPizza) > 0) {
+                    while ($ingrediente = $ingredientiPizza->fetch_array(MYSQLI_ASSOC)) {
+                        $stringaIngredienti .= $ingrediente['ingrediente'].", ";
+                    }
+                }
+                $stringaIngredienti = substr($stringaIngredienti, 0, -2);
+                $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
+                $stringaReturn .= "</div>";
+
+                $stringaReturn .= "<p class='pizza-prezzo'>€ " . number_format($riga['prezzo'], 2, ',', '.') . "</p>";
+
+                $stringaReturn .= "<div class='order-actions'>";
+
+                if(isset($_SESSION['carrello']["c".$riga['id']])){
+                    $stringaReturn .= '<form method="POST" action="?scroll=c-'.$riga['id'].'" class="inlineComponents">
+                        <div class="quantity-controls">
+                        <input type="hidden" name="id" value=c'.$riga['id'].'">
+                        <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                        
+                        </form>';
+                    $stringaReturn .= '<h4>';
+                    $stringaReturn .= $_SESSION['carrello']["c".$riga['id']]['quantita'];
+                    $stringaReturn .= '</h4>';
+                    $stringaReturn .= '<form method="POST" action="?scroll=c-'.$riga['id'].'" class="inlineComponents">
+                        <input type="hidden" name="id" value=c'.$riga['id'].'">
+                        <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                        </div>
+                     </form>';
+                }else{
+                    $stringaReturn .= '<form method="POST" action="?scroll=c-'.$riga['id'].'">';
+                    $stringaReturn .= '<input type="hidden" name="id" value=c'.$riga['id'].'>';
+                    $stringaReturn .= '<input type="hidden" name="prezzo" value="'.$riga['prezzo'].'">';
+                    $stringaReturn .= '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
+                    $stringaReturn .= '<input type="hidden" name="quantita" value="1">';
+                    $stringaReturn .= '<button type="submit" name="azione" value="aggiungi" class="home-button">Aggiungi al Carrello</button>';
+                    $stringaReturn .= '</form>';
+                }
+                $stringaReturn .= '</div>';
+                $stringaReturn .= '</div>';
+            }
+            $stringaReturn .= '</div>';
+        }
+
+        $stringaReturn .= '</section>';
+        return $stringaReturn;
+    }
+
     public function getMenuCategorie(): string {
         $query = "SELECT cat, nomeEsteso FROM categoria";
         $result = mysqli_query($this->connection, $query);
@@ -788,11 +852,21 @@ class DBConnection {
     public function itemToOrdine($idOrd){
 
         foreach ($_SESSION['carrello'] as $id => $item) {
-            $query = "INSERT INTO prodotti_ordine (ordine, pizza, quantita) VALUES ($idOrd,$id, ".$item['quantita'].")";
-            try {
-                mysqli_query($this->connection, $query);
-            }catch (mysqli_sql_exception $e) {
-                return false;
+            if(str_contains($id, "c")){
+                $id = ltrim($id, 'c');
+                $query = "INSERT INTO prodotti_ordine (ordine, cucina, quantita) VALUES ($idOrd,$id, " . $item['quantita'] . ")";
+                try {
+                    mysqli_query($this->connection, $query);
+                } catch (mysqli_sql_exception $e) {
+                    return false;
+                }
+            }else {
+                $query = "INSERT INTO prodotti_ordine (ordine, pizza, quantita) VALUES ($idOrd,$id, " . $item['quantita'] . ")";
+                try {
+                    mysqli_query($this->connection, $query);
+                } catch (mysqli_sql_exception $e) {
+                    return false;
+                }
             }
 
 

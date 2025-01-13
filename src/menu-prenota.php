@@ -15,14 +15,21 @@ $conn = $connessione->openDBConnection();
 $menuCategorie = "";
 if($conn){
     $menuCategorie = $connessione->getMenuCategorie();
+    $menuCategorie .= "<a href='#".str_replace(' ','', "cucina")."'>"."La nostra Cucina"."</a>";
     $connessione->closeConnection();
 }
 
 
 $conn = $connessione->openDBConnection();
-$pizzeClassiche = "";
+$pizze = "";
 if($conn){
-    $pizzeClassiche = $connessione->getMenuPizze();
+    $pizze = $connessione->getMenuPizze();
+    $connessione->closeConnection();
+}
+$conn = $connessione->openDBConnection();
+$cucina = "";
+if($conn){
+    $cucina = $connessione->getMenuCucina();
     $connessione->closeConnection();
 }
 
@@ -43,7 +50,8 @@ if (isset($_GET['scroll'])) {
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[linkMenu]', $menuCategorie, $template);
-$template = str_replace('[menu]', $pizzeClassiche, $template);
+$template = str_replace('[menu]', $pizze, $template);
+$template = str_replace('[cucina]', $cucina, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;
