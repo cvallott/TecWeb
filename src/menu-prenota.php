@@ -33,6 +33,14 @@ if($conn){
     $connessione->closeConnection();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'filter') {
+    $conn = $connessione->openDBConnection();
+    if ($conn) {
+        $pizze = $connessione->getMenuPizze($_POST['nome']);
+        $cucina = $connessione->getMenuCucina($_POST['nome']);
+    }
+}
+
 if (isset($_GET['scroll'])) {
     echo "entrato";
     $script = "<script>

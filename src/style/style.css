@@ -1019,6 +1019,14 @@ MENU-PRENOTA-PAGE
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
 }
+
+#prodotto-non-trovato{
+    padding-bottom: 3em;
+}
+
+#prodotto-non-trovato:last-child{
+    padding-bottom: 7em;
+}
 /*
 ------------------
 CARRELLO

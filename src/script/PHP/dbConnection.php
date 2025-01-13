@@ -42,18 +42,27 @@ class DBConnection {
 //        return false;
 //    }
 
-    public function getMenuPizze(): string{
+    public function getMenuPizze($nome = ''): string{
+        $visited = false;
         $queryCategorie = "SELECT * FROM categoria";
         $categorie = mysqli_query($this->connection, $queryCategorie);
         $stringaReturn = "";
         if(mysqli_num_rows($categorie) > 0) {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
-                $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
+                /*$stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
                 $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
-                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
-                $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
+                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";*/
+                if(!empty($nome)){
+                    $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."' AND nome = '".$nome."'";
+                } else {
+                    $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
+                }
                 $pizze = mysqli_query($this->connection, $queryPizze);
                 if(mysqli_num_rows($pizze) > 0) {
+                    $visited = true;
+                    $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
+                    $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
+                    $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
                     $stringaReturn .= "<div class='pizza-container'>";
                     while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                         $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
@@ -108,17 +117,29 @@ class DBConnection {
             }
             $stringaReturn .= '</section>';
         }
+        if($visited == false){
+            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, la pizza cercata non esiste</h2></div>';
+        }
         return $stringaReturn;
     }
 
-    public function getMenuCucina() :string{
+    public function getMenuCucina($nome = '') :string{
+        $visited = false;
         $stringaReturn = "";
-        $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
+        /*$stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
         $stringaReturn .= "<h2>La nostra cucina</h2>";
-        $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";
-        $queryPizze = "SELECT * FROM cucina";
-        $pizze = mysqli_query($this->connection, $queryPizze);
+        $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";*/
+        if(!empty($nome)){
+            $queryCucina = "SELECT * FROM cucina WHERE nome = '".$nome."'";
+        } else {
+            $queryCucina = "SELECT * FROM cucina";
+        }
+        $pizze = mysqli_query($this->connection, $queryCucina);
         if(mysqli_num_rows($pizze) > 0) {
+            $visited = true;
+            $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
+            $stringaReturn .= "<h2>La nostra cucina</h2>";
+            $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";
             $stringaReturn .= "<div class='pizza-container'>";
             while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                 $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
@@ -170,8 +191,10 @@ class DBConnection {
             }
             $stringaReturn .= '</div>';
         }
-
         $stringaReturn .= '</section>';
+        if($visited == false){
+            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, il piatto cercato non esiste</h2></div>';
+        }
         return $stringaReturn;
     }
 
