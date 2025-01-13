@@ -1089,7 +1089,7 @@ CARRELLO
 .dettaglioItem h4{
     /*max-width: 7em;
     min-width: 6em;*/
-    width: 7em;
+    width: 7em  ;
     margin-right: 1em;
 }
 
@@ -1101,12 +1101,13 @@ CARRELLO
 .row{
     display: flex;
     flex-direction: row;
-    margin-bottom: -2em;
+    column-gap: 3em;
+    margin-bottom: 1.5em;
+    width: 70%;
 }
 
 .dettaglioItem {
     flex-direction: column;
-    padding: 2em;
 }
 
 .controlloQuantita {
