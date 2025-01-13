@@ -1037,7 +1037,6 @@ CARRELLO
 #sez-carrello {
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
@@ -1057,7 +1056,6 @@ CARRELLO
 .sezTotali{
     flex:0.4;
     align-items: center;
-    display: flex;
     flex-direction: column;
 }
 
@@ -1067,7 +1065,6 @@ CARRELLO
 }
 
 #totaleSpesa{
-    display: flex;
     align-items: center;
 }
 
@@ -1089,27 +1086,30 @@ CARRELLO
     text-align: center;
 }
 
-.dettaglioItem h4, .dettaglioItem p {
-    display: block;
-    margin: 0;
-    padding: 0;
-    text-align: left;
+.dettaglioItem h4{
+    /*max-width: 7em;
+    min-width: 6em;*/
+    width: 7em  ;
+    margin-right: 1em;
 }
+
+.dettaglioItem p{
+    width: 2em;
+}
+
 
 .row{
     display: flex;
     flex-direction: row;
-    margin-bottom: -2em;
+    align-items: center;
+    column-gap: 3em;
+    margin-bottom: 1.5em;
+    width: 70%;
 }
 
 .dettaglioItem {
-    flex: 1;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 2em;
 }
-
 
 .controlloQuantita {
     display: flex;
@@ -1117,7 +1117,8 @@ CARRELLO
 }
 
 .controlloQuantita form{
-    padding: 1.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .controlloQuantita p{
@@ -1138,6 +1139,11 @@ CARRELLO
     width: 1.6em;
     height: 1.6em;
 
+}
+
+.order-summary #prezzoTot{
+    border-top: 0.1vh solid var(--border-color);
+    padding-top: 1em;
 }
 
 #proposta-mese{
@@ -1169,6 +1175,328 @@ CARRELLO
 
 #proposta-mese button{
     border: none;
+}
+
+/*PROVA*/
+
+
+
+.order-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.order-form, .order-summary {
+    background: #fff;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-form {
+    width: 40%;
+}
+
+.order-summary {
+    flex: 1;
+    max-width: 40%;
+}
+
+.order-summary h2 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.order-container button {
+    background-color: #dc1c08;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-container button:hover {
+    background-color: #b81707;
+}
+
+.order-container input, textarea {
+    width: 100%; /* Occupa tutta la larghezza del contenitore */
+    padding: 0.65em; /* Spazio interno */
+    font-size: 1em; /* Dimensione del testo */
+    color: #555; /* Colore del testo */
+    border: 0.1vh solid #ccc; /* Bordo grigio chiaro */
+    border-radius: 0.3em; /* Angoli arrotondati */
+    box-sizing: border-box; /* Considera padding e border nella larghezza */
+    transition: border-color 0.3s ease; /* utile per animazione */
+    resize: vertical;
+    min-height: 3em;
+    max-height: 9em;
+}
+
+/*
+------------------
+CONFERMA-ORDINE PAGE
+------------------
+(se commentato) PER DECOMENTARE RAPIDAMENTE QUESTA SEZ, SELEZIONARE
+TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE come le seguenti '//'
+*/
+
+/*#confOrdine{*/
+/*    display: flex;*/
+/*    background-color: var(--bgcolor);*/
+/*    flex-direction: column;*/
+/*    !*font-size: 1em;*!*/
+/*}*/
+
+/*#confOrdine h1{*/
+/*    text-align: center;*/
+/*    margin-top: 1em;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    color: white;*/
+/*    background-color: #DC1C08;*/
+/*    width: fit-content;*/
+/*    padding: 0.5em 5em;*/
+/*}*/
+
+/*.containerRiepilogo{*/
+/*    display:flex;*/
+/*    flex-direction: row;*/
+/*    !*justify-content: space-between;*!*/
+/*    padding-top: 3em;*/
+/*    font-size: 1.3em;*/
+/*}*/
+
+/*.boxConferma{*/
+/*    display:flex;*/
+/*    flex-direction: column;*/
+/*    !*justify-content: space-between;*!*/
+/*    padding-left: 2em;*/
+/*    width: 33.3%;*/
+/*}*/
+/*#nomecognUtente{*/
+/*    border-bottom:  0.1em solid black;*/
+/*    text-align: center;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.boxConferma #pConferma{*/
+/*    padding-top: 0.5em;*/
+/*    text-align: center;*/
+/*}*/
+
+/*#boxForm{*/
+/*    display:flex;*/
+/*    justify-content: center;*/
+/*    width: 33.33%;*/
+/*}*/
+
+/*#orario{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+/*    flex-direction: column;*/
+/*    padding-top: 0.5em;*/
+/*}*/
+
+/*!* container del form *!*/
+/*.form-container {*/
+/*    width: 20em;*/
+/*    margin: 1.25em;*/
+/*    padding: 1em;*/
+/*    background-color: #f9f9f9;*/
+/*    border: 0.1vh solid #ddd;*/
+/*    border-radius: 0.83vh; !* crea dei bellissimi angoli arrotondati*!*/
+/*    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5); !*se si vuole ombra rossa #ff180061;*!*/
+/*}*/
+
+/*!* etichetta-"titolo" *!*/
+/*.form-label {*/
+/*    display: block; !* Rende l'etichetta un blocco *!*/
+/*    font-weight: bold;*/
+/*    font-size: 14px;*/
+/*    color: #333;*/
+/*    margin-bottom: 10px; !* Spazio tra l'etichetta e l'input *!*/
+/*}*/
+
+/*!* testo inserito dall'utente *!*/
+/*.form-input {*/
+/*    width: 100%; !* Occupa tutta la larghezza del contenitore *!*/
+/*    padding: 10px; !* Spazio interno *!*/
+/*    font-size: 14px; !* Dimensione del testo *!*/
+/*    color: #555; !* Colore del testo *!*/
+/*    border: 1px solid #ccc; !* Bordo grigio chiaro *!*/
+/*    border-radius: 5px; !* Angoli arrotondati *!*/
+/*    box-sizing: border-box; !* Considera padding e border nella larghezza *!*/
+/*    transition: border-color 0.3s ease; !* utile per animazione *!*/
+/*}*/
+
+/*!* focus del campo-testo *!*/
+/*.form-input:focus {*/
+/*    border-color: #ff180061;*/
+/*    outline: none;*/
+/*}*/
+
+/*.form-input::placeholder {*/
+/*    color: #aaa;*/
+/*    font-style: italic;*/
+/*}*/
+
+/*#totOrdine{*/
+/*    width: 33.3%;*/
+/*    padding-top: 1em;*/
+/*    text-align: center;*/
+/*}*/
+/*#totOrdine button{*/
+/*    font-size: 0.7em;*/
+/*    margin-top: 1em;*/
+/*    width: 5em;*/
+/*    height: 2em;*/
+/*}*/
+
+/*
+-------------------
+CONF ORDINE PAGE 2 versione
+-------------------
+(se commentato) PER DECOMENTARE RAPIDAMENTE QUESTA SEZ, SELEZIONARE
+TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
+*/
+
+
+#confOrdine{
+    display: flex;
+    background-color: var(--bgcolor);
+    flex-direction: column;
+    font-size: 1.3em;
+}
+
+#confOrdine h1{
+    text-align: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #DC1C08;
+    width: fit-content;
+    padding: 0.5em 5em;
+}
+
+#containerConferma{
+    display: flex;
+    flex-direction: row;
+}
+
+.boxConferma{
+    display:flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    padding-left: 2em;
+    padding-top: 3em;
+    width: 45%;
+}
+
+#nomecognUtente{
+    border-bottom:  0.1em solid black;
+    text-align: center;
+    /*width: 40%;*/
+}
+
+.boxConferma #totOrdine{
+    margin-top: 0.7em;
+}
+
+
+.boxConferma .infoConferma{
+    margin-left: 2em;
+    margin-top: 0.2em;
+}
+
+/* container del form */
+.form-container {
+    width: 90%;
+    margin: 1.5em 1.25em 3em 2em;
+    padding: 1em;
+    background-color: #f9f9f9;
+    border: 0.1vh solid #ddd;
+    border-radius: 0.83vh; /* crea dei bellissimi angoli arrotondati*/
+    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5); /*se si vuole ombra rossa #ff180061;*/
+}
+
+/* etichetta-"titolo" */
+.form-label {
+    display: block; /* Rende l'etichetta un blocco */
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px; /* Spazio tra l'etichetta e l'input */
+}
+
+/* testo inserito dall'utente */
+.form-input {
+    width: 100%; /* Occupa tutta la larghezza del contenitore */
+    padding: 0.65em; /* Spazio interno */
+    font-size: 0.9em; /* Dimensione del testo */
+    color: #555; /* Colore del testo */
+    border: 0.1vh solid #ccc; /* Bordo grigio chiaro */
+    border-radius: 0.3em; /* Angoli arrotondati */
+    box-sizing: border-box; /* Considera padding e border nella larghezza */
+    transition: border-color 0.3s ease; /* utile per animazione */
+    resize: vertical;
+    min-height: 1.5em;
+    max-height: 9em;
+}
+
+/* focus del campo-testo */
+.form-input:focus {
+    border-color: #ff180061;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+#boxOrario{
+    width: 45%;
+    display: flex;
+    justify-content: flex-end;
+    text-align: center;
+    flex-direction: row;
+    margin-top: 5em;
+}
+
+#boxOrario div{
+    margin-right: 1em;
+}
+
+#boxOrario .select {
+    padding: 0.5em;
+    font-size: 0.9em;
+    border: 0.125em solid var(--txtcolor);
+    border-radius: 0.4em;
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+    outline: none;
+    max-height: 3em;
+}
+
+#boxOrario .select option {
+    max-height: 2em; /* Altezza massima visibile del menu */
+    /*DA CAPIRE COME LIMITARE L'ESPANSIONE DEL <SELECT>*/
+}
+
+#boxOrario button{
+    width: 6em;
+    margin-top: 3em;
+    font-size: 1.2em;
 }
 
 /*

@@ -1,5 +1,7 @@
 <?php
 namespace DB;
+use mysqli_sql_exception;
+
 class DBConnection {
     private const HOST_DB = "db";
     private const DATABASE_NAME = "tecweb";
@@ -724,6 +726,56 @@ class DBConnection {
             }
         }
         return false;
+    }
+
+    public function getFasceOrarie($daOrdinare){
+        $query = "SELECT disponiblitaorarie.fascia AS fascia, pizzePerFascia.pizze AS pizze FROM disponiblitaorarie LEFT JOIN pizzePerFascia ON disponiblitaorarie.fascia = pizzePerFascia.fascia WHERE disponiblitaorarie.fascia NOT IN (SELECT orario FROM checkOrari);";
+        $risultato = mysqli_query($this->connection, $query);
+        $selectReturn ="";
+        $primadisponibilita = "";
+        if(mysqli_num_rows($risultato) > 0){
+            while($row = mysqli_fetch_assoc($risultato)){
+                if($primadisponibilita==""){
+                    $primadisponibilita = $row["fascia"];
+                }
+                if($daOrdinare + $row["pizze"] < 20) {
+                    $selectReturn .= "<option value='" . $row['fascia'] . "'>" . $row['fascia'] . "</option>";
+                }
+            }
+        }
+        return array($primadisponibilita, $selectReturn);
+    }
+
+    public function insertOrder($orario, $nota){
+        if($nota != ""){
+            $query = "INSERT INTO ordine (utente, ora, nota) VALUES (?, ?, ?)";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('sss',$_SESSION['email'], $orario, $nota);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }else{
+            $query = "INSERT INTO ordine (utente, ora) VALUES (?, ?)";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('ss',$_SESSION['email'], $orario);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+    }
+
+    public function itemToOrdine($idOrd){
+
+        foreach ($_SESSION['carrello'] as $id => $item) {
+            $query = "INSERT INTO prodotti_ordine (ordine, pizza, quantita) VALUES ($idOrd,$id, ".$item['quantita'].")";
+            try {
+                mysqli_query($this->connection, $query);
+            }catch (mysqli_sql_exception $e) {
+                return false;
+            }
+
+
+        }
+        return true;
+
     }
 //    public function userLogin($username, $password) {
 //        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";

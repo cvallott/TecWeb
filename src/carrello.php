@@ -31,9 +31,48 @@ if ($connessioneOK) {
     $connessione->closeConnection();
 }
 
+$totQuant = 0;
+foreach ($_SESSION['carrello'] as $prodotto) {
+    $totQuant += $prodotto['quantita'];
+}
+
+$connessioneOK = $connessione->openDBConnection();
+$primadisp = "";
+$optionOrario = "";
+if ($connessioneOK) {
+    $primadisp = $connessione->getFasceOrarie($totQuant)[0];
+    $optionOrario = $connessione->getFasceOrarie($totQuant)[1];
+    $connessione->closeConnection();
+}
+
+if(isset($_POST['ora'])){
+    $connessioneOK = $connessione->openDBConnection();
+    if($connessioneOK){
+        $succ = "";
+        if(isset($_POST['note'])){
+            $succ = $connessione->insertOrder($_POST['ora'],$_POST['note']);
+        }else{
+            $succ = $connessione->insertOrder($_POST['ora'],"");
+        }
+        $connessione->closeConnection();
+        if($succ){
+            $connessioneOK = $connessione->openDBConnection();
+            if($connessioneOK){
+                if($connessione->itemToOrdine($succ)){
+                    unset($_SESSION['carrello']);
+                    header("location: index.php");
+                }
+            }
+        }
+    }
+}
+
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[nomeCognome]', $_SESSION['nome']. " " . $_SESSION['cognome'], $template);
 $template = str_replace('[rowsCarrello]', $rowsCarrello, $template);
 $template = str_replace('[tot]', $totale, $template);
+$template = str_replace('[fasciaOraria]', $primadisp, $template);
+$template = str_replace('[optionOrario]', $optionOrario, $template);
 $template = str_replace('[pizzeMese]', $consiglioPizze, $template);
 $template = str_replace('[footer]', $footer, $template);
 

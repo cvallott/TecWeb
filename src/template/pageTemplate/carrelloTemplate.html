@@ -23,82 +23,56 @@
 		<h1>Riepilogo carrello</h1>
 		<p>Controlla il tuo carrello e procedi all'ordine!</p>
 	</section>
+
+	<section class="order-container">
+		<div class="order-summary">
+			<h2>Il tuo ordine</h2>
+			<div>
+				[rowsCarrello]
+			</div>
+			<h3 id="prezzoTot">Totale: [tot] €</h3>
+		</div>
+		<div class="order-form">
+			<h2>Informazioni necessarie</h2>
+				<div>
+					<h4>Nome e Cognome</h4>
+					<p>[nomeCognome]</p>
+				</div>
+			<form method="post" action="">
+				<div>
+					<p>La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
+					<label for="ora">Ora di ritiro:</label>
+					<select name="ora" id="ora" class="select" required>
+					[optionOrario]
+					</select>
+				</div>
+				<div>
+					<label for="nota">Note:</label>
+					<textarea name="note" id="nota" placeholder="Aggiungi note per l'ordine"></textarea>
+				</div>
+				<button type="submit">Conferma ordine</button>
+			</form>
+		</div>
+	</section>
+	<!--
 	<section id="sez-carrello">
           <div class="sezCarrello sezDettaglio">
-			  [rowsCarrello]
-			  <!--
-            <div class="row" data-id="pizza1">
-              <div class="dettaglioItem">
-                <h4>Margherita</h4>
-                <p>extra mozzarella</p>
-              </div>
-              <div class="dettaglioItem">
-                <h4>10€</h4>
-              </div>
-              <div class="dettaglioItem">
-				  <div class="controlloQuantita">
-					  <button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
-					  <input type="number" class="quantity" value="1" min="1">
-					  <button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
-					  <button class="btnRimuovi" onclick="remove(this, 'pizza1')"><i class="fa fa-trash"></i></button>
-				  </div>
-              </div>
-            </div>
-            <div class="row" data-id="pizza2">
-              <div class="dettaglioItem">
-                <h4>Margherita</h4>
-                <p>extra mozzarella</p>
-              </div>
-              <div class="dettaglioItem">
-                <h4>10€</h4>
-              </div>
-				<div class="dettaglioItem">
-					<div class="controlloQuantita">
-						<button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
-						<input type="number" class="quantity" value="1" min="1">
-						<button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
-						<button class="btnRimuovi" onclick="remove(this, 'pizza2')"><i class="fa fa-trash"></i></button>
-					</div>
-				</div>
-            </div>
-			  <div class="row" data-id="pizza3">
-				  <div class="dettaglioItem">
-					  <h4>Margherita</h4>
-					  <p>extra mozzarella</p>
-				  </div>
-				  <div class="dettaglioItem">
-					  <h4>10€</h4>
-				  </div>
-				  <div class="dettaglioItem">
-					  <div class="controlloQuantita">
-						  <button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
-						  <input type="number" class="quantity" value="1" min="1">
-						  <button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
-						  <button class="btnRimuovi" onclick="remove(this, 'pizza3')"><i class="fa fa-trash"></i></button>
-					  </div>
+			  <div class="boxConferma">
+				  <p id="nomecognUtente"> [nameClient] [surnameClient] </p>
+				  <p class="infoConferma">Il pagamento verrà effettuato in contanti.</p>
+				  <p class="infoConferma">NonSoloPizza si impegna a soddisfare tutte le richieste della propria clientela!</p>
+				  <p class="infoConferma">Se hai qualche richiesta, lasciaci un appunto nel seguente form!</p>
+				  <div id="boxForm">
+					  <form class="form-container">
+						  <label for="formNota" class="form-label">Hai qualche nota/istruzione da lasciarci?</label>
+						  <textarea id="formNota" name="formNota" class="form-input" placeholder="Scrivi qui la tua nota"></textarea>
+					  </form>
 				  </div>
 			  </div>
-			  <div class="row" data-id="pizza4">
-				  <div class="dettaglioItem">
-					  <h4>Margherita</h4>
-					  <p>extra mozzarella</p>
-				  </div>
-				  <div class="dettaglioItem">
-					  <h4>10€</h4>
-				  </div>
-				  <div class="dettaglioItem">
-					  <div class="controlloQuantita">
-						  <button class="btnSottrai" onclick="updateQuantity(this, 'decrease')"><i class="fa fa-minus"></i></button>
-						  <input type="number" class="quantity" value="1" min="1">
-						  <button class="btnAggiungi" onclick="updateQuantity(this, 'increase')"><i class="fa fa-plus"></i></button>
-						  <button class="btnRimuovi" onclick="remove(this, 'pizza4')"><i class="fa fa-trash"></i></button>
-					  </div>
-				  </div>
-			  </div>
-			  -->
           </div>
 
           <div class="sezCarrello sezTotali">
+			  [rowsCarrello]
 			  <div id="totaleSpesa">
 				  <div class="totColumn">
 					  <p>Totale carrello: </p>
@@ -107,10 +81,10 @@
 					  <h4>[tot] €</h4>
 				  </div>
 			  </div>
-			  <p id="primadisp">La prima disponibilità è alle ore 20.00</p>
+			  <p id="primadisp">La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
 			  <button>Ordina</button>
           </div>
-	</section>
+	</section>-->
 	<section id="proposta-mese" class="home-section">
 		<h2>Hai già provato le nostre pizze del mese?</h2>
 		<div id="FM-content">
