@@ -93,6 +93,9 @@ if(isset($message)){
 }else{
     $template = str_replace('[operazione-successo]', '', $template);
 }
+if(isset($_SESSION['messaggio'])){
+    $template = str_replace('[operazione-successo]', $_SESSION['messaggio'], $template);
+}
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visProdotti]', $listaProdotti, $template);

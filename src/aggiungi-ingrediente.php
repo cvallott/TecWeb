@@ -58,8 +58,8 @@ if (isset($_POST['submit'])) {
     }
 }
 
-if(isset($_SESSION['modificaAttiva'])){
-    // unset($_SESSION['modificaAttiva']);
+if(isset($_SESSION['modificaIngr'])){
+    unset($_SESSION['modificaIngr']);
 }
 
 $template = str_replace('[header]', $header, $template);

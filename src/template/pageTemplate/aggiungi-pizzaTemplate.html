@@ -23,14 +23,14 @@
     <h1>INSERISCI UNA NUOVA PIZZA</h1>
   </section>
   <section class="aggiunta-content">
-    <form method="post" action="../../aggiungi-pizza.php" class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
+    <form method="post" action=[percorsoFile] class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
       <div>
         <label for="nome">Inserisci il nome: </label>
-        <input type="text" name="nome" id="nome" required>
+        <input type="text" name="nome" id="nome" [valueNome] required>
       </div>
       <div>
         <label for="prezzo">Inserisci il prezzo: </label>
-        <input type="number" min="0" name="prezzo" id="prezzo" required>
+        <input type="number" min="0" name="prezzo" id="prezzo" [valuePrezzo] required>
       </div>
       <p>Inserisci gli ingredienti: </p>
         [listaIngredienti]
@@ -42,7 +42,7 @@
       </div>
       <div>
         <label for="descr">Descrizione:</label>
-        <textarea id="descr" name="descr" rows="5" cols="50"></textarea>
+        <textarea id="descr" name="descr" rows="5" cols="50" >[valueDescr]</textarea>
       </div>
       <div>
         <label for="file">Carica un'immagine:</label>
@@ -52,7 +52,7 @@
       <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
       <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
     </form>
-    <a class="home-button" href="../../aggiungi-prodotto.php">Torna indietro</a>
+    <a class="home-button" href="../../aggiungi-prodotto.php" >Torna indietro</a>
   </section>
 </main>
 

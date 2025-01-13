@@ -240,7 +240,7 @@ class DBConnection {
         if($id != null){
             if($cucina == 0){
                 $querySelect = "SELECT ingrediente FROM pizza_ingrediente WHERE pizza = ".$id;
-            } else{
+            }else{
                 $querySelect = "SELECT ingrediente FROM cucina_ingrediente WHERE cucina = ".$id;
             }
             $resultSelect = mysqli_query($this->connection, $querySelect);
@@ -254,11 +254,13 @@ class DBConnection {
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         $conta=1;
+        $i = 0;
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<div class=\"check\">";
-                if(count($ingredienti) > 0) {
-                    if(array_search($row['nome'], $ingredienti)){
+                if(count($ingredienti) > $i) {
+                    if($ingredienti[$i] == $row['nome']){
+                        $i++;
                         $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\" checked>";
                     } else {
                         $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
@@ -274,13 +276,26 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function getCategorie(): string {
+    public function getCategorie($id = null): string {
+        $categoria = '';
+        if($id != null){
+            $querySelect = "SELECT categoria FROM pizza WHERE id = ".$id;
+            $resultSelect = mysqli_query($this->connection, $querySelect);
+            if(mysqli_num_rows($resultSelect) > 0) {
+                $row = $resultSelect->fetch_array(MYSQLI_ASSOC);
+                $categoria = $row['categoria'];
+            }
+        }
         $query = "SELECT cat FROM categoria";
         $result = mysqli_query($this->connection, $query);
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                $stringaReturn .= "<option value='".$row['cat']."'>".$row['cat']."</option>";
+                if($categoria == $row['cat']){
+                    $stringaReturn .= "<option value='".$row['cat']."' selected>".$row['cat']."</option>";
+                }else{
+                    $stringaReturn .= "<option value='".$row['cat']."'>".$row['cat']."</option>";
+                }
             }
         }
         return $stringaReturn;
@@ -356,7 +371,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
                 $stringaReturn .= "<td></td>";
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php\">Modifica</a></td>";
-                $_SESSION['modificaAttiva'] = $row['nome'];
+                $_SESSION['modificaIngr'] = $row['nome'];
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
@@ -403,7 +418,8 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-pizza.php\">Modifica</a></td>";
+                //$_SESSION['modificaPizza'] = $row['id'];
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
@@ -415,6 +431,20 @@ class DBConnection {
             }
         }
         return $stringaReturn;
+    }
+
+    public function getInfoPizza($id){
+        $return = array();
+        $query = "SELECT nome, prezzo, descrizione FROM pizza WHERE id=".$id;
+        $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $return[0] = $row['nome'];
+            $return[1] = $row['prezzo'];
+            $return[2] = $row['descrizione'];
+            return $return;
+        }
+        return '';
     }
 
     public function queryUtenti($filtro = null): string {
@@ -639,13 +669,15 @@ class DBConnection {
         }
     }
 
-    public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path): bool {
-
-        $queryInsert = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) " .
+    public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path, $id = null): bool {
+    if($id != null){
+        $query = "UPDATE pizza SET nome = '".$nome."', prezzo = ".$prezzo.", veget = ". $veget.", categoria = '".$categoria."', descrizione = '".$descrizione."', path = '".$path."' WHERE id = ".$id;
+    } else {
+        $query = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) " .
             "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$categoria\", \"$descrizione\", \"$path\")";
-
-        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-        if(mysqli_affected_rows($this->connection) > 0){
+    }
+        $queryResult = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_affected_rows($queryResult) > 0){
             return true;
         }
         else {
@@ -653,10 +685,15 @@ class DBConnection {
         }
     }
 
-    public function insertProdottoIngrediente($nome, $ingredienti, $table) {
+    public function insertProdottoIngrediente($nome, $ingredienti, $table, $id = null) {
         // Sanitizza il nome della pizza
         /*$nome = mysqli_real_escape_string($this->connection, $nome);*/
-        $query = "SELECT id FROM ". $table . " WHERE nome='$nome'";
+        if ($id != null){
+            $query = "DELETE FROM ". $table . "_ingrediente WHERE nome='$nome' AND ".$table."=".$id;
+        }else{
+            $query = "SELECT id FROM ". $table . " WHERE nome='$nome'";
+        }
+
         $result = mysqli_query($this->connection, $query);
 
         if (!$result) {
