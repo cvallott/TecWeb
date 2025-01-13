@@ -1101,6 +1101,7 @@ CARRELLO
 .row{
     display: flex;
     flex-direction: row;
+    align-items: center;
     column-gap: 3em;
     margin-bottom: 1.5em;
     width: 70%;
@@ -1138,6 +1139,11 @@ CARRELLO
     width: 1.6em;
     height: 1.6em;
 
+}
+
+.order-summary #prezzoTot{
+    border-top: 0.1vh solid var(--border-color);
+    padding-top: 1em;
 }
 
 #proposta-mese{
