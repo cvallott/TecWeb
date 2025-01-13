@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Creato il: Gen 10, 2025 alle 11:23
+-- Creato il: Gen 13, 2025 alle 14:44
 -- Versione del server: 10.6.7-MariaDB-1:10.6.7+maria~focal
 -- Versione PHP: 8.2.8
 
@@ -188,20 +188,29 @@ INSERT INTO `ingrediente` (`nome`, `peso`, `veget`, `pagg`) VALUES
 CREATE TABLE `ordine` (
   `id` int(11) NOT NULL,
   `utente` varchar(250) NOT NULL,
-  `data` date NOT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp(),
   `ora` varchar(250) NOT NULL,
-  `stato` tinyint(1) NOT NULL DEFAULT 0
+  `stato` tinyint(1) NOT NULL DEFAULT 0,
+  `nota` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `ordine`
 --
 
-INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`) VALUES
-(1, 'utente@utente.it', '2025-01-09', '19.40-19.50', 0),
-(2, 'utente@utente.it', '2025-01-09', '19.50-20.00', 0),
-(3, 'utente@utente.it', '2025-01-10', '19.50-20.00', 0),
-(4, 'utente@utente.it', '2025-01-09', '20.10-20.20', 0);
+INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`, `nota`) VALUES
+(1, 'utente@utente.it', '2025-01-09', '19.40-19.50', 0, NULL),
+(2, 'utente@utente.it', '2025-01-09', '19.50-20.00', 0, NULL),
+(3, 'utente@utente.it', '2025-01-10', '19.50-20.00', 0, NULL),
+(4, 'utente@utente.it', '2025-01-09', '20.10-20.20', 0, NULL),
+(5, 'admin@admin.com', '2025-01-13', '18.20-18.30', 0, NULL),
+(6, 'admin@admin.com', '2025-01-13', '19.10-19.20', 0, NULL),
+(7, 'admin@admin.com', '2025-01-13', '19.40-19.50', 0, NULL),
+(8, 'admin@admin.com', '2025-01-13', '19.30-19.40', 0, NULL),
+(9, 'admin@admin.com', '2025-01-13', '18.00-18.10', 0, NULL),
+(10, 'admin@admin.com', '2025-01-13', '18.00-18.10', 0, NULL),
+(11, 'admin@admin.com', '2025-01-13', '18.30-18.40', 0, NULL),
+(33, 'admin@admin.com', '2025-01-13', '18.50-19.00', 0, '18.50 - 2zuccGorgo, provath, pesto buf');
 
 -- --------------------------------------------------------
 
@@ -330,7 +339,10 @@ INSERT INTO `prodotti_ordine` (`id`, `ordine`, `pizza`, `cucina`, `quantita`) VA
 (1, 1, 46, NULL, 10),
 (2, 2, 46, NULL, 10),
 (3, 3, 46, NULL, 20),
-(4, 4, 46, NULL, 6);
+(4, 4, 46, NULL, 6),
+(33, 33, 21, NULL, 2),
+(34, 33, 36, NULL, 1),
+(35, 33, 22, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -459,7 +471,7 @@ ALTER TABLE `cucina`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT per la tabella `pizza`
@@ -471,7 +483,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT per la tabella `prodotti_ordine`
 --
 ALTER TABLE `prodotti_ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Limiti per le tabelle scaricate
