@@ -1,5 +1,7 @@
 <?php
 namespace DB;
+use mysqli_sql_exception;
+
 class DBConnection {
     private const HOST_DB = "db";
     private const DATABASE_NAME = "tecweb";
@@ -638,17 +640,34 @@ class DBConnection {
 
     public function insertOrder($orario, $nota){
         if($nota != ""){
-            $query = "INSERT INTO ordine (utente, ora, nota) VALUES (".$_SESSION['email'].", $orario, ?)";
+            $query = "INSERT INTO ordine (utente, ora, nota) VALUES (?, ?, ?)";
             $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('s', $nota);
-            //$stmt->execute();
-            echo $query;
+            $stmt->bind_param('sss',$_SESSION['email'], $orario, $nota);
+            $stmt->execute();
+            return $stmt->insert_id;
         }else{
-            $query = "INSERT INTO ordine (utente, ora) VALUES (".$_SESSION['email'].", $orario)";
+            $query = "INSERT INTO ordine (utente, ora) VALUES (?, ?)";
             $stmt = $this->connection->prepare($query);
-            //$stmt->execute();
-            echo $query;
+            $stmt->bind_param('ss',$_SESSION['email'], $orario);
+            $stmt->execute();
+            return $stmt->insert_id;
         }
+    }
+
+    public function itemToOrdine($idOrd){
+
+        foreach ($_SESSION['carrello'] as $id => $item) {
+            $query = "INSERT INTO prodotti_ordine (ordine, pizza, quantita) VALUES ($idOrd,$id, ".$item['quantita'].")";
+            try {
+                mysqli_query($this->connection, $query);
+            }catch (mysqli_sql_exception $e) {
+                return false;
+            }
+
+
+        }
+        return true;
+
     }
 //    public function userLogin($username, $password) {
 //        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";

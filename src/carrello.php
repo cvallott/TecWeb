@@ -48,12 +48,22 @@ if ($connessioneOK) {
 if(isset($_POST['ora'])){
     $connessioneOK = $connessione->openDBConnection();
     if($connessioneOK){
-        if(isset($_POST['nota'])){
-            $connessione->insertOrder($_POST['ora'],$_POST['nota']);
+        $succ = "";
+        if(isset($_POST['note'])){
+            $succ = $connessione->insertOrder($_POST['ora'],$_POST['note']);
         }else{
-            $connessione->insertOrder($_POST['ora'],"");
+            $succ = $connessione->insertOrder($_POST['ora'],"");
         }
-
+        $connessione->closeConnection();
+        if($succ){
+            $connessioneOK = $connessione->openDBConnection();
+            if($connessioneOK){
+                if($connessione->itemToOrdine($succ)){
+                    unset($_SESSION['carrello']);
+                    header("location: index.php");
+                }
+            }
+        }
     }
 }
 
