@@ -1488,3 +1488,49 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
     padding: 0.5em;
     border-radius: 0.2em;
 }
+
+/*
+------------------
+ERROR 500 e 404
+------------------
+*/
+
+.error-content {
+    text-align: center;
+    padding: 2em;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-title {
+    font-size: 6em;
+    margin: 0;
+    color: #d32f2f;
+}
+
+.error-message {
+    font-size: 1.5em;
+    margin: 1em 0;
+}
+
+.pizza-emoji {
+    font-size: 5em;
+    margin: 0.5em 0;
+}
+
+.home-button {
+    padding: 1em 2em;
+    background-color: #d32f2f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 2em;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #b71c1c;
+}
