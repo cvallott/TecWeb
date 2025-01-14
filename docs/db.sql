@@ -39,7 +39,7 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`cat`, `nomeEsteso`, `descrizione`) VALUES
 ('Classica', 'Le nostre pizze classiche', 'I gusti classici non tramontano mai: questi sapori sono la prova che le cose migliori non hanno bisogno di complicazioni.'),
-('Fuori menù', 'I nostri fuori menù', 'Descrizione fuori menù'),
+('Fuori menu', 'I nostri Fuori menu', 'Descrizione Fuori menu'),
 ('Speciale', 'Le nostre pizze speciali', 'Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.'),
 ('Stagionale', 'Le nostre pizze stagionali', 'La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!');
 
@@ -233,10 +233,10 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`id`, `nome`, `prezzo`, `veget`, `categoria`, `descrizione`, `path`) VALUES
-(21, 'Zucca e Gorgonzola', 10, 0, 'Fuori menù', 'aaaaaaaaaaaa', '../../../assets/pizze/FM-zuccagorgo.jpeg'),
-(22, 'Pesto e Bufala', 9, 0, 'Fuori menù', 'aaaaaaaaaaaaaaaaaaaa', '../../../assets/pizze/FM-pestobufala.jpeg'),
-(36, 'provapath', 8, 0, 'Fuori menù', 'kihilhj', '../../../assets/pizze/FM-calzonenutella.jpeg'),
-(41, 'provafm3', 6, 0, 'Fuori menù', 'jdjy', '../../../assets/icons/pizza_icon.png'),
+(21, 'Zucca e Gorgonzola', 10, 0, 'Fuori menu', 'aaaaaaaaaaaa', '../../../assets/pizze/FM-zuccagorgo.jpeg'),
+(22, 'Pesto e Bufala', 9, 0, 'Fuori menu', 'aaaaaaaaaaaaaaaaaaaa', '../../../assets/pizze/FM-pestobufala.jpeg'),
+(36, 'provapath', 8, 0, 'Fuori menu', 'kihilhj', '../../../assets/pizze/FM-calzonenutella.jpeg'),
+(41, 'provafm3', 6, 0, 'Fuori menu', 'jdjy', '../../../assets/icons/pizza_icon.png'),
 (42, 'yjjyjy', 56, 0, 'Speciale', 'ytjy', '../../../assets/icons/pizza_icon.png'),
 (43, 'hmgmh', 3, 0, 'Classica', 'fjhfh', '../../../assets/icons/pizza_icon.png'),
 (44, 'pgrkjfbefbett', 5, 0, 'Classica', 'i0+k00ih', '../../../assets/icons/pizza_icon.png'),
@@ -513,8 +513,8 @@ ALTER TABLE `pizza`
 -- Limiti per la tabella `pizza_ingrediente`
 --
 ALTER TABLE `pizza_ingrediente`
-  ADD CONSTRAINT `fk_pizza_ingredenti` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_pizza_ingredenti_pizza` FOREIGN KEY (`pizza`) REFERENCES `pizza` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_pizza_ingredenti` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`),
+  ADD CONSTRAINT `fk_pizza_ingredenti_pizza` FOREIGN KEY (`pizza`) REFERENCES `pizza` (`id`);
 
 --
 -- Limiti per la tabella `prodotti_ordine`

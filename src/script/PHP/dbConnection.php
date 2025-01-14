@@ -415,7 +415,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<tr>";
-                $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-cucina.php\">Modifica</a></td>";
@@ -438,7 +438,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<tr>";
-                $stringaReturn .= "<th scope=\"row\">".$row['nome']." - codice: ".$row['id']."</th>";
+                $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
                 //$_SESSION['modificaPizza'] = $row['id'];
@@ -700,33 +700,18 @@ class DBConnection {
             "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$categoria\", \"$descrizione\", \"$path\")";
     }
         $queryResult = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-        if(mysqli_affected_rows($queryResult) > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return true;
     }
 
     public function insertProdottoIngrediente($nome, $ingredienti, $table, $id = null) {
         // Sanitizza il nome della pizza
         /*$nome = mysqli_real_escape_string($this->connection, $nome);*/
         if ($id != null){
-            $query = "DELETE FROM ". $table . "_ingrediente WHERE nome='$nome' AND ".$table."=".$id;
-        }else{
-            $query = "SELECT id FROM ". $table . " WHERE nome='$nome'";
+            $query = "DELETE FROM ". $table . "_ingrediente WHERE ".$table."=".$id;
+            $result = mysqli_query($this->connection, $query);
         }
-
+        $query = "SELECT id FROM ". $table . " WHERE nome='$nome'";
         $result = mysqli_query($this->connection, $query);
-
-        if (!$result) {
-            die("Errore nella query per trovare l'ID del prodotto: " . mysqli_error($this->connection));
-        }
-
-        if (mysqli_num_rows($result) === 0) {
-            die("Errore: Nessun prodotto trovato con il nome '$nome'.");
-        }
-
         $row = mysqli_fetch_assoc($result);
         $prodottoId = $row['id'];
 
@@ -803,7 +788,6 @@ class DBConnection {
     public function queryDeleteIngrediente(): string{
         $query = "SELECT pizza AS id, 'pizza' AS tipo FROM pizza_ingrediente WHERE ingrediente = '".$_POST['nome']."' UNION SELECT cucina AS id, 'cucina' AS tipo FROM cucina_ingrediente WHERE ingrediente = '".$_POST['nome']."'";
         $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-        echo $query;
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $queryDelete = "DELETE FROM ".$row['tipo']." WHERE id=".$row['id'];

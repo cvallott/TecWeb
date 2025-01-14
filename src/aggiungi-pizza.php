@@ -33,7 +33,6 @@ if($conn){
                 $template = str_replace('[valueDescr]', $valueInfo[2], $template);
             }
         }
-        echo '"../../aggiungi-pizza.php?id='.$id.'"';
         $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php?id='.$id.'"', $template);
         $connessione->closeConnection();
     } else {
@@ -100,33 +99,31 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+        $conn = $connessione->openDBConnection();
         if($conn){
             $veget = $connessione->isVeget($ingredientiPizza);
             if(empty($_GET['id'])) {
-                echo "$nomePizza";
                 $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path);
                 $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza');
             }else {
-                echo "$nomePizza";
                 $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path, $_GET['id']);
                 $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza', $_GET['id']);
             }
             $connessione->closeConnection();
             if(empty($_GET['id'])) {
                 if($okPizza && $okIngredienti){
-                    $_SESSION['messaggio'] = "Prodotto inserito con successo";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: aggiungi-prodotto.php");
             }else{
                 if($okPizza && $okIngredienti){
-                    $_SESSION['messaggio'] = "Prodotto modificato con successo";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                echo $_SESSION['messaggio'];
                 header("Location: prodotti.php");
             }
         }
