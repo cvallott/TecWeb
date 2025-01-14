@@ -17,8 +17,15 @@ if ($conn) {
 }
 $connessione->closeConnection();
 
+$messaggioOrdine = "";
+if (isset($_SESSION['messaggio_ordine'])) {
+    $messaggioOrdine = $_SESSION['messaggio_ordine'];
+    unset($_SESSION['messaggio_ordine']);
+}
+
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[ordiniUtente]', $ordini, $template);
 $template = str_replace('[footer]', $footer, $template);
+$template = str_replace('[messaggioOrdine]', $messaggioOrdine, $template);
 
 echo $template;
