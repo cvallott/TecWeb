@@ -228,6 +228,7 @@ HOME PAGE
     padding: 3em;
     text-align: center;
     color: var(--txtcolor);
+    position: relative;
 }
 
 .home-section h2 {
@@ -405,16 +406,26 @@ HOME PAGE
     width: 3em;
 }
 
+
+/*NB PER IL FUTURO ->RICORDATI POSTION RELATIVE NEL CONTENITORE*/
+
 .torna-su {
     position: absolute;
+    bottom: 1em;
     right: 1em;
     padding: 0.5em;
     border-radius: 0.3em;
+    background-color: var(--bgcolor);
+    transition: background-color 0.3s ease;
+    z-index: 1;
 }
 
 .torna-su:hover {
     background-color: var(--buttoncolor);
 }
+
+
+
 
 /*
 ------------------
@@ -439,6 +450,50 @@ CHI SIAMO PAGE
     align-items: center;
 }
 
+
+
+.title-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1.5em 2em;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+
+#chi-siamo-intro h1 {
+    margin: 0;
+    color: white;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1875em;
+    position: relative;
+    z-index: 2;
+}
+
+/* Linee decorative */
+.title-container::before,
+.title-container::after {
+    content: '';
+    position: absolute;
+    background-color: var(--buttoncolor);
+    height: 0.125em;
+}
+
+.title-container::before {
+    left: 0;
+    right: 0;
+    top: 0.625em;
+    margin: 0 1.25em;
+}
+
+.title-container::after {
+    left: 0;
+    right: 0;
+    bottom: 0.625em;
+    margin: 0 1.25em;
+}
 
 #chi-siamo-contenitore{
     display: flex;
@@ -489,6 +544,7 @@ CHI SIAMO PAGE
     padding-bottom:2.5em;
     margin-top:1.5em;
     margin-bottom: 1.5em;
+    position: relative;
 }
 
 .chi-siamo-boxes img {
