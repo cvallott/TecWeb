@@ -644,9 +644,9 @@ AREA-RISERVATA PAGE
 .container {
     width: 100%;
     min-height: 100vh;
-    padding: 0.625em;
+    /*padding: 0.625em;*/
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -658,7 +658,7 @@ AREA-RISERVATA PAGE
     border-radius: 0.625em;
 }
 
-#chi-siamoPage h2 {
+#AreaRiservataPage h2 {
     text-align: center;
     margin-bottom: 1.875em;
     color: var(--text-dark);
@@ -761,6 +761,21 @@ AREA-RISERVATA PAGE
     font-size: 0.875em;
     font-weight: 500;
 }
+
+
+.area-riservata-title h1 {
+        text-align: center;
+        color: white;
+        font-size: 2.5em;
+        margin-bottom: 1.5em;
+        background-color: var(--bgcolor2);
+        padding: 0.5em;
+        font-weight: bold;
+        margin-top:2em;
+}
+
+
+
 
 
 /*
