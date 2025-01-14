@@ -137,6 +137,7 @@ AIUTI ALLA NAVIGAZIONE
 .navigationHelp{
     position: absolute;
     text-indent: -999em;
+
 }
 
 .navigationHelp:focus{
