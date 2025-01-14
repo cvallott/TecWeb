@@ -250,12 +250,25 @@ class DBConnection {
         return $stringaReturn;
     }
 
-    public function queryIngredienti($filtro = null): string {
-
+    public function queryIngredienti($id = null): string {
+        if($id != null){
+            $query = "SELECT * FROM ingrediente WHERE nome = '".$id."'";
+        }else{
             $query = "SELECT * FROM ingrediente";
-
-
+        }
         return $query;
+    }
+
+    public function infoIngredienti($query){
+        $ingredienti = array();
+        $resultSelect = mysqli_query($this->connection, $query);
+        if(mysqli_num_rows($resultSelect) > 0) {
+            while($row = $resultSelect->fetch_array(MYSQLI_ASSOC)){
+                $ingredienti[0] = $row['nome'];
+                $ingredienti[1] = $row['veget'];
+            }
+        }
+        return $ingredienti;
     }
 
     public function getIngredienti($query, $id = null, $cucina = 0): string {
@@ -393,8 +406,7 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
                 $stringaReturn .= "<td></td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php\">Modifica</a></td>";
-                $_SESSION['modificaIngr'] = $row['nome'];
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-ingrediente.php?nome=".$row['nome']."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
@@ -678,18 +690,14 @@ class DBConnection {
         return $veget;
     }
 
-    public function insertIngrediente($nome, $veget) {
-
-        $queryInsert = "INSERT INTO ingrediente(nome, veget) " .
-            "VALUES (\"$nome\", \"$veget\")";
-
-        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-        if(mysqli_affected_rows($this->connection) > 0){
-            return true;
+    public function insertIngrediente($nome, $veget, $nomeOld = null) {
+        if($nomeOld != null){
+            $query = "UPDATE ingrediente SET nome = '".$nome."', veget = ". $veget." WHERE nome = '".$nomeOld."'";
+        } else {
+            $query = "INSERT INTO ingrediente(nome, veget) " . "VALUES (\"$nome\", \"$veget\")";
         }
-        else {
-            return false;
-        }
+        $queryResult = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        return true;
     }
 
     public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path, $id = null): bool {
