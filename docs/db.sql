@@ -493,8 +493,8 @@ ALTER TABLE `prodotti_ordine`
 -- Limiti per la tabella `cucina_ingrediente`
 --
 ALTER TABLE `cucina_ingrediente`
-  ADD CONSTRAINT `fk_cucina_ingrediente` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_cucina_ingrediente_cucina` FOREIGN KEY (`cucina`) REFERENCES `cucina` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_cucina_ingrediente` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_cucina_ingrediente_cucina` FOREIGN KEY (`cucina`) REFERENCES `cucina` (`id`);
 
 --
 -- Limiti per la tabella `ordine`
@@ -513,7 +513,7 @@ ALTER TABLE `pizza`
 -- Limiti per la tabella `pizza_ingrediente`
 --
 ALTER TABLE `pizza_ingrediente`
-  ADD CONSTRAINT `fk_pizza_ingredenti` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`),
+  ADD CONSTRAINT `fk_pizza_ingredenti` FOREIGN KEY (`ingrediente`) REFERENCES `ingrediente` (`nome`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pizza_ingredenti_pizza` FOREIGN KEY (`pizza`) REFERENCES `pizza` (`id`);
 
 --
