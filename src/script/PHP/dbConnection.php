@@ -430,7 +430,7 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-cucina.php\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-cucina.php?id=".$row['id']."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
@@ -453,7 +453,6 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                //$_SESSION['modificaPizza'] = $row['id'];
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"../../aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"../../prodotti.php\" method=\"post\">";
@@ -477,6 +476,19 @@ class DBConnection {
             $return[0] = $row['nome'];
             $return[1] = $row['prezzo'];
             $return[2] = $row['descrizione'];
+            return $return;
+        }
+        return '';
+    }
+
+    public function getInfoCucina($id){
+        $return = array();
+        $query = "SELECT nome, prezzo FROM cucina WHERE id=".$id;
+        $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $return[0] = $row['nome'];
+            $return[1] = $row['prezzo'];
             return $return;
         }
         return '';
@@ -701,12 +713,12 @@ class DBConnection {
     }
 
     public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path, $id = null): bool {
-    if($id != null){
-        $query = "UPDATE pizza SET nome = '".$nome."', prezzo = ".$prezzo.", veget = ". $veget.", categoria = '".$categoria."', descrizione = '".$descrizione."', path = '".$path."' WHERE id = ".$id;
-    } else {
-        $query = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) " .
-            "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$categoria\", \"$descrizione\", \"$path\")";
-    }
+        if($id != null){
+            $query = "UPDATE pizza SET nome = '".$nome."', prezzo = ".$prezzo.", veget = ". $veget.", categoria = '".$categoria."', descrizione = '".$descrizione."', path = '".$path."' WHERE id = ".$id;
+        } else {
+            $query = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) " .
+                "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$categoria\", \"$descrizione\", \"$path\")";
+        }
         $queryResult = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         return true;
     }
@@ -735,18 +747,15 @@ class DBConnection {
         return true;
     }
 
-    public function insertCucina($nome, $prezzo, $veget, $path) {
-
-        $queryInsert = "INSERT INTO cucina(nome, prezzo, veget, path) " .
-            "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$path\")";
-
-        $queryResult = mysqli_query($this->connection, $queryInsert) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-        if(mysqli_affected_rows($this->connection) > 0){
-            return true;
+    public function insertCucina($nome, $prezzo, $veget, $path, $id = null) {
+        if($id != null){
+            $query = "UPDATE cucina SET nome = '".$nome."', prezzo = ".$prezzo.", veget = ". $veget.", path = '".$path."' WHERE id = ".$id;
+        } else {
+            $query = "INSERT INTO cucina(nome, prezzo, veget, path) " .
+                "VALUES (\"$nome\", \"$prezzo\", \"$veget\", \"$path\")";
         }
-        else {
-            return false;
-        }
+        $queryResult = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        return true;
     }
 
     public function updateUtente($ruolo) {
