@@ -89,7 +89,7 @@ class DBConnection {
 
                         $stringaReturn .= "<div class='order-actions'>";
 
-                        if($_SESSION['tipo']!=1) {
+                        if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                             if (isset($_SESSION['carrello'][$riga['id']])) {
                                 $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
                         <div class="quantity-controls">
@@ -173,7 +173,7 @@ class DBConnection {
 
                 $stringaReturn .= "<div class='order-actions'>";
 
-                if($_SESSION['tipo']!=1) {
+                if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                     if (isset($_SESSION['carrello']["c" . $riga['id']])) {
                         $stringaReturn .= '<form method="POST" action="?scroll=c-' . $riga['id'] . '" class="inlineComponents">
                         <div class="quantity-controls">
