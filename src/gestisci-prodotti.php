@@ -2,7 +2,7 @@
 
 include_once 'template/components/loadComponents.php';
 //require 'script/PHP/checkAdminLogin.php';
-$template = file_get_contents('template/pageTemplate/aggiungi-prodottoTemplate.html');
+$template = file_get_contents('template/pageTemplate/gestisci-prodottiTemplate.html');
 
 $header = printHeader();
 $footer = printFooter();

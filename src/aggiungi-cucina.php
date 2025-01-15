@@ -10,6 +10,14 @@ $template = file_get_contents('template/pageTemplate/aggiungi-cucinaTemplate.htm
 $header = printHeader();
 $footer = printFooter();
 
+if(isset($_GET['id'])){
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Piatto</p>";
+    $titolo = "MODIFICA PIATTO";
+}else{
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / Aggiungi Piatto</p>";
+    $titolo = "AGGIUNGI PIATTO";
+}
+
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $messaggiPerForm = "";
@@ -100,7 +108,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: aggiungi-prodotto.php");
+                header("Location: gestisci-prodotti.php");
             } else {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
@@ -119,6 +127,8 @@ if (empty($_GET['id'])){
     $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
 }
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[titolo]', $titolo, $template);
+$template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);

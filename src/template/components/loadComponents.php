@@ -47,7 +47,7 @@ function printHeader()
             $areaRis .= "<li><button id='droplink'>".$_SESSION['nome']. " " .$_SESSION['cognome']." </button><i class='fa fa-caret-down'></i></li>";
             $areaRis .= "<div id='dropdown-content'>";
             $areaRis .= "<li><a href='visualizza-ordini.php'>Ordini</span></a></li>";
-            $areaRis .= "<li><a href='aggiungi-prodotto.php'>Gestione menù</span></a></li>";
+            $areaRis .= "<li><a href='gestisci-prodotti.php'>Gestione menù</span></a></li>";
             $areaRis .= "<li><a href='gestisci-utenti.php'>Utenti</span></a></li>";
             $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";
             $areaRis .= "</div></div>";

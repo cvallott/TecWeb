@@ -14,6 +14,14 @@ $messaggiPerForm = "";
 $nomeIngr = '';
 $isVeget = '';
 
+if(isset($_GET['id'])){
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Ingrediente</p>";
+    $titolo = "MODIFICA INGREDIENTE";
+}else{
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / Aggiungi Ingrediente</p>";
+    $titolo = "AGGIUNGI INGREDIENTE";
+}
+
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 if($conn) {
@@ -80,7 +88,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: aggiungi-prodotto.php");
+                header("Location: gestisci-prodotti.php");
             }else{
                 if($okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
@@ -101,6 +109,8 @@ if (empty($_GET['id'])){
 }
 
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[titolo]', $titolo, $template);
+$template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
 
