@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
     if(!isset($_SESSION['tipo'])){
         unset($_SESSION['carrello']);
         header('Location: ../area-riservata.php');
-    }else if(isset($_GET['scroll']) AND empty($header)){
+    }else if(isset($_GET['scroll'])){
         header('Location:' . basename($_SERVER['PHP_SELF']) . '?' . $_GET['scroll']);
     }else{
         header('Location:' . basename($_SERVER['PHP_SELF']));

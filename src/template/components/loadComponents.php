@@ -22,9 +22,19 @@ function printHeader()
         $chisiamo = "<li><a href='chi-siamo.php'>Chi siamo</a></li>";
     }
     if($currentpage == 'menu-prenota.php') {
-        $menu = "<li id='currentLink'>Menù-Prenota</a></li>";
+        if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
+            $menu = "<li id='currentLink'>Menù</a></li>";
+        }else{
+            $menu = "<li id='currentLink'>Menù-Prenota</a></li>";
+        }
+
     }else{
-        $menu = "<li><a href='menu-prenota.php'>Menù-Prenota</a></li>";
+        if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
+            $menu = "<li><a href='menu-prenota.php'>Menù</a></li>";
+        }else{
+            $menu = "<li><a href='menu-prenota.php'>Menù-Prenota</a></li>";
+        }
+
     }
     if($currentpage == 'carrello.php') {
         $carrello = "<li id='currentLink'><i class='fa fa-shopping-cart'></i></a></li>";
