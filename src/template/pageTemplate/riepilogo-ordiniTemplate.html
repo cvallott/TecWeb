@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="it">
 <head>
     <meta charset="utf-8">
     <title>Riepilogo Ordini - Non solo Pizza</title>
@@ -12,14 +13,14 @@
 <body>
 [header]
 <nav id="breadcrumb">
-    <p>Sei in: <span lang="en">Home</span></p>
+    <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Riepilogo Ordini</p>
 </nav>
-<main id="RO">
-    <section class="general-intro">
+<main>
+    <section class="general-intro" id="RO-intro">
         <h1>RIEPILOGO ORDINI</h1>
         [messaggioOrdine]
     </section>
-    <section class="tabella-ordini">
+    <section class="tabella-ordini" id="RO-tabella">
         <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
         <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
         <span id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</span>
@@ -42,3 +43,4 @@
 </main>
 [footer]
 </body>
+</html>
