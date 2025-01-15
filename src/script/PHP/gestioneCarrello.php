@@ -2,10 +2,6 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
 
-    if(!isset($_SESSION['nome'])||!isset($_SESSION['cognome'])||!isset($_SESSION['tipo'])){
-        header("location: area-riservata.php");
-    }
-
     $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'] ?? null;
     $prezzo = $_POST['prezzo'] ?? null;
@@ -24,7 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
     } elseif ($_POST['azione'] === 'rimuovi' && $id) {
         rimuoviDalCarrello($id);
     }
-    if(isset($_GET['scroll'])){
+
+    if(!isset($_SESSION['tipo'])){
+        unset($_SESSION['carrello']);
+        header('Location: ../area-riservata.php');
+    }else if(isset($_GET['scroll']) AND empty($header)){
         header('Location:' . basename($_SERVER['PHP_SELF']) . '?' . $_GET['scroll']);
     }else{
         header('Location:' . basename($_SERVER['PHP_SELF']));

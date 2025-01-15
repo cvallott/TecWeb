@@ -62,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 if (isset($_GET['scroll'])) {
-    echo "entrato";
     $script = "<script>
             document.addEventListener('DOMContentLoaded', function() {
             var element = document.getElementById('" . htmlspecialchars($_GET['scroll']) . "');
