@@ -605,6 +605,12 @@ RIEPILOGO-ORDINI PAGE
 .tabella-ordini tfoot{
     color: var(--txtcolor);
 }
+
+#descrTabella{
+    position: absolute;
+    text-indent: -999em;
+}
+
 /*
 ------------------
 AREA-RISERVATA PAGE
