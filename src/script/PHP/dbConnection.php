@@ -68,7 +68,11 @@ class DBConnection {
                         $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
                         $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
                         $stringaReturn .= "<div class='pizza-testo'>";
-                        $stringaReturn .= "<h3>" . $riga['nome'] . "</h3>";
+                        $stringaReturn .= "<h3>" . $riga['nome'];
+                        if($riga['veget'] == "1"){
+                            $stringaReturn .= " <i class='fa fa-leaf'></i>";
+                        }
+                        $stringaReturn .= "</h3>";
                         $queryIngredienti = "SELECT pizza_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM pizza_ingrediente JOIN ingrediente ON pizza_ingrediente.ingrediente=ingrediente.nome WHERE pizza='".$riga['id']."' ORDER BY peso";
                         $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
                         $stringaIngredienti = "";
@@ -145,7 +149,11 @@ class DBConnection {
                 $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
                 $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
                 $stringaReturn .= "<div class='pizza-testo'>";
-                $stringaReturn .= "<h3>" . $riga['nome'] . "</h3>";
+                $stringaReturn .= "<h3>" . $riga['nome'];
+                if($riga['veget'] == "1"){
+                    $stringaReturn .= " <i class='fa fa-leaf'></i>";
+                }
+                $stringaReturn .= "</h3>";
                 $queryIngredienti = "SELECT cucina_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM cucina_ingrediente JOIN ingrediente ON cucina_ingrediente.ingrediente=ingrediente.nome WHERE cucina='".$riga['id']."' ORDER BY peso";
                 $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
                 $stringaIngredienti = "";
