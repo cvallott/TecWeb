@@ -60,7 +60,9 @@ if(isset($_POST['ora'])){
             if($connessioneOK){
                 if($connessione->itemToOrdine($succ)){
                     unset($_SESSION['carrello']);
-                    header("location: index.php");
+                    $oraScelta = $_POST['ora'];
+                    $_SESSION['messaggio_ordine'] = "<p class='messaggio'>Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
+                    header("location: riepilogo-ordini.php");
                 }
             }
         }
