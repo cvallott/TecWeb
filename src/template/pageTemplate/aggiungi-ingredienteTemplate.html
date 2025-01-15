@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../../style/style.css" media="screen">
     <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="../../script/JS/checkFormJS.js"></script>
 </head>
-<body id="aggiungi-prodottoPage">
+<body id="aggiungi-prodottoPage" onload="caricamento();">
 <nav id="breadcrumb">
     <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Aggiungi Ingrediente</p>
 </nav>
@@ -23,24 +23,21 @@
         <h1>INSERISCI UN NUOVO INGREDIENTE</h1>
     </section>
     <section class="aggiunta-content">
-        <form method="post" action="../../aggiungi-ingrediente.php" class="form-aggiunta">
+        <form method="post" action=[percorsoFile] class="form-aggiunta" onsubmit="return validazioneForm();">
             <div>
                 <label for="nome">Inserisci il nome: </label>
-                <input type="text" name="nome" id="nome">
+                <input type="text" name="nome" id="nome" [valueNome] required>
             </div>
             <p>L'ingrediente contiene carne o pesce? </p>
             <div class="check">
-                <input type="radio" id="veget_si" name="veget" value="1" >
+                <input type="radio" id="veget_si" name="veget" value="1" [valueSi]>
                 <label for="veget_si">Si</label>
             </div>
             <div class="check">
-                <input type="radio" id="veget_no" name="veget" value="0" checked>
+                <input type="radio" id="veget_no" name="veget" value="0" [valueNo]>
                 <label for="veget_no">No</label>
             </div>
-            <div>
-                <label for="pagg">Inserisci il prezzo: </label>
-                <input type="number" min="0.5" max="2.5" name="pagg" id="pagg">
-            </div>
+            [messaggiForm]
             <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci ingrediente" >
             <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
         </form>

@@ -28,8 +28,25 @@
       <p id="infoOrdini">utilizza il nostro menù digitale o chiamaci al numero +39 0422 345324</p>
     </div>
   </section>
+  <section class="filtri">
+    <form method="post" action="../../menu-prenota.php">
+      <input type="hidden" name="action" value="filter" />
 
+      <label for="tipo">Tipo:</label>
+      <select name="tipo" id="tipo" class="select">
+        <option value="">Tutti</option>
+        <option value="0">Pizze</option>
+        <option value="1">Cucina</option>
+      </select>
+
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome">
+
+      <button type="submit" class="invia-button">Filtra</button>
+    </form>
+  </section>
   [menu]
+  [cucina]
   <!--
   <section class="pizze-classiche" id="le_classiche">
     <h2>Le Nostre Pizze Classiche</h2>

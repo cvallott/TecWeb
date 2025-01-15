@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../../style/style.css" media="screen">
     <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="../../script/JS/checkFormJS.js"></script>
 </head>
-<body id="aggiungi-prodottoPage">
+<body id="aggiungi-prodottoPage" onload="caricamento();" data-form="cucina">
 <nav id="breadcrumb">
     <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Aggiungi Piatto</p>
 </nav>
@@ -23,14 +23,14 @@
         <h1>INSERISCI UN NUOVO PIATTO DI CUCINA</h1>
     </section>
     <section class="aggiunta-content">
-        <form method="post" action="../../aggiungi-cucina.php" class="form-aggiunta">
+        <form method="post" action=[percorsoFile] class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
             <div>
                 <label for="nome">Inserisci il nome: </label>
-                <input type="text" name="nome" id="nome">
+                <input type="text" name="nome" id="nome" [valueNome] required>
             </div>
             <div>
                 <label for="prezzo">Inserisci il prezzo: </label>
-                <input type="number" min="0" name="prezzo" id="prezzo">
+                <input type="number" min="0" name="prezzo" id="prezzo" [valuePrezzo] required>
             </div>
             <p>Inserisci gli ingredienti: </p>
             [listaIngredienti]
@@ -38,6 +38,7 @@
                 <label for="file">Carica un'immagine:</label>
                 <input type="file" name="file" id="file" accept="image/*">
             </div>
+            [messaggiForm]
             <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci piatto" >
             <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
         </form>

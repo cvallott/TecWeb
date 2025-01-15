@@ -13,17 +13,52 @@ $connessione = new DBConnection();
 
 $conn = $connessione->openDBConnection();
 $menuCategorie = "";
+$pizze= '';
+$cucina = '';
 if($conn){
     $menuCategorie = $connessione->getMenuCategorie();
+    $menuCategorie .= "<a href='#".str_replace(' ','', "cucina")."'>"."La nostra Cucina"."</a>";
     $connessione->closeConnection();
 }
 
+if(empty($_POST['action'])){
+    $conn = $connessione->openDBConnection();
+    if($conn){
+        $pizze = $connessione->getMenuPizze();
+        $cucina = $connessione->getMenuCucina();
+        $connessione->closeConnection();
+    }
+    $conn = $connessione->openDBConnection();
+}
 
-$conn = $connessione->openDBConnection();
-$pizzeClassiche = "";
-if($conn){
-    $pizzeClassiche = $connessione->getMenuPizze();
-    $connessione->closeConnection();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'filter') {
+    $conn = $connessione->openDBConnection();
+    if ($conn) {
+        if ($_POST['tipo'] == ''){
+            if(!empty($_POST['nome'])){
+                $pizze = $connessione->getMenuPizze($_POST['nome']);
+                $cucina = $connessione->getMenuCucina($_POST['nome']);
+            } else{
+                $pizze = $connessione->getMenuPizze();
+                $cucina = $connessione->getMenuCucina();
+            }
+        } else if ($_POST['tipo'] == 0){
+            if(!empty($_POST['nome'])){
+                $pizze = $connessione->getMenuPizze($_POST['nome']);
+            } else {
+                $pizze = $connessione->getMenuPizze();
+            }
+            $cucina = '';
+        } else {
+            if(!empty($_POST['nome'])){
+                $cucina = $connessione->getMenuCucina($_POST['nome']);
+            } else {
+                $cucina = $connessione->getMenuCucina();
+            }
+            $pizze = '';
+        }
+    }
 }
 
 if (isset($_GET['scroll'])) {
@@ -43,7 +78,8 @@ if (isset($_GET['scroll'])) {
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[linkMenu]', $menuCategorie, $template);
-$template = str_replace('[menu]', $pizzeClassiche, $template);
+$template = str_replace('[menu]', $pizze, $template);
+$template = str_replace('[cucina]', $cucina, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;

@@ -2,8 +2,9 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-
 include_once 'template/components/loadComponents.php';
+include_once 'script/PHP/checkForm.php';
+//require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-cucinaTemplate.html');
 
 $header = printHeader();
@@ -11,51 +12,115 @@ $footer = printFooter();
 
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
+$messaggiPerForm = "";
+$nomePiatto = "";
+$prezzoPiatto = "";
+$ingredientiPiatto[] = "";
 $listaIngredienti = "";
+$valueInfo = array();
 if($conn){
-    $listaIngredienti = $connessione->getIngredienti();
-    $connessione->closeConnection();
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti(), $id);
+        $valueInfo = $connessione->getInfoCucina($id);
+        if(!empty($valueInfo)){
+            $template = str_replace('[valueNome]', 'value = "'.$valueInfo[0].'"', $template);
+            $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
+        }
+        $template = str_replace('[percorsoFile]', '"../../aggiungi-cucina.php?id='.$id.'"', $template);
+        $connessione->closeConnection();
+    } else {
+        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
+        $connessione->closeConnection();
+    }
 }
 
-/*MANCANO I CONTROLLI PHP E JS*/
 if (isset($_POST['submit'])) {
-    $nome = $_POST['nome'];
-    $prezzo = $_POST['prezzo'];
     if (!empty($_POST['ingredienti'])) {
-        // Popola un array con le scelte selezionate
         $ingr = $_POST['ingredienti'];
-    } /*else {
-        echo "Non hai selezionato nessuna opzione";
-    }*/
-    /*$image = $_FILES['file'];*/
+    } else {
+        $ingr = '';
+    }
     if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
         $path = '../../../assets/icons/piatto_icon.png';
     }else{
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-    $conn = $connessione->openDBConnection();
-    if($conn){
-        $veget = $connessione->isVeget($ingr);
-        if($path != '../../../assets/icons/piatto_icon.png'){
-            $connessione->uploadImage();
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $nomePiatto = pulisciInput($_POST['nome']);
+    $prezzoPiatto = pulisciInput($_POST['prezzo']);
+    $ingredientiPiatto = pulisciInput($ingr);
+
+    if (strlen($nomePiatto) == 0) {
+        $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
+    } else {
+        if (strlen($nomePiatto) < 2) {
+            $messaggiPerForm .= "<li>Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
-        $okCucina = $connessione->insertCucina($nome, $prezzo, $veget, $path);
-        $okIngredienti = $connessione->insertProdottoIngrediente($nome, $ingr, 'cucina');
-        $connessione->closeConnection();
-        if($okCucina && $okIngredienti){
-            $message = "Prodotto inserito con successo";
-            header("Location: aggiungi-prodotto.php?message=$message"); /*NON VA*/
-            exit;
+        if (preg_match("/\d/", $nomePiatto)) {
+            $messaggiPerForm .= "<li>Il nome del piatto non può contenere numeri</li>";
+        }
+        if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePiatto)) {
+            $messaggiPerForm .= "<li>Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+        }
+    }
+    if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {
+        $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+    }
+    if ($ingredientiPiatto == '') {
+        $messaggiPerForm .= "<li>Il piatto deve avere almeno un ingrediente</li>";
+    }
+    if($path != '../../../assets/icons/piatto_icon.png'){
+        $imageUploadResult = checkImage();
+        if ($imageUploadResult["success"]) {
+            $path = $imageUploadResult["path"];
         } else {
-            /* BUUUU ERRORE */
+            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+        }
+    }
+    $messaggiPerForm .= "</ul></fieldset>";
+
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
+        $conn = $connessione->openDBConnection();
+        if($conn){
+            $veget = $connessione->isVeget($ingredientiPiatto);
+            if(empty($_GET['id'])) {
+                $okCucina = $connessione->insertCucina($nomePiatto, $prezzoPiatto, $veget, $path);
+                $okIngredienti = $connessione->insertProdottoIngrediente($nomePiatto, $ingredientiPiatto, 'cucina');
+            } else {
+                $okCucina = $connessione->insertCucina($nomePiatto, $prezzoPiatto, $veget, $path, $_GET['id']);
+                $okIngredienti = $connessione->insertProdottoIngrediente($nomePiatto, $ingredientiPiatto, 'cucina', $_GET['id']);
+            }
+            $connessione->closeConnection();
+            if(empty($_GET['id'])) {
+                if($okCucina && $okIngredienti){
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
+                } else {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                }
+                header("Location: aggiungi-prodotto.php");
+            } else {
+                if($okCucina && $okIngredienti){
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
+                } else {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                }
+                header("Location: prodotti.php");
+            }
         }
     }
 }
 
+if (empty($_GET['id'])){
+    $template = str_replace('[valueNome]', '', $template);
+    $template = str_replace('[valuePrezzo]', '', $template);
+    $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
+}
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
+$template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
 
 echo $template;
