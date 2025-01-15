@@ -19,10 +19,27 @@ $ingredientiPizza[] = "";
 $descrizionePizza = "";
 $listaIngredienti = "";
 $categorie = "";
+$valueInfo = array();
 if($conn){
-    $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
-    $categorie = $connessione->getCategorie();
-    $connessione->closeConnection();
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti(), $id);
+        $categorie = $connessione->getCategorie($id);
+        $valueInfo = $connessione->getInfoPizza($id);
+        if(!empty($valueInfo)){
+            $template = str_replace('[valueNome]', 'value = "'.$valueInfo[0].'"', $template);
+            $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
+            if(!empty($valueInfo[2])){
+                $template = str_replace('[valueDescr]', $valueInfo[2], $template);
+            }
+        }
+        $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php?id='.$id.'"', $template);
+        $connessione->closeConnection();
+    } else {
+        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
+        $categorie = $connessione->getCategorie();
+        $connessione->closeConnection();
+    }
 }
 
 if (isset($_POST['submit'])) {
@@ -41,11 +58,6 @@ if (isset($_POST['submit'])) {
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomePizza = pulisciInput($_POST['nome']);
     $prezzoPizza = pulisciInput($_POST['prezzo']);
-    if (!empty($ingr)) {
-        $ingredientiPizza = pulisciInput($ingr);
-    } else {
-        $ingredientiPizza = '';
-    }
     $categoriaPizza = pulisciInput($_POST['cat']);
     $descrizionePizza = pulisciDescrizione($_POST['descr']);
 
@@ -58,14 +70,17 @@ if (isset($_POST['submit'])) {
         if (preg_match("/\d/", $nomePizza)) {
             $messaggiPerForm .= "<li>Il nome della pizza non può contenere numeri</li>";
         }
-        if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $nomePizza)) {
+        if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePizza)) {
             $messaggiPerForm .= "<li>Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
-    if (strlen($nomePizza) == 0) {
+    if (strlen($prezzoPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il prezzo della pizza</li>";
         if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
             $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+        }
+        if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $prezzoPizza)) {
+            $messaggiPerForm .= "<li>Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
         }
     }
     if ($ingredientiPizza == '') {
@@ -84,26 +99,43 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+        $conn = $connessione->openDBConnection();
         if($conn){
             $veget = $connessione->isVeget($ingredientiPizza);
-            $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path);
-            $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza');
-            $connessione->closeConnection();
-            if($okPizza && $okIngredienti){
-                $_SESSION['messaggio'] = "Prodotto inserito con successo";
-            } else {
-                $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+            if(empty($_GET['id'])) {
+                $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path);
+                $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza');
+            }else {
+                $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path, $_GET['id']);
+                $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza', $_GET['id']);
             }
-            header("Location: aggiungi-prodotto.php");
+            $connessione->closeConnection();
+            if(empty($_GET['id'])) {
+                if($okPizza && $okIngredienti){
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
+                } else {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                }
+                header("Location: aggiungi-prodotto.php");
+            }else{
+                if($okPizza && $okIngredienti){
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
+                } else {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                }
+                header("Location: prodotti.php");
+            }
         }
     }
 }
 
-if(isset($_SESSION['modificaAttiva'])){
-    // unset($_SESSION['modificaAttiva']);
+if (empty($_GET['id'])){
+    $template = str_replace('[valueNome]', '', $template);
+    $template = str_replace('[valuePrezzo]', '', $template);
+    $template = str_replace('[valueDescr]', '', $template);
+    $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
 }
-
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[categorie]', $categorie, $template);

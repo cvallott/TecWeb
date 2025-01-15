@@ -16,7 +16,7 @@ if($message = isset($_GET['message']) ? urldecode($_GET['message']) : ""){
 }*/
 
 if (isset($_SESSION['messaggio'])) {
-    $messaggio = "<p class=\"messaggio\">{$_SESSION['messaggio']}</p>";
+    $messaggio = $_SESSION['messaggio'];
     unset($_SESSION['messaggio']);
 }
 

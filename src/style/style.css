@@ -1019,6 +1019,14 @@ MENU-PRENOTA-PAGE
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
 }
+
+#prodotto-non-trovato{
+    padding-bottom: 3em;
+}
+
+#prodotto-non-trovato:last-child{
+    padding-bottom: 7em;
+}
 /*
 ------------------
 CARRELLO
@@ -1230,7 +1238,7 @@ CARRELLO
     padding: 0.65em; /* Spazio interno */
     font-size: 1em; /* Dimensione del testo */
     color: #555; /* Colore del testo */
-    border: 0.1vh solid #ccc; /* Bordo grigio chiaro */
+    border: 0.1em solid #ccc; /* Bordo grigio chiaro */
     border-radius: 0.3em; /* Angoli arrotondati */
     box-sizing: border-box; /* Considera padding e border nella larghezza */
     transition: border-color 0.3s ease; /* utile per animazione */
@@ -1678,6 +1686,10 @@ CSS PER I FORM DI AGGIUNTA
 .form-aggiunta input[type="checkbox"] {
     transform: scale(1.5);
     margin-right: 0.7em;
+}
+
+.form-aggiunta textarea {
+    border: 2px solid var(--txtcolor);
 }
 
 /*

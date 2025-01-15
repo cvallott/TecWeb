@@ -88,11 +88,16 @@ if($conn){
     $connessione->closeConnection();
 }
 
+if(isset($_SESSION['messaggio'])){
+    $template = str_replace('[operazione-successo]', $_SESSION['messaggio'], $template);
+    unset($_SESSION['messaggio']);
+}
 if(isset($message)){
     $template = str_replace('[operazione-successo]', $message, $template);
 }else{
     $template = str_replace('[operazione-successo]', '', $template);
 }
+
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visProdotti]', $listaProdotti, $template);

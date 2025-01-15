@@ -2,6 +2,7 @@
 
 include_once 'template/components/loadComponents.php';
 include_once 'script/PHP/dbConnection.php';
+include_once 'script/PHP/checkForm.php';
 //require 'script/PHP/checkAdminLogin.php';
 use DB\DBConnection;
 
@@ -12,6 +13,27 @@ $footer = printFooter();
 $messaggiPerForm = "";
 $nomeIngr = '';
 $isVeget = '';
+
+$connessione = new DBConnection();
+$conn = $connessione->openDBConnection();
+if($conn) {
+    if (isset($_GET['nome'])) {
+        $nome = $_GET['nome'];
+        $ingrInfo = $connessione->infoIngredienti($connessione->queryIngredienti($nome));
+        if(!empty($ingrInfo)) {
+            $template = str_replace('[valueNome]', 'value = "'.$ingrInfo[0].'"', $template);
+            if($ingrInfo[1] == 0){
+                $template = str_replace('[valueSi]', '', $template);
+                $template = str_replace('[valueNo]', 'checked', $template);
+            } else {
+                $template = str_replace('[valueNo]', '', $template);
+                $template = str_replace('[valueSi]', 'checked', $template);
+            }
+        }
+        $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php?nome='.$nome.'"', $template);
+        $connessione->closeConnection();
+    }
+}
 
 if (isset($_POST['submit'])) {
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
@@ -33,7 +55,7 @@ if (isset($_POST['submit'])) {
         if (preg_match("/\d/", $nomeIngr)) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente non può contenere numeri</li>";
         }
-        if (!preg_match("/^[A-Z][a-z\u00C0-\u024F]*(?: [a-z\u00C0-\u024F]+)*$/", $nomeIngr)) {
+        if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomeIngr)) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
@@ -42,24 +64,40 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if (trim($messaggiPerForm) == "<fieldset><ul></ul></fieldset>") {
+    if (trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>") {
         $connessione = new DBConnection();
         $conn = $connessione->openDBConnection();
         if ($conn) {
-            $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
-            $connessione->closeConnection();
-            if ($okIngredienti) {
-                $_SESSION['messaggio'] = "Prodotto inserito con successo";
+            if(empty($_GET['nome'])) {
+                $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
             } else {
-                $_SESSION['messaggio'] = "Oops..qualcosa è andato storto..riprova!";
+                $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget, $_GET['nome']);
             }
-            header("Location: aggiungi-prodotto.php");
+            $connessione->closeConnection();
+            if(empty($_GET['nome'])) {
+                if ($okIngredienti) {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
+                } else {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                }
+                header("Location: aggiungi-prodotto.php");
+            }else{
+                if($okIngredienti){
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
+                } else {
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                }
+                header("Location: prodotti.php");
+            }
         }
     }
 }
 
-if(isset($_SESSION['modificaAttiva'])){
-    // unset($_SESSION['modificaAttiva']);
+if (empty($_GET['id'])){
+    $template = str_replace('[valueNome]', '', $template);
+    $template = str_replace('[valueSi]', '', $template);
+    $template = str_replace('[valueNo]', 'checked', $template);
+    $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php"', $template);
 }
 
 $template = str_replace('[header]', $header, $template);
