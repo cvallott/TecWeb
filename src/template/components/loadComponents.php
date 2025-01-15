@@ -56,7 +56,7 @@ function printHeader()
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);
     $headerHtml = str_replace('[menuOrdiniPlaceholder]', $menu, $headerHtml);
-    if(isset($_SESSION['tipo'])){
+    if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] != '1') {
         $headerHtml = str_replace('[carrelloPlaceholder]', $carrello, $headerHtml);
     }else{
         $headerHtml = str_replace('[carrelloPlaceholder]', "", $headerHtml);
