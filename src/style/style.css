@@ -37,7 +37,6 @@ SEZIONE HEADER
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: var(--bgcolor);
     height: 5em;
     position: fixed;
@@ -49,6 +48,10 @@ header {
 header img {
     height: 100%;
     padding: 0 0.5em;
+}
+
+#menu {
+    margin-left: auto;
 }
 
 #menu li{
@@ -137,7 +140,6 @@ AIUTI ALLA NAVIGAZIONE
 .navigationHelp{
     position: absolute;
     text-indent: -999em;
-
 }
 
 .navigationHelp:focus{
@@ -324,6 +326,7 @@ HOME PAGE
     color: var(--bgcolor);
     text-decoration: none;
     border-radius: 0.5em;
+    transition: background-color 0.3s ease;
 }
 
 .home-button:hover {
@@ -436,72 +439,60 @@ CHI SIAMO PAGE
     background-position: center center;
     color: var(--txtcolor);
     text-align: center;
-    font-size: 1.5em;
-    height: 50vh;
-    width: 100%;
-    /*margin: 0;
-    left: 0;*/
+    font-size: 1.35em;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0.5em;
 }
 
-
-
 .title-container {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(200, 0, 0, 0.7);
     padding: 1.5em 2em;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 
 #chi-siamo-intro h1 {
     margin: 0;
-    color: white;
-    font-size: 2.5em;
-    text-transform: uppercase;
-    letter-spacing: 0.1875em;
+    color: var(--bgcolor);
+    font-size: 2em;
+    letter-spacing: 0.18em;
     position: relative;
     z-index: 2;
 }
 
-/* Linee decorative */
 .title-container::before,
 .title-container::after {
     content: '';
     position: absolute;
-    background-color: var(--buttoncolor);
+    background-color: var(--bgcolor);
     height: 0.125em;
 }
 
 .title-container::before {
     left: 0;
     right: 0;
-    top: 0.625em;
+    top: 0.5em;
     margin: 0 1.25em;
 }
 
 .title-container::after {
     left: 0;
     right: 0;
-    bottom: 0.625em;
+    bottom: 0.5em;
     margin: 0 1.25em;
 }
 
 #chi-siamo-contenitore{
     display: flex;
     justify-content: flex-start;
-    background-color: var(--buttoncolor);;
-    /*flex-wrap: wrap;*/
-}
-@media screen and (max-width: 768px){
-    #chi-siamo-contenitore{
-        flex-wrap: wrap;
-    }
+    background-color: var(--bgcolor2);
+    margin: 0.6em;
 }
 
 .chi-siamo-items{
@@ -509,11 +500,6 @@ CHI SIAMO PAGE
     padding: 3em;
     width: 33.3%;
     color: var(--bgcolor);
-}
-
-.chi-siamo-items:hover{
-    background-color: var(--bgcolor);
-    color: var(--txtcolor);
 }
 
 .chi-siamo-titoli{
@@ -531,14 +517,11 @@ CHI SIAMO PAGE
 
 .chi-siamo-boxes{
     background-color: var(--bgcolor);
-    padding-left:5%;
-    padding-right:5%;
     display:flex;
     justify-content:flex-start;
     align-items:center;
     gap:10em;
-    padding-top:2.5em;
-    padding-bottom:2.5em;
+    padding: 2.5em 5%;
     margin-top:1.5em;
     margin-bottom: 1.5em;
     position: relative;
@@ -553,11 +536,10 @@ CHI SIAMO PAGE
     display:flex;
     flex-direction: column;
     justify-content:flex-start;
-    transition: transform 0.3s ease-in-out;
 }
 
-.chi-siamo-testo:hover{
-    transform: scale(1.1);
+.chi-siamo-testo p{
+    color: var(--txtcolor);
 }
 
 .chi-siamo-testo h3{
@@ -582,7 +564,7 @@ RIEPILOGO-ORDINI PAGE
 }
 
 #RO-intro h1 {
-    padding-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 .tabella-ordini {
@@ -759,18 +741,6 @@ AREA-RISERVATA PAGE
     font-weight: 500;
 }
 
-
-.area-riservata-title h1 {
-        text-align: center;
-        color: white;
-        font-size: 2.5em;
-        margin-bottom: 1.5em;
-        background-color: var(--bgcolor2);
-        padding: 0.5em;
-        font-weight: bold;
-        margin-top:2em;
-}
-
 /*
 ------------------
 DETTAGLI-ORDINE PAGE
@@ -810,31 +780,39 @@ MENU-PRENOTA-PAGE
 ---------------------
 */
 
-.MP-intro{
-    /*background-image: url('../../assets/altre/menu-prenota/menu-prenota.jpg');*/
+#menu-prenotaPage .torna-su{
+    position: relative;
+    bottom: 1em;
+    right: 1em;
+    margin-left: auto;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+#MP-intro{
     background-image: url('../../assets/altre/menu-prenota/blurred.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
-    /*color: var(--txtcolor);*/
     text-align: center;
     font-size: 1.2em;
-    height: 30em;
-    width: 100%;
-    margin: 0;
+    height: 60vh;
+    margin: 0.5em;
     display: flex;
-    /*justify-content: flex-start;
-    align-items: center;*/
 }
 
 #smallMenu {
     display: flex;
     flex-direction: column;
-    padding: 1em;
-    width: 28%;
-    overflow-wrap: break-word;
+    padding: 2em;
+    margin: 2em;
+    border-radius: 0.4em;
+    width: 30%;
     justify-content: center;
     color: var(--bgcolor);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #smallMenu #prenota{
@@ -870,7 +848,9 @@ MENU-PRENOTA-PAGE
     flex-direction: column;
     gap: 1em;
     padding: 0.5em;
-    background-color: #FAF3E0;
+    background-color: var(--bgcolor);
+    margin-top: 0.7em;
+    margin: 0.5em;
 }
 
 .menu-prodpercat h2 {
@@ -878,8 +858,8 @@ MENU-PRENOTA-PAGE
     margin-top: 1em;
     margin-left: auto;
     margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
+    color: var(--bgcolor);
+    background-color: var(--bgcolor2);
     width: fit-content;
     padding: 0.5em 5em;
 }
@@ -941,19 +921,17 @@ MENU-PRENOTA-PAGE
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 0.1vh #DC1C08 solid;
+    border-bottom: 0.8px var(--txtcolor) solid;
     margin-bottom: 1em;
     width: 65%;
 }
 
 
 .pizza img {
-    margin-top: 0.5em;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    margin-bottom: 0.2em;
+    margin: 0.5em 0.5em 0.2em;
     width: 10em;
     height: 7em;
+    object-fit: cover;
 }
 
 
@@ -1107,9 +1085,11 @@ MENU-PRENOTA-PAGE
     padding-bottom: 3em;
 }
 
-#prodotto-non-trovato:last-child{
-    padding-bottom: 7em;
+.order-actions .home-button{
+    border: none;
+    font-size: 1em;
 }
+
 /*
 ------------------
 CARRELLO
@@ -1886,18 +1866,4 @@ ERROR 500 e 404
 .pizza-emoji {
     font-size: 5em;
     margin: 0.5em 0;
-}
-
-.home-button {
-    padding: 1em 2em;
-    background-color: #d32f2f;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 2em;
-    transition: background-color 0.3s ease;
-}
-
-.home-button:hover {
-    background-color: #b71c1c;
 }

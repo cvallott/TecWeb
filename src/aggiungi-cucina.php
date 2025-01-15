@@ -29,7 +29,7 @@ $valueInfo = array();
 if($conn){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti(), $id);
+        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti(), $id, 1);
         $valueInfo = $connessione->getInfoCucina($id);
         if(!empty($valueInfo)){
             $template = str_replace('[valueNome]', 'value = "'.$valueInfo[0].'"', $template);
@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
 if (empty($_GET['id'])){
     $template = str_replace('[valueNome]', '', $template);
     $template = str_replace('[valuePrezzo]', '', $template);
-    $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
+    $template = str_replace('[percorsoFile]', '"../../aggiungi-cucina.php"', $template);
 }
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[titolo]', $titolo, $template);

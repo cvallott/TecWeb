@@ -49,9 +49,6 @@ class DBConnection {
         $stringaReturn = "";
         if(mysqli_num_rows($categorie) > 0) {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
-                /*$stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
-                $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
-                $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";*/
                 if(!empty($nome)){
                     $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."' AND nome = '".$nome."'";
                 } else {
@@ -92,19 +89,19 @@ class DBConnection {
                         if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                             if (isset($_SESSION['carrello'][$riga['id']])) {
                                 $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
-                        <div class="quantity-controls">
-                        <input type="hidden" name="id" value="' . $riga['id'] . '">
-                        <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
-                        
-                        </form>';
-                                $stringaReturn .= '<h4>';
-                                $stringaReturn .= $_SESSION['carrello'][$riga['id']]['quantita'];
-                                $stringaReturn .= '</h4>';
-                                $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
-                        <input type="hidden" name="id" value="' . $riga['id'] . '">
-                        <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
-                        </div>
-                     </form>';
+                                <div class="quantity-controls">
+                                <input type="hidden" name="id" value="' . $riga['id'] . '">
+                                <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                                
+                                </form>';
+                                        $stringaReturn .= '<h4>';
+                                        $stringaReturn .= $_SESSION['carrello'][$riga['id']]['quantita'];
+                                        $stringaReturn .= '</h4>';
+                                        $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
+                                <input type="hidden" name="id" value="' . $riga['id'] . '">
+                                <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                                </div>
+                                </form>';
                             } else {
                                 $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '">';
                                 $stringaReturn .= '<input type="hidden" name="id" value="' . $riga['id'] . '">';
@@ -118,14 +115,20 @@ class DBConnection {
                         $stringaReturn .= '</div>';
                         $stringaReturn .= '</div>';
                     }
-
                     $stringaReturn .= '</div>';
+                    $stringaReturn .= '<div class="torna-su">';
+                    $stringaReturn .= '<a href="#MP-intro"><img src="../../../assets/icons/torna-su.png" alt="Torna su"></a>';
+                    $stringaReturn .= '</div>';
+                    $stringaReturn .= '</section>';
                 }
             }
-            $stringaReturn .= '</section>';
         }
         if($visited == false){
-            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, la pizza cercata non esiste</h2></div>';
+            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, la pizza cercata non esiste</h2>';
+            $stringaReturn .= '<div class="torna-su">';
+            $stringaReturn .= '<a href="#MP-intro"><img src="../../../assets/icons/torna-su.png" alt="Torna su"></a>';
+            $stringaReturn .= '</div>';
+            $stringaReturn .= '</div>';
         }
         return $stringaReturn;
     }
@@ -203,10 +206,17 @@ class DBConnection {
                 $stringaReturn .= '</div>';
             }
             $stringaReturn .= '</div>';
+            $stringaReturn .= '<div class="torna-su">';
+            $stringaReturn .= '<a href="#MP-intro"><img src="../../../assets/icons/torna-su.png" alt="Torna su"></a>';
+            $stringaReturn .= '</div>';
+            $stringaReturn .= '</section>';
         }
-        $stringaReturn .= '</section>';
         if($visited == false){
-            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, il piatto cercato non esiste</h2></div>';
+            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, il piatto cercato non esiste</h2>';
+            $stringaReturn .= '<div class="torna-su">';
+            $stringaReturn .= '<a href="#MP-intro"><img src="../../../assets/icons/torna-su.png" alt="Torna su"></a>';
+            $stringaReturn .= '</div>';
+            $stringaReturn .= '</div>';
         }
         return $stringaReturn;
     }
