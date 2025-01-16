@@ -32,15 +32,6 @@ class DBConnection {
     public function closeConnection(): void {
         mysqli_close($this->connection);
     }
-//    public function userLogin($username, $password) {
-//        $query = "SELECT nome,cognome,ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
-//        $result = mysqli_query($this->connection, $query);
-//        if(mysqli_num_rows($result) == 1) {
-//            $row = $result->fetch_array(MYSQLI_ASSOC);
-//            return array($row['nome'], $row['cognome'], $row['ruolo']);
-//        }
-//        return false;
-//    }
 
     public function getMenuPizze($nome = ''): string{
         $visited = false;
@@ -370,7 +361,11 @@ class DBConnection {
             }
         }
 
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         $conta=1;
         $i = 0;
