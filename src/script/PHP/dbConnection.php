@@ -808,10 +808,14 @@ class DBConnection {
     }
 
     public function queryDeletePizza(): string{
+        $query = "DELETE FROM pizza_ingrediente WHERE pizza='".$_POST['id']."'";
+        mysqli_query($this->connection, $query);
         return "DELETE FROM pizza WHERE id='".$_POST['id']."'";
     }
 
     public function queryDeleteCucina(): string{
+        $query = "DELETE FROM cucina_ingrediente WHERE cucina='".$_POST['id']."'";
+        mysqli_query($this->connection, $query);
         return "DELETE FROM cucina WHERE id='".$_POST['id']."'";
     }
 
@@ -829,13 +833,9 @@ class DBConnection {
     }
 
     public function delete($queryDelete) {
-        $queryResult = mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
-        if(mysqli_affected_rows($this->connection) > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        return true;
+
     }
 
     public function checkUserExists($username) {
