@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
         $conn = $connessione->openDBConnection();
         if ($conn) {
+            $connessione->removeAssocProdIngr($_POST['nome']);
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             $connessione->closeConnection();
             if ($okDelete) {

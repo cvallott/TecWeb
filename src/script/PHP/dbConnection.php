@@ -821,9 +821,10 @@ class DBConnection {
 
     public function queryDeleteIngrediente(): string{
         $query = "SELECT pizza AS id, 'pizza' AS tipo FROM pizza_ingrediente WHERE ingrediente = '".$_POST['nome']."' UNION SELECT cucina AS id, 'cucina' AS tipo FROM cucina_ingrediente WHERE ingrediente = '".$_POST['nome']."'";
-        echo $query;
         $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         if (mysqli_num_rows($result) > 0) {
+            mysqli_query($this->connection, "DELETE FROM pizza_ingrediente WHERE ingrediente='".$_POST['nome']."'");
+            mysqli_query($this->connection, "DELETE FROM cucina_ingrediente WHERE ingrediente='".$_POST['nome']."'");
             while ($row = mysqli_fetch_assoc($result)) {
                 $queryDelete = "DELETE FROM ".$row['tipo']." WHERE id=".$row['id'];
                 $this->delete($queryDelete);
@@ -833,7 +834,13 @@ class DBConnection {
         return "DELETE FROM ingrediente WHERE nome='".$_POST['nome']."'";
     }
 
+    public function removeAssocProdIngr($ingrediente){
+        mysqli_query($this->connection, "DELETE FROM pizza_ingrediente WHERE ingrediente='".$ingrediente."'");
+        mysqli_query($this->connection, "DELETE FROM cucina_ingrediente WHERE ingrediente='".$ingrediente."'");
+    }
+
     public function delete($queryDelete) {
+        echo $queryDelete;
         mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
         return true;
 
