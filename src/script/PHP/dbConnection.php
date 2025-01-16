@@ -16,7 +16,7 @@ class DBConnection {
         mysqli_report(MYSQLI_REPORT_ERROR);
 
         $this->connection = mysqli_connect(DBConnection::HOST_DB, DBConnection::USERNAME, DBConnection::PASSWORD, DBConnection::DATABASE_NAME, DBConnection::PORT);
-
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         //debug
         //return mysqli_connect_error();
 
@@ -44,8 +44,13 @@ class DBConnection {
 
     public function getMenuPizze($nome = ''): string{
         $visited = false;
-        $queryCategorie = "SELECT * FROM categoria";
-        $categorie = mysqli_query($this->connection, $queryCategorie);
+        try{
+            $queryCategorie = "SELECT * FROM categoria";
+            $categorie = mysqli_query($this->connection, $queryCategorie);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+
         $stringaReturn = "";
         if(mysqli_num_rows($categorie) > 0) {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
@@ -53,14 +58,24 @@ class DBConnection {
                 $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
                 $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";*/
                 if(!empty($nome)){
-                    $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."' AND nome = ?";
-                    $stmt = $this->connection->prepare($queryPizze);
-                    $stmt->bind_param('s', $nome);
-                    $stmt->execute();
-                    $pizze = $stmt->get_result();
+                    try{
+                        $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."' AND nome = ?";
+                        $stmt = $this->connection->prepare($queryPizze);
+                        $stmt->bind_param('s', $nome);
+                        $stmt->execute();
+                        $pizze = $stmt->get_result();
+                    }catch(mysqli_sql_exception $e){
+                        header("location: errore.php");
+                    }
+
                 } else {
-                    $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
-                    $pizze = mysqli_query($this->connection, $queryPizze);
+                    try{
+                        $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."'";
+                        $pizze = mysqli_query($this->connection, $queryPizze);
+                    }catch(mysqli_sql_exception $e){
+                        header("location: errore.php");
+                    }
+
                 }
                 if(mysqli_num_rows($pizze) > 0) {
                     $visited = true;
@@ -77,8 +92,12 @@ class DBConnection {
                             $stringaReturn .= " <i class='fa fa-leaf'></i>";
                         }
                         $stringaReturn .= "</h3>";
-                        $queryIngredienti = "SELECT pizza_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM pizza_ingrediente JOIN ingrediente ON pizza_ingrediente.ingrediente=ingrediente.nome WHERE pizza='".$riga['id']."' ORDER BY peso";
-                        $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
+                        try{
+                            $queryIngredienti = "SELECT pizza_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM pizza_ingrediente JOIN ingrediente ON pizza_ingrediente.ingrediente=ingrediente.nome WHERE pizza='".$riga['id']."' ORDER BY peso";
+                            $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
+                        }catch(mysqli_sql_exception $e){
+                            header("location: errore.php");
+                        }
                         $stringaIngredienti = "";
                         if(mysqli_num_rows($ingredientiPizza) > 0) {
                             while ($ingrediente = $ingredientiPizza->fetch_array(MYSQLI_ASSOC)) {
