@@ -1133,7 +1133,7 @@ CARRELLO
     margin-left: 5em;
     display: flex;
     flex-direction: column;
-    max-width: 50em;
+    max-width: 45%;
 }
 
 .sezDettaglio{
@@ -1233,7 +1233,7 @@ CARRELLO
 }
 
 .order-summary #prezzoTot{
-    border-top: 0.1vh solid var(--border-color);
+    border-top: 1px solid var(--border-color);
     padding-top: 1em;
 }
 
@@ -1276,11 +1276,10 @@ CARRELLO
 }
 
 .order-form, .order-summary {
-    background: #fff;
+    background: var(--bgcolor);
     padding: 1em;
     margin: 1em;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .order-form {
@@ -1288,8 +1287,7 @@ CARRELLO
 }
 
 .order-summary {
-    flex: 1;
-    min-width: 30%;
+    min-width: 45%;
 }
 
 .order-summary h2 {
