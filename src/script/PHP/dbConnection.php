@@ -492,7 +492,11 @@ class DBConnection {
 
 
     public function getIngredientiTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -516,7 +520,11 @@ class DBConnection {
 
 
     public function getCucinaTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -539,7 +547,11 @@ class DBConnection {
     }
 
     public function getPizzeTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -563,11 +575,15 @@ class DBConnection {
 
     public function getInfoPizza($id){
         $return = array();
-        $query = "SELECT nome, prezzo, descrizione FROM pizza WHERE id = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT nome, prezzo, descrizione FROM pizza WHERE id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if(mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $return[0] = $row['nome'];
@@ -580,11 +596,15 @@ class DBConnection {
 
     public function getInfoCucina($id){
         $return = array();
-        $query = "SELECT nome, prezzo FROM cucina WHERE id = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT nome, prezzo FROM cucina WHERE id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if(mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $return[0] = $row['nome'];
@@ -616,7 +636,11 @@ class DBConnection {
 
     public function getUtenti($query): string {
         /*$query = "SELECT nome, cognome, username, email, ruolo FROM utente";*/
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -674,8 +698,12 @@ class DBConnection {
     }
 
     public function getTotalePrezzoOrdine($idOrdine){
-        $query = "SELECT PO.quantita, COALESCE(P.prezzo, C.prezzo) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT PO.quantita, COALESCE(P.prezzo, C.prezzo) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '" . $idOrdine . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $prezzo = 0;
         if(mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -688,8 +716,12 @@ class DBConnection {
     }
 
     public function getTotaleProdottiOrdine($idOrdine){
-        $query = "SELECT PO.quantita FROM prodotti_ordine AS PO WHERE PO.ordine='".$idOrdine."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT PO.quantita FROM prodotti_ordine AS PO WHERE PO.ordine='" . $idOrdine . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $conta = 0;
         if(mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -702,7 +734,11 @@ class DBConnection {
     }
 
     public function getOrdini($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -743,8 +779,12 @@ class DBConnection {
     }
 
     public function getDettagliOrdine($idOrdine): string {
-        $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '" . $idOrdine . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -759,8 +799,12 @@ class DBConnection {
     }
 
     public function getOrdiniUtente($email): string {
-        $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '".$email."' = o.utente";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '" . $email . "' = o.utente";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC) ){
@@ -790,8 +834,12 @@ class DBConnection {
     public function isVeget(array $ingredienti) {
         $veget = 0;
         foreach($ingredienti as $ingrediente) {
-            $query = "SELECT veget FROM ingrediente WHERE nome='".$ingrediente."'";
-            $result = mysqli_query($this->connection, $query);
+            try {
+                $query = "SELECT veget FROM ingrediente WHERE nome='" . $ingrediente . "'";
+                $result = mysqli_query($this->connection, $query);
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
             if(mysqli_num_rows($result) > 0) {
                 $row = $result->fetch_assoc();
                 if ($row['veget'] == 1) {
