@@ -17,15 +17,15 @@ function printHeader()
         $home = "<li><a href='index.php'><span lang='en'>Home</span></a></li>";
     }
     if($currentpage == 'chi-siamo.php') {
-        $chisiamo = "<li id='currentLink'>Chi siamo</a></li>";
+        $chisiamo = "<li id='currentLink'>Chi siamo</li>";
     }else{
         $chisiamo = "<li><a href='chi-siamo.php'>Chi siamo</a></li>";
     }
     if($currentpage == 'menu-prenota.php') {
         if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
-            $menu = "<li id='currentLink'>Menù</a></li>";
+            $menu = "<li id='currentLink'>Menù</li>";
         }else{
-            $menu = "<li id='currentLink'>Menù-Prenota</a></li>";
+            $menu = "<li id='currentLink'>Menù-Prenota</li>";
         }
 
     }else{
@@ -37,7 +37,7 @@ function printHeader()
 
     }
     if($currentpage == 'carrello.php') {
-        $carrello = "<li id='currentLink'><i class='fa fa-shopping-cart'></i></a></li>";
+        $carrello = "<li id='currentLink'><i class='fa fa-shopping-cart'></i></li>";
     }else{
         $carrello = "<li><a href='carrello.php'><i class='fa fa-shopping-cart'></i></a></li>";
     }

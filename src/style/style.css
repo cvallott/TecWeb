@@ -128,6 +128,18 @@ header img {
     transition: width 0.3s ease;
 }
 
+
+#droplink:focus::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--buttoncolor);
+    transition: width 0.3s ease;
+}
+
 #dropdown i{
     padding-left: 0.4em;
 }

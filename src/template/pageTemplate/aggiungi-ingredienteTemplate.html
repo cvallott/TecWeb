@@ -25,10 +25,10 @@
     <section class="aggiunta-content">
         <form method="post" action=[percorsoFile] class="form-aggiunta" onsubmit="return validazioneForm();">
             <div>
-                <label for="nome">Inserisci il nome: </label>
+                <label for="nome">Inserisci il nome: (obbligatorio)</label>
                 <input type="text" name="nome" id="nome" [valueNome] required>
             </div>
-            <p>L'ingrediente contiene carne o pesce? </p>
+            <p>L'ingrediente contiene carne o pesce? (obbligatorio)</p>
             <div class="check">
                 <input type="radio" id="veget_si" name="veget" value="1" [valueSi]>
                 <label for="veget_si">Si</label>

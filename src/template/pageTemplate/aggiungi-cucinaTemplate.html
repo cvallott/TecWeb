@@ -25,14 +25,14 @@
     <section class="aggiunta-content">
         <form method="post" action=[percorsoFile] class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
             <div>
-                <label for="nome">Inserisci il nome: </label>
+                <label for="nome">Inserisci il nome: (obbligatorio)</label>
                 <input type="text" name="nome" id="nome" [valueNome] required>
             </div>
             <div>
-                <label for="prezzo">Inserisci il prezzo: </label>
+                <label for="prezzo">*Inserisci il prezzo: (obbligatorio)</label>
                 <input type="number" min="0" name="prezzo" id="prezzo" [valuePrezzo] required>
             </div>
-            <p>Inserisci gli ingredienti: </p>
+            <p>*Inserisci gli ingredienti: (obbligatorio)</p>
             [listaIngredienti]
             <div>
                 <label for="file">Carica un'immagine:</label>
