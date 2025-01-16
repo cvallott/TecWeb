@@ -820,7 +820,7 @@ MENU-PRENOTA-PAGE
     background-position: right;
     text-align: center;
     font-size: 1.2em;
-    height: 60vh;
+    height: 70vh;
     margin: 0.5em;
     display: flex;
 }
@@ -835,6 +835,10 @@ MENU-PRENOTA-PAGE
     justify-content: center;
     color: var(--bgcolor);
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+#smallMenu h1{
+    font-size: 1.2em;
 }
 
 #smallMenu #prenota{
@@ -853,11 +857,12 @@ MENU-PRENOTA-PAGE
     background-color: transparent;
     border: var(--bgcolor) 0.125em solid;
     border-radius: 0.4em;
-    padding: 0.5em;
-    margin-top: 1em;
+    padding: 0.35em;
+    margin-top: 0.8em;
     text-align: center;
     transition: background-color 0.3s;
     text-decoration: none;
+    font-size: 0.9em;
 }
 
 #smallMenu a:hover{
