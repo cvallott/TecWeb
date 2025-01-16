@@ -211,6 +211,10 @@ footer {
     line-height: 1.5;
 }
 
+.footer-column p:first-child {
+    font-size: 1.3em;
+}
+
 iframe {
     border: none;
     border-radius: 5px;
