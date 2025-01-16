@@ -12,9 +12,10 @@ table, body, tr{
     border: none;
 }
 
-/* Aggiungo il bordo alla prima cella così tutti i bordi orizzontali hanno lo stesso spessore */
-tr:first-child th{
-    border-top: 2px solid #000
+th{
+    margin-top:1em;
+    background-color:#DC1C08;
+    border:2px solid #000000 ;
 }
 
 /* Aggiungo il bordo all'ultima cella così tutti i bordi orizzontali hanno lo stesso spessore */
@@ -23,7 +24,8 @@ tfoot tr td{
 }
 
 td[data-title]:before{
-    content: attr(data-title) ": "
+    content: attr(data-title) ": ";
+    font-weight: bold;
 }
 
 /* Per evitare la ripetizione di "Totale Punti" */
@@ -35,3 +37,7 @@ tfoot th{
 td:empty{
     display: none;
 }
+caption{
+    font-size: 1.5em;
+}
+
