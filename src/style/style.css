@@ -1562,7 +1562,7 @@ TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
 VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 ------------------
 */
-.general-intro{
+#general-intro{
     background-color: var(--txtcolor);
     color: var(--bgcolor);
     text-align: center;
@@ -1677,7 +1677,7 @@ AGGIUNGI PRODOTTO PAGE
 CSS PER I FORM DI AGGIUNTA
 ------------------
 */
-.aggiunta-content{
+#aggiunta-content{
     background-color: var(--bgcolor);
     padding: 3em;
     border-radius: 0.4em;
@@ -1747,17 +1747,17 @@ CSS PER I FORM DI AGGIUNTA
 CSS PER LE PAGINE DI AGGIUNTA
 ------------------
 */
-.aggiunta-page .select{
+#aggiunta-page .select{
     background-color: white;
 }
 
-.aggiunta-page .home-button{
+#aggiunta-page .home-button{
     margin-top: 3em;
     width: auto;
     background-color: var(--txtcolor);
 }
 
-.aggiunta-page .home-button:hover{
+#aggiunta-page .home-button:hover{
     background-color: var(--bgcolor2);
 }
 
