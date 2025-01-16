@@ -44,7 +44,7 @@ function printHeader()
     if(isset($_SESSION['tipo'])){
         if($_SESSION['tipo'] == '1') {
             $areaRis .= "<div id='dropdown'>";
-            $areaRis .= "<li><button id='droplink'>".$_SESSION['nome']. " " .$_SESSION['cognome']." </button><i class='fa fa-caret-down'></i></li>";
+            $areaRis .= "<li><button id=\"droplink\">".$_SESSION['nome']. " " .$_SESSION['cognome']."</button></li>";
             $areaRis .= "<div id='dropdown-content'>";
             $areaRis .= "<li><a href='visualizza-ordini.php'>Ordini</span></a></li>";
             $areaRis .= "<li><a href='gestisci-prodotti.php'>Gestione menù</span></a></li>";
@@ -53,7 +53,7 @@ function printHeader()
             $areaRis .= "</div></div>";
         }else{
             $areaRis .= "<div id='dropdown'>";
-            $areaRis .= "<li><button id='droplink'>".$_SESSION['nome']. " " .$_SESSION['cognome']."</button><i class='fa fa-caret-down'></i></li>";
+            $areaRis .= "<li id=\"droplink\">".$_SESSION['nome']. " " .$_SESSION['cognome']."</li>";
             $areaRis .= "<div id='dropdown-content'>";
             $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</span></a></li>";
             $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";

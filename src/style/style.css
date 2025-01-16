@@ -66,7 +66,6 @@ header img {
     position: relative;
 }
 
-/* DA VERIFICARE SE VA BENE */
 #menu li a::after {
     content: "";
     position: absolute;
@@ -78,7 +77,6 @@ header img {
     transition: width 0.3s ease;
 }
 
-/* DA VERIFICARE SE VA BENE */
 #menu li a:hover::after {
     width: 100%;
 }
@@ -88,61 +86,43 @@ header img {
     display: inline-block;
 }
 
+#droplink {
+    background: none;
+    border: none;
+    color: var(--buttoncolor);
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+
+#droplink:focus,
+#droplink:hover {
+    outline: none;
+}
+
 #dropdown-content {
     display: none;
     position: absolute;
     background-color: var(--bgcolor);
-    width: 7em;
-    padding: 0;
-    z-index: 1000; /
+    min-width: 7em;
 }
 
-#dropdown-content a {
-    color: blue;
-    padding: 0.8em 1em;
-    text-decoration: none;
+#dropdown:hover #dropdown-content,
+#dropdown:focus-within #dropdown-content {
     display: block;
 }
 
-
-#dropdown:hover #dropdown-content {display: block;}
-
-#droplink {
-    background: none; /* Remove button background */
-    border: none; /* Remove button border */
-    color: var(--buttoncolor); /* Use the same color as menu links */
-    font: inherit; /* Match the font style of the menu links */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Indicate it's clickable */
-    position: relative;
+#dropdown-content li {
+    list-style: none;
 }
 
-#droplink:hover::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.2em;
-    width: 100%;
-    height: 0.1em;
-    background-color: var(--buttoncolor);
-    transition: width 0.3s ease;
+#dropdown-content a {
+    text-decoration: none;
+    display: block;
+    padding: 0.7em;
 }
 
-
-#droplink:focus::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.2em;
-    width: 100%;
-    height: 0.1em;
-    background-color: var(--buttoncolor);
-    transition: width 0.3s ease;
-}
-
-#dropdown i{
-    padding-left: 0.4em;
-}
 /*
 =============
 AIUTI ALLA NAVIGAZIONE
