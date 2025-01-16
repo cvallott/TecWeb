@@ -12,6 +12,12 @@ header, #breadcrumb, footer{
     display: none;
 }
 
+/*
+-------------
+INDEX PAGE
+-------------
+ */
+
 #titolo {
     display: flex;
     align-items: center;
@@ -29,6 +35,24 @@ header, #breadcrumb, footer{
     color: black;
 }
 
+#important-info{
+    max-width: 800px;
+    border: 2px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    height: 150px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#important-info section{
+    max-width: 200px;
+    padding: 0.5em;
+    height: 100px;
+    width: 300px;
+    background-color: var(--txtcolor);
+}
+
 main {
     margin-left: 0em;
     width: 100%;
@@ -36,6 +60,10 @@ main {
 }
 
 img {
+    display: none;
+}
+
+.torna-su a{
     display: none;
 }
 
