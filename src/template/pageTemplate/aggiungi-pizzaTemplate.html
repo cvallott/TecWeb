@@ -32,8 +32,10 @@
           <label for="prezzo">Inserisci il prezzo: (obbligatorio)</label>
           <input type="number" min="0" name="prezzo" id="prezzo" [valuePrezzo] required>
         </div>
-        <p>Inserisci gli ingredienti: (obbligatorio)</p>
+        <div>
+          <p>Inserisci gli ingredienti: (obbligatorio)</p>
           [listaIngredienti]
+        </div>
         <div>
           <label for="cat">Categoria: (obbligatorio)</label>
           <select name="cat" id="cat" class="select">
@@ -49,8 +51,10 @@
           <input type="file" name="file" id="file" accept="image/*">
         </div>
         [messaggiForm]
-        <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
-        <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+        <div>
+          <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
+          <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+        </div>
       </form>
       <a class="home-button" href="../../gestisci-prodotti.php" >Torna indietro</a>
     </div>

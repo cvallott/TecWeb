@@ -16,33 +16,31 @@
     <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Visualizza Ordini</p>
 </nav>
 <main id="content">
-    <section class="general-intro">
+    <!-- per questra pagina paglio 3 sezioni perchè c'è anche la cosa di filtraggio, quindi le vedo come 3 cose separate -->
+    <section id="general-intro">
         <h1>ORDINI</h1>
     </section>
-    <section class="filtri">
+    <section id="filtri">
         <form method="post" action="../../visualizza-ordini.php">
-            <input type="hidden" name="action" value="filter" />
-            <label for="stato">Stato:</label>
-            <select name="stato" id="stato" class="select">
-                <option value="">Tutti</option>
-                <option value="1">Consegnati</option>
-                <option value="0">In corso</option>
-                <option value="-1">Annullati</option>
-            </select>
-
-            <label for="cliente">Nome cliente:</label>
-            <input type="text" name="cliente" id="cliente">
-
-            <label for="data">Data:</label>
-            <input type="date" name="data" id="data">
-
-            <button type="submit" class="invia-button">Filtra</button>
+            <div> <!-- HO MESSO DIV PERCHE IN TEORIA INPUT NON PUò ESSERE FIGLIO DIRETTO DI FORM-->
+                <input type="hidden" name="action" value="filter" />
+                <label for="stato">Filtra per stato:</label>
+                <select name="stato" id="stato" class="select">
+                    <option value="">Tutti</option>
+                    <option value="1">Consegnati</option>
+                    <option value="0">In corso</option>
+                    <option value="-1">Annullati</option>
+                </select>
+                <label for="cliente">Filtra per nome cliente:</label>
+                <input type="text" name="cliente" id="cliente">
+                <label for="data">Filtra per data:</label>
+                <input type="date" name="data" id="data">
+                <input type="submit" class="invia-button" value="Filtra"/>
+            </div>
         </form>
     </section>
-    <section class="tabella-ordini">
+    <section id="tabella-ordini">
         [operazione-successo]
-        <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
-        <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
         <span id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</span>
         <table aria-describedby="descrTabella">
             <caption>Ordini</caption>

@@ -646,12 +646,13 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica stato\">";
                 $stringaReturn .= "<form action=\"../../visualizza-ordini.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
-                $stringaReturn .= "<select name=\"stato\" class=\"select\">";
+                $stringaReturn .= "<label for=\"modificaS\">Modifica stato:</label>";
+                $stringaReturn .= "<select name=\"stato\" id=\"modificaS\" class=\"select\">";
                 $stringaReturn .= "<option value=\"1\">Consegnato</option>";
                 $stringaReturn .= "<option value=\"0\">In corso</option>";
                 $stringaReturn .= "<option value=\"-1\">Annullato</option>";
                 $stringaReturn .= "</select>";
-                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">"; /*POSSO METTERLI???*/
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";

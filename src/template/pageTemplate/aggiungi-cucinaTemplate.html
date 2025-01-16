@@ -31,8 +31,10 @@
                     <label for="prezzo">Inserisci il prezzo: (obbligatorio)</label>
                     <input type="number" min="0" name="prezzo" id="prezzo" [valuePrezzo] required>
                 </div>
-                <p>Inserisci gli ingredienti: (obbligatorio)</p>
-                [listaIngredienti]
+                <div>
+                    <p>Inserisci gli ingredienti: (obbligatorio)</p>
+                    [listaIngredienti]
+                </div>
                 <div>
                     <label for="file">Carica un'immagine:</label>
                     <input type="file" name="file" id="file" accept="image/*">

@@ -28,8 +28,8 @@
                     <label for="nome">Inserisci il nome: (obbligatorio)</label>
                     <input type="text" name="nome" id="nome" [valueNome] required>
                 </div>
-                <p>L'ingrediente contiene carne o pesce? (obbligatorio)</p>
                 <div class="check">
+                    <p>L'ingrediente contiene carne o pesce? (obbligatorio)</p>
                     <input type="radio" id="veget_si" name="veget" value="1" [valueSi]>
                     <label for="veget_si">Si</label>
                 </div>
@@ -38,8 +38,10 @@
                     <label for="veget_no">No</label>
                 </div>
                 [messaggiForm]
-                <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci ingrediente" >
-                <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+                <div>
+                    <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci ingrediente" >
+                    <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+                </div>
             </form>
             <a class="home-button" href="../../gestisci-prodotti.php">Torna indietro</a>
         </div>
