@@ -1642,7 +1642,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 AGGIUNGI PRODOTTO PAGE
 ------------------
 */
-#AP-main{
+.dashboard{
     background-color: var(--bgcolor);
     margin: 1em;
     display: flex;
@@ -1651,15 +1651,34 @@ AGGIUNGI PRODOTTO PAGE
     padding: 1em;
 }
 
-#AP-main .home-button{
+.dashboard .home-button{
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#AP-main .home-button img {
+.dashboard .home-button img {
     margin-left: auto;
+}
+
+.dashboard div{
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
+
+}
+
+.dashboard div .home-button {
+    width: 40%;
+}
+
+.dashboard p img{
+    transform: rotate(90deg);
+}
+
+.dashboard p:hover:not(.messaggio){
+    background-color: var(--bgcolor2);
 }
 
 /*

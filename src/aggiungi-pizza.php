@@ -11,10 +11,10 @@ $header = printHeader();
 $footer = printFooter();
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Pizza</p>";
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Pizza</p>";
     $titolo = "MODIFICA PIZZA";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / Aggiungi Pizza</p>";
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Pizza</p>";
     $titolo = "AGGIUNGI PIZZA";
 }
 
@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: gestisci-prodotti.php");
+                header("Location: dashboard.php");
             }else{
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";

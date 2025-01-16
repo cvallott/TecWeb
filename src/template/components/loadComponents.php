@@ -41,6 +41,7 @@ function printHeader()
     }else{
         $carrello = "<li><a href='carrello.php'><i class='fa fa-shopping-cart'></i></a></li>";
     }
+    /*
     if(isset($_SESSION['tipo'])){
         if($_SESSION['tipo'] == '1') {
             $areaRis .= "<div id='dropdown'>";
@@ -58,6 +59,21 @@ function printHeader()
             $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</span></a></li>";
             $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";
             $areaRis .= "</div></div>";
+        }
+    }else{
+        $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
+    }
+    */
+
+    if(isset($_SESSION['tipo'])){
+        if($_SESSION['tipo'] == '1') {
+            $areaRis .= "<li><a href='dashboard.php'>Area Gestionale</a></li>";
+            $areaRis .= "<li>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</li>"; // questo lo metterei di fianco al logo così si vede meglio
+            $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></a></li>";
+        }else{
+            $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</a></li>";
+            $areaRis .= "<li>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</li>"; // questo lo metterei di fianco al logo così si vede meglio
+            $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></li>";
         }
     }else{
         $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
