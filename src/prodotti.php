@@ -15,20 +15,7 @@ $action = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
-    if ($action == 'update') {
-        /*$ruolo = $_POST['ruolo'];
-        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
-        $conn = $connessione->openDBConnection();
-        if($conn){
-            $okUpdate = $connessione->updateUtente($ruolo);
-            $connessione->closeConnection();
-            if($okUpdate){
-                $message = "<p class=\"messaggio\">Ruolo modificato con successo</p>";
-            } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
-            }
-        }*/
-    } else if ($action == 'deletePizza') {
+    if ($action == 'deletePizza') {
         $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
         $conn = $connessione->openDBConnection();
         if($conn){
