@@ -17,7 +17,7 @@
 	<p>Sei in: <a lang="en" href="../../index.php">Home</a> / Carrello</p>
 </nav>
 <main id="content">
-	<section class="general-intro">
+	<section id="general-intro">
 		<h1>Riepilogo carrello</h1>
 		<p>Controlla il tuo carrello e procedi all'ordine!</p>
 	</section>
@@ -28,18 +28,17 @@
 			<div>
 				[rowsCarrello]
 			</div>
-			<h3 id="prezzoTot">Totale: [tot] €</h3>
+			<h3 id="prezzoTot">Totale: &euro; [tot]</h3>
 		</div>
 		<div class="order-form">
 			<h2>Informazioni necessarie</h2>
 				<div>
-					<h4>Nome e Cognome</h4>
-					<p>[nomeCognome]</p>
+					<p>Nome e Cognome: [nomeCognome]</p>
 				</div>
 			<form method="post" action="../../carrello.php">
 				<div>
 					<p>La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
-					<label for="ora">Ora di ritiro:</label>
+					<label for="ora">Seleziona ora di ritiro:</label>
 					<select name="ora" id="ora" class="select" required>
 					[optionOrario]
 					</select>
@@ -52,37 +51,6 @@
 			</form>
 		</div>
 	</section>
-	<!--
-	<section id="sez-carrello">
-          <div class="sezCarrello sezDettaglio">
-			  <div class="boxConferma">
-				  <p id="nomecognUtente"> [nameClient] [surnameClient] </p>
-				  <p class="infoConferma">Il pagamento verrà effettuato in contanti.</p>
-				  <p class="infoConferma">NonSoloPizza si impegna a soddisfare tutte le richieste della propria clientela!</p>
-				  <p class="infoConferma">Se hai qualche richiesta, lasciaci un appunto nel seguente form!</p>
-				  <div id="boxForm">
-					  <form class="form-container">
-						  <label for="formNota" class="form-label">Hai qualche nota/istruzione da lasciarci?</label>
-						  <textarea id="formNota" name="formNota" class="form-input" placeholder="Scrivi qui la tua nota"></textarea>
-					  </form>
-				  </div>
-			  </div>
-          </div>
-
-          <div class="sezCarrello sezTotali">
-			  [rowsCarrello]
-			  <div id="totaleSpesa">
-				  <div class="totColumn">
-					  <p>Totale carrello: </p>
-				  </div>
-				  <div class="totColumn">
-					  <h4>[tot] €</h4>
-				  </div>
-			  </div>
-			  <p id="primadisp">La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
-			  <button>Ordina</button>
-          </div>
-	</section>-->
 	<section id="proposta-mese" class="home-section">
 		<h2>Hai già provato le nostre pizze del mese?</h2>
 		<div id="FM-content">

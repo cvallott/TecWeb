@@ -82,7 +82,7 @@ class DBConnection {
                         $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                         $stringaReturn .= "</div>";
 
-                        $stringaReturn .= "<p class='pizza-prezzo'>€ " . number_format($riga['prezzo'], 2, ',', '.') . "</p>";
+                        $stringaReturn .= "<p class='pizza-prezzo'>&euro; " . $riga['prezzo'] . "</p>";
 
                         $stringaReturn .= "<div class='order-actions'>";
 
@@ -172,7 +172,7 @@ class DBConnection {
                 $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                 $stringaReturn .= "</div>";
 
-                $stringaReturn .= "<p class='pizza-prezzo'>€ " . number_format($riga['prezzo'], 2, ',', '.') . "</p>";
+                $stringaReturn .= "<p class='pizza-prezzo'>&euro; " . $riga['prezzo']. "</p>";
 
                 $stringaReturn .= "<div class='order-actions'>";
 

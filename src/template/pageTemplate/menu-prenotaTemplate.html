@@ -26,21 +26,18 @@
       <p id="infoOrdini">utilizza il nostro menù digitale o chiamaci al numero +39 0422 345324</p>
     </div>
   </section>
-  <section class="filtri">
+  <section id="filtri">
     <form method="post" action="../../menu-prenota.php">
       <input type="hidden" name="action" value="filter" />
-
-      <label for="tipo">Tipo:</label>
+      <label for="tipo">Filtra per tipo:</label>
       <select name="tipo" id="tipo" class="select">
         <option value="">Tutti</option>
         <option value="0">Pizze</option>
         <option value="1">Cucina</option>
       </select>
-
-      <label for="nome">Nome:</label>
+      <label for="nome">Filtra per nome:</label>
       <input type="text" name="nome" id="nome">
-
-      <button type="submit" class="invia-button">Filtra</button>
+      <input type="submit" class="invia-button" value="Filtra"/>
     </form>
   </section>
   [menu]

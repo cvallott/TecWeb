@@ -549,21 +549,6 @@ CHI SIAMO PAGE
 RIEPILOGO-ORDINI PAGE
 ------------------
 */
-#RO-tabella {
-    min-height: 30vh;
-}
-
-#RO-intro {
-    padding-bottom: 2em;
-    text-align: center;
-    line-height: 2em;
-    margin: 0.7em;
-}
-
-#RO-intro h1 {
-    padding-bottom: 1em;
-}
-
 #tabella-ordini {
     background-color: var(--bgcolor);
     padding: 3em;
