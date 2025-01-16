@@ -58,16 +58,16 @@ function getCarrello(){
         $rowsCarrello .= '</div><div class="dettaglioItem">';
         $rowsCarrello .= '<p>'. $item['prezzo'] .' €</p>';
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
-        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
+        $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
                     </form>';
         $rowsCarrello .= '<h3>'. $item['quantita'] .'</h3>';
-        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
+        $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
                     </form>';
-        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
+        $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
                         <button type="submit" name="azione" value="rimuovi"><i class="fa fa-trash"></i></button>
                     </form>';
