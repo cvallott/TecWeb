@@ -281,7 +281,7 @@ HOME PAGE
     padding-bottom: 1em;
 }
 
-#important-info section {
+#important-info div {
     padding: 3em;
     width: 30em;
 }
@@ -405,8 +405,9 @@ HOME PAGE
     width: 3em;
 }
 
-
-/*NB PER IL FUTURO ->RICORDATI POSTION RELATIVE NEL CONTENITORE*/
+.download-column img{
+    height: 2.5em;
+}
 
 .torna-su {
     position: absolute;
