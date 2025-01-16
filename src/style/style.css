@@ -775,9 +775,11 @@ DETTAGLI-ORDINE PAGE
 }
 
 #DO-intro{
-    margin: 0.7em;
+    margin: 2em;
     background-color: var(--bgcolor);
     color: var(--txtcolor);
+    min-width: 25%;
+    min-height: 50vh;
 }
 
 #DO-intro h1{
@@ -792,7 +794,9 @@ DETTAGLI-ORDINE PAGE
 
 #DO-tabella {
     margin-right: 0.7em;
-    width: 60%;
+    min-height: 50vh;
+    min-width: 60%;
+    margin-left: 5em;
 }
 
 
@@ -1793,10 +1797,12 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 */
 .messaggio{
     font-size: 1em;
-    background-color: var(--txtcolor);
     color: var(--bgcolor);
-    padding: 0.5em;
-    border-radius: 0.2em;
+    background-color: rgba(65, 65, 67, 0.7);
+    padding: 1.5em;
+    border-radius: 0.4em;
+    margin-bottom: 1em;
+    border: 1px solid var(--txtcolor);
 }
 
 .errore-form{
