@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $nomePizza = pulisciInput($_POST['nome']);
     $prezzoPizza = pulisciInput($_POST['prezzo']);
     $categoriaPizza = pulisciInput($_POST['cat']);
@@ -71,26 +71,26 @@ if (isset($_POST['submit'])) {
         $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
     } else {
         if (strlen($nomePizza) < 2) {
-            $messaggiPerForm .= "<li>Il nome della pizza deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePizza)) {
-            $messaggiPerForm .= "<li>Il nome della pizza non può contenere numeri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePizza)) {
-            $messaggiPerForm .= "<li>Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (strlen($prezzoPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il prezzo della pizza</li>";
         if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
-            $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero maggiore di 0</li>";
         }
         if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $prezzoPizza)) {
-            $messaggiPerForm .= "<li>Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
         }
     }
     if ($ingredientiPizza == '') {
-        $messaggiPerForm .= "<li>La pizza deve avere almeno un ingrediente</li>";
+        $messaggiPerForm .= "<li role=\"alert\">La pizza deve avere almeno un ingrediente</li>";
     }
     if (strlen($categoriaPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire la categoria della pizza</li>";
@@ -119,14 +119,14 @@ if (isset($_POST['submit'])) {
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: dashboard.php");
             }else{
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: prodotti.php");
             }

@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okDelete){
                 $message = "<p class=\"messaggio\">Pizza eliminata con successo</p>";
             } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
             }
         }
     } else if ($action == 'deleteCucina') {
@@ -31,16 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okDelete){
                 $message = "<p class=\"messaggio\">Piatto eliminato con successo</p>";
             } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
             }
         }
     } else if ($action == 'deleteIngrediente') {
         if ($conn) {
+            $connessione->removeAssocProdIngr($_POST['nome']);
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             if ($okDelete) {
                 $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";
             } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
             }
         }
     } else if ($action == 'filter') {

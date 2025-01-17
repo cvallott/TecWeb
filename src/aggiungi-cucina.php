@@ -62,20 +62,20 @@ if (isset($_POST['submit'])) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
         if (strlen($nomePiatto) < 2) {
-            $messaggiPerForm .= "<li>Il nome del piatto deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePiatto)) {
-            $messaggiPerForm .= "<li>Il nome del piatto non può contenere numeri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePiatto)) {
-            $messaggiPerForm .= "<li>Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {
-        $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+        $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero maggiore di 0</li>";
     }
     if ($ingredientiPiatto == '') {
-        $messaggiPerForm .= "<li>Il piatto deve avere almeno un ingrediente</li>";
+        $messaggiPerForm .= "<li role=\"alert\">Il piatto deve avere almeno un ingrediente</li>";
     }
     if($path != '../../../assets/icons/piatto_icon.png'){
         $imageUploadResult = checkImage();
@@ -101,14 +101,14 @@ if (isset($_POST['submit'])) {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: dashboard.php");
             } else {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\" role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: prodotti.php");
             }

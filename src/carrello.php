@@ -45,18 +45,26 @@ if(isset($_POST['ora'])){
         }
         if($succ){
             if($connessioneOK){
-                if($connessione->itemToOrdine($succ)){
-                    unset($_SESSION['carrello']);
-                    $oraScelta = $_POST['ora'];
-                    $_SESSION['messaggio_ordine'] = "<p class='messaggio'>Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
-                    header("location: riepilogo-ordini.php");
+                if($connessione->itemToOrdine($succ)) {
+                    $messaggio_errore = "";
+                    if (isset($_POST['submit']) && $totQuant == 0) {
+                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Devi inserire almeno un prodotto. Riprova!</p>";
+
+                    } else {
+                        unset($_SESSION['carrello']);
+                        $oraScelta = $_POST['ora'];
+                        $_SESSION['messaggio_ordine'] = "<p class='messaggio'>Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
+                        header("location: riepilogo-ordini.php");
+                    }
                 }
+
             }
         }
     }
 }
 
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[messaggio_errore]', $messaggio_errore, $template);
 $template = str_replace('[nomeCognome]', $_SESSION['nome']. " " . $_SESSION['cognome'], $template);
 $template = str_replace('[rowsCarrello]', $rowsCarrello, $template);
 $template = str_replace('[tot]', $totale, $template);
