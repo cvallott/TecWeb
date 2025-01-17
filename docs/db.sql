@@ -73,14 +73,14 @@ CREATE TABLE `cucina` (
 --
 
 INSERT INTO `cucina` (`id`, `nome`, `prezzo`, `veget`, `path`) VALUES
-(1, 'frittura', 11, 1, '../../../assets/icons/pizza_icon.png'),
-(2, 'frittura2', 11, 1, '../../../assets/icons/pizza_icon.png'),
-(3, 'prova', 23, 0, '../../../assets/icons/piatto_icon.png'),
-(4, 'prova5', 3, 0, '../../../assets/icons/piatto_icon.png'),
-(5, 'prova456', 5, 0, '../../../assets/icons/piatto_icon.png'),
-(6, 'prova47', 25, 0, '../../../assets/icons/piatto_icon.png'),
-(7, 'grhgdjh', 15, 0, '../../../assets/pizze/'),
-(8, 'jtdfhmhfmhykf', 0, 0, '../../../assets/pizze/');
+(1, 'frittura', 11, 1, 'assets/icons/pizza_icon.png'),
+(2, 'frittura2', 11, 1, 'assets/icons/pizza_icon.png'),
+(3, 'prova', 23, 0, 'assets/icons/piatto_icon.png'),
+(4, 'prova5', 3, 0, 'assets/icons/piatto_icon.png'),
+(5, 'prova456', 5, 0, 'assets/icons/piatto_icon.png'),
+(6, 'prova47', 25, 0, 'assets/icons/piatto_icon.png'),
+(7, 'grhgdjh', 15, 0, 'assets/pizze/'),
+(8, 'jtdfhmhfmhykf', 0, 0, 'assets/pizze/');
 
 -- --------------------------------------------------------
 
@@ -233,24 +233,24 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`id`, `nome`, `prezzo`, `veget`, `categoria`, `descrizione`, `path`) VALUES
-(21, 'Zucca e Gorgonzola', 10, 0, 'Fuori menu', 'aaaaaaaaaaaa', '../../../assets/pizze/FM-zuccagorgo.jpeg'),
-(22, 'Pesto e Bufala', 9, 0, 'Fuori menu', 'aaaaaaaaaaaaaaaaaaaa', '../../../assets/pizze/FM-pestobufala.jpeg'),
-(36, 'provapath', 8, 0, 'Fuori menu', 'kihilhj', '../../../assets/pizze/FM-calzonenutella.jpeg'),
-(41, 'provafm3', 6, 0, 'Fuori menu', 'jdjy', '../../../assets/icons/pizza_icon.png'),
-(42, 'yjjyjy', 56, 0, 'Speciale', 'ytjy', '../../../assets/icons/pizza_icon.png'),
-(43, 'hmgmh', 3, 0, 'Classica', 'fjhfh', '../../../assets/icons/pizza_icon.png'),
-(44, 'pgrkjfbefbett', 5, 0, 'Classica', 'i0+k00ih', '../../../assets/icons/pizza_icon.png'),
-(45, 'fbfbgnrtg', 7, 0, 'Classica', 'jtuujt', '../../../assets/icons/pizza_icon.png'),
-(46, 'gfgggg3', 3, 0, 'Speciale', 'gvg', '../../../assets/pizze/FM-calzonenutella.jpeg'),
-(47, 'prova', 1515, 0, 'Classica', 'grgr', '../../../assets/icons/pizza_icon.png'),
-(48, 'francesco', 5, 1, 'Classica', 'ge', '../../../assets/icons/pizza_icon.png'),
-(49, 'prova3343', 5, 0, 'Classica', 'ttr', '../../../assets/icons/pizza_icon.png'),
-(50, 'jiewijvi jifewier', 44, 1, 'Classica', 'hh', '../../../assets/icons/pizza_icon.png'),
-(51, 'prova', 4, 0, 'Classica', 'yyy', '../../../assets/icons/pizza_icon.png'),
-(52, 'prova4535', 56, 1, 'Classica', 'jhyj', '../../../assets/icons/pizza_icon.png'),
-(53, 'prova567', 564, 0, 'Classica', 'jj', '../../../assets/icons/pizza_icon.png'),
-(54, 'rgrggrt', 4, 0, 'Classica', 'tt', '../../../assets/icons/pizza_icon.png'),
-(55, '009', 3, 0, 'Classica', 'mnj,b', '../../../assets/icons/pizza_icon.png');
+(21, 'Zucca e Gorgonzola', 10, 0, 'Fuori menu', 'aaaaaaaaaaaa', 'assets/pizze/FM-zuccagorgo.jpeg'),
+(22, 'Pesto e Bufala', 9, 0, 'Fuori menu', 'aaaaaaaaaaaaaaaaaaaa', 'assets/pizze/FM-pestobufala.jpeg'),
+(36, 'provapath', 8, 0, 'Fuori menu', 'kihilhj', 'assets/pizze/FM-calzonenutella.jpeg'),
+(41, 'provafm3', 6, 0, 'Fuori menu', 'jdjy', 'assets/icons/pizza_icon.png'),
+(42, 'yjjyjy', 56, 0, 'Speciale', 'ytjy', 'assets/icons/pizza_icon.png'),
+(43, 'hmgmh', 3, 0, 'Classica', 'fjhfh', 'assets/icons/pizza_icon.png'),
+(44, 'pgrkjfbefbett', 5, 0, 'Classica', 'i0+k00ih', 'assets/icons/pizza_icon.png'),
+(45, 'fbfbgnrtg', 7, 0, 'Classica', 'jtuujt', 'assets/icons/pizza_icon.png'),
+(46, 'gfgggg3', 3, 0, 'Speciale', 'gvg', 'assets/pizze/FM-calzonenutella.jpeg'),
+(47, 'prova', 1515, 0, 'Classica', 'grgr', 'assets/icons/pizza_icon.png'),
+(48, 'francesco', 5, 1, 'Classica', 'ge', 'assets/icons/pizza_icon.png'),
+(49, 'prova3343', 5, 0, 'Classica', 'ttr', 'assets/icons/pizza_icon.png'),
+(50, 'jiewijvi jifewier', 44, 1, 'Classica', 'hh', 'assets/icons/pizza_icon.png'),
+(51, 'prova', 4, 0, 'Classica', 'yyy', 'assets/icons/pizza_icon.png'),
+(52, 'prova4535', 56, 1, 'Classica', 'jhyj', 'assets/icons/pizza_icon.png'),
+(53, 'prova567', 564, 0, 'Classica', 'jj', 'assets/icons/pizza_icon.png'),
+(54, 'rgrggrt', 4, 0, 'Classica', 'tt', 'assets/icons/pizza_icon.png'),
+(55, '009', 3, 0, 'Classica', 'mnj,b', 'assets/icons/pizza_icon.png');
 
 -- --------------------------------------------------------
 
