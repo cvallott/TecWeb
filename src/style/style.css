@@ -219,6 +219,28 @@ iframe {
 
 /*
 ------------------
+ERROR PAGE
+------------------
+*/
+.error-section {
+    padding: 3em;
+    text-align: center;
+    color: var(--txtcolor);
+    position: relative;
+}
+
+.error-section{
+    background-color: var(--bgcolor);
+}
+
+.error-section h2 {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+/*
+------------------
 HOME PAGE
 ------------------
 */

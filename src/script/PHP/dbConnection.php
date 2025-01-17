@@ -32,15 +32,6 @@ class DBConnection {
     public function closeConnection(): void {
         mysqli_close($this->connection);
     }
-//    public function userLogin($username, $password) {
-//        $query = "SELECT nome,cognome,ruolo FROM utente WHERE `username`='$username' AND `password`='$password'";
-//        $result = mysqli_query($this->connection, $query);
-//        if(mysqli_num_rows($result) == 1) {
-//            $row = $result->fetch_array(MYSQLI_ASSOC);
-//            return array($row['nome'], $row['cognome'], $row['ruolo']);
-//        }
-//        return false;
-//    }
 
     public function getMenuPizze($nome = ''): string{
         $visited = false;
@@ -163,15 +154,23 @@ class DBConnection {
         $stringaReturn .= "<h2>La nostra cucina</h2>";
         $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";*/
         if(!empty($nome)){
-            $queryCucina = "SELECT * FROM cucina WHERE nome = ?";
-            $stmt = $this->connection->prepare($queryCucina);
-            $stmt->bind_param('s', $nome);
-            $stmt->execute();
-            $pizze = $stmt->get_result();
+            try {
+                $queryCucina = "SELECT * FROM cucina WHERE nome = ?";
+                $stmt = $this->connection->prepare($queryCucina);
+                $stmt->bind_param('s', $nome);
+                $stmt->execute();
+                $pizze = $stmt->get_result();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
 
         } else {
-            $queryCucina = "SELECT * FROM cucina";
-            $pizze = mysqli_query($this->connection, $queryCucina);
+            try {
+                $queryCucina = "SELECT * FROM cucina";
+                $pizze = mysqli_query($this->connection, $queryCucina);
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
         if(mysqli_num_rows($pizze) > 0) {
             $visited = true;
@@ -188,8 +187,12 @@ class DBConnection {
                     $stringaReturn .= "<img src=\"../../../assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
                 }
                 $stringaReturn .= "</h3>";
-                $queryIngredienti = "SELECT cucina_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM cucina_ingrediente JOIN ingrediente ON cucina_ingrediente.ingrediente=ingrediente.nome WHERE cucina='".$riga['id']."' ORDER BY peso";
-                $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
+                try {
+                    $queryIngredienti = "SELECT cucina_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM cucina_ingrediente JOIN ingrediente ON cucina_ingrediente.ingrediente=ingrediente.nome WHERE cucina='" . $riga['id'] . "' ORDER BY peso";
+                    $ingredientiPizza = mysqli_query($this->connection, $queryIngredienti);
+                }catch(mysqli_sql_exception $e){
+                    header("location: errore.php");
+                }
                 $stringaIngredienti = "";
                 if(mysqli_num_rows($ingredientiPizza) > 0) {
                     while ($ingrediente = $ingredientiPizza->fetch_array(MYSQLI_ASSOC)) {
@@ -250,8 +253,12 @@ class DBConnection {
     }
 
     public function getMenuCategorie(): string {
-        $query = "SELECT cat, nomeEsteso FROM categoria";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT cat, nomeEsteso FROM categoria";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if (mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -262,8 +269,12 @@ class DBConnection {
     }
 
     public function getFuoriMenu(): string {
-        $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -279,8 +290,12 @@ class DBConnection {
 
     public function getFuoriMenuPerCarrello(): string
     {
-        $query = "SELECT * FROM pizza WHERE categoria='Fuori menù'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT * FROM pizza WHERE categoria='Fuori menù'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -312,7 +327,12 @@ class DBConnection {
 
     public function infoIngredienti($query){
         $ingredienti = array();
-        $resultSelect = mysqli_query($this->connection, $query);
+        try{
+            $resultSelect = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+
         if(mysqli_num_rows($resultSelect) > 0) {
             while($row = $resultSelect->fetch_array(MYSQLI_ASSOC)){
                 $ingredienti[0] = $row['nome'];
@@ -326,15 +346,22 @@ class DBConnection {
         $ingredienti = array();
         if($id != null){
             if($cucina == 0){
-                $querySelect = "SELECT ingrediente FROM pizza_ingrediente WHERE pizza = ?";
-                $stmt = $this->connection->prepare($querySelect);
-                $stmt->bind_param('s', $id);
-                $stmt->execute();
-                $resultSelect = $stmt->get_result();
-
+                try{
+                    $querySelect = "SELECT ingrediente FROM pizza_ingrediente WHERE pizza = ?";
+                    $stmt = $this->connection->prepare($querySelect);
+                    $stmt->bind_param('s', $id);
+                    $stmt->execute();
+                    $resultSelect = $stmt->get_result();
+                }catch(mysqli_sql_exception $e){
+                    header("location: errore.php");
+                }
             }else{
-                $querySelect = "SELECT ingrediente FROM cucina_ingrediente WHERE cucina = ".$id;
-                $resultSelect = mysqli_query($this->connection, $querySelect);
+                try {
+                    $querySelect = "SELECT ingrediente FROM cucina_ingrediente WHERE cucina = " . $id;
+                    $resultSelect = mysqli_query($this->connection, $querySelect);
+                }catch(mysqli_sql_exception $e){
+                    header("location: errore.php");
+                }
             }
 
             if(mysqli_num_rows($resultSelect) > 0) {
@@ -344,7 +371,11 @@ class DBConnection {
             }
         }
 
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         $conta=1;
         $i = 0;
@@ -372,18 +403,26 @@ class DBConnection {
     public function getCategorie($id = null): string {
         $categoria = '';
         if($id != null){
-            $querySelect = "SELECT categoria FROM pizza WHERE id = ?";
-            $stmt = $this->connection->prepare($querySelect);
-            $stmt->bind_param('s', $id);
-            $stmt->execute();
-            $resultSelect = $stmt->get_result();
+            try {
+                $querySelect = "SELECT categoria FROM pizza WHERE id = ?";
+                $stmt = $this->connection->prepare($querySelect);
+                $stmt->bind_param('s', $id);
+                $stmt->execute();
+                $resultSelect = $stmt->get_result();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
             if(mysqli_num_rows($resultSelect) > 0) {
                 $row = $resultSelect->fetch_array(MYSQLI_ASSOC);
                 $categoria = $row['categoria'];
             }
         }
-        $query = "SELECT cat FROM categoria";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT cat FROM categoria";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -458,7 +497,11 @@ class DBConnection {
 
 
     public function getIngredientiTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -482,7 +525,11 @@ class DBConnection {
 
 
     public function getCucinaTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -505,7 +552,11 @@ class DBConnection {
     }
 
     public function getPizzeTabella($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -529,11 +580,15 @@ class DBConnection {
 
     public function getInfoPizza($id){
         $return = array();
-        $query = "SELECT nome, prezzo, descrizione FROM pizza WHERE id = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT nome, prezzo, descrizione FROM pizza WHERE id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if(mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $return[0] = $row['nome'];
@@ -546,11 +601,15 @@ class DBConnection {
 
     public function getInfoCucina($id){
         $return = array();
-        $query = "SELECT nome, prezzo FROM cucina WHERE id = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT nome, prezzo FROM cucina WHERE id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if(mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $return[0] = $row['nome'];
@@ -582,7 +641,11 @@ class DBConnection {
 
     public function getUtenti($query): string {
         /*$query = "SELECT nome, cognome, username, email, ruolo FROM utente";*/
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -641,8 +704,12 @@ class DBConnection {
     }
 
     public function getTotalePrezzoOrdine($idOrdine){
-        $query = "SELECT PO.quantita, COALESCE(P.prezzo, C.prezzo) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT PO.quantita, COALESCE(P.prezzo, C.prezzo) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '" . $idOrdine . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $prezzo = 0;
         if(mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -655,8 +722,12 @@ class DBConnection {
     }
 
     public function getTotaleProdottiOrdine($idOrdine){
-        $query = "SELECT PO.quantita FROM prodotti_ordine AS PO WHERE PO.ordine='".$idOrdine."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT PO.quantita FROM prodotti_ordine AS PO WHERE PO.ordine='" . $idOrdine . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $conta = 0;
         if(mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -669,7 +740,11 @@ class DBConnection {
     }
 
     public function getOrdini($query): string {
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -711,8 +786,12 @@ class DBConnection {
     }
 
     public function getDettagliOrdine($idOrdine): string {
-        $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '".$idOrdine."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '" . $idOrdine . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -727,8 +806,12 @@ class DBConnection {
     }
 
     public function getOrdiniUtente($email): string {
-        $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '".$email."' = o.utente";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '" . $email . "' = o.utente";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $stringaReturn = "";
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC) ){
@@ -758,8 +841,12 @@ class DBConnection {
     public function isVeget(array $ingredienti) {
         $veget = 0;
         foreach($ingredienti as $ingrediente) {
-            $query = "SELECT veget FROM ingrediente WHERE nome='".$ingrediente."'";
-            $result = mysqli_query($this->connection, $query);
+            try {
+                $query = "SELECT veget FROM ingrediente WHERE nome='" . $ingrediente . "'";
+                $result = mysqli_query($this->connection, $query);
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
             if(mysqli_num_rows($result) > 0) {
                 $row = $result->fetch_assoc();
                 if ($row['veget'] == 1) {
@@ -772,30 +859,46 @@ class DBConnection {
 
     public function insertIngrediente($nome, $veget, $nomeOld = null) {
         if($nomeOld != null){
-            $query = "UPDATE ingrediente SET nome = ?, veget = ? WHERE nome = ?";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sis', $nome,$veget,$nomeOld);
-            $stmt->execute();
+            try {
+                $query = "UPDATE ingrediente SET nome = ?, veget = ? WHERE nome = ?";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sis', $nome, $veget, $nomeOld);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         } else {
-            $query = "INSERT INTO ingrediente(nome, veget) " . "VALUES (?,?)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('si', $nome,$veget);
-            $stmt->execute();
+            try {
+                $query = "INSERT INTO ingrediente(nome, veget) " . "VALUES (?,?)";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('si', $nome, $veget);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
         return true;
     }
 
     public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path, $id = null): bool {
         if($id != null){
-            $query = "UPDATE pizza SET nome = ?, prezzo = ?, veget = ?, categoria, ?, descrizione = ?, path = ? WHERE id = ?";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sdisssi', $nome,$prezzo,$veget,$categoria, $descrizione,$path,$id);
-            $stmt->execute();
+            try {
+                $query = "UPDATE pizza SET nome = ?, prezzo = ?, veget = ?, categoria, ?, descrizione = ?, path = ? WHERE id = ?";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sdisssi', $nome, $prezzo, $veget, $categoria, $descrizione, $path, $id);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         } else {
-            $query = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) VALUES (?,?,?,?,?,?)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sdisss', $nome,$prezzo,$veget,$categoria, $descrizione,$path);
-            $stmt->execute();
+            try {
+                $query = "INSERT INTO pizza(nome, prezzo, veget, categoria, descrizione, path) VALUES (?,?,?,?,?,?)";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sdisss', $nome, $prezzo, $veget, $categoria, $descrizione, $path);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
         return true;
     }
@@ -804,56 +907,83 @@ class DBConnection {
         // Sanitizza il nome della pizza
         /*$nome = mysqli_real_escape_string($this->connection, $nome);*/
         if ($id != null){
-            $query = "DELETE FROM ". $table . "_ingrediente WHERE ".$table."=".$id;
-            $query = "DELETE FROM ?"."_ingrediente WHERE ?=?";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sss', $table,$table,$id);
-            $stmt->execute();
+            try {
+                $query = "DELETE FROM " . $table . "_ingrediente WHERE " . $table . "=" . $id;
+                $query = "DELETE FROM ?" . "_ingrediente WHERE ?=?";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sss', $table, $table, $id);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
-        $query = "SELECT id FROM ? WHERE nome = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('ss', $table,$nome);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT id FROM ? WHERE nome = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('ss', $table, $nome);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $row = mysqli_fetch_assoc($result);
         $prodottoId = $row['id'];
 
         // Itera sugli ingredienti e inseriscili
         foreach ($ingredienti as $ingrediente) {
-            $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
-            $queryInsert = "INSERT INTO ?"."_ingrediente (?, ingrediente) VALUES (?,?)";
-            $stmt = $this->connection->prepare($queryInsert);
-            $stmt->bind_param('sis', $table,$prodottoId,$ingrediente);
-            $stmt->execute();
+            try {
+                $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
+                $queryInsert = "INSERT INTO ?" . "_ingrediente (?, ingrediente) VALUES (?,?)";
+                $stmt = $this->connection->prepare($queryInsert);
+                $stmt->bind_param('sis', $table, $prodottoId, $ingrediente);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
         return true;
     }
 
     public function insertCucina($nome, $prezzo, $veget, $path, $id = null) {
         if($id != null){
-            $query = "UPDATE cucina SET nome = ?, prezzo = ?, veget = ?, path = '".$path."' WHERE id = ?";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sdisi',$nome,$prezzo,$veget,$path,$id);
-            $stmt->execute();
+            try {
+                $query = "UPDATE cucina SET nome = ?, prezzo = ?, veget = ?, path = '" . $path . "' WHERE id = ?";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sdisi', $nome, $prezzo, $veget, $path, $id);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         } else {
-            $query = "INSERT INTO cucina(nome, prezzo, veget, path) VALUES (????)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sdis',$nome,$prezzo,$veget,$path);
-            $stmt->execute();
+            try {
+                $query = "INSERT INTO cucina(nome, prezzo, veget, path) VALUES (????)";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sdis', $nome, $prezzo, $veget, $path);
+                $stmt->execute();
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
         return true;
     }
 
     public function updateUtente($ruolo) {
-        $queryUpdate = "UPDATE utente SET ruolo = ? WHERE email = ?";
-        $stmtUno = $this->connection->prepare($queryUpdate);
-        $stmtUno->bind_param('is',$ruolo,$_POST['email']);
-
-        $query = "SELECT ruolo FROM utente WHERE email=?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s',$_POST['email']);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $queryUpdate = "UPDATE utente SET ruolo = ? WHERE email = ?";
+            $stmtUno = $this->connection->prepare($queryUpdate);
+            $stmtUno->bind_param('is', $ruolo, $_POST['email']);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        try {
+            $query = "SELECT ruolo FROM utente WHERE email=?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $_POST['email']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
             if ($ruolo != $row['ruolo']) {
@@ -866,12 +996,19 @@ class DBConnection {
     }
 
     public function updateOrdine($stato) {
-        $queryUpdate = "UPDATE ordine SET stato=? WHERE id=?";
-        $stmt = $this->connection->prepare($queryUpdate);
-        $stmt->bind_param('si',$stato,$_POST['id']);
-
-        $query = "SELECT stato FROM ordine WHERE id='".$_POST['id']."'";
-        $result = mysqli_query($this->connection, $query);
+        try {
+            $queryUpdate = "UPDATE ordine SET stato=? WHERE id=?";
+            $stmt = $this->connection->prepare($queryUpdate);
+            $stmt->bind_param('si', $stato, $_POST['id']);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        try {
+            $query = "SELECT stato FROM ordine WHERE id='" . $_POST['id'] . "'";
+            $result = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if(mysqli_num_rows($result) > 0) {
             $row = $result->fetch_assoc();
             if ($stato != $row['stato']) {
@@ -888,23 +1025,39 @@ class DBConnection {
     }
 
     public function queryDeletePizza(): string{
-        $query = "DELETE FROM pizza_ingrediente WHERE pizza='".$_POST['id']."'";
-        mysqli_query($this->connection, $query);
+        try {
+            $query = "DELETE FROM pizza_ingrediente WHERE pizza='" . $_POST['id'] . "'";
+            mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         return "DELETE FROM pizza WHERE id='".$_POST['id']."'";
     }
 
     public function queryDeleteCucina(): string{
-        $query = "DELETE FROM cucina_ingrediente WHERE cucina='".$_POST['id']."'";
-        mysqli_query($this->connection, $query);
+        try {
+            $query = "DELETE FROM cucina_ingrediente WHERE cucina='" . $_POST['id'] . "'";
+            mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         return "DELETE FROM cucina WHERE id='".$_POST['id']."'";
     }
 
     public function queryDeleteIngrediente(): string{
-        $query = "SELECT pizza AS id, 'pizza' AS tipo FROM pizza_ingrediente WHERE ingrediente = '".$_POST['nome']."' UNION SELECT cucina AS id, 'cucina' AS tipo FROM cucina_ingrediente WHERE ingrediente = '".$_POST['nome']."'";
-        $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        try {
+            $query = "SELECT pizza AS id, 'pizza' AS tipo FROM pizza_ingrediente WHERE ingrediente = '" . $_POST['nome'] . "' UNION SELECT cucina AS id, 'cucina' AS tipo FROM cucina_ingrediente WHERE ingrediente = '" . $_POST['nome'] . "'";
+            $result = mysqli_query($this->connection, $query) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if (mysqli_num_rows($result) > 0) {
-            mysqli_query($this->connection, "DELETE FROM pizza_ingrediente WHERE ingrediente='".$_POST['nome']."'");
-            mysqli_query($this->connection, "DELETE FROM cucina_ingrediente WHERE ingrediente='".$_POST['nome']."'");
+            try {
+                mysqli_query($this->connection, "DELETE FROM pizza_ingrediente WHERE ingrediente='" . $_POST['nome'] . "'");
+                mysqli_query($this->connection, "DELETE FROM cucina_ingrediente WHERE ingrediente='" . $_POST['nome'] . "'");
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
             while ($row = mysqli_fetch_assoc($result)) {
                 $queryDelete = "DELETE FROM ".$row['tipo']." WHERE id=".$row['id'];
                 $this->delete($queryDelete);
@@ -915,59 +1068,87 @@ class DBConnection {
     }
 
     public function removeAssocProdIngr($ingrediente){
-        mysqli_query($this->connection, "DELETE FROM pizza_ingrediente WHERE ingrediente='".$ingrediente."'");
-        mysqli_query($this->connection, "DELETE FROM cucina_ingrediente WHERE ingrediente='".$ingrediente."'");
+        try{
+            mysqli_query($this->connection, "DELETE FROM pizza_ingrediente WHERE ingrediente='".$ingrediente."'");
+            mysqli_query($this->connection, "DELETE FROM cucina_ingrediente WHERE ingrediente='".$ingrediente."'");
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+
     }
 
     public function delete($queryDelete) {
-        echo $queryDelete;
-        mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        try {
+            mysqli_query($this->connection, $queryDelete) or die("Errore in openDBConnection: " . mysqli_error($this->connection));
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         return true;
 
     }
 
     public function checkUserExists($username) {
-        $query = "SELECT username FROM utente WHERE username = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT username FROM utente WHERE username = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         return $result->num_rows > 0;
     }
 
     public function checkEmailExists($email) {
-        $query = "SELECT email FROM utente WHERE email = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT email FROM utente WHERE email = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         return $result->num_rows > 0;
     }
 
     public function checkIngrediente($nome) {
-        $query = "SELECT nome FROM ingrediente WHERE nome = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $nome);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        try {
+            $query = "SELECT nome FROM ingrediente WHERE nome = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $nome);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         return $result->num_rows > 0;
     }
 
     public function registerUser($name, $surname, $username, $email, $hashedPassword) {
         $ruolo = 0; // ruolo default
-        $query = "INSERT INTO utente (nome, cognome, username, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('sssssi', $name, $surname, $username, $email, $hashedPassword, $ruolo);
-        return $stmt->execute();
+        try {
+            $query = "INSERT INTO utente (nome, cognome, username, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('sssssi', $name, $surname, $username, $email, $hashedPassword, $ruolo);
+            return $stmt->execute();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        return false;
     }
 
     public function userLogin($username, $password) {
-        $query = "SELECT nome, cognome, ruolo, password, email FROM utente WHERE username = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
+        try {
+            $query = "SELECT nome, cognome, ruolo, password, email FROM utente WHERE username = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
@@ -978,8 +1159,12 @@ class DBConnection {
     }
 
     public function getFasceOrarie($daOrdinare){
-        $query = "SELECT disponiblitaorarie.fascia AS fascia, pizzePerFascia.pizze AS pizze FROM disponiblitaorarie LEFT JOIN pizzePerFascia ON disponiblitaorarie.fascia = pizzePerFascia.fascia WHERE disponiblitaorarie.fascia NOT IN (SELECT orario FROM checkOrari);";
-        $risultato = mysqli_query($this->connection, $query);
+        try {
+            $query = "SELECT disponiblitaorarie.fascia AS fascia, pizzePerFascia.pizze AS pizze FROM disponiblitaorarie LEFT JOIN pizzePerFascia ON disponiblitaorarie.fascia = pizzePerFascia.fascia WHERE disponiblitaorarie.fascia NOT IN (SELECT orario FROM checkOrari);";
+            $risultato = mysqli_query($this->connection, $query);
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
         $selectReturn ="";
         $primadisponibilita = "";
         if(mysqli_num_rows($risultato) > 0){
@@ -997,17 +1182,27 @@ class DBConnection {
 
     public function insertOrder($orario, $nota = ""){
         if($nota != ""){
-            $query = "INSERT INTO ordine (utente, ora, nota) VALUES (?, ?, ?)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('sss',$_SESSION['email'], $orario, $nota);
-            $stmt->execute();
-            return $stmt->insert_id;
+            try {
+                $query = "INSERT INTO ordine (utente, ora, nota) VALUES (?, ?, ?)";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('sss', $_SESSION['email'], $orario, $nota);
+                $stmt->execute();
+                return $stmt->insert_id;
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
+            return false;
         }else{
-            $query = "INSERT INTO ordine (utente, ora) VALUES (?, ?)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('ss',$_SESSION['email'], $orario);
-            $stmt->execute();
-            return $stmt->insert_id;
+            try {
+                $query = "INSERT INTO ordine (utente, ora) VALUES (?, ?)";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param('ss', $_SESSION['email'], $orario);
+                $stmt->execute();
+                return $stmt->insert_id;
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
+            return false;
         }
     }
 
@@ -1020,14 +1215,14 @@ class DBConnection {
                 try {
                     mysqli_query($this->connection, $query);
                 } catch (mysqli_sql_exception $e) {
-                    return false;
+                    header("location: errore.php");
                 }
             }else {
                 $query = "INSERT INTO prodotti_ordine (ordine, pizza, quantita) VALUES ($idOrd,$id, " . $item['quantita'] . ")";
                 try {
                     mysqli_query($this->connection, $query);
                 } catch (mysqli_sql_exception $e) {
-                    return false;
+                    header("location: errore.php");
                 }
             }
 
@@ -1036,27 +1231,6 @@ class DBConnection {
         return true;
 
     }
-//    public function userLogin($username, $password) {
-//        $query = "SELECT nome, cognome, ruolo, password FROM utente WHERE username = ?";
-//        $stmt = $this->connection->prepare($query);
-//        $stmt->bind_param('s', $username);
-//        $stmt->execute();
-//        $result = $stmt->get_result();
-//
-//        // Debug
-//        error_log("Login attempt for user: " . $username);
-//        error_log("Query result rows: " . $result->num_rows);
-//
-//        if ($result->num_rows === 1) {
-//            $user = $result->fetch_assoc();
-//            if (password_verify($password, $user['password'])) {
-//                return array($user['nome'], $user['cognome'], $user['ruolo']);
-//            }
-//            error_log("Password verification failed");
-//        }
-//        return false;
-//    }
-
 }
 
 
