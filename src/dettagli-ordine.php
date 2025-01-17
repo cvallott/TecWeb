@@ -18,10 +18,10 @@ $footer = printFooter();
 
 if($_SESSION['tipo']==1){
     $breadcrumb = "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='visualizza-ordini.php'>Ordini</a> / Dettaglio Ordine </p>";
-    $linkIndietro = "<a href=\"../../visualizza-ordini.php\" class=\"home-button\">Torna alla visualizzazione ordini</a>";
+    $linkIndietro = "<a href=\"visualizza-ordini.php\" class=\"home-button\">Torna alla visualizzazione ordini</a>";
 }else{
     $breadcrumb = "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='riepilogo-ordini.php'>Riepilogo ordini</a> / Dettaglio Ordine </p>";
-    $linkIndietro = "<a href=\"../../riepilogo-ordini.php\" class=\"home-button\">Torna al riepilogo ordini</a>";
+    $linkIndietro = "<a href=\"riepilogo-ordini.php\" class=\"home-button\">Torna al riepilogo ordini</a>";
 }
 
 $connessione = new DBConnection();

@@ -39,7 +39,7 @@ INDEX PAGE
 }
 
 #titolo img {
-    content: url("../../assets/logo/logo.png");
+    content: url("assets/logo/logo.png");
     display: block;
     max-width: 100px;
 }

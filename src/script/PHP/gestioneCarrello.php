@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
 
     if(!isset($_SESSION['tipo'])){
         unset($_SESSION['carrello']);
-        header('Location: ../area-riservata.php');
+        header('Location: area-riservata.php');
     }else if(isset($_GET['scroll'])){
         header('Location:' . basename($_SERVER['PHP_SELF']) . '?' . $_GET['scroll']);
     }else{
@@ -60,16 +60,16 @@ function getCarrello(){
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="decrementa"><img src="../../../assets/icons/minus.png" alt="Decrementa"/></button>
+                        <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa"/></button>
                     </form>';
         $rowsCarrello .= '<p>'. $item['quantita'] .'</p>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="incrementa"><img src="../../../assets/icons/plus.png" alt="Incrementa"/></button>
+                        <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa"/></button>
                     </form>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="rimuovi"><img src="../../../assets/icons/cestino.png" alt="Rimuovi"/></button>
+                        <button type="submit" name="azione" value="rimuovi"><img src="assets/icons/cestino.png" alt="Rimuovi"/></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }

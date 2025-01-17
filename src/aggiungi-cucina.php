@@ -35,7 +35,7 @@ if($conn){
             $template = str_replace('[valueNome]', 'value = "'.$valueInfo[0].'"', $template);
             $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
         }
-        $template = str_replace('[percorsoFile]', '"../../aggiungi-cucina.php?id='.$id.'"', $template);
+        $template = str_replace('[percorsoFile]', '"aggiungi-cucina.php?id='.$id.'"', $template);
     } else {
         $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
     }
@@ -48,9 +48,9 @@ if (isset($_POST['submit'])) {
         $ingr = '';
     }
     if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = '../../../assets/icons/piatto_icon.png';
+        $path = 'assets/icons/piatto_icon.png';
     }else{
-        $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
+        $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
     if ($ingredientiPiatto == '') {
         $messaggiPerForm .= "<li role=\"alert\">Il piatto deve avere almeno un ingrediente</li>";
     }
-    if($path != '../../../assets/icons/piatto_icon.png'){
+    if($path != 'assets/icons/piatto_icon.png'){
         $imageUploadResult = checkImage();
         if ($imageUploadResult["success"]) {
             $path = $imageUploadResult["path"];

@@ -7,7 +7,7 @@ main indexTemplate.html
 
 css
 #intro {
-    background-image: url('../../assets/pizze/sfondomarghe.png');
+    background-image: url('assets/pizze/sfondomarghe.png');
     background-color: gray;
     background-size: cover;
     background-attachment: scroll;
