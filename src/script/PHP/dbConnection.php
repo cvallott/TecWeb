@@ -726,6 +726,7 @@ class DBConnection {
     }
 
     public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path, $id = null): bool {
+        $path = str_replace("/var/www/html/", "", $path);
         if($id != null){
             $query = "UPDATE pizza SET nome = '".$nome."', prezzo = ".$prezzo.", veget = ". $veget.", categoria = '".$categoria."', descrizione = '".$descrizione."', path = '".$path."' WHERE id = ".$id;
         } else {
