@@ -301,7 +301,7 @@ class DBConnection {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<img src='.".$row['path']."'>";
+                $stringaReturn .= "<img src='".$row['path']."'>";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "<form method='POST' action='' >";
@@ -1170,11 +1170,15 @@ class DBConnection {
         $primadisponibilita = "";
         if(mysqli_num_rows($risultato) > 0){
             while($row = mysqli_fetch_assoc($risultato)){
-                if($primadisponibilita==""){
-                    $primadisponibilita = $row["fascia"];
-                }
-                if($daOrdinare + $row["pizze"] < 20) {
-                    $selectReturn .= "<option value='" . $row['fascia'] . "'>" . $row['fascia'] . "</option>";
+                $orarioFascia = substr($row['fascia'], 0, -6);
+                $orarioCorrente = date("H:i");
+                if(strtotime($orarioCorrente) < strtotime($orarioFascia)){
+                    if($primadisponibilita==""){
+                        $primadisponibilita = $row["fascia"];
+                    }
+                    if($daOrdinare + $row["pizze"] < 20) {
+                        $selectReturn .= "<option value='" . $row['fascia'] . "'>" . $row['fascia'] . "</option>";
+                    }
                 }
             }
         }
