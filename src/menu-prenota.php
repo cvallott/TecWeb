@@ -54,20 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-if (isset($_GET['scroll'])) {
-    $script = "<script>
-            document.addEventListener('DOMContentLoaded', function() {
-            var element = document.getElementById('" . htmlspecialchars($_GET['scroll']) . "');
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-             });
-            </script>";
-    $template = str_replace("[script]", $script, $template);
-}else{
-    $template = str_replace("[script]", "", $template);
-}
-
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[linkMenu]', $menuCategorie, $template);
 $template = str_replace('[menu]', $pizze, $template);
