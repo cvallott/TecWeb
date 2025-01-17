@@ -64,6 +64,9 @@ if(isset($_POST['ora'])){
                     $_SESSION['messaggio_ordine'] = "<p class='messaggio'>Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
                     header("location: riepilogo-ordini.php");
                 }
+                else {
+                    $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                }
             }
         }
     }

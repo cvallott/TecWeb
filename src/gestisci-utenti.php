@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okUpdate){
                 $message = "<p class=\"messaggio\">Ruolo modificato con successo</p>";
             } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
             }
         }
     } else if ($action == 'delete') {
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okDelete){
                 $message = "<p class=\"messaggio\">Utente eliminato con successo</p>";
             } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
             }
         }
     } else if ($action == 'filter') {
