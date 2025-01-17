@@ -38,7 +38,7 @@ if($conn) {
                 $template = str_replace('[valueSi]', 'checked', $template);
             }
         }
-        $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php?nome='.$nome.'"', $template);
+        $template = str_replace('[percorsoFile]', '"aggiungi-ingrediente.php?nome='.$nome.'"', $template);
     }
 }
 
@@ -98,7 +98,7 @@ if (empty($_GET['id'])){
     $template = str_replace('[valueNome]', '', $template);
     $template = str_replace('[valueSi]', '', $template);
     $template = str_replace('[valueNo]', 'checked', $template);
-    $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php"', $template);
+    $template = str_replace('[percorsoFile]', '"aggiungi-ingrediente.php"', $template);
 }
 
 $template = str_replace('[header]', $header, $template);

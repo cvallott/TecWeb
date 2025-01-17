@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
 if (empty($_GET['id'])){
     $template = str_replace('[valueNome]', '', $template);
     $template = str_replace('[valuePrezzo]', '', $template);
-    $template = str_replace('[percorsoFile]', '"../../aggiungi-cucina.php"', $template);
+    $template = str_replace('[percorsoFile]', '"aggiungi-cucina.php"', $template);
 }
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[titolo]', $titolo, $template);

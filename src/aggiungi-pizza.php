@@ -41,7 +41,7 @@ if($conn){
                 $template = str_replace('[valueDescr]', $valueInfo[2], $template);
             }
         }
-        $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php?id='.$id.'"', $template);
+        $template = str_replace('[percorsoFile]', '"aggiungi-pizza.php?id='.$id.'"', $template);
     } else {
         $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
         $categorie = $connessione->getCategorie();
@@ -138,7 +138,7 @@ if (empty($_GET['id'])){
     $template = str_replace('[valueNome]', '', $template);
     $template = str_replace('[valuePrezzo]', '', $template);
     $template = str_replace('[valueDescr]', '', $template);
-    $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
+    $template = str_replace('[percorsoFile]', '"aggiungi-pizza.php"', $template);
 }
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[titolo]', $titolo, $template);
