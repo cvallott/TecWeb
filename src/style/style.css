@@ -17,7 +17,7 @@ html{
     /*background-image: url(assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
     background-size: cover; /**/
-    background-image: url(assets/grafiche/sfondo-nero.jpg);
+    background-image: url(../assets/grafiche/sfondo-nero.jpg);
     background-repeat: no-repeat;
 
 }
@@ -273,7 +273,7 @@ HOME PAGE
 
 #titolo {
     /*background-color: var(--bgcolor);*/
-    background-image: url(assets/pagine/index/titolo.png);
+    background-image: url(../assets/pagine/index/titolo.png);
     background-color: gray;
     background-size: cover;
     color: var(--bgcolor);
@@ -452,7 +452,7 @@ CHI SIAMO PAGE
 ------------------
 */
 #chi-siamo-intro {
-    background-image: url('assets/pagine/chi-siamo/chi-siamo-intro-b.png');
+    background-image: url('../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -811,7 +811,7 @@ MENU-PRENOTA-PAGE
 }
 
 #MP-intro{
-    background-image: url('assets/altre/menu-prenota/blurred.png');
+    background-image: url('../assets/altre/menu-prenota/blurred.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
@@ -1710,7 +1710,7 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 
 .errore-form li{
     margin-left: 0.5em;
-    background-image: url("assets/icons/x-icon.png");
+    background-image: url("../assets/icons/x-icon.png");
     background-position: left center;
     background-size: 1.5em;
     background-repeat: no-repeat;
