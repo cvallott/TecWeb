@@ -67,7 +67,7 @@ class DBConnection {
                         $stringaReturn .= "<div class='pizza-testo'>";
                         $stringaReturn .= "<h3>" . $riga['nome'];
                         if($riga['veget'] == "1"){
-                            $stringaReturn .= " <i class='fa fa-leaf'></i>";
+                            $stringaReturn .="<img src=\"../../../assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
                         }
                         $stringaReturn .= "</h3>";
                         $queryIngredienti = "SELECT pizza_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM pizza_ingrediente JOIN ingrediente ON pizza_ingrediente.ingrediente=ingrediente.nome WHERE pizza='".$riga['id']."' ORDER BY peso";
@@ -91,7 +91,7 @@ class DBConnection {
                                 $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
                                 <div class="quantity-controls">
                                 <input type="hidden" name="id" value="' . $riga['id'] . '">
-                                <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                                <button type="submit" name="azione" value="decrementa"><img src="../../../assets/icons/minus.png" alt="Decrementa"/></button>
                                 
                                 </form>';
                                         $stringaReturn .= '<h4>';
@@ -99,7 +99,7 @@ class DBConnection {
                                         $stringaReturn .= '</h4>';
                                         $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
                                 <input type="hidden" name="id" value="' . $riga['id'] . '">
-                                <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                                <button type="submit" name="azione" value="incrementa"><img src="../../../assets/icons/plus.png" alt="Incrementa"/></button>
                                 </div>
                                 </form>';
                             } else {
@@ -157,7 +157,7 @@ class DBConnection {
                 $stringaReturn .= "<div class='pizza-testo'>";
                 $stringaReturn .= "<h3>" . $riga['nome'];
                 if($riga['veget'] == "1"){
-                    $stringaReturn .= " <i class='fa fa-leaf'></i>";
+                    $stringaReturn .= "<img src=\"../../../assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
                 }
                 $stringaReturn .= "</h3>";
                 $queryIngredienti = "SELECT cucina_ingrediente.ingrediente AS ingrediente, ingrediente.peso AS peso FROM cucina_ingrediente JOIN ingrediente ON cucina_ingrediente.ingrediente=ingrediente.nome WHERE cucina='".$riga['id']."' ORDER BY peso";
@@ -181,7 +181,7 @@ class DBConnection {
                         $stringaReturn .= '<form method="POST" action="?scroll=c-' . $riga['id'] . '" class="inlineComponents">
                         <div class="quantity-controls">
                         <input type="hidden" name="id" value=c' . $riga['id'] . '">
-                        <button type="submit" class="decrease" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                        <button type="submit" name="azione" value="decrementa"><img src="../../../assets/icons/minus.png" alt="Decrementa"/></button>
                         
                         </form>';
                         $stringaReturn .= '<h4>';
@@ -189,7 +189,7 @@ class DBConnection {
                         $stringaReturn .= '</h4>';
                         $stringaReturn .= '<form method="POST" action="?scroll=c-' . $riga['id'] . '" class="inlineComponents">
                         <input type="hidden" name="id" value=c' . $riga['id'] . '">
-                        <button type="submit" class="increase" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                        <button type="submit" name="azione" value="incrementa"><img src="../../../assets/icons/plus.png" alt="Incrementa"/></button>
                         </div>
                      </form>';
                     } else {

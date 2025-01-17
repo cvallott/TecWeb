@@ -1048,16 +1048,6 @@ MENU-PRENOTA-PAGE
     gap: 0.5em;
 }
 
-.quantity-controls button {
-    padding: 0.3em 0.6em;
-    font-size: 1em;
-    cursor: pointer;
-    border: 0.1em solid #ccc;
-    border-radius: 0.2em;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s ease;
-}
-
 .quantity-controls button:hover {
     background-color: #ddd;
 }
@@ -1090,6 +1080,21 @@ MENU-PRENOTA-PAGE
 .order-actions .home-button{
     border: none;
     font-size: 1em;
+}
+
+.quantity-controls button img, .controlloQuantita button img{
+    height: 1.4em;
+    width: 1.4em;
+}
+
+.quantity-controls button:hover, .controlloQuantita button:hover{
+    background-color: var(--bgcolor2);
+}
+
+.pizza-testo img{
+    height: 1.4em;
+    width: 1.4em;
+    margin: 0;
 }
 
 /*
@@ -1160,11 +1165,6 @@ CARRELLO
     border: 1px var(--txtcolor) solid;
 }
 
-.dettaglioItem p{
-    width: 2em;
-}
-
-
 .row{
     display: flex;
     flex-direction: row;
@@ -1187,11 +1187,7 @@ CARRELLO
     padding-right: 1.5em;
 }
 
-.controlloQuantita p{
-    width: 5em;
-}
-
-.controlloQuantita button {
+.controlloQuantita button, .quantity-controls button{
     background-color: transparent;
     padding: 0.5em;
     font-size: 1.2em;
@@ -1204,7 +1200,6 @@ CARRELLO
     justify-content: center;
     width: 1.6em;
     height: 1.6em;
-
 }
 
 .order-summary #prezzoTot{
@@ -1287,136 +1282,6 @@ CARRELLO
     border: none;
 }
 
-/*
-------------------
-CONFERMA-ORDINE PAGE
-------------------
-(se commentato) PER DECOMENTARE RAPIDAMENTE QUESTA SEZ, SELEZIONARE
-TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE come le seguenti '//'
-*/
-
-/*#confOrdine{*/
-/*    display: flex;*/
-/*    background-color: var(--bgcolor);*/
-/*    flex-direction: column;*/
-/*    !*font-size: 1em;*!*/
-/*}*/
-
-/*#confOrdine h1{*/
-/*    text-align: center;*/
-/*    margin-top: 1em;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*    color: white;*/
-/*    background-color: #DC1C08;*/
-/*    width: fit-content;*/
-/*    padding: 0.5em 5em;*/
-/*}*/
-
-/*.containerRiepilogo{*/
-/*    display:flex;*/
-/*    flex-direction: row;*/
-/*    !*justify-content: space-between;*!*/
-/*    padding-top: 3em;*/
-/*    font-size: 1.3em;*/
-/*}*/
-
-/*.boxConferma{*/
-/*    display:flex;*/
-/*    flex-direction: column;*/
-/*    !*justify-content: space-between;*!*/
-/*    padding-left: 2em;*/
-/*    width: 33.3%;*/
-/*}*/
-/*#nomecognUtente{*/
-/*    border-bottom:  0.1em solid black;*/
-/*    text-align: center;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.boxConferma #pConferma{*/
-/*    padding-top: 0.5em;*/
-/*    text-align: center;*/
-/*}*/
-
-/*#boxForm{*/
-/*    display:flex;*/
-/*    justify-content: center;*/
-/*    width: 33.33%;*/
-/*}*/
-
-/*#orario{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    text-align: center;*/
-/*    flex-direction: column;*/
-/*    padding-top: 0.5em;*/
-/*}*/
-
-/*!* container del form *!*/
-/*.form-container {*/
-/*    width: 20em;*/
-/*    margin: 1.25em;*/
-/*    padding: 1em;*/
-/*    background-color: #f9f9f9;*/
-/*    border: 0.1vh solid #ddd;*/
-/*    border-radius: 0.83vh; !* crea dei bellissimi angoli arrotondati*!*/
-/*    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5); !*se si vuole ombra rossa #ff180061;*!*/
-/*}*/
-
-/*!* etichetta-"titolo" *!*/
-/*.form-label {*/
-/*    display: block; !* Rende l'etichetta un blocco *!*/
-/*    font-weight: bold;*/
-/*    font-size: 14px;*/
-/*    color: #333;*/
-/*    margin-bottom: 10px; !* Spazio tra l'etichetta e l'input *!*/
-/*}*/
-
-/*!* testo inserito dall'utente *!*/
-/*.form-input {*/
-/*    width: 100%; !* Occupa tutta la larghezza del contenitore *!*/
-/*    padding: 10px; !* Spazio interno *!*/
-/*    font-size: 14px; !* Dimensione del testo *!*/
-/*    color: #555; !* Colore del testo *!*/
-/*    border: 1px solid #ccc; !* Bordo grigio chiaro *!*/
-/*    border-radius: 5px; !* Angoli arrotondati *!*/
-/*    box-sizing: border-box; !* Considera padding e border nella larghezza *!*/
-/*    transition: border-color 0.3s ease; !* utile per animazione *!*/
-/*}*/
-
-/*!* focus del campo-testo *!*/
-/*.form-input:focus {*/
-/*    border-color: #ff180061;*/
-/*    outline: none;*/
-/*}*/
-
-/*.form-input::placeholder {*/
-/*    color: #aaa;*/
-/*    font-style: italic;*/
-/*}*/
-
-/*#totOrdine{*/
-/*    width: 33.3%;*/
-/*    padding-top: 1em;*/
-/*    text-align: center;*/
-/*}*/
-/*#totOrdine button{*/
-/*    font-size: 0.7em;*/
-/*    margin-top: 1em;*/
-/*    width: 5em;*/
-/*    height: 2em;*/
-/*}*/
-
-/*
--------------------
-CONF ORDINE PAGE 2 versione
--------------------
-(se commentato) PER DECOMENTARE RAPIDAMENTE QUESTA SEZ, SELEZIONARE
-TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
-*/
-
 
 #confOrdine{
     display: flex;
@@ -1466,15 +1331,14 @@ TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
     margin-top: 0.2em;
 }
 
-/* container del form */
 .form-container {
     width: 90%;
     margin: 1.5em 1.25em 3em 2em;
     padding: 1em;
     background-color: #f9f9f9;
     border: 0.1vh solid #ddd;
-    border-radius: 0.83vh; /* crea dei bellissimi angoli arrotondati*/
-    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5); /*se si vuole ombra rossa #ff180061;*/
+    border-radius: 0.4em;
+    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5);
 }
 
 /* etichetta-"titolo" */
@@ -1537,8 +1401,7 @@ TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
 }
 
 #boxOrario .select option {
-    max-height: 2em; /* Altezza massima visibile del menu */
-    /*DA CAPIRE COME LIMITARE L'ESPANSIONE DEL <SELECT>*/
+    max-height: 2em;
 }
 
 #boxOrario button{

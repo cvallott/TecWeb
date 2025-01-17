@@ -37,7 +37,7 @@
 				</div>
 			<form method="post" action="../../carrello.php">
 				<div>
-					<p>La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
+					<p id="primadisp">La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
 					<label for="ora">Seleziona ora di ritiro:</label>
 					<select name="ora" id="ora" class="select" required>
 					[optionOrario]
@@ -59,26 +59,7 @@
 			</ul>
 		</div>
 	</section>
-
 </main>
 [footer]
 </body>
-
-<script>
-    function updateQuantity(button, operation) {
-        const row = button.closest('.row'); // Trova la riga corrente
-        const input = row.querySelector('.quantity'); // Seleziona l'input corrispondente
-        let currentValue = parseInt(input.value); // Ottieni il valore attuale
-        if (operation === 'increase') {
-            currentValue += 1; // Aumenta il valore
-        } else if (operation === 'decrease' && currentValue > 1) {
-            currentValue -= 1; // Diminuisci il valore
-        }
-        input.value = currentValue; // Aggiorna l'input
-    }
-
-    function remove(button, id){
-		console.log(id);
-	}
-</script>
 </html>
