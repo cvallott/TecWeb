@@ -3,24 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Pagina non trovata | Non solo pizza</title>
-  <link rel="stylesheet" href="style/style.css" media="screen">
+  <title>Ops | Non solo pizza</title>
+  <link rel="stylesheet" href="../../../style/style.css" media="screen">
 </head>
-<body>
-<!-- Header da template -->
-[HEADER]
+<body id="homePage">
+
+
+<header>
+  <nav aria-label="Aiuti alla navigazione">
+    <ul class="listHelp">
+      <li><a href="#content" class="navigationHelp">Vai al contenuto</a></li>
+      <li><a href="#menu" class="navigationHelp">Vai alla navigazione</a></li>
+    </ul>
+  </nav>
+  <img src="../../../assets/logo/logo.png" alt="Logo Non solo pizza">
+
+  <nav id="menu">
+    <ul>
+      <li id='currentLink' lang='en'><a href='../../../index.php'>Home</a></li>
+      <li><a href='../../../chi-siamo.php'>Chi siamo</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav id="breadcrumb" aria-label="Breadcrumb">
+  <p>Sei in: <span lang="en">Home</span></p>
+</nav>
 
 <main id="content">
-  <div class="error-content">
-    <h1 class="error-title">Errore 404</h1>
-    <span class="pizza-emoji">🍕</span>
+
+  <section id="intro" class="error-section">
+    <img src="../../../assets/grafiche/404.png" class="error-img">
     <p class="error-message">Ops! Questa fetta di pizza è andata persa...</p>
     <p>La pagina che stai cercando non esiste, forse è finita nel forno!</p>
     <a href="index.php" class="home-button">Torna al menu principale</a>
-  </div>
+  </section>
 </main>
 
-<!-- Footer da template -->
-[FOOTER]
+
+
 </body>
 </html>
