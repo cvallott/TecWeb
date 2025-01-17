@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $nomePiatto = pulisciInput($_POST['nome']);
     $prezzoPiatto = pulisciInput($_POST['prezzo']);
     $ingredientiPiatto = pulisciInput($ingr);
@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPiatto);
             if(empty($_GET['id'])) {

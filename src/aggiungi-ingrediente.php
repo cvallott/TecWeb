@@ -43,7 +43,7 @@ if($conn) {
 }
 
 if (isset($_POST['submit'])) {
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $nomeIngr = pulisciInput($_POST['nome']);
     $isVeget = pulisciInput($_POST['veget']);
 
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if (trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>") {
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if ($conn) {
             if(empty($_GET['nome'])) {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
