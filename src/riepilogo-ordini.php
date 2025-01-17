@@ -26,7 +26,7 @@ if (isset($_SESSION['messaggio_ordine'])) {
 }
 
 $template = str_replace('[header]', $header, $template);
-$template = str_replace('[breadcrump]', $bread, $template);
+$template = str_replace('[breadcrumb]', $bread, $template);
 $template = str_replace('[ordiniUtente]', $ordini, $template);
 $template = str_replace('[footer]', $footer, $template);
 $template = str_replace('[messaggioOrdine]', $messaggioOrdine, $template);
