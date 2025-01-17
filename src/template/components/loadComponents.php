@@ -38,9 +38,9 @@ function printHeader()
 
     }
     if($currentpage == 'carrello.php') {
-        $carrello = "<li id='currentLink'><i class='fa fa-shopping-cart'></i></li>";
+        $carrello = "<li id='currentLink'>Carrello</li>";
     }else{
-        $carrello = "<li><a href='carrello.php'><i class='fa fa-shopping-cart'></i></a></li>";
+        $carrello = "<li><a href='carrello.php'>Carrello</a></li>";
     }
     /*
     if(isset($_SESSION['tipo'])){
