@@ -881,9 +881,10 @@ class DBConnection {
     }
 
     public function insertPizza($nome, $prezzo, $veget, $categoria, $descrizione, $path, $id = null): bool {
+        $path = str_replace("/var/www/html/", "", $path);
         if($id != null){
             try {
-                $query = "UPDATE pizza SET nome = ?, prezzo = ?, veget = ?, categoria, ?, descrizione = ?, path = ? WHERE id = ?";
+                $query = "UPDATE pizza SET nome = ?, prezzo = ?, veget = ?, categoria = ?, descrizione = ?, path = ? WHERE id = ?";
                 $stmt = $this->connection->prepare($query);
                 $stmt->bind_param('sdisssi', $nome, $prezzo, $veget, $categoria, $descrizione, $path, $id);
                 $stmt->execute();
@@ -904,23 +905,22 @@ class DBConnection {
     }
 
     public function insertProdottoIngrediente($nome, $ingredienti, $table, $id = null) {
-        // Sanitizza il nome della pizza
-        /*$nome = mysqli_real_escape_string($this->connection, $nome);*/
+        $result = "";
         if ($id != null){
             try {
                 $query = "DELETE FROM " . $table . "_ingrediente WHERE " . $table . "=" . $id;
-                $query = "DELETE FROM ?" . "_ingrediente WHERE ?=?";
+                $query = "DELETE FROM " .$table. "_ingrediente WHERE ?=?";
                 $stmt = $this->connection->prepare($query);
-                $stmt->bind_param('sss', $table, $table, $id);
+                $stmt->bind_param('ss', $table, $id);
                 $stmt->execute();
             }catch(mysqli_sql_exception $e){
                 header("location: errore.php");
             }
         }
         try {
-            $query = "SELECT id FROM ? WHERE nome = ?";
+            $query = "SELECT id FROM $table WHERE nome = ?";
             $stmt = $this->connection->prepare($query);
-            $stmt->bind_param('ss', $table, $nome);
+            $stmt->bind_param('s', $nome);
             $stmt->execute();
             $result = $stmt->get_result();
         }catch(mysqli_sql_exception $e){
@@ -933,9 +933,9 @@ class DBConnection {
         foreach ($ingredienti as $ingrediente) {
             try {
                 $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
-                $queryInsert = "INSERT INTO ?" . "_ingrediente (?, ingrediente) VALUES (?,?)";
+                $queryInsert = "INSERT INTO " .$table. "_ingrediente ($table, ingrediente) VALUES (?,?)";
                 $stmt = $this->connection->prepare($queryInsert);
-                $stmt->bind_param('sis', $table, $prodottoId, $ingrediente);
+                $stmt->bind_param('is', $prodottoId, $ingrediente);
                 $stmt->execute();
             }catch(mysqli_sql_exception $e){
                 header("location: errore.php");
@@ -945,9 +945,10 @@ class DBConnection {
     }
 
     public function insertCucina($nome, $prezzo, $veget, $path, $id = null) {
+        $path = str_replace("/var/www/html/", "", $path);
         if($id != null){
             try {
-                $query = "UPDATE cucina SET nome = ?, prezzo = ?, veget = ?, path = '" . $path . "' WHERE id = ?";
+                $query = "UPDATE cucina SET nome = ?, prezzo = ?, veget = ?, path = ? WHERE id = ?";
                 $stmt = $this->connection->prepare($query);
                 $stmt->bind_param('sdisi', $nome, $prezzo, $veget, $path, $id);
                 $stmt->execute();
@@ -956,7 +957,7 @@ class DBConnection {
             }
         } else {
             try {
-                $query = "INSERT INTO cucina(nome, prezzo, veget, path) VALUES (????)";
+                $query = "INSERT INTO cucina(nome, prezzo, veget, path) VALUES (?,?,?,?)";
                 $stmt = $this->connection->prepare($query);
                 $stmt->bind_param('sdis', $nome, $prezzo, $veget, $path);
                 $stmt->execute();

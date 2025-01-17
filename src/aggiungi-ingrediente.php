@@ -38,12 +38,12 @@ if($conn) {
                 $template = str_replace('[valueSi]', 'checked', $template);
             }
         }
-        $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php?nome='.$nome.'"', $template);
+        $template = str_replace('[percorsoFile]', '"aggiungi-ingrediente.php?nome='.$nome.'"', $template);
     }
 }
 
 if (isset($_POST['submit'])) {
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $nomeIngr = pulisciInput($_POST['nome']);
     $isVeget = pulisciInput($_POST['veget']);
 
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if (trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>") {
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if ($conn) {
             if(empty($_GET['nome'])) {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
@@ -98,7 +98,7 @@ if (empty($_GET['id'])){
     $template = str_replace('[valueNome]', '', $template);
     $template = str_replace('[valueSi]', '', $template);
     $template = str_replace('[valueNo]', 'checked', $template);
-    $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php"', $template);
+    $template = str_replace('[percorsoFile]', '"aggiungi-ingrediente.php"', $template);
 }
 
 $template = str_replace('[header]', $header, $template);
