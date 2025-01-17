@@ -177,4 +177,3 @@ $paginaHTML = str_replace('[valRegisterUser]', $registerUser, $paginaHTML);
 $paginaHTML = str_replace('[valRegisterEmail]', $registerEmail, $paginaHTML);
 
 echo $paginaHTML;
-?>

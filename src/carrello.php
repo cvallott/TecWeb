@@ -21,7 +21,6 @@ $connessioneOK = $connessione->openDBConnection();
 $consiglioPizze = "";
 if ($connessioneOK) {
     $consiglioPizze = $connessione->getFuoriMenuPerCarrello();
-    $connessione->closeConnection();
 }
 
 $totQuant = 0;
@@ -34,7 +33,6 @@ $optionOrario = "";
 if ($connessioneOK) {
     $primadisp = $connessione->getFasceOrarie($totQuant)[0];
     $optionOrario = $connessione->getFasceOrarie($totQuant)[1];
-    $connessione->closeConnection();
 }
 
 if(isset($_POST['ora'])){
@@ -55,7 +53,6 @@ if(isset($_POST['ora'])){
                 }
             }
         }
-        $connessione->closeConnection();
     }
 }
 
@@ -67,6 +64,8 @@ $template = str_replace('[fasciaOraria]', $primadisp, $template);
 $template = str_replace('[optionOrario]', $optionOrario, $template);
 $template = str_replace('[pizzeMese]', $consiglioPizze, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;
 

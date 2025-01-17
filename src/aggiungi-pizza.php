@@ -42,11 +42,9 @@ if($conn){
             }
         }
         $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php?id='.$id.'"', $template);
-        $connessione->closeConnection();
     } else {
         $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
         $categorie = $connessione->getCategorie();
-        $connessione->closeConnection();
     }
 }
 
@@ -117,7 +115,6 @@ if (isset($_POST['submit'])) {
                 $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path, $_GET['id']);
                 $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza', $_GET['id']);
             }
-            $connessione->closeConnection();
             if(empty($_GET['id'])) {
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
@@ -150,5 +147,7 @@ $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[categorie]', $categorie, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

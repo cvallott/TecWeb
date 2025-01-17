@@ -39,7 +39,6 @@ if($conn) {
             }
         }
         $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php?nome='.$nome.'"', $template);
-        $connessione->closeConnection();
     }
 }
 
@@ -54,7 +53,6 @@ if (isset($_POST['submit'])) {
         if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente inserito è già presente</li>";
         }
-        $connessione->closeConnection();
         if (strlen($nomeIngr) < 2) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
         }
@@ -77,7 +75,6 @@ if (isset($_POST['submit'])) {
             } else {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget, $_GET['nome']);
             }
-            $connessione->closeConnection();
             if(empty($_GET['nome'])) {
                 if ($okIngredienti) {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
@@ -109,5 +106,7 @@ $template = str_replace('[titolo]', $titolo, $template);
 $template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

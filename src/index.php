@@ -14,12 +14,12 @@ $conn = $connessione->openDBConnection();
 $pizzeFM = "";
 if($conn){
     $pizzeFM = $connessione->getFuoriMenu();
-    $connessione->closeConnection();
 }
-
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[pizzeMese]', $pizzeFM, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

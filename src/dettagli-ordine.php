@@ -34,7 +34,6 @@ if($conn){
         $dettaglioOrdine = $connessione->getDettagliOrdine($id);
         $totOrdine = $connessione->getTotalePrezzoOrdine($id);
     }
-    $connessione->closeConnection();
 }
 
 $template = str_replace('[header]', $header, $template);
@@ -44,5 +43,7 @@ $template = str_replace('[dettaglioOrdine]', $dettaglioOrdine, $template);
 $template = str_replace('[linkIndietro]', $linkIndietro, $template);
 $template = str_replace('[totOrdine]', $totOrdine, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

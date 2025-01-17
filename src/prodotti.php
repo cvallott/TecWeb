@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($action == 'deletePizza') {
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeletePizza());
-            $connessione->closeConnection();
             if($okDelete){
                 $message = "<p class=\"messaggio\">Pizza eliminata con successo</p>";
             } else {
@@ -29,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } else if ($action == 'deleteCucina') {
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeleteCucina());
-            $connessione->closeConnection();
             if($okDelete){
                 $message = "<p class=\"messaggio\">Piatto eliminato con successo</p>";
             } else {
@@ -39,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } else if ($action == 'deleteIngrediente') {
         if ($conn) {
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
-            $connessione->closeConnection();
             if ($okDelete) {
                 $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";
             } else {
@@ -55,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             } else {
                 $listaProdotti = $connessione->filtraProdotti();
             }
-            $connessione->closeConnection();
         }
     }
 }
@@ -66,7 +62,6 @@ if($conn){
             $listaProdotti .= $connessione->filtraProdotti($conta, 0);
         }
     }
-    $connessione->closeConnection();
 }
 
 if(isset($_SESSION['messaggio'])){
@@ -82,5 +77,7 @@ if(isset($message)){
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visProdotti]', $listaProdotti, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;
