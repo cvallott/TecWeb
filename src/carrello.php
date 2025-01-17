@@ -19,6 +19,7 @@ $connessione = new DBConnection();
 
 $connessioneOK = $connessione->openDBConnection();
 $consiglioPizze = "";
+$messaggio_errore = "";
 if ($connessioneOK) {
     $consiglioPizze = $connessione->getFuoriMenuPerCarrello();
 }
@@ -46,10 +47,9 @@ if(isset($_POST['ora'])){
         if($succ){
             if($connessioneOK){
                 if($connessione->itemToOrdine($succ)) {
-                    $messaggio_errore = "";
-                    if (isset($_POST['submit']) && $totQuant == 0) {
-                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Devi inserire almeno un prodotto. Riprova!</p>";
 
+                    if ($totQuant == 0) {
+                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Devi inserire almeno un prodotto. Riprova!</p>";
                     } else {
                         unset($_SESSION['carrello']);
                         $oraScelta = $_POST['ora'];
