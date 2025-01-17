@@ -763,7 +763,7 @@ DETTAGLI-ORDINE PAGE
     margin: 3em;
 }
 
-#DO-tabella {
+#DO #tabella-ordini {
     margin-right: 0.7em;
     min-height: 50vh;
     min-width: 60%;
