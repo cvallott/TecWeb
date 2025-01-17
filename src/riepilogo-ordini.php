@@ -15,7 +15,6 @@ $ordini = "";
 if ($conn) {
     $ordini = $connessione->getOrdiniUtente($_SESSION['email']);
 }
-$connessione->closeConnection();
 
 $messaggioOrdine = "";
 if (isset($_SESSION['messaggio_ordine'])) {
@@ -31,5 +30,7 @@ $template = str_replace('[breadcrump]', $bread, $template);
 $template = str_replace('[ordiniUtente]', $ordini, $template);
 $template = str_replace('[footer]', $footer, $template);
 $template = str_replace('[messaggioOrdine]', $messaggioOrdine, $template);
+
+$connessione->closeConnection();
 
 echo $template;

@@ -1,0 +1,2 @@
+ErrorDocument 404 /template/pageTemplate/error/error404.html
+ErrorDocument 500 /template/pageTemplate/error/error500.html

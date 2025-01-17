@@ -37,7 +37,6 @@ SEZIONE HEADER
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: var(--bgcolor);
     height: 5em;
     position: fixed;
@@ -49,6 +48,10 @@ header {
 header img {
     height: 100%;
     padding: 0 0.5em;
+}
+
+#menu {
+    margin-left: auto;
 }
 
 #menu li{
@@ -63,7 +66,6 @@ header img {
     position: relative;
 }
 
-/* DA VERIFICARE SE VA BENE */
 #menu li a::after {
     content: "";
     position: absolute;
@@ -75,7 +77,6 @@ header img {
     transition: width 0.3s ease;
 }
 
-/* DA VERIFICARE SE VA BENE */
 #menu li a:hover::after {
     width: 100%;
 }
@@ -85,49 +86,43 @@ header img {
     display: inline-block;
 }
 
+#droplink {
+    background: none;
+    border: none;
+    color: var(--buttoncolor);
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+
+#droplink:focus,
+#droplink:hover {
+    outline: none;
+}
+
 #dropdown-content {
     display: none;
     position: absolute;
     background-color: var(--bgcolor);
-    width: 7em;
-    padding: 0;
-    z-index: 1000; /
+    min-width: 7em;
 }
 
-#dropdown-content a {
-    color: blue;
-    padding: 0.8em 1em;
-    text-decoration: none;
+#dropdown:hover #dropdown-content,
+#dropdown:focus-within #dropdown-content {
     display: block;
 }
 
-
-#dropdown:hover #dropdown-content {display: block;}
-
-#droplink {
-    background: none; /* Remove button background */
-    border: none; /* Remove button border */
-    color: var(--buttoncolor); /* Use the same color as menu links */
-    font: inherit; /* Match the font style of the menu links */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Indicate it's clickable */
-    position: relative;
+#dropdown-content li {
+    list-style: none;
 }
 
-#droplink:hover::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.2em;
-    width: 100%;
-    height: 0.1em;
-    background-color: var(--buttoncolor);
-    transition: width 0.3s ease;
+#dropdown-content a {
+    text-decoration: none;
+    display: block;
+    padding: 0.7em;
 }
 
-#dropdown i{
-    padding-left: 0.4em;
-}
 /*
 =============
 AIUTI ALLA NAVIGAZIONE
@@ -137,7 +132,6 @@ AIUTI ALLA NAVIGAZIONE
 .navigationHelp{
     position: absolute;
     text-indent: -999em;
-
 }
 
 .navigationHelp:focus{
@@ -197,6 +191,10 @@ footer {
     line-height: 1.5;
 }
 
+.footer-column p:first-child {
+    font-size: 1.3em;
+}
+
 iframe {
     border: none;
     border-radius: 5px;
@@ -217,6 +215,28 @@ iframe {
 
 .social:hover {
     opacity: .4;
+}
+
+/*
+------------------
+ERROR PAGE
+------------------
+*/
+.error-section {
+    padding: 3em;
+    text-align: center;
+    color: var(--txtcolor);
+    position: relative;
+}
+
+.error-section{
+    background-color: var(--bgcolor);
+}
+
+.error-section h2 {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 /*
@@ -283,7 +303,7 @@ HOME PAGE
     padding-bottom: 1em;
 }
 
-#important-info section {
+#important-info div {
     padding: 3em;
     width: 30em;
 }
@@ -324,6 +344,7 @@ HOME PAGE
     color: var(--bgcolor);
     text-decoration: none;
     border-radius: 0.5em;
+    transition: background-color 0.3s ease;
 }
 
 .home-button:hover {
@@ -406,8 +427,9 @@ HOME PAGE
     width: 3em;
 }
 
-
-/*NB PER IL FUTURO ->RICORDATI POSTION RELATIVE NEL CONTENITORE*/
+.download-column img{
+    height: 2.5em;
+}
 
 .torna-su {
     position: absolute;
@@ -436,72 +458,60 @@ CHI SIAMO PAGE
     background-position: center center;
     color: var(--txtcolor);
     text-align: center;
-    font-size: 1.5em;
-    height: 50vh;
-    width: 100%;
-    /*margin: 0;
-    left: 0;*/
+    font-size: 1.35em;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0.5em;
 }
 
-
-
 .title-container {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(200, 0, 0, 0.7);
     padding: 1.5em 2em;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 
 #chi-siamo-intro h1 {
     margin: 0;
-    color: white;
-    font-size: 2.5em;
-    text-transform: uppercase;
-    letter-spacing: 0.1875em;
+    color: var(--bgcolor);
+    font-size: 2em;
+    letter-spacing: 0.18em;
     position: relative;
     z-index: 2;
 }
 
-/* Linee decorative */
 .title-container::before,
 .title-container::after {
     content: '';
     position: absolute;
-    background-color: var(--buttoncolor);
+    background-color: var(--bgcolor);
     height: 0.125em;
 }
 
 .title-container::before {
     left: 0;
     right: 0;
-    top: 0.625em;
+    top: 0.5em;
     margin: 0 1.25em;
 }
 
 .title-container::after {
     left: 0;
     right: 0;
-    bottom: 0.625em;
+    bottom: 0.5em;
     margin: 0 1.25em;
 }
 
 #chi-siamo-contenitore{
     display: flex;
     justify-content: flex-start;
-    background-color: var(--buttoncolor);;
-    /*flex-wrap: wrap;*/
-}
-@media screen and (max-width: 768px){
-    #chi-siamo-contenitore{
-        flex-wrap: wrap;
-    }
+    background-color: var(--bgcolor2);
+    margin: 0.6em;
 }
 
 .chi-siamo-items{
@@ -509,11 +519,6 @@ CHI SIAMO PAGE
     padding: 3em;
     width: 33.3%;
     color: var(--bgcolor);
-}
-
-.chi-siamo-items:hover{
-    background-color: var(--bgcolor);
-    color: var(--txtcolor);
 }
 
 .chi-siamo-titoli{
@@ -531,14 +536,11 @@ CHI SIAMO PAGE
 
 .chi-siamo-boxes{
     background-color: var(--bgcolor);
-    padding-left:5%;
-    padding-right:5%;
     display:flex;
     justify-content:flex-start;
     align-items:center;
     gap:10em;
-    padding-top:2.5em;
-    padding-bottom:2.5em;
+    padding: 2.5em 5%;
     margin-top:1.5em;
     margin-bottom: 1.5em;
     position: relative;
@@ -553,11 +555,10 @@ CHI SIAMO PAGE
     display:flex;
     flex-direction: column;
     justify-content:flex-start;
-    transition: transform 0.3s ease-in-out;
 }
 
-.chi-siamo-testo:hover{
-    transform: scale(1.1);
+.chi-siamo-testo p{
+    color: var(--txtcolor);
 }
 
 .chi-siamo-testo h3{
@@ -570,59 +571,55 @@ CHI SIAMO PAGE
 RIEPILOGO-ORDINI PAGE
 ------------------
 */
-#RO-tabella {
-    min-height: 30vh;
-}
-
-#RO-intro {
-    padding-bottom: 2em;
-    text-align: center;
-    line-height: 2em;
-    margin: 0.7em;
-}
-
-#RO-intro h1 {
-    padding-bottom: 2em;
-}
-
-.tabella-ordini {
+#tabella-ordini {
     background-color: var(--bgcolor);
     padding: 3em;
 }
 
-.tabella-ordini caption{
+#tabella-ordini caption{
     font-weight: bold;
     color: var(--txtcolor);
 }
 
-.tabella-ordini thead{
+#tabella-ordini thead{
     background-color: var(--bgcolor2);
     color: var(--bgcolor);
 }
 
-.tabella-ordini tbody{
+#tabella-ordini tbody{
     background-color: var(--bgcolor);
     color: var(--txtcolor);
 }
 
-.tabella-ordini table{
+#tabella-ordini table{
     width: 90%;
     margin: auto auto 2em;
     text-align: center;
     border-collapse: collapse;
 }
 
-.tabella-ordini td, th{
+#tabella-ordini td, th{
     padding: 0.8em;
 }
 
-.tabella-ordini th, td {
+#tabella-ordini th, td {
     border-bottom: 1px solid var(--txtcolor);
 }
 
-.tabella-ordini tfoot{
+#tabella-ordini tfoot{
     color: var(--txtcolor);
 }
+
+#descrTabella{
+    position: absolute;
+    text-indent: -999em;
+}
+
+#tabella-ordini label{
+    position: absolute;
+    text-indent: -999em;
+}
+
 /*
 ------------------
 AREA-RISERVATA PAGE
@@ -759,18 +756,6 @@ AREA-RISERVATA PAGE
     font-weight: 500;
 }
 
-
-.area-riservata-title h1 {
-        text-align: center;
-        color: white;
-        font-size: 2.5em;
-        margin-bottom: 1.5em;
-        background-color: var(--bgcolor2);
-        padding: 0.5em;
-        font-weight: bold;
-        margin-top:2em;
-}
-
 /*
 ------------------
 DETTAGLI-ORDINE PAGE
@@ -783,9 +768,11 @@ DETTAGLI-ORDINE PAGE
 }
 
 #DO-intro{
-    margin: 0.7em;
+    margin: 2em;
     background-color: var(--bgcolor);
     color: var(--txtcolor);
+    min-width: 25%;
+    min-height: 50vh;
 }
 
 #DO-intro h1{
@@ -798,9 +785,11 @@ DETTAGLI-ORDINE PAGE
     margin: 3em;
 }
 
-#DO-tabella {
+#DO #tabella-ordini {
     margin-right: 0.7em;
-    width: 60%;
+    min-height: 50vh;
+    min-width: 60%;
+    margin-left: 5em;
 }
 
 
@@ -810,31 +799,43 @@ MENU-PRENOTA-PAGE
 ---------------------
 */
 
-.MP-intro{
-    /*background-image: url('../../assets/altre/menu-prenota/menu-prenota.jpg');*/
+#menu-prenotaPage .torna-su{
+    position: relative;
+    bottom: 1em;
+    right: 1em;
+    margin-left: auto;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+#MP-intro{
     background-image: url('../../assets/altre/menu-prenota/blurred.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
-    /*color: var(--txtcolor);*/
     text-align: center;
     font-size: 1.2em;
-    height: 30em;
-    width: 100%;
-    margin: 0;
+    height: 70vh;
+    margin: 0.5em;
     display: flex;
-    /*justify-content: flex-start;
-    align-items: center;*/
 }
 
 #smallMenu {
     display: flex;
     flex-direction: column;
-    padding: 1em;
-    width: 28%;
-    overflow-wrap: break-word;
+    padding: 2em;
+    margin: 2em;
+    border-radius: 0.4em;
+    width: 30%;
     justify-content: center;
     color: var(--bgcolor);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#smallMenu h1{
+    font-size: 1.2em;
 }
 
 #smallMenu #prenota{
@@ -853,11 +854,12 @@ MENU-PRENOTA-PAGE
     background-color: transparent;
     border: var(--bgcolor) 0.125em solid;
     border-radius: 0.4em;
-    padding: 0.5em;
-    margin-top: 1em;
+    padding: 0.35em;
+    margin-top: 0.8em;
     text-align: center;
     transition: background-color 0.3s;
     text-decoration: none;
+    font-size: 0.9em;
 }
 
 #smallMenu a:hover{
@@ -870,7 +872,9 @@ MENU-PRENOTA-PAGE
     flex-direction: column;
     gap: 1em;
     padding: 0.5em;
-    background-color: #FAF3E0;
+    background-color: var(--bgcolor);
+    margin-top: 0.7em;
+    margin: 0.5em;
 }
 
 .menu-prodpercat h2 {
@@ -878,8 +882,8 @@ MENU-PRENOTA-PAGE
     margin-top: 1em;
     margin-left: auto;
     margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
+    color: var(--bgcolor);
+    background-color: var(--bgcolor2);
     width: fit-content;
     padding: 0.5em 5em;
 }
@@ -941,19 +945,17 @@ MENU-PRENOTA-PAGE
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 0.1vh #DC1C08 solid;
+    border-bottom: 0.8px var(--txtcolor) solid;
     margin-bottom: 1em;
     width: 65%;
 }
 
 
 .pizza img {
-    margin-top: 0.5em;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    margin-bottom: 0.2em;
+    margin: 0.5em 0.5em 0.2em;
     width: 10em;
     height: 7em;
+    object-fit: cover;
 }
 
 
@@ -1068,16 +1070,6 @@ MENU-PRENOTA-PAGE
     gap: 0.5em;
 }
 
-.quantity-controls button {
-    padding: 0.3em 0.6em;
-    font-size: 1em;
-    cursor: pointer;
-    border: 0.1em solid #ccc;
-    border-radius: 0.2em;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s ease;
-}
-
 .quantity-controls button:hover {
     background-color: #ddd;
 }
@@ -1107,24 +1099,31 @@ MENU-PRENOTA-PAGE
     padding-bottom: 3em;
 }
 
-#prodotto-non-trovato:last-child{
-    padding-bottom: 7em;
+.order-actions .home-button{
+    border: none;
+    font-size: 1em;
 }
+
+.quantity-controls button img, .controlloQuantita button img{
+    height: 1.4em;
+    width: 1.4em;
+}
+
+.quantity-controls button:hover, .controlloQuantita button:hover{
+    background-color: var(--bgcolor2);
+}
+
+.pizza-testo img{
+    height: 1.4em;
+    width: 1.4em;
+    margin: 0;
+}
+
 /*
 ------------------
 CARRELLO
 ------------------
 */
-
-#carrello-titolo{
-    padding-top: 3em;
-    padding-left: 2em;
-}
-
-#mainCarrello{
-    background-color: var(--bgcolor);
-}
-
 #sez-carrello {
     display: flex;
     flex-wrap: nowrap;
@@ -1136,7 +1135,7 @@ CARRELLO
     margin-left: 5em;
     display: flex;
     flex-direction: column;
-    max-width: 50em;
+    max-width: 45%;
 }
 
 .sezDettaglio{
@@ -1184,10 +1183,9 @@ CARRELLO
     margin-right: 1em;
 }
 
-.dettaglioItem p{
-    width: 2em;
+.order-form textarea{
+    border: 1px var(--txtcolor) solid;
 }
-
 
 .row{
     display: flex;
@@ -1195,7 +1193,6 @@ CARRELLO
     align-items: center;
     column-gap: 3em;
     margin-bottom: 1.5em;
-    width: 70%;
 }
 
 .dettaglioItem {
@@ -1212,11 +1209,7 @@ CARRELLO
     padding-right: 1.5em;
 }
 
-.controlloQuantita p{
-    width: 5em;
-}
-
-.controlloQuantita button {
+.controlloQuantita button, .quantity-controls button{
     background-color: transparent;
     padding: 0.5em;
     font-size: 1.2em;
@@ -1229,16 +1222,14 @@ CARRELLO
     justify-content: center;
     width: 1.6em;
     height: 1.6em;
-
 }
 
 .order-summary #prezzoTot{
-    border-top: 0.1vh solid var(--border-color);
+    border-top: 1px solid var(--border-color);
     padding-top: 1em;
 }
 
 #proposta-mese{
-    border-top: black 0.1em solid;
     margin-top: 2em;
 }
 
@@ -1268,10 +1259,6 @@ CARRELLO
     border: none;
 }
 
-/*PROVA*/
-
-
-
 .order-container {
     display: flex;
     flex-direction: row;
@@ -1281,20 +1268,18 @@ CARRELLO
 }
 
 .order-form, .order-summary {
-    background: #fff;
+    background: var(--bgcolor);
     padding: 1em;
     margin: 1em;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .order-form {
-    width: 40%;
+    min-width: 45%;
 }
 
 .order-summary {
-    flex: 1;
-    max-width: 40%;
+    min-width: 45%;
 }
 
 .order-summary h2 {
@@ -1303,162 +1288,21 @@ CARRELLO
     text-align: center;
 }
 
-.order-container button {
-    background-color: #dc1c08;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.order-container button:hover {
-    background-color: #b81707;
-}
-
 .order-container input, textarea {
-    width: 100%; /* Occupa tutta la larghezza del contenitore */
-    padding: 0.65em; /* Spazio interno */
-    font-size: 1em; /* Dimensione del testo */
-    color: #555; /* Colore del testo */
-    border: 0.1em solid #ccc; /* Bordo grigio chiaro */
-    border-radius: 0.3em; /* Angoli arrotondati */
-    box-sizing: border-box; /* Considera padding e border nella larghezza */
-    transition: border-color 0.3s ease; /* utile per animazione */
+    width: 100%;
+    padding: 0.65em;
+    font-size: 1em;
+    border-radius: 0.3em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
     resize: vertical;
     min-height: 3em;
     max-height: 9em;
 }
 
-/*
-------------------
-CONFERMA-ORDINE PAGE
-------------------
-(se commentato) PER DECOMENTARE RAPIDAMENTE QUESTA SEZ, SELEZIONARE
-TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE come le seguenti '//'
-*/
-
-/*#confOrdine{*/
-/*    display: flex;*/
-/*    background-color: var(--bgcolor);*/
-/*    flex-direction: column;*/
-/*    !*font-size: 1em;*!*/
-/*}*/
-
-/*#confOrdine h1{*/
-/*    text-align: center;*/
-/*    margin-top: 1em;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*    color: white;*/
-/*    background-color: #DC1C08;*/
-/*    width: fit-content;*/
-/*    padding: 0.5em 5em;*/
-/*}*/
-
-/*.containerRiepilogo{*/
-/*    display:flex;*/
-/*    flex-direction: row;*/
-/*    !*justify-content: space-between;*!*/
-/*    padding-top: 3em;*/
-/*    font-size: 1.3em;*/
-/*}*/
-
-/*.boxConferma{*/
-/*    display:flex;*/
-/*    flex-direction: column;*/
-/*    !*justify-content: space-between;*!*/
-/*    padding-left: 2em;*/
-/*    width: 33.3%;*/
-/*}*/
-/*#nomecognUtente{*/
-/*    border-bottom:  0.1em solid black;*/
-/*    text-align: center;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.boxConferma #pConferma{*/
-/*    padding-top: 0.5em;*/
-/*    text-align: center;*/
-/*}*/
-
-/*#boxForm{*/
-/*    display:flex;*/
-/*    justify-content: center;*/
-/*    width: 33.33%;*/
-/*}*/
-
-/*#orario{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    text-align: center;*/
-/*    flex-direction: column;*/
-/*    padding-top: 0.5em;*/
-/*}*/
-
-/*!* container del form *!*/
-/*.form-container {*/
-/*    width: 20em;*/
-/*    margin: 1.25em;*/
-/*    padding: 1em;*/
-/*    background-color: #f9f9f9;*/
-/*    border: 0.1vh solid #ddd;*/
-/*    border-radius: 0.83vh; !* crea dei bellissimi angoli arrotondati*!*/
-/*    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5); !*se si vuole ombra rossa #ff180061;*!*/
-/*}*/
-
-/*!* etichetta-"titolo" *!*/
-/*.form-label {*/
-/*    display: block; !* Rende l'etichetta un blocco *!*/
-/*    font-weight: bold;*/
-/*    font-size: 14px;*/
-/*    color: #333;*/
-/*    margin-bottom: 10px; !* Spazio tra l'etichetta e l'input *!*/
-/*}*/
-
-/*!* testo inserito dall'utente *!*/
-/*.form-input {*/
-/*    width: 100%; !* Occupa tutta la larghezza del contenitore *!*/
-/*    padding: 10px; !* Spazio interno *!*/
-/*    font-size: 14px; !* Dimensione del testo *!*/
-/*    color: #555; !* Colore del testo *!*/
-/*    border: 1px solid #ccc; !* Bordo grigio chiaro *!*/
-/*    border-radius: 5px; !* Angoli arrotondati *!*/
-/*    box-sizing: border-box; !* Considera padding e border nella larghezza *!*/
-/*    transition: border-color 0.3s ease; !* utile per animazione *!*/
-/*}*/
-
-/*!* focus del campo-testo *!*/
-/*.form-input:focus {*/
-/*    border-color: #ff180061;*/
-/*    outline: none;*/
-/*}*/
-
-/*.form-input::placeholder {*/
-/*    color: #aaa;*/
-/*    font-style: italic;*/
-/*}*/
-
-/*#totOrdine{*/
-/*    width: 33.3%;*/
-/*    padding-top: 1em;*/
-/*    text-align: center;*/
-/*}*/
-/*#totOrdine button{*/
-/*    font-size: 0.7em;*/
-/*    margin-top: 1em;*/
-/*    width: 5em;*/
-/*    height: 2em;*/
-/*}*/
-
-/*
--------------------
-CONF ORDINE PAGE 2 versione
--------------------
-(se commentato) PER DECOMENTARE RAPIDAMENTE QUESTA SEZ, SELEZIONARE
-TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
-*/
+.order-container .home-button{
+    border: none;
+}
 
 
 #confOrdine{
@@ -1509,15 +1353,14 @@ TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
     margin-top: 0.2em;
 }
 
-/* container del form */
 .form-container {
     width: 90%;
     margin: 1.5em 1.25em 3em 2em;
     padding: 1em;
     background-color: #f9f9f9;
     border: 0.1vh solid #ddd;
-    border-radius: 0.83vh; /* crea dei bellissimi angoli arrotondati*/
-    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5); /*se si vuole ombra rossa #ff180061;*/
+    border-radius: 0.4em;
+    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5);
 }
 
 /* etichetta-"titolo" */
@@ -1580,8 +1423,7 @@ TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
 }
 
 #boxOrario .select option {
-    max-height: 2em; /* Altezza massima visibile del menu */
-    /*DA CAPIRE COME LIMITARE L'ESPANSIONE DEL <SELECT>*/
+    max-height: 2em;
 }
 
 #boxOrario button{
@@ -1595,7 +1437,7 @@ TUTTO CON IL MOUSE E CLICCARE LE DUE RIGHE '//'
 VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 ------------------
 */
-.general-intro{
+#general-intro{
     background-color: var(--txtcolor);
     color: var(--bgcolor);
     text-align: center;
@@ -1614,7 +1456,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     outline: none;
 }
 
-.filtri input {
+#filtri input {
     background-color: var(--bgcolor);
     color: var(--txtcolor);
 }
@@ -1623,7 +1465,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     border-color: var(--bgcolor2);
 }
 
-.filtri .select{
+#filtri .select{
     border-color: var(--bgcolor2);
 }
 
@@ -1643,40 +1485,40 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     transform: translateY(-2px);
 }
 
-.filtri input{
+#filtri input{
     border: 0.1em solid var(--bgcolor2);
 }
 
-.filtri form .invia-button{
+#filtri form .invia-button{
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     font-size: 1.1em;
 }
 
-.filtri form .invia-button:hover {
+#filtri form .invia-button:hover {
     color: var(--txtcolor);
 }
 
-.filtri input{
+#filtri input{
     padding: 0.7em;
     border-radius: 0.4em;
 }
 
-.filtri{
+#filtri{
     background-color: var(--bgcolor2);
     margin: 0;
     color: var(--bgcolor);
 }
 
-.filtri form{
+#filtri form{
     padding: 1em;
 }
 
-.filtri form label {
+#filtri form label {
     margin-right: 0.7em;
 }
 
-.filtri form  input, .filtri form select {
+#filtri form  input, #filtri form select {
     margin-right: 0.9em;
 }
 
@@ -1685,7 +1527,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 AGGIUNGI PRODOTTO PAGE
 ------------------
 */
-#AP-main{
+.dashboard{
     background-color: var(--bgcolor);
     margin: 1em;
     display: flex;
@@ -1694,15 +1536,34 @@ AGGIUNGI PRODOTTO PAGE
     padding: 1em;
 }
 
-#AP-main .home-button{
+.dashboard .home-button{
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#AP-main .home-button img {
+.dashboard .home-button img {
     margin-left: auto;
+}
+
+.dashboard div{
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
+
+}
+
+.dashboard div .home-button {
+    width: 40%;
+}
+
+.dashboard p img{
+    transform: rotate(90deg);
+}
+
+.dashboard p:hover:not(.messaggio){
+    background-color: var(--bgcolor2);
 }
 
 /*
@@ -1710,7 +1571,7 @@ AGGIUNGI PRODOTTO PAGE
 CSS PER I FORM DI AGGIUNTA
 ------------------
 */
-.aggiunta-content{
+#aggiunta-content{
     background-color: var(--bgcolor);
     padding: 3em;
     border-radius: 0.4em;
@@ -1775,22 +1636,32 @@ CSS PER I FORM DI AGGIUNTA
     border: 2px solid var(--txtcolor);
 }
 
+.form-fieldset{
+    padding: 1.3em;
+    border-radius: 0.4em;
+    margin-bottom: 1em;
+}
+
+.form-fieldset legend{
+    font-size: 1.2em;
+}
+
 /*
 ------------------
 CSS PER LE PAGINE DI AGGIUNTA
 ------------------
 */
-.aggiunta-page .select{
+#aggiunta-page .select{
     background-color: white;
 }
 
-.aggiunta-page .home-button{
+#aggiunta-page .home-button{
     margin-top: 3em;
     width: auto;
     background-color: var(--txtcolor);
 }
 
-.aggiunta-page .home-button:hover{
+#aggiunta-page .home-button:hover{
     background-color: var(--bgcolor2);
 }
 
@@ -1811,10 +1682,12 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 */
 .messaggio{
     font-size: 1em;
-    background-color: var(--txtcolor);
     color: var(--bgcolor);
-    padding: 0.5em;
-    border-radius: 0.2em;
+    background-color: rgba(65, 65, 67, 0.7);
+    padding: 1.5em;
+    border-radius: 0.4em;
+    margin-bottom: 1em;
+    border: 1px solid var(--txtcolor);
 }
 
 .errore-form{
@@ -1886,18 +1759,4 @@ ERROR 500 e 404
 .pizza-emoji {
     font-size: 5em;
     margin: 0.5em 0;
-}
-
-.home-button {
-    padding: 1em 2em;
-    background-color: #d32f2f;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 2em;
-    transition: background-color 0.3s ease;
-}
-
-.home-button:hover {
-    background-color: #b71c1c;
 }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="it">
 <head>
   <meta charset="utf-8">
   <title>Prodotti - Non solo Pizza</title>
@@ -6,43 +7,41 @@
   <meta name="keywords" content="">
   <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
   <link rel="stylesheet" href="../../style/style.css" media="screen">
+  <link rel="stylesheet" href="../../style/mini.css" media="screen and (max-width: 768px)">
   <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 [header]
 <nav id="breadcrumb">
-  <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Prodotti</p>
+  <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Gestisci prodotti / Prodotti</p>
 </nav>
-<main id="P">
-  <section class="general-intro">
+<main id="content">
+  <!-- anche qui lascio 3 sezioni -->
+  <section id="general-intro">
     <h1>PRODOTTI</h1>
   </section>
-  <section class="filtri">
+  <section id="filtri">
     <form method="post" action="../../prodotti.php">
       <input type="hidden" name="action" value="filter" />
-      <label for="tipo">Tipo:</label>
+      <label for="tipo">Filtra per tipo:</label>
       <select name="tipo" id="tipo" class="select">
         <option value="">Tutti</option>
         <option value="0">Ingredienti</option>
         <option value="1">Pizze</option>
         <option value="2">Cucina</option>
       </select>
-
-      <label for="nome">Nome:</label>
+      <label for="nome">Filtra per nome:</label>
       <input type="text" name="nome" id="nome">
-
-      <button type="submit" class="invia-button">Filtra</button>
+      <input type="submit" class="invia-button" value="Filtra" />
     </form>
   </section>
-  <section class="tabella-ordini">
+  <section id="tabella-ordini">
     [operazione-successo]
-    <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
-    <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
     <span id="descrTabella">In questa tabella vengono riassunti tutti i prodotti organizzati per colonne: Informazioni sul prodotto, Tipo, Prezzo, Modifica del prodotto ed Eliminazione.</span>
     <table aria-describedby="descrTabella">
       <caption>Ordini</caption>
-      <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+      <thead>
       <tr>
         <th scope="col" abbr="Info">Info prodotto</th>
         <th scope="col">Tipo</th>
@@ -59,3 +58,4 @@
 </main>
 [footer]
 </body>
+</html>

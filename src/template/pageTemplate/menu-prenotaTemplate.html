@@ -7,75 +7,43 @@
   <meta name="keywords" content="">
   <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
   <link rel="stylesheet" href="../../style/style.css" media="screen">
+  <link rel="stylesheet" href="../../style/mini.css" media="screen and (max-width: 768px)">
   <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body id="menu-prenotaPage">
+[header]
 <nav id="breadcrumb">
   <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Menu-Prenota</p>
 </nav>
 
-[header]
-
 <main id="content">
-  <section class = "MP-intro">
+  <section id="MP-intro">
     <div id="smallMenu">
       <h1>Il Nostro Menù</h1>
         [linkMenu]
-
       <p id="prenota">Affrettati: prenota ora!</p>
       <p id="infoOrdini">utilizza il nostro menù digitale o chiamaci al numero +39 0422 345324</p>
     </div>
   </section>
-  <section class="filtri">
+  <section id="filtri">
     <form method="post" action="../../menu-prenota.php">
       <input type="hidden" name="action" value="filter" />
-
-      <label for="tipo">Tipo:</label>
+      <label for="tipo">Filtra per tipo:</label>
       <select name="tipo" id="tipo" class="select">
         <option value="">Tutti</option>
         <option value="0">Pizze</option>
         <option value="1">Cucina</option>
       </select>
-
-      <label for="nome">Nome:</label>
+      <label for="nome">Filtra per nome:</label>
       <input type="text" name="nome" id="nome">
-
-      <button type="submit" class="invia-button">Filtra</button>
+      <input type="submit" class="invia-button" value="Filtra"/>
     </form>
   </section>
   [menu]
   [cucina]
-  <!--
-  <section class="pizze-classiche" id="le_classiche">
-    <h2>Le Nostre Pizze Classiche</h2>
-    <p class="sez-intro">
-      I gusti classici non tramontano mai: questi sapori sono la prova che le cose migliori non hanno bisogno di complicazioni.
-    </p>
-    [pizzeClassiche]
-  </section>
-
-  <section class="pizze-speciali" id="le_speciali">
-    <h2>Le Nostre Pizze Speciali</h2>
-    <p class="sez-intro">Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.</p>
-  </section>
-
-  <section class="pizze-stagionali" id="le_stagionali">
-    <h2>Le Nostre Pizze Stagionali</h2>
-    <p class="sez-intro">La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!</p>
-  </section>
-
-  <section class="cucina" id="la_cucina">
-    <h2>I Nostri Piatti Della Cucina</h2>
-    <p class="sez-intro">La nostra passione, coltivata a 360°: Non Solo Pizza!</p>
-  </section>
-  -->
-
 </main>
-<!--variazioni:baby alta bassa ecc
-    allergeni nella pizza
--->
 [footer]
 </body>
 [script]

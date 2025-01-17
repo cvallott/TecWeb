@@ -7,6 +7,7 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
 	<link rel="stylesheet" href="../../style/style.css" media="screen">
+	<link rel="stylesheet" href="../../style/mini.css" media="screen and (max-width: 768px)">
 	<script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,8 +17,8 @@
 <nav id="breadcrumb">
 	<p>Sei in: <a lang="en" href="../../index.php">Home</a> / Carrello</p>
 </nav>
-<main id="mainCarrello">
-	<section id="carrello-titolo">
+<main id="content">
+	<section id="general-intro">
 		<h1>Riepilogo carrello</h1>
 		<p>Controlla il tuo carrello e procedi all'ordine!</p>
 	</section>
@@ -28,61 +29,30 @@
 			<div>
 				[rowsCarrello]
 			</div>
-			<h3 id="prezzoTot">Totale: [tot] €</h3>
+			<h3 id="prezzoTot">Totale: &euro; [tot]</h3>
 		</div>
 		<div class="order-form">
 			<h2>Informazioni necessarie</h2>
 				<div>
-					<h4>Nome e Cognome</h4>
-					<p>[nomeCognome]</p>
+					<p>Nome e Cognome: [nomeCognome]</p>
 				</div>
 			<form method="post" action="../../carrello.php">
 				<div>
-					<p>La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
-					<label for="ora">Ora di ritiro:</label>
+					<p id="primadisp">La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
+					<label for="ora">Seleziona ora di ritiro:</label>
 					<select name="ora" id="ora" class="select" required>
 					[optionOrario]
 					</select>
 				</div>
 				<div>
 					<label for="nota">Note:</label>
-					<textarea name="note" id="nota" placeholder="Aggiungi note per l'ordine"></textarea>
+					<textarea name="note" id="nota"></textarea>
 				</div>
-				<button type="submit">Conferma ordine</button>
+				<input type="submit" class="invia-button" value="Conferma ordine"/>
+				[messaggio_errore]
 			</form>
 		</div>
 	</section>
-	<!--
-	<section id="sez-carrello">
-          <div class="sezCarrello sezDettaglio">
-			  <div class="boxConferma">
-				  <p id="nomecognUtente"> [nameClient] [surnameClient] </p>
-				  <p class="infoConferma">Il pagamento verrà effettuato in contanti.</p>
-				  <p class="infoConferma">NonSoloPizza si impegna a soddisfare tutte le richieste della propria clientela!</p>
-				  <p class="infoConferma">Se hai qualche richiesta, lasciaci un appunto nel seguente form!</p>
-				  <div id="boxForm">
-					  <form class="form-container">
-						  <label for="formNota" class="form-label">Hai qualche nota/istruzione da lasciarci?</label>
-						  <textarea id="formNota" name="formNota" class="form-input" placeholder="Scrivi qui la tua nota"></textarea>
-					  </form>
-				  </div>
-			  </div>
-          </div>
-
-          <div class="sezCarrello sezTotali">
-			  [rowsCarrello]
-			  <div id="totaleSpesa">
-				  <div class="totColumn">
-					  <p>Totale carrello: </p>
-				  </div>
-				  <div class="totColumn">
-					  <h4>[tot] €</h4>
-				  </div>
-			  </div>
-			  <p id="primadisp">La prima disponibilità è nella fascia oraria [fasciaOraria]</p>
-			  <button>Ordina</button>
-          </div>
-	</section>-->
 	<section id="proposta-mese" class="home-section">
 		<h2>Hai già provato le nostre pizze del mese?</h2>
 		<div id="FM-content">
@@ -91,26 +61,7 @@
 			</ul>
 		</div>
 	</section>
-
 </main>
 [footer]
 </body>
-
-<script>
-    function updateQuantity(button, operation) {
-        const row = button.closest('.row'); // Trova la riga corrente
-        const input = row.querySelector('.quantity'); // Seleziona l'input corrispondente
-        let currentValue = parseInt(input.value); // Ottieni il valore attuale
-        if (operation === 'increase') {
-            currentValue += 1; // Aumenta il valore
-        } else if (operation === 'decrease' && currentValue > 1) {
-            currentValue -= 1; // Diminuisci il valore
-        }
-        input.value = currentValue; // Aggiorna l'input
-    }
-
-    function remove(button, id){
-		console.log(id);
-	}
-</script>
 </html>

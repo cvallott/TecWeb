@@ -7,55 +7,54 @@
   <meta name="keywords" content="">
   <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
   <link rel="stylesheet" href="../../style/style.css" media="screen">
+  <link rel="stylesheet" href="../../style/mini.css" media="screen and (max-width: 768px)">
   <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../script/JS/checkFormJS.js"></script>
 </head>
+[header]
 <body id="aggiungi-prodottoPage" onload="caricamento();" data-form="pizze">
 <nav id="breadcrumb">
   [breadcrumb]
 </nav>
 
-[header]
-
-<main id="content" class="aggiunta-page">
-  <section class="general-intro">
-    <h1>[titolo]</h1>
-  </section>
-  <section class="aggiunta-content">
-    <form method="post" action=[percorsoFile] class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
-      <div>
-        <label for="nome">Inserisci il nome: </label>
-        <input type="text" name="nome" id="nome" [valueNome] required>
-      </div>
-      <div>
-        <label for="prezzo">Inserisci il prezzo: </label>
-        <input type="number" min="0" name="prezzo" id="prezzo" [valuePrezzo] required>
-      </div>
-      <p>Inserisci gli ingredienti: </p>
-        [listaIngredienti]
-      <div>
-        <label for="cat">Categoria: </label>
-        <select name="cat" id="cat" class="select">
-          [categorie]
-        </select>
-      </div>
-      <div>
-        <label for="descr">Descrizione:</label>
-        <textarea id="descr" name="descr" rows="5" cols="50" >[valueDescr]</textarea>
-      </div>
-      <div>
-        <label for="file">Carica un'immagine:</label>
-        <input type="file" name="file" id="file" accept="image/*">
-      </div>
-      [messaggiForm]
-      <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
-      <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
-    </form>
-    <a class="home-button" href="../../gestisci-prodotti.php" >Torna indietro</a>
+<main id="content">
+  <section id="aggiunta-page">
+    <div id="general-intro">
+      <h1>[titolo]</h1>
+    </div>
+    <div id="aggiunta-content">
+      <form method="post" action=[percorsoFile] class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
+        <fieldset class="form-fieldset">
+          <legend>Informazioni obbligatorie</legend>
+          <label for="nome">Inserisci il nome:</label>
+          <input type="text" name="nome" id="nome" [valueNome] required>
+          <label for="prezzo">Inserisci il prezzo:</label>
+          <input type="number" min="0" name="prezzo" id="prezzo" step="0.01" [valuePrezzo] required>
+          <p>Inserisci gli ingredienti:</p>
+          [listaIngredienti]
+          <label for="cat">Categoria:</label>
+          <select name="cat" id="cat" class="select">
+            [categorie]
+          </select>
+        </fieldset>
+        <fieldset class="form-fieldset">
+          <legend>Informazioni aggiuntive</legend>
+          <label for="descr">Descrizione:</label>
+          <textarea id="descr" name="descr" rows="5" cols="50" >[valueDescr]</textarea>
+          <label for="file">Carica un'immagine:</label>
+          <input type="file" name="file" id="file" accept="image/*">
+        </fieldset>
+        [messaggiForm]
+        <div>
+          <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
+          <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+        </div>
+      </form>
+      <a class="home-button" href="../../dashboard.php" >Torna indietro</a>
+    </div>
   </section>
 </main>
-
 [footer]
 </body>
 </html>
