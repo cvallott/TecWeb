@@ -16,30 +16,30 @@
 <nav id="breadcrumb">
     [breadcrump]
 </nav>
-<main>
-    <section class="general-intro" id="RO-intro">
-        <h1>RIEPILOGO ORDINI</h1>
-        [messaggioOrdine]
-    </section>
-    <section class="tabella-ordini" id="RO-tabella">
-        <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
-        <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
-        <span id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</span>
-        <table aria-describedby="descrTabella">
-            <caption>Ultimi ordini effettuati</caption>
-            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
-            <tr>
-                <th scope="col" abbr="Numero">Numero ordine</th>
-                <th scope="col">Data e ora</th>
-                <th scope="col" abbr="Stato">Stato ordine</th>
-                <th scope="col" abbr="Totale">Totale ordine</th>
-                <th scope="col">Dettagli</th>
-            </tr>
-            </thead>
-            <tbody>
+<main id="content">
+    <section>
+        <div id="general-intro">
+            <h1>RIEPILOGO ORDINI</h1>
+        </div>
+        <div id="tabella-ordini">
+            [messaggioOrdine]
+            <span id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</span>
+            <table aria-describedby="descrTabella">
+                <caption>Ultimi ordini effettuati</caption>
+                <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+                <tr>
+                    <th scope="col" abbr="Numero">Numero ordine</th>
+                    <th scope="col">Data e ora</th>
+                    <th scope="col" abbr="Stato">Stato ordine</th>
+                    <th scope="col" abbr="Totale">Totale ordine</th>
+                    <th scope="col">Dettagli</th>
+                </tr>
+                </thead>
+                <tbody>
                 [ordiniUtente]
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 [footer]

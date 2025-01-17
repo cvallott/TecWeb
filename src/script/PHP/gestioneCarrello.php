@@ -56,20 +56,20 @@ function getCarrello(){
         $rowsCarrello .= '<div class="dettaglioItem">';
         $rowsCarrello .= '<h4>'. $item['nome'] .'</h4>';
         $rowsCarrello .= '</div><div class="dettaglioItem">';
-        $rowsCarrello .= '<p>'. $item['prezzo'] .' €</p>';
+        $rowsCarrello .= '<p>&euro; '. $item['prezzo'] .'</p>';
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
-        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
+        $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="decrementa"><i class="fa fa-minus"></i></button>
+                        <button type="submit" name="azione" value="decrementa"><img src="../../../assets/icons/minus.png" alt="Decrementa"/></button>
                     </form>';
-        $rowsCarrello .= '<h3>'. $item['quantita'] .'</h3>';
-        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
+        $rowsCarrello .= '<p>'. $item['quantita'] .'</p>';
+        $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="incrementa"><i class="fa fa-plus"></i></button>
+                        <button type="submit" name="azione" value="incrementa"><img src="../../../assets/icons/plus.png" alt="Incrementa"/></button>
                     </form>';
-        $rowsCarrello .= '<form method="POST" action="" class="inlineComponents">
+        $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="rimuovi"><i class="fa fa-trash"></i></button>
+                        <button type="submit" name="azione" value="rimuovi"><img src="../../../assets/icons/cestino.png" alt="Rimuovi"/></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }

@@ -11,10 +11,10 @@ $header = printHeader();
 $footer = printFooter();
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Pizza</p>";
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Pizza</p>";
     $titolo = "MODIFICA PIZZA";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / Aggiungi Pizza</p>";
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Pizza</p>";
     $titolo = "AGGIUNGI PIZZA";
 }
 
@@ -42,11 +42,9 @@ if($conn){
             }
         }
         $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php?id='.$id.'"', $template);
-        $connessione->closeConnection();
     } else {
         $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
         $categorie = $connessione->getCategorie();
-        $connessione->closeConnection();
     }
 }
 
@@ -107,8 +105,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
-        $conn = $connessione->openDBConnection();
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPizza);
             if(empty($_GET['id'])) {
@@ -118,14 +115,13 @@ if (isset($_POST['submit'])) {
                 $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path, $_GET['id']);
                 $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza', $_GET['id']);
             }
-            $connessione->closeConnection();
             if(empty($_GET['id'])) {
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
                     $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: gestisci-prodotti.php");
+                header("Location: dashboard.php");
             }else{
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
@@ -151,5 +147,7 @@ $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[categorie]', $categorie, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

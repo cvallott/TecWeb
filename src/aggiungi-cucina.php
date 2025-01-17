@@ -11,10 +11,10 @@ $header = printHeader();
 $footer = printFooter();
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Piatto</p>";
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Piatto</p>";
     $titolo = "MODIFICA PIATTO";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='gestisci-prodotti.php'>Gestisci prodotti</a> / Aggiungi Piatto</p>";
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Piatto</p>";
     $titolo = "AGGIUNGI PIATTO";
 }
 
@@ -29,17 +29,15 @@ $valueInfo = array();
 if($conn){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti(), $id);
+        $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti(), $id, 1);
         $valueInfo = $connessione->getInfoCucina($id);
         if(!empty($valueInfo)){
             $template = str_replace('[valueNome]', 'value = "'.$valueInfo[0].'"', $template);
             $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
         }
         $template = str_replace('[percorsoFile]', '"../../aggiungi-cucina.php?id='.$id.'"', $template);
-        $connessione->closeConnection();
     } else {
         $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
-        $connessione->closeConnection();
     }
 }
 
@@ -89,9 +87,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
-        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-        $conn = $connessione->openDBConnection();
+    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPiatto);
             if(empty($_GET['id'])) {
@@ -101,14 +97,13 @@ if (isset($_POST['submit'])) {
                 $okCucina = $connessione->insertCucina($nomePiatto, $prezzoPiatto, $veget, $path, $_GET['id']);
                 $okIngredienti = $connessione->insertProdottoIngrediente($nomePiatto, $ingredientiPiatto, 'cucina', $_GET['id']);
             }
-            $connessione->closeConnection();
             if(empty($_GET['id'])) {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: gestisci-prodotti.php");
+                header("Location: dashboard.php");
             } else {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
@@ -124,7 +119,7 @@ if (isset($_POST['submit'])) {
 if (empty($_GET['id'])){
     $template = str_replace('[valueNome]', '', $template);
     $template = str_replace('[valuePrezzo]', '', $template);
-    $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
+    $template = str_replace('[percorsoFile]', '"../../aggiungi-cucina.php"', $template);
 }
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[titolo]', $titolo, $template);
@@ -132,5 +127,7 @@ $template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

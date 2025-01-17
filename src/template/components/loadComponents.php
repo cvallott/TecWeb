@@ -10,6 +10,7 @@ function printHeader()
     $chisiamo = "";
     $menu = "";
     $areaRis = "";
+    $nome = "";
 
     if($currentpage == 'index.php') {
         $home = "<li id='currentLink' lang='en'>Home</li>";
@@ -17,15 +18,15 @@ function printHeader()
         $home = "<li><a href='index.php'><span lang='en'>Home</span></a></li>";
     }
     if($currentpage == 'chi-siamo.php') {
-        $chisiamo = "<li id='currentLink'>Chi siamo</a></li>";
+        $chisiamo = "<li id='currentLink'>Chi siamo</li>";
     }else{
         $chisiamo = "<li><a href='chi-siamo.php'>Chi siamo</a></li>";
     }
     if($currentpage == 'menu-prenota.php') {
         if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
-            $menu = "<li id='currentLink'>Menù</a></li>";
+            $menu = "<li id='currentLink'>Menù</li>";
         }else{
-            $menu = "<li id='currentLink'>Menù-Prenota</a></li>";
+            $menu = "<li id='currentLink'>Menù-Prenota</li>";
         }
 
     }else{
@@ -37,14 +38,15 @@ function printHeader()
 
     }
     if($currentpage == 'carrello.php') {
-        $carrello = "<li id='currentLink'><i class='fa fa-shopping-cart'></i></a></li>";
+        $carrello = "<li id='currentLink'><i class='fa fa-shopping-cart'></i></li>";
     }else{
         $carrello = "<li><a href='carrello.php'><i class='fa fa-shopping-cart'></i></a></li>";
     }
+    /*
     if(isset($_SESSION['tipo'])){
         if($_SESSION['tipo'] == '1') {
             $areaRis .= "<div id='dropdown'>";
-            $areaRis .= "<li><button id='droplink'>".$_SESSION['nome']. " " .$_SESSION['cognome']." </button><i class='fa fa-caret-down'></i></li>";
+            $areaRis .= "<li><button id=\"droplink\">".$_SESSION['nome']. " " .$_SESSION['cognome']."</button></li>";
             $areaRis .= "<div id='dropdown-content'>";
             $areaRis .= "<li><a href='visualizza-ordini.php'>Ordini</span></a></li>";
             $areaRis .= "<li><a href='gestisci-prodotti.php'>Gestione menù</span></a></li>";
@@ -53,7 +55,7 @@ function printHeader()
             $areaRis .= "</div></div>";
         }else{
             $areaRis .= "<div id='dropdown'>";
-            $areaRis .= "<li><button id='droplink'>".$_SESSION['nome']. " " .$_SESSION['cognome']."</button><i class='fa fa-caret-down'></i></li>";
+            $areaRis .= "<li id=\"droplink\">".$_SESSION['nome']. " " .$_SESSION['cognome']."</li>";
             $areaRis .= "<div id='dropdown-content'>";
             $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</span></a></li>";
             $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";
@@ -62,10 +64,24 @@ function printHeader()
     }else{
         $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
     }
+    */
+
+    if(isset($_SESSION['tipo'])){
+        $nome .= "<p>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</p>";
+        if($_SESSION['tipo'] == '1') {
+            $areaRis .= "<li><a href='dashboard.php'>Area Gestionale</a></li>";
+            $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></a></li>";
+        }else{
+            $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</a></li>";
+            $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></a></li>";        }
+    }else{
+        $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
+    }
 
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);
     $headerHtml = str_replace('[menuOrdiniPlaceholder]', $menu, $headerHtml);
+    $headerHtml = str_replace('[nomeUtente]', $nome, $headerHtml);
     if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] != '1') {
         $headerHtml = str_replace('[carrelloPlaceholder]', $carrello, $headerHtml);
     }else{
