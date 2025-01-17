@@ -7,6 +7,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
     <link rel="stylesheet" href="../../style/style.css" media="screen">
+    <link rel="stylesheet" href="../../style/mini.css" media="screen and (max-width: 768px)">
     <script src="https://kit.fontawesome.com/fef5fd157c.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -15,36 +16,35 @@
 <nav id="breadcrumb">
     <p>Sei in: <a lang="en" href="../../index.php">Home</a> / Gestisci Utenti </p>
 </nav>
-<main>
-    <section class="general-intro">
+<main id="content">
+    <!-- anche qui 3 sezioni -->
+    <section id="general-intro">
         <h1>GESTISCI UTENTI</h1>
     </section>
-    <section class="filtri">
+    <section id="filtri">
         <form method="post" action="../../gestisci-utenti.php">
             <input type="hidden" name="action" value="filter" />
-            <label for="ruolo">Ruolo:</label>
+            <label for="ruolo">Filtra per ruolo:</label>
             <select name="ruolo" id="ruolo" class="select">
                 <option value="">Tutti</option>
-                <option value="0">Cliente</option>
-                <option value="1">Amministratore</option>
+                <option value="0">Clienti</option>
+                <option value="1">Amministratori</option>
             </select>
 
-            <label for="nome">Nome utente:</label>
+            <label for="nome">Filtra per nome utente:</label>
             <input type="text" name="nome_utente" id="nome" />
 
-            <label for="username">Username utente:</label>
+            <label for="username">Filtra per username utente:</label>
             <input type="text" name="username_utente" id="username" />
-            <button type="submit" class="invia-button">Filtra</button>
+            <input type="submit" class="invia-button" value="Filtra" />
         </form>
     </section>
-    <section class="tabella-ordini">
-        <!-- COPIATA DA QUELLA DELLA PROF, DOVREBBE GIA' ESSERE ACCESSIBILE -->
-        <!-- descrTabella dobbiamo lasciarlo scritto? che schifo -->
+    <section id="tabella-ordini">
         [operazione-successo]
         <span id="descrTabella">In questa tabella vengono riassunti tutti gli utenti registrati organizzati per colonne: Numero e Cognome, Username, Email, Ruolo, Modifica ruolo ed Elimina utente.</span>
         <table aria-describedby="descrTabella">
             <caption>Utenti</caption>
-            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+            <thead>
             <tr>
                 <th scope="col">Nome e Cognome</th>
                 <th scope="col">Username</th>

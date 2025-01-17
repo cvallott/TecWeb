@@ -10,6 +10,14 @@ $template = file_get_contents('template/pageTemplate/aggiungi-pizzaTemplate.html
 $header = printHeader();
 $footer = printFooter();
 
+if(isset($_GET['id'])){
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Pizza</p>";
+    $titolo = "MODIFICA PIZZA";
+}else{
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Pizza</p>";
+    $titolo = "AGGIUNGI PIZZA";
+}
+
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $messaggiPerForm = "";
@@ -34,11 +42,9 @@ if($conn){
             }
         }
         $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php?id='.$id.'"', $template);
-        $connessione->closeConnection();
     } else {
         $listaIngredienti = $connessione->getIngredienti($connessione->queryIngredienti());
         $categorie = $connessione->getCategorie();
-        $connessione->closeConnection();
     }
 }
 
@@ -55,7 +61,7 @@ if (isset($_POST['submit'])) {
         $path = '../../../assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $nomePizza = pulisciInput($_POST['nome']);
     $prezzoPizza = pulisciInput($_POST['prezzo']);
     $categoriaPizza = pulisciInput($_POST['cat']);
@@ -65,26 +71,26 @@ if (isset($_POST['submit'])) {
         $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
     } else {
         if (strlen($nomePizza) < 2) {
-            $messaggiPerForm .= "<li>Il nome della pizza deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePizza)) {
-            $messaggiPerForm .= "<li>Il nome della pizza non può contenere numeri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePizza)) {
-            $messaggiPerForm .= "<li>Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (strlen($prezzoPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il prezzo della pizza</li>";
         if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
-            $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero maggiore di 0</li>";
         }
         if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $prezzoPizza)) {
-            $messaggiPerForm .= "<li>Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
         }
     }
     if ($ingredientiPizza == '') {
-        $messaggiPerForm .= "<li>La pizza deve avere almeno un ingrediente</li>";
+        $messaggiPerForm .= "<li role=\"alert\">La pizza deve avere almeno un ingrediente</li>";
     }
     if (strlen($categoriaPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire la categoria della pizza</li>";
@@ -100,7 +106,6 @@ if (isset($_POST['submit'])) {
     $messaggiPerForm .= "</ul></fieldset>";
 
     if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
-        $conn = $connessione->openDBConnection();
         if($conn){
             $veget = $connessione->isVeget($ingredientiPizza);
             if(empty($_GET['id'])) {
@@ -110,19 +115,18 @@ if (isset($_POST['submit'])) {
                 $okPizza = $connessione->insertPizza($nomePizza, $prezzoPizza, $veget, $categoriaPizza, $descrizionePizza, $path, $_GET['id']);
                 $okIngredienti = $connessione->insertProdottoIngrediente($nomePizza, $ingredientiPizza, 'pizza', $_GET['id']);
             }
-            $connessione->closeConnection();
             if(empty($_GET['id'])) {
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: aggiungi-prodotto.php");
+                header("Location: dashboard.php");
             }else{
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: prodotti.php");
             }
@@ -137,9 +141,13 @@ if (empty($_GET['id'])){
     $template = str_replace('[percorsoFile]', '"../../aggiungi-pizza.php"', $template);
 }
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[titolo]', $titolo, $template);
+$template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[listaIngredienti]', $listaIngredienti, $template);
 $template = str_replace('[categorie]', $categorie, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

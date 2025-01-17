@@ -81,6 +81,7 @@ function messaggio(input, mode) {
         // Messaggio di errore
         node = document.createElement('strong');
         node.className = 'errorSuggestion mex';
+        node.setAttribute("role", "alert");
         node.appendChild(document.createTextNode(dettagli_form[input.id][2]));
         p.parentNode.appendChild(node);
     }

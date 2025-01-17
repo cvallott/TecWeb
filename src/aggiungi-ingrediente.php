@@ -14,6 +14,14 @@ $messaggiPerForm = "";
 $nomeIngr = '';
 $isVeget = '';
 
+if(isset($_GET['id'])){
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Ingrediente</p>";
+    $titolo = "MODIFICA INGREDIENTE";
+}else{
+    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Ingrediente</p>";
+    $titolo = "AGGIUNGI INGREDIENTE";
+}
+
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 if($conn) {
@@ -31,7 +39,6 @@ if($conn) {
             }
         }
         $template = str_replace('[percorsoFile]', '"../../aggiungi-ingrediente.php?nome='.$nome.'"', $template);
-        $connessione->closeConnection();
     }
 }
 
@@ -43,20 +50,17 @@ if (isset($_POST['submit'])) {
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
-        $connessione = new DBConnection();
-        $conn = $connessione->openDBConnection();
         if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
-            $messaggiPerForm .= "<li>Il nome dell'ingrediente inserito è già presente</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente inserito è già presente</li>";
         }
-        $connessione->closeConnection();
         if (strlen($nomeIngr) < 2) {
-            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomeIngr)) {
-            $messaggiPerForm .= "<li>Il nome dell'ingrediente non può contenere numeri</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomeIngr)) {
-            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (strlen($isVeget) == 0) {
@@ -65,27 +69,24 @@ if (isset($_POST['submit'])) {
     $messaggiPerForm .= "</ul></fieldset>";
 
     if (trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>") {
-        $connessione = new DBConnection();
-        $conn = $connessione->openDBConnection();
         if ($conn) {
             if(empty($_GET['nome'])) {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
             } else {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget, $_GET['nome']);
             }
-            $connessione->closeConnection();
             if(empty($_GET['nome'])) {
                 if ($okIngredienti) {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
-                header("Location: aggiungi-prodotto.php");
+                header("Location: dashboard.php");
             }else{
                 if($okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
                 }
                 header("Location: prodotti.php");
             }
@@ -101,7 +102,11 @@ if (empty($_GET['id'])){
 }
 
 $template = str_replace('[header]', $header, $template);
+$template = str_replace('[titolo]', $titolo, $template);
+$template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[messaggiForm]', $messaggiPerForm, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

@@ -151,8 +151,9 @@ function messaggio(input, mode) {
         node.className = "default-text";
         node.appendChild(document.createTextNode(dettagli_form[input.id][0]));
     } else {
-        node = document.createElement("strong");
+        node = document.createElement("span");
         node.className = "errorSuggestion";
+        node.setAttribute("role", "alert");
         node.appendChild(document.createTextNode(dettagli_form[input.id][2]));
     }
 
