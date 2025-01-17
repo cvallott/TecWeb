@@ -945,6 +945,7 @@ class DBConnection {
     }
 
     public function insertCucina($nome, $prezzo, $veget, $path, $id = null) {
+        $path = str_replace("/var/www/html/", "", $path);
         if($id != null){
             try {
                 $query = "UPDATE cucina SET nome = ?, prezzo = ?, veget = ?, path = ? WHERE id = ?";
