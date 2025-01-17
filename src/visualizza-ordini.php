@@ -10,6 +10,7 @@ $header = printHeader();
 $footer = printFooter();
 $message = null;
 $connessione = new DBConnection();
+$conn = $connessione->openDBConnection();
 $listaOrdini = "";
 $action = "";
 
@@ -18,11 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     if ($action == 'update') {
         $stato = $_POST['stato'];
-        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-        $conn = $connessione->openDBConnection();
         if($conn){
             $okUpdate = $connessione->updateOrdine($stato);
-            $connessione->closeConnection();
             if($okUpdate){
                 $message = "<p class=\"messaggio\">Stato modificato con successo</p>";
             } else {
@@ -30,20 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     } else if ($action == 'filter') {
-        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-        $conn = $connessione->openDBConnection();
         if($conn) {
             $listaOrdini = $connessione->getOrdini($connessione->queryOrdini(1));
         }
     }
 }
 
-$conn = $connessione->openDBConnection();
 if($conn){
     if($listaOrdini == "" && $action != 'filter') {
         $listaOrdini = $connessione->getOrdini($connessione->queryOrdini());
     }
-    $connessione->closeConnection();
 }
 
 if(isset($message)){
@@ -55,5 +49,7 @@ if(isset($message)){
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visOrdini]', $listaOrdini, $template);
 $template = str_replace('[footer]', $footer, $template);
+
+$connessione->closeConnection();
 
 echo $template;

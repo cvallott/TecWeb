@@ -7,6 +7,7 @@ $paginaHTML = file_get_contents('template/pageTemplate/area-riservataTemplate.ht
 
 $messaggiPerForm = "";
 $connessione = new DBConnection();
+$connessioneOK = $connessione->openDBConnection();
 
 // Initialize form variables
 $loginUser = '';
@@ -70,8 +71,6 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
     }
 
     if (!$hasErrors) {
-        $connessioneOK = $connessione->openDBConnection();
-
         if ($connessioneOK) {
             $dettagliUtente = $connessione->userLogin($loginUser, $loginPassword);
             if ($dettagliUtente) {
@@ -137,8 +136,6 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
     }
 
     if (!$hasErrors) {
-        $connessioneOK = $connessione->openDBConnection();
-
         if ($connessioneOK) {
             // Check if username already exists
             if ($connessione->checkUserExists($registerUser)) {

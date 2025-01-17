@@ -10,14 +10,13 @@ $header = printHeader();
 $footer = printFooter();
 $message = null;
 $connessione = new DBConnection();
+$conn = $connessione->openDBConnection();
 $listaProdotti = "";
 $action = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
     if ($action == 'deletePizza') {
-        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
-        $conn = $connessione->openDBConnection();
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeletePizza());
             $connessione->closeConnection();
@@ -28,8 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     } else if ($action == 'deleteCucina') {
-        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
-        $conn = $connessione->openDBConnection();
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeleteCucina());
             $connessione->closeConnection();
@@ -40,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     } else if ($action == 'deleteIngrediente') {
-        $connessione = new DBConnection(); // HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA?
-        $conn = $connessione->openDBConnection();
         if ($conn) {
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             $connessione->closeConnection();
@@ -52,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
         }
     } else if ($action == 'filter') {
-        $conn = $connessione->openDBConnection();
         if ($conn) {
             if($_POST['tipo'] == ''){
                 for($conta = 0; $conta < 3; $conta++) {
@@ -61,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             } else {
                 $listaProdotti = $connessione->filtraProdotti();
             }
+            $connessione->closeConnection();
         }
     }
 }
-$conn = $connessione->openDBConnection();
 
 if($conn){
     if($listaProdotti == '' && $action != 'filter'){
@@ -84,7 +78,6 @@ if(isset($message)){
 }else{
     $template = str_replace('[operazione-successo]', '', $template);
 }
-
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[visProdotti]', $listaProdotti, $template);

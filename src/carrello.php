@@ -12,13 +12,6 @@ $template = file_get_contents('template/pageTemplate/carrelloTemplate.html');
 $header = printHeader();
 $footer = printFooter();
 
-/*
-$_SESSION['carrello'][1] = ['nome' => "provauno", 'quantita' => 20, 'prezzo' => 20];
-$_SESSION['carrello'][2] = ['nome' => "provadue", 'quantita' => 60, 'prezzo' => 20];
-$_SESSION['carrello'][3] = ['nome' => "provatre", 'quantita' => 1, 'prezzo' => 20];
-$_SESSION['carrello'][4] = ['nome' => "provaquattro", 'quantita' => 50, 'prezzo' => 20]; */
-
-
 $totale = getTotale();
 $rowsCarrello = getCarrello();
 
@@ -36,7 +29,6 @@ foreach ($_SESSION['carrello'] as $prodotto) {
     $totQuant += $prodotto['quantita'];
 }
 
-$connessioneOK = $connessione->openDBConnection();
 $primadisp = "";
 $optionOrario = "";
 if ($connessioneOK) {
@@ -46,7 +38,6 @@ if ($connessioneOK) {
 }
 
 if(isset($_POST['ora'])){
-    $connessioneOK = $connessione->openDBConnection();
     if($connessioneOK){
         $succ = "";
         if(isset($_POST['note'])){
@@ -54,9 +45,7 @@ if(isset($_POST['ora'])){
         }else{
             $succ = $connessione->insertOrder($_POST['ora']);
         }
-        $connessione->closeConnection();
         if($succ){
-            $connessioneOK = $connessione->openDBConnection();
             if($connessioneOK){
                 if($connessione->itemToOrdine($succ)){
                     unset($_SESSION['carrello']);
@@ -66,6 +55,7 @@ if(isset($_POST['ora'])){
                 }
             }
         }
+        $connessione->closeConnection();
     }
 }
 

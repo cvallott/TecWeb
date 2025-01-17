@@ -10,7 +10,6 @@ $header = printHeader();
 $footer = printFooter();
 
 $connessione = new DBConnection();
-
 $conn = $connessione->openDBConnection();
 $menuCategorie = "";
 $pizze= '';
@@ -22,18 +21,14 @@ if($conn){
 }
 
 if(empty($_POST['action'])){
-    $conn = $connessione->openDBConnection();
     if($conn){
         $pizze = $connessione->getMenuPizze();
         $cucina = $connessione->getMenuCucina();
         $connessione->closeConnection();
     }
-    $conn = $connessione->openDBConnection();
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'filter') {
-    $conn = $connessione->openDBConnection();
     if ($conn) {
         if ($_POST['tipo'] == ''){
             if(!empty($_POST['nome'])){
@@ -58,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             }
             $pizze = '';
         }
+        $connessione->closeConnection();
     }
 }
 

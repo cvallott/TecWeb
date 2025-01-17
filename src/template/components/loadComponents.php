@@ -10,6 +10,7 @@ function printHeader()
     $chisiamo = "";
     $menu = "";
     $areaRis = "";
+    $nome = "";
 
     if($currentpage == 'index.php') {
         $home = "<li id='currentLink' lang='en'>Home</li>";
@@ -66,15 +67,13 @@ function printHeader()
     */
 
     if(isset($_SESSION['tipo'])){
+        $nome .= "<p>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</p>";
         if($_SESSION['tipo'] == '1') {
             $areaRis .= "<li><a href='dashboard.php'>Area Gestionale</a></li>";
-            $areaRis .= "<li>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</li>"; // questo lo metterei di fianco al logo così si vede meglio
             $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></a></li>";
         }else{
             $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</a></li>";
-            $areaRis .= "<li>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</li>"; // questo lo metterei di fianco al logo così si vede meglio
-            $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></li>";
-        }
+            $areaRis .= "<li><a href='script/PHP/logout.php'><span lang='en'>Logout</span></a></li>";        }
     }else{
         $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
     }
@@ -82,6 +81,7 @@ function printHeader()
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);
     $headerHtml = str_replace('[menuOrdiniPlaceholder]', $menu, $headerHtml);
+    $headerHtml = str_replace('[nomeUtente]', $nome, $headerHtml);
     if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] != '1') {
         $headerHtml = str_replace('[carrelloPlaceholder]', $carrello, $headerHtml);
     }else{

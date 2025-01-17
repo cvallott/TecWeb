@@ -51,8 +51,6 @@ if (isset($_POST['submit'])) {
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
-        $connessione = new DBConnection();
-        $conn = $connessione->openDBConnection();
         if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
             $messaggiPerForm .= "<li>Il nome dell'ingrediente inserito è già presente</li>";
         }
@@ -73,8 +71,6 @@ if (isset($_POST['submit'])) {
     $messaggiPerForm .= "</ul></fieldset>";
 
     if (trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>") {
-        $connessione = new DBConnection();
-        $conn = $connessione->openDBConnection();
         if ($conn) {
             if(empty($_GET['nome'])) {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);

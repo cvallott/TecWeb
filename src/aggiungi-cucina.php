@@ -90,8 +90,6 @@ if (isset($_POST['submit'])) {
     $messaggiPerForm .= "</ul></fieldset>";
 
     if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
-        $connessione = new DBConnection(); /* HA SENSO USARE UN'ALTRA CONNESSIONE OPPURE USO QUELLA DI PRIMA? */
-        $conn = $connessione->openDBConnection();
         if($conn){
             $veget = $connessione->isVeget($ingredientiPiatto);
             if(empty($_GET['id'])) {
