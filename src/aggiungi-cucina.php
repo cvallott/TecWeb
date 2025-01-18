@@ -23,7 +23,7 @@ $conn = $connessione->openDBConnection();
 $messaggiPerForm = "";
 $nomePiatto = "";
 $prezzoPiatto = "";
-$ingredientiPiatto[] = "";
+$ingredientiPiatto = "";
 $listaIngredienti = "";
 $valueInfo = array();
 if($conn){

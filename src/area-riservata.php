@@ -52,7 +52,7 @@ function validaCampo($value, $pattern) {
 
 // Handle Login Form
 if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
-    $messaggiPerForm .= "<ul class='error-list'>";
+    $messaggiPerForm .= "<ul class=\"error-list\">";
     $hasErrors = false;
 
     $loginUser = pulisciInput($_POST['login-user']);
@@ -66,7 +66,7 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
 
     // Validate password
     if (!validaCampo($loginPassword, $patterns['password'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['password'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">' . $errorMessages['password'] . '</li>';
         $hasErrors = true;
     }
 
@@ -84,7 +84,7 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
                 $messaggiPerForm .= '<li role="alert">Credenziali non valide.</li>';
             }
         } else {
-            $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
+            $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . '</li>';
         }
         $connessione->closeConnection();
     }
@@ -94,7 +94,7 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
 
 // Handle Registration Form
 if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
-    $messaggiPerForm .= "<ul class='error-list'>";
+    $messaggiPerForm .= "<ul class=\"error-list\">";
     $hasErrors = false;
 
     $registerName = pulisciInput($_POST['register-name']);
@@ -106,32 +106,32 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
 
     // Validate all fields
     if (!validaCampo($registerName, $patterns['register-name'])) {
-        $messaggiPerForm .= '<li role="alert">'. $errorMessages['register-name'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">'. $errorMessages['register-name'] . '</li>';
         $hasErrors = true;
     }
 
     if (!validaCampo($registerSurname, $patterns['register-surname'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-surname'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-surname'] . '</li>';
         $hasErrors = true;
     }
 
     if (!validaCampo($registerUser, $patterns['user'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['user'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">' . $errorMessages['user'] . '</li>';
         $hasErrors = true;
     }
 
     if (!validaCampo($registerEmail, $patterns['register-email'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-email'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-email'] . '</li>';
         $hasErrors = true;
     }
 
     if (!validaCampo($registerPassword, $patterns['password'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['password'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">' . $errorMessages['password'] . '</li>';
         $hasErrors = true;
     }
 
     if ($registerPassword !== $confirmPassword) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-confirm-password'] . "</li>";
+        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-confirm-password'] . '</li>';
         $hasErrors = true;
     }
 
@@ -139,11 +139,11 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
         if ($connessioneOK) {
             // Check if username already exists
             if ($connessione->checkUserExists($registerUser)) {
-                $messaggiPerForm .= '<li role="alert">' . $errorMessages['user-exists'] . "</li>";
+                $messaggiPerForm .= '<li role="alert">' . $errorMessages['user-exists'] . '</li>';
             }
             // Check if email already exists
             else if ($connessione->checkEmailExists($registerEmail)) {
-                $messaggiPerForm .= '<li role="alert">' . $errorMessages['email-exists'] . "</li>";
+                $messaggiPerForm .= '<li role="alert">' . $errorMessages['email-exists'] . '</li>';
             }
             else {
                 $hashedPassword = password_hash($registerPassword, PASSWORD_DEFAULT);
@@ -154,11 +154,11 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
                     header("Location: index.php?registration=success");
                     exit();
                 } else {
-                    $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
+                    $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . '</li>';
                 }
             }
         } else {
-            $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
+            $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . '</li>';
         }
         $connessione->closeConnection();
     }

@@ -59,17 +59,17 @@ function getCarrello(){
         $rowsCarrello .= '<p>&euro; '. $item['prezzo'] .'</p>';
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa"/></button>
+                        <input type="hidden" name="id" value="'.$id.'" />
+                        <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa" /></button>
                     </form>';
         $rowsCarrello .= '<p>'. $item['quantita'] .'</p>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa"/></button>
+                        <input type="hidden" name="id" value="'.$id.'" />
+                        <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa" /></button>
                     </form>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
-                        <input type="hidden" name="id" value="'.$id.'">
-                        <button type="submit" name="azione" value="rimuovi"><img src="assets/icons/cestino.png" alt="Rimuovi"/></button>
+                        <input type="hidden" name="id" value="'.$id.'" />
+                        <button type="submit" name="azione" value="rimuovi"><img src="assets/icons/cestino.png" alt="Rimuovi" /></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }
