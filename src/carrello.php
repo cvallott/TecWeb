@@ -53,7 +53,7 @@ if(isset($_POST['ora'])){
                     } else {
                         unset($_SESSION['carrello']);
                         $oraScelta = $_POST['ora'];
-                        $_SESSION['messaggio_ordine'] = "<p class='messaggio'>Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
+                        $_SESSION['messaggio_ordine'] = "<p class=\"messaggio\">Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
                         header("location: riepilogo-ordini.php");
                     }
                 }
