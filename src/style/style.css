@@ -517,7 +517,7 @@ CHI SIAMO PAGE
     position: relative;
 }
 
-.chi-siamo-boxes img {
+.chi-siamo-boxes img:not(.torna-su img) {
     width: 35%;
     height:70%;
 }
