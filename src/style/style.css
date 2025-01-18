@@ -8,6 +8,7 @@
     --bgcolor: #fff;
     --txtcolor: #000;
     --bgcolor2: #cd492a;
+    --bgcolor3: #414143;
 }
 
 html{
@@ -42,7 +43,7 @@ header {
     top: 0;
     width: 100%;
     z-index: 10;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -62,30 +63,28 @@ header img {
 }
 
 #menu li a {
-    text-decoration: none;
     color: var(--bgcolor2);
-    position: relative;
-}
-/*
-#menu li a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.2em;
-    width: 0;
-    height: 0.1em;
-    background-color: var(--bgcolor2);
-    transition: width 0.3s ease;
-}*/
-/*
-#menu li a:hover::after {
-    width: 100%;
-}
-*/
-#menu li a:visited{
-    background-color: black;
+    padding: 1em;
+    border-radius: 0.4em;
+    border-bottom: 2px solid var(--bgcolor2);
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+#menu li a:visited {
+    color: var(--txtcolor);
+    border-bottom: 2px solid var(--txtcolor);
+}
+
+#menu li a:visited:hover {
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
+}
+
+#menu li a:link:hover {
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
+}
 
 /*
 =============
@@ -121,6 +120,10 @@ SEZIONE BREADCRUMB
     padding-left: 0.8em;
 }
 
+#breadcrumb a:visited {
+    color: var(--txtcolor);
+}
+
 /*
 ------------------
 SEZIONE FOOTER
@@ -132,7 +135,7 @@ footer {
 }
 
 #footer-top {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor3);
     display: flex;
     justify-content: space-evenly;
     padding: 3em;
@@ -165,7 +168,7 @@ iframe {
 }
 
 #footer-bottom {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor3);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -589,6 +592,36 @@ RIEPILOGO-ORDINI PAGE
 #tabella-ordini label{
     position: absolute;
     text-indent: -999em;
+}
+
+#tabella-ordini a{
+    padding: 0.4em 0.5em 0.20em;
+    text-decoration: none;
+    border-bottom: solid 2px var(--bgcolor2);
+    border-radius: 0.4em;
+}
+
+#tabella-ordini a:link{
+    color: var(--bgcolor2);
+}
+
+#tabella-ordini a:link:hover{
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
+}
+
+#tabella-ordini a:visited{
+    color: var(--txtcolor);
+    border-bottom: 2px solid var(--txtcolor);
+}
+
+#tabella-ordini a:visited:hover {
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
+}
+
+#tabella-ordini img{
+    margin-right: 0.5em;
 }
 
 /*
@@ -1409,7 +1442,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 ------------------
 */
 #general-intro{
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor3);
     color: var(--bgcolor);
     text-align: center;
     padding: 3em;
@@ -1522,7 +1555,6 @@ AGGIUNGI PRODOTTO PAGE
     margin: 0;
     padding: 0;
     font-size: 0.85em;
-
 }
 
 .dashboard div .home-button {
@@ -1534,7 +1566,13 @@ AGGIUNGI PRODOTTO PAGE
 }
 
 .dashboard p:hover:not(.messaggio){
-    background-color: var(--bgcolor2);
+    background-color: var(--bgcolor);
+}
+
+.dashboard p{
+    background-color: var(--bgcolor);
+    color: var(--bgcolor2);
+    border: 1px solid var(--bgcolor2);
 }
 
 /*

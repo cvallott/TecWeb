@@ -15,10 +15,10 @@ $nomeIngr = '';
 $isVeget = '';
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Ingrediente</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / <a href="prodotti.php">Prodotti</a> / Modifica ingrediente</p>';
     $titolo = "MODIFICA INGREDIENTE";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Ingrediente</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Aggiungi ingrediente</p>';
     $titolo = "AGGIUNGI INGREDIENTE";
 }
 
