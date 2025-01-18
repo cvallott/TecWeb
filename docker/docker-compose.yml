@@ -9,8 +9,8 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - src:/var/www/html
-      - assets:/var/www/html/assets
+      - ../src:/var/www/html
+      - ../assets:/var/www/html/assets
     networks:
       - lamp-network
     depends_on:
