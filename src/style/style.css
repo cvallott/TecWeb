@@ -42,7 +42,9 @@ header {
     top: 0;
     width: 100%;
     z-index: 10;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 header img {
     height: 100%;
@@ -64,7 +66,7 @@ header img {
     color: var(--bgcolor2);
     position: relative;
 }
-
+/*
 #menu li a::after {
     content: "";
     position: absolute;
@@ -74,53 +76,16 @@ header img {
     height: 0.1em;
     background-color: var(--bgcolor2);
     transition: width 0.3s ease;
-}
-
+}*/
+/*
 #menu li a:hover::after {
     width: 100%;
 }
-
-#dropdown {
-    position: relative;
-    display: inline-block;
+*/
+#menu li a:visited{
+    background-color: black;
 }
 
-#droplink {
-    background: none;
-    border: none;
-    color: var(--bgcolor2);
-    font: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    position: relative;
-}
-
-#droplink:focus,
-#droplink:hover {
-    outline: none;
-}
-
-#dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--bgcolor);
-    min-width: 7em;
-}
-
-#dropdown:hover #dropdown-content,
-#dropdown:focus-within #dropdown-content {
-    display: block;
-}
-
-#dropdown-content li {
-    list-style: none;
-}
-
-#dropdown-content a {
-    text-decoration: none;
-    display: block;
-    padding: 0.7em;
-}
 
 /*
 =============
@@ -348,6 +313,14 @@ HOME PAGE
 
 .home-button:hover {
     background-color: var(--txtcolor);
+}
+
+.home-button:visited {
+    background-color: var(--txtcolor);
+}
+
+.home-button:visited:hover {
+    background-color: var(--bgcolor2);
 }
 
 #fuori-menu #FM-content {
