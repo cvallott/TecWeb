@@ -67,14 +67,14 @@ class DBConnection {
                 }
                 if(mysqli_num_rows($pizze) > 0) {
                     $visited = true;
-                    $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
+                    $stringaReturn .= "<section class=\"menu-prodpercat\" id=\"".str_replace(' ','',$row['cat'])."\">";
                     $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
-                    $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
-                    $stringaReturn .= "<div class='pizza-container'>";
+                    $stringaReturn .= "<p class=\"sez-intro\">".$row['descrizione']."</p>";
+                    $stringaReturn .= "<div class=\"pizza-container\">";
                     while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
-                        $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
-                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
-                        $stringaReturn .= "<div class='pizza-testo'>";
+                        $stringaReturn .= "<div class=\"pizza\" id=\"p-".$riga['id']."\">";
+                        $stringaReturn .= "<div><img src=\"" . $riga['path'] . "\" alt=\"" . $riga['nome'] . "\"></div>";
+                        $stringaReturn .= "<div class=\"pizza-testo\">";
                         $stringaReturn .= "<h3>" . $riga['nome'];
                         if($riga['veget'] == "1"){
                             $stringaReturn .="<img src=\"assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
@@ -96,9 +96,9 @@ class DBConnection {
                         $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                         $stringaReturn .= "</div>";
 
-                        $stringaReturn .= "<p class='pizza-prezzo'>&euro; " . $riga['prezzo'] . "</p>";
+                        $stringaReturn .= "<p class=\"pizza-prezzo\">&euro; " . $riga['prezzo'] . "</p>";
 
-                        $stringaReturn .= "<div class='order-actions'>";
+                        $stringaReturn .= "<div class=\"order-actions\">";
 
                         if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                             if (isset($_SESSION['carrello'][$riga['id']])) {
@@ -174,14 +174,14 @@ class DBConnection {
         }
         if(mysqli_num_rows($pizze) > 0) {
             $visited = true;
-            $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
+            $stringaReturn .= "<section class=\"menu-prodpercat\" id=\"".str_replace(' ','',"cucina")."\">";
             $stringaReturn .= "<h2>La nostra cucina</h2>";
-            $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";
-            $stringaReturn .= "<div class='pizza-container'>";
+            $stringaReturn .= "<p class=\"sez-intro\">La nostra proposta</p>";
+            $stringaReturn .= "<div class=\"pizza-container\">";
             while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
-                $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
-                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
-                $stringaReturn .= "<div class='pizza-testo'>";
+                $stringaReturn .= "<div class=\"pizza\" id=\"c-".$riga['id']."\">";
+                $stringaReturn .= "<div><img src=\"" . $riga['path'] . "\" alt=\"" . $riga['nome'] . "\"></div>";
+                $stringaReturn .= "<div class=\"pizza-testo\">";
                 $stringaReturn .= "<h3>" . $riga['nome'];
                 if($riga['veget'] == "1"){
                     $stringaReturn .= "<img src=\"assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
@@ -203,9 +203,9 @@ class DBConnection {
                 $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                 $stringaReturn .= "</div>";
 
-                $stringaReturn .= "<p class='pizza-prezzo'>&euro; " . $riga['prezzo']. "</p>";
+                $stringaReturn .= "<p class=\"pizza-prezzo\">&euro; " . $riga['prezzo']. "</p>";
 
-                $stringaReturn .= "<div class='order-actions'>";
+                $stringaReturn .= "<div class=\"order-actions\">";
 
                 if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                     if (isset($_SESSION['carrello']["c" . $riga['id']])) {
@@ -262,7 +262,7 @@ class DBConnection {
         $stringaReturn = "";
         if (mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                $stringaReturn .= "<a href='#".str_replace(' ','',$row['cat'])."'>".$row['nomeEsteso']."</a>";
+                $stringaReturn .= "<a href=\"#".str_replace(' ','',$row['cat'])."\">".$row['nomeEsteso']."</a>";
             }
         }
         return $stringaReturn;
@@ -279,7 +279,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<a href='menu-prenota.php#Fuorimenu'><img src='".$row['path']."' alt='TODO'>";
+                $stringaReturn .= "<a href=\"menu-prenota.php#Fuorimenu\"><img src=\"".$row['path']."\" alt=\"TODO\">";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "</a></li>";
@@ -301,15 +301,15 @@ class DBConnection {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<img src='".$row['path']."'>";
+                $stringaReturn .= "<img src=\"".$row['path']."\">";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
-                $stringaReturn .= "<form method='POST' action='' >";
-                $stringaReturn .= "<input type='hidden' name='id' value='".$row['id']."'>";
-                $stringaReturn .= "<input type='hidden' name='prezzo' value='".$row['prezzo']."'>";
-                $stringaReturn .= "<input type='hidden' name='nome' value='".$row['nome']."'>";
-                $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
-                $stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='home-button'>Aggiungi</button>";
+                $stringaReturn .= "<form method=\"POST\" action=\"\" >";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"prezzo\" value=\"".$row['prezzo']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"quantita\" value=\"1\">";
+                $stringaReturn .= "<button type=\"submit\" name=\"azione\" value=\"aggiungi\" class=\"home-button\">Aggiungi</button>";
                 $stringaReturn .= "</form></li>";
             }
         }
@@ -427,9 +427,9 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 if($categoria == $row['cat']){
-                    $stringaReturn .= "<option value='".$row['cat']."' selected>".$row['cat']."</option>";
+                    $stringaReturn .= "<option value=\"".$row['cat']."\" selected>".$row['cat']."</option>";
                 }else{
-                    $stringaReturn .= "<option value='".$row['cat']."'>".$row['cat']."</option>";
+                    $stringaReturn .= "<option value=\"".$row['cat']."\">".$row['cat']."</option>";
                 }
             }
         }
@@ -441,40 +441,40 @@ class DBConnection {
             if ($_POST['tipo'] == '0') {
                 $query = "SELECT * FROM ingrediente WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = '". $_POST['nome'] ."'";
+                    $query .= " AND nome = \"". $_POST['nome'] ."\"";
                 }
                 return $this->getIngredientiTabella($query);
             } elseif ($_POST['tipo'] == '1') {
                 $query = "SELECT * FROM pizza WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = '". $_POST['nome'] ."'";
+                    $query .= " AND nome = \"". $_POST['nome'] ."\"";
                 }
                 return $this->getPizzeTabella($query);
             } elseif ($_POST['tipo'] == '2') {
                 $query = "SELECT * FROM cucina WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = '". $_POST['nome']."'";
+                    $query .= " AND nome = \"". $_POST['nome']."\"";
                 }
                 return $this->getCucinaTabella($query);
             } else {
                 if($val == 0) {
                     $query = "SELECT * FROM pizza WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = '". $_POST['nome']."'";
+                        $query .= " AND nome = \"". $_POST['nome']."\"";
                     }
                     return $this->getPizzeTabella($query);
                 }
                 if($val == 1) {
                     $query = "SELECT * FROM cucina WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = '". $_POST['nome']."'";
+                        $query .= " AND nome = \"". $_POST['nome']."\"";
                     }
                     return $this->getCucinaTabella($query);
                 }
                 if($val == 2) {
                     $query = "SELECT * FROM ingrediente WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = '". $_POST['nome']."'";
+                        $query .= " AND nome = \"". $_POST['nome']."\"";
                     }
                     return $this->getIngredientiTabella($query);
                 }
@@ -1177,7 +1177,7 @@ class DBConnection {
                         $primadisponibilita = $row["fascia"];
                     }
                     if($daOrdinare + $row["pizze"] < 20) {
-                        $selectReturn .= "<option value='" . $row['fascia'] . "'>" . $row['fascia'] . "</option>";
+                        $selectReturn .= "<option value=\"" . $row['fascia'] . "\">" . $row['fascia'] . "</option>";
                     }
                 }
             }
