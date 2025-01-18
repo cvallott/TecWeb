@@ -46,7 +46,6 @@ header {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-
 header img {
     height: 100%;
     padding: 0 0.5em;
@@ -1690,9 +1689,10 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 ------------------
 */
 .messaggio{
-    font-size: 1em;
-    color: var(--bgcolor);
-    background-color: rgba(65, 65, 67, 0.7);
+    font-size: 1.2em;
+    color: var(--txtcolor);
+    text-align: center;
+    background-color: rgba(205, 73, 42, 0.7);
     padding: 1.5em;
     border-radius: 0.4em;
     margin-bottom: 1em;
