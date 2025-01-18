@@ -344,12 +344,13 @@ class DBConnection {
 
     public function getIngredienti($query, $id = null, $cucina = 0): string {
         $ingredienti = array();
+        $resultSelect = "";
         if($id != null){
             if($cucina == 0){
                 try{
                     $querySelect = "SELECT ingrediente FROM pizza_ingrediente WHERE pizza = ?";
                     $stmt = $this->connection->prepare($querySelect);
-                    $stmt->bind_param('s', $id);
+                    $stmt->bind_param('i', $id);
                     $stmt->execute();
                     $resultSelect = $stmt->get_result();
                 }catch(mysqli_sql_exception $e){
@@ -357,8 +358,11 @@ class DBConnection {
                 }
             }else{
                 try {
-                    $querySelect = "SELECT ingrediente FROM cucina_ingrediente WHERE cucina = " . $id;
-                    $resultSelect = mysqli_query($this->connection, $querySelect);
+                    $querySelect = "SELECT ingrediente FROM cucina_ingrediente WHERE cucina = ?";
+                    $stmt = $this->connection->prepare($querySelect);
+                    $stmt->bind_param('i', $id);
+                    $stmt->execute();
+                    $resultSelect = $stmt->get_result();
                 }catch(mysqli_sql_exception $e){
                     header("location: errore.php");
                 }
