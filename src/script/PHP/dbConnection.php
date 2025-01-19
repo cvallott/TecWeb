@@ -47,9 +47,10 @@ class DBConnection {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
                 if(!empty($nome)){
                     try{
-                        $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."' AND nome = ?";
+                        $queryPizze = "SELECT * FROM pizza WHERE categoria=? AND nome LIKE ?";
                         $stmt = $this->connection->prepare($queryPizze);
-                        $stmt->bind_param('s', $nome);
+                        $nome = '%'.$nome.'%';
+                        $stmt->bind_param('ss', $row['cat'],$nome);
                         $stmt->execute();
                         $pizze = $stmt->get_result();
                     }catch(mysqli_sql_exception $e){
@@ -155,8 +156,9 @@ class DBConnection {
         $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";*/
         if(!empty($nome)){
             try {
-                $queryCucina = "SELECT * FROM cucina WHERE nome = ?";
+                $queryCucina = "SELECT * FROM cucina WHERE nome LIKE ?";
                 $stmt = $this->connection->prepare($queryCucina);
+                $nome = '%'.$nome.'%';
                 $stmt->bind_param('s', $nome);
                 $stmt->execute();
                 $pizze = $stmt->get_result();
