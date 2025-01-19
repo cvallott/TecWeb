@@ -25,6 +25,7 @@
         </div>
         <div id="aggiunta-content">
             <form method="post" action=[percorsoFile] class="form-aggiunta" onsubmit="return validazioneForm();">
+                [messaggiForm]
                 <fieldset class="form-fieldset">
                     <legend>Informazioni obbligatorie</legend>
                     <label for="nome">Inserisci il nome: (obbligatorio)</label>
@@ -39,11 +40,8 @@
                         <label for="veget_no">No</label>
                     </div>
                 </fieldset>
-                [messaggiForm]
-                <div>
-                    <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci ingrediente" >
-                    <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
-                </div>
+                <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci ingrediente" >
+                <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
             </form>
             <a class="home-button" href="dashboard.php">Torna indietro</a>
         </div>

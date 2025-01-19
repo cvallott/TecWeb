@@ -25,6 +25,7 @@
     </div>
     <div id="aggiunta-content">
       <form method="post" action=[percorsoFile] class="form-aggiunta" enctype="multipart/form-data" onsubmit="return validazioneForm();">
+        [messaggiForm]
         <fieldset class="form-fieldset">
           <legend>Informazioni obbligatorie</legend>
           <label for="nome">Inserisci il nome:</label>
@@ -45,11 +46,8 @@
           <label for="file">Carica un'immagine:</label>
           <input type="file" name="file" id="file" accept="image/*">
         </fieldset>
-        [messaggiForm]
-        <div>
-          <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
-          <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
-        </div>
+        <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
+        <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
       </form>
       <a class="home-button" href="dashboard.php" >Torna indietro</a>
     </div>

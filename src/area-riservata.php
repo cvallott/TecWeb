@@ -52,7 +52,7 @@ function validaCampo($value, $pattern) {
 
 // Handle Login Form
 if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
-    $messaggiPerForm .= "<ul class='error-list'>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $hasErrors = false;
 
     $loginUser = pulisciInput($_POST['login-user']);
@@ -81,7 +81,7 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
                 header('location: index.php');
                 exit();
             } else {
-                $messaggiPerForm .= '<li role="alert">Credenziali non valide.</li>';
+                $messaggiPerForm .= '<li role="alert">Credenziali non valide</li>';
             }
         } else {
             $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
@@ -89,12 +89,12 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
         $connessione->closeConnection();
     }
 
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 }
 
 // Handle Registration Form
 if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
-    $messaggiPerForm .= "<ul class='error-list'>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $hasErrors = false;
 
     $registerName = pulisciInput($_POST['register-name']);
@@ -162,8 +162,7 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
         }
         $connessione->closeConnection();
     }
-
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 }
 
 // Replace placeholders in HTML

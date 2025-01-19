@@ -628,25 +628,30 @@ RIEPILOGO-ORDINI PAGE
 AREA-RISERVATA PAGE
 ------------------
 */
-:root {
-    --primary-color: #4158d0;
-    --primary-dark: #3448b0;
-    --accent-color: #c850c0;
-    --text-dark: #3c3c3c;
-    --text-light: #666;
-    --border-color: #ddd;
-    --white: #fff;
+#container-form h2{
+    text-align: center;
+    margin-bottom: 0.7em;
 }
 
-.container {
+#container-form {
     width: 100%;
     min-height: 100vh;
-    /*padding: 0.625em;*/
     display: flex;
     align-items: flex-start;
     justify-content: center;
 }
 
+#container-form form{
+    background-color: var(--bgcolor);
+    padding: 2.5em;
+    border-radius: 0.4em;
+}
+
+#container-form .invia-button{
+    width: 100%;
+}
+
+/*
 .form-box {
     width: 90%;
     max-width: 28.125em;
@@ -709,22 +714,22 @@ AREA-RISERVATA PAGE
     background: var(--primary-dark);
     box-shadow: 0 0.125em 0.3125em rgba(65, 88, 208, 0.2);
 }
-
+*/
 .switch-text {
     text-align: center;
     margin-top: 1.25em;
-    color: var(--text-light);
+    color: var(--txtcolor);
     font-size: 0.875em;
 }
 
 .switch-text a {
-    color: var(--primary-color);
+    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */*
     text-decoration: underline;
     font-weight: 500;
 }
 
 .switch-text a:hover {
-    color: var(--primary-dark);
+    color: var(--bgcolor3);
 }
 
 #registerForm,
@@ -1592,13 +1597,14 @@ CSS PER I FORM DI AGGIUNTA
     margin-bottom: 0.3em;
     color: var(--txtcolor);
     font-size: 1.2em;
+    margin-top: 0.5em;
 }
 
 .form-aggiunta .check label{
     display: inline;
 }
 
-.form-aggiunta input[type="text"], input[type="number"]{
+.form-aggiunta input[type="text"], input[type="number"], input[type="password"], input[type="email"]{
     width: 100%;
     padding: 0.5em;
     border: 0.1em solid var(--txtcolor);
@@ -1606,7 +1612,7 @@ CSS PER I FORM DI AGGIUNTA
     font-size: 1em;
 }
 
-.form-aggiunta input[type="text"]:focus, input[type="number"]:focus {
+.form-aggiunta input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus,  input[type="email"]:focus {
     border: 0.125em solid var(--bgcolor2);
     outline: none;
 }
@@ -1645,7 +1651,7 @@ CSS PER I FORM DI AGGIUNTA
 }
 
 .form-fieldset{
-    padding: 1.3em;
+    padding: 0 1.3em 1.3em;
     border-radius: 0.4em;
     margin-bottom: 1em;
 }
