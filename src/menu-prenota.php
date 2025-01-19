@@ -54,6 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
+if(isset($_SESSION['aggiunta_carrello'])){
+    $template = str_replace('[messaggio-carrello]', $_SESSION['aggiunta_carrello'], $template);
+} else{
+    $template = str_replace('[messaggio-carrello]', "", $template);
+}
+
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[linkMenu]', $menuCategorie, $template);
 $template = str_replace('[menu]', $pizze, $template);
