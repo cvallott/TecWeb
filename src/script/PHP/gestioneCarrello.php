@@ -37,7 +37,7 @@ if (!isset($_SESSION['carrello'])) {
 
 }
 
-function aggiornaCarrello($id, $nome, $quantita, $prezzo) {
+function aggiornaCarrello($id, $nome, $quantita, $prezzo): void {
     if (isset($_SESSION['carrello'][$id])) {
         $_SESSION['carrello'][$id]['quantita'] += $quantita;
     } else {
@@ -45,11 +45,11 @@ function aggiornaCarrello($id, $nome, $quantita, $prezzo) {
     }
 }
 
-function rimuoviDalCarrello($id) {
+function rimuoviDalCarrello($id): void {
     unset($_SESSION['carrello'][$id]);
 }
 
-function getCarrello(){
+function getCarrello() : string {
     $rowsCarrello = "";
     foreach ($_SESSION['carrello'] as $id => $item) {
         $rowsCarrello .= '<div class="row">';
@@ -76,14 +76,15 @@ function getCarrello(){
     return $rowsCarrello;
 }
 
+/*
 function getQuantita($id){
     if(isset($_SESSION['carrello'][$id]['quantita'])){
         return $_SESSION['carrello'][$id]['quantita'];
     }
     return 0;
-}
+}*/
 
-function getTotale(){
+function getTotale(): float {
     $tot = 0;
     foreach ($_SESSION['carrello'] as $id => $item) {
         $tot += $item['quantita']*$item['prezzo'];
