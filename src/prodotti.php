@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         }
     } else if ($action == 'deleteIngrediente') {
         if ($conn) {
-            $connessione->removeAssocProdIngr($_POST['nome']);
+            $nome = str_replace("_", " ", $_POST['nome']);
+            $connessione->removeAssocProdIngr($nome);
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             if ($okDelete) {
                 $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";

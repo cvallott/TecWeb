@@ -26,7 +26,7 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 if($conn) {
     if (isset($_GET['nome'])) {
-        $nome = $_GET['nome'];
+        $nome = str_replace("_", " ", $_GET['nome']);
         $ingrInfo = $connessione->infoIngredienti($connessione->queryIngredienti($nome));
         if(!empty($ingrInfo)) {
             $template = str_replace('[valueNome]', 'value = "'.$ingrInfo[0].'"', $template);
