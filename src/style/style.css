@@ -217,45 +217,6 @@ iframe {
     opacity: .4;
 }
 
-/*
-------------------
-ERROR PAGE
-------------------
-*/
-.error-section {
-    padding: 3em;
-    text-align: center;
-    color: var(--txtcolor);
-    position: relative;
-}
-
-#error404{
-    font-size: 20em;
-    line-height: 1.5em;
-    background-image: url('../assets/grafiche/404.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    text-indent: -9999px;
-}
-
-#error500{
-    font-size: 20em;
-    line-height: 1.5em;
-    background-image: url('../assets/grafiche/500.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    text-indent: -9999px;
-}
-
-.error-section{
-    background-color: var(--bgcolor);
-}
-
-#btnErrorPage{
-    margin-top: 2em;
-}
 
 /*
 ------------------
@@ -1747,11 +1708,56 @@ input .error {
     border: 2px solid var(--bgcolor2);
 }
 
+
 /*
 ------------------
-ERROR 500 e 404
+ERROR PAGE
 ------------------
 */
+.error-section {
+    padding: 3em;
+    text-align: center;
+    color: var(--txtcolor);
+    position: relative;
+}
+
+#error404{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/404.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+#error500{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/500.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+#erroreGenerico{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/eGenerico.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+.error-section{
+    background-color: var(--bgcolor);
+}
+
+#btnErrorPage{
+    margin-top: 2em;
+}
 
 .error-content {
     text-align: center;
@@ -1772,9 +1778,4 @@ ERROR 500 e 404
 .error-message {
     font-size: 1.5em;
     margin: 1em 0;
-}
-
-.pizza-emoji {
-    font-size: 5em;
-    margin: 0.5em 0;
 }
