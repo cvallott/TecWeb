@@ -634,11 +634,9 @@ AREA-RISERVATA PAGE
 }
 
 #container-form {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    width: 35%;
+    min-height: 70vh;
+    margin: auto auto 2em;
 }
 
 #container-form form{
