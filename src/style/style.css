@@ -229,21 +229,32 @@ ERROR PAGE
     position: relative;
 }
 
-.error-img{
-    width: 50em;
-    text-align: center;
-    margin-top: -2em;
-    margin-bottom: -3em;
+#error404{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/404.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+#error500{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/500.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
 }
 
 .error-section{
     background-color: var(--bgcolor);
 }
 
-.error-section h2 {
-    text-align: center;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+#btnErrorPage{
+    margin-top: 2em;
 }
 
 /*
