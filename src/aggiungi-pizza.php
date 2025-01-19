@@ -2,8 +2,11 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-//require 'script/PHP/checkAdminLogin.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "aggiungi-pizza.php";
+
+require 'script/PHP/checkAdminLogin.php';
 include_once 'script/PHP/checkForm.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-pizzaTemplate.html');
 
