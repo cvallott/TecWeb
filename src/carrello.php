@@ -3,9 +3,11 @@
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "carrello.php";
+
 require 'script/PHP/checkUserLogin.php';
 require 'script/PHP/gestioneCarrello.php';
-
 
 $template = file_get_contents('template/pageTemplate/carrelloTemplate.html');
 

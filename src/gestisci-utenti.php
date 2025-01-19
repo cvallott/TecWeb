@@ -3,6 +3,9 @@
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "gestisci-utenti.php";
+
 require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/gestisci-utentiTemplate.html');
 

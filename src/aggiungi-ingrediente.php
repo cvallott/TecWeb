@@ -1,6 +1,9 @@
 <?php
 
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "aggiungi-ingrediente.php";
+
 include_once 'script/PHP/dbConnection.php';
 include_once 'script/PHP/checkForm.php';
 require 'script/PHP/checkAdminLogin.php';

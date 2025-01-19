@@ -1,6 +1,9 @@
 <?php
 
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "dashboard.php";
+
 require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/dashboardTemplate.html');
 
