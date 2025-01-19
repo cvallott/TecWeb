@@ -112,15 +112,19 @@ SEZIONE BREADCRUMB
 */
 #breadcrumb {
     margin-top: 5em;
-    background-color: var(--bgcolor2);
-    color: var(--bgcolor);
+    color: var(--bgcolor2);
     height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
+    background: var(--bgcolor) linear-gradient(35deg, var(--bgcolor), var(--bgcolor2));
 }
 
 #breadcrumb a:visited {
     color: var(--txtcolor);
+}
+
+#breadcrumb a:link {
+    color: var(--bgcolor2);
 }
 
 /*
