@@ -703,6 +703,7 @@ class DBConnection {
         }else if ($filtro == 0){
             $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
         }
+        $query .= " ORDER BY o.id DESC";
         return $query;
     }
 
@@ -810,7 +811,7 @@ class DBConnection {
 
     public function getOrdiniUtente($email): string {
         try {
-            $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '" . $email . "' = o.utente";
+            $query = "SELECT o.id, o.data, o.ora, o.stato FROM ordine AS o WHERE '" . $email . "' = o.utente ORDER BY o.id DESC";
             $result = mysqli_query($this->connection, $query);
         }catch(mysqli_sql_exception $e){
             header("location: errore.php");
