@@ -15,8 +15,13 @@ class DBConnection {
 
         mysqli_report(MYSQLI_REPORT_ERROR);
 
-        $this->connection = mysqli_connect(DBConnection::HOST_DB, DBConnection::USERNAME, DBConnection::PASSWORD, DBConnection::DATABASE_NAME, DBConnection::PORT);
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        try{
+            $this->connection = mysqli_connect(DBConnection::HOST_DB, DBConnection::USERNAME, DBConnection::PASSWORD, DBConnection::DATABASE_NAME, DBConnection::PORT);
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        }catch(mysqli_sql_exception $e){
+            header('location: errore.php');
+        }
+
         //debug
         //return mysqli_connect_error();
 
