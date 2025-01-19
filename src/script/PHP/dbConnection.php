@@ -308,7 +308,7 @@ class DBConnection {
                 $stringaReturn .= "<input type='hidden' name='prezzo' value='".$row['prezzo']."'>";
                 $stringaReturn .= "<input type='hidden' name='nome' value='".$row['nome']."'>";
                 $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
-                $stringaReturn .= "<button type='submit' name='azione' value='aggiungi' class='home-button'>Aggiungi</button>";
+                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="home-button" aria-label="Aggiungi '.$row['nome'].' al carrello"/>';
                 $stringaReturn .= "</form></li>";
             }
         }

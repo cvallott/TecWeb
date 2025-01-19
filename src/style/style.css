@@ -1130,6 +1130,16 @@ MENU-PRENOTA-PAGE
     margin: 0;
 }
 
+.decrementa-btn {
+    background: url('assets/icons/minus.png') no-repeat center center;
+    border: none;
+    width: 50px; /* Imposta la larghezza dell'immagine */
+    height: 50px; /* Imposta l'altezza dell'immagine */
+    cursor: pointer; /* Cambia il cursore al passaggio sopra il pulsante */
+    padding: 0; /* Rimuove il padding di default */
+    text-indent: -9999px; /* Nasconde il testo 'decrementa' */
+}
+
 /*
 ------------------
 CARRELLO
