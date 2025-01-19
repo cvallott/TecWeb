@@ -2,8 +2,8 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-
 include_once 'template/components/loadComponents.php';
+require 'script/PHP/checkAuth.php';
 $template = file_get_contents('template/pageTemplate/dettagli-ordineTemplate.html');
 
 $header = printHeader();

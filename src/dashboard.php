@@ -1,7 +1,7 @@
 <?php
 
 include_once 'template/components/loadComponents.php';
-//require 'script/PHP/checkAdminLogin.php';
+require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/dashboardTemplate.html');
 
 $header = printHeader();

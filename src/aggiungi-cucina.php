@@ -4,7 +4,7 @@ use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
 include_once 'script/PHP/checkForm.php';
-//require 'script/PHP/checkAdminLogin.php';
+require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-cucinaTemplate.html');
 
 $header = printHeader();
