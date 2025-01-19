@@ -1130,6 +1130,10 @@ MENU-PRENOTA-PAGE
     margin: 0;
 }
 
+#menu-prenotaPage .invia-button, #carrelloPage .invia-button {
+    padding: 0.8em;
+}
+
 /*
 ------------------
 CARRELLO
@@ -1441,6 +1445,11 @@ CARRELLO
     width: 6em;
     margin-top: 3em;
     font-size: 1.2em;
+}
+
+#carrelloPage .messaggio{
+    padding: 1.5em;
+    margin-top: 1em;
 }
 
 /*
