@@ -303,7 +303,7 @@ class DBConnection {
                 $stringaReturn .= "<img src='".$row['path']."'>";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
-                $stringaReturn .= "<form method='POST' action='' >";
+                $stringaReturn .= "<form method='POST' action='carrello.php' >";
                 $stringaReturn .= "<input type='hidden' name='id' value='".$row['id']."'>";
                 $stringaReturn .= "<input type='hidden' name='prezzo' value='".$row['prezzo']."'>";
                 $stringaReturn .= "<input type='hidden' name='nome' value='".$row['nome']."'>";
