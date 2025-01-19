@@ -645,6 +645,7 @@ AREA-RISERVATA PAGE
     background-color: var(--bgcolor);
     padding: 2.5em;
     border-radius: 0.4em;
+    min-width: 30%;
 }
 
 #container-form .invia-button{
@@ -1621,6 +1622,7 @@ CSS PER I FORM DI AGGIUNTA
     font-size: 1.2em;
     font-weight: bold;
     color: var(--txtcolor);
+    padding-top: 0.5em;
 }
 
 .form-aggiunta input:checked + label {
