@@ -64,7 +64,6 @@ FOOTER MOBILE
     background: var(--bgcolor);
 }
 
-
 /*
 ============
 FOOTER MOBILE
@@ -149,3 +148,20 @@ TABELLE MOBILE
     font-size: 1.5em;
 }
 
+/*
+============
+DASHBOARD MOBILE
+============
+*/
+.dashboard .home-button{
+    width: 90%;
+    font-size: 1em;
+}
+
+.dashboard div .home-button {
+    width: 75%;
+}
+
+.dashboard .home-button img {
+    height: 1.5em;
+}
