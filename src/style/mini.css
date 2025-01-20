@@ -227,3 +227,18 @@ DETTAGLI-ORDINE MOBILE
 #note {
     font-size: 0.9em;
 }
+
+/*
+============
+AREA-RISERVATA MOBILE
+============
+*/
+#container-form {
+    width: 90%;
+    min-height: 0;
+    margin: auto auto 0.3em;
+}
+
+#container-form form{
+    padding: 1.5em;
+}
