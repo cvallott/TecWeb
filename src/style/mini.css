@@ -1,3 +1,10 @@
+:root{
+    --bgcolor: #fff;
+    --txtcolor: #000;
+    --bgcolor2: #cd492a;
+    --bgcolor3: #414143;
+}
+
 /*
 ============
 HEADER MOBILE
@@ -71,42 +78,44 @@ FOOTER MOBILE
 TABELLE MOBILE
 ============
 */
-thead{
+#tabella-ordini thead{
     display: none;
 }
 
-tr, th, td{
+#tabella-ordini tr, th, td{
     display: block;
     padding: 0;
 }
 
-table, body, tr{
+#tabella-ordini table, body, tr{
     border: none;
 }
 
-th{
-    margin-top:1em;
-    background-color:#DC1C08;
-    border:2px solid #000000 ;
+#tabella-ordini th{
+    margin-top: 1em;
+    padding: 0.6em;
+    background-color: var(--bgcolor2);
+    border: none;
 }
 
-tfoot tr td{
-    border-bottom: 2px solid #000
+#tabella-ordini tfoot tr td{
+    border-bottom: 2px solid var(--txtcolor)
 }
 
-td[data-title]:before{
+#tabella-ordini td[data-title]:before{
     content: attr(data-title) ": ";
     font-weight: bold;
 }
 
-tfoot th{
+#tabella-ordini tfoot th{
     display: none;
 }
 
-td:empty{
+#tabella-ordini td:empty{
     display: none;
 }
-caption{
+
+#tabella-ordini caption{
     font-size: 1.5em;
 }
 
