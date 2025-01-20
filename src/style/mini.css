@@ -60,6 +60,16 @@ HEADER MOBILE
 FOOTER MOBILE
 ============
 */
+#breadcrumb{
+    background: var(--bgcolor);
+}
+
+
+/*
+============
+FOOTER MOBILE
+============
+*/
 #footer-top {
     flex-direction: column;
     padding: 1em;
