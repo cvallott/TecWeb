@@ -55,15 +55,19 @@ header img {
     margin-left: auto;
 }
 
-#menu li{
+#menu li:not(.menuMobile-version){
     list-style: none;
     display: inline-block;
-    margin-right: 1.5em;
+    margin-right: 0.5em;
+}
+
+.menuMobile-version{
+    display: none;
 }
 
 #menu li a {
     color: var(--bgcolor2);
-    padding: 1em;
+    padding: 0.5em;
     border-radius: 0.4em;
     border-bottom: 2px solid var(--bgcolor2);
     text-decoration: none;

@@ -1,3 +1,58 @@
+/*
+============
+HEADER MOBILE
+============
+*/
+#menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bgcolor);
+    padding: 0.3em;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menuMobile-version{
+    display: inline-block;
+}
+
+#menu li:not(.menuMobile-version, #currentLink){
+    display: none;
+}
+
+#menu li:not(.menuMobile-version){
+    margin: 0;
+}
+
+#menu li #currentLink{
+    margin-bottom: 2em;
+}
+
+#menu li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--bgcolor2);
+    padding: 0.3em;
+}
+
+#menu li a img {
+    margin-bottom: 0.3em;
+    width: 2.3em;
+    height: 2.3em;
+    object-fit: contain;
+}
+
+/*
+============
+TABELLE MOBILE
+============
+*/
 thead{
     display: none;
 }
@@ -7,7 +62,6 @@ tr, th, td{
     padding: 0;
 }
 
-/* Tolgo i bordi che non siano quelli delle celle */
 table, body, tr{
     border: none;
 }
@@ -18,7 +72,6 @@ th{
     border:2px solid #000000 ;
 }
 
-/* Aggiungo il bordo all'ultima cella così tutti i bordi orizzontali hanno lo stesso spessore */
 tfoot tr td{
     border-bottom: 2px solid #000
 }
@@ -28,12 +81,10 @@ td[data-title]:before{
     font-weight: bold;
 }
 
-/* Per evitare la ripetizione di "Totale Punti" */
 tfoot th{
     display: none;
 }
 
-/* Faccio sparire le celle vuote */
 td:empty{
     display: none;
 }
