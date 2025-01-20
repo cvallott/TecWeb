@@ -428,7 +428,7 @@ CHI SIAMO PAGE
 ------------------
 */
 #chi-siamo-intro {
-    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
+    background-image: url('../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -538,25 +538,25 @@ CHI SIAMO PAGE
 }
 
 #chi-siamo-ic-storia{
-    background-image: url('../../assets/pagine/chi-siamo/storia.png');
+    background-image: url('../assets/pagine/chi-siamo/storia.png');
 }
 
 #chi-siamo-ic-qualita{
-    background-image: url('../../assets/pagine/chi-siamo/qualita.png');
+    background-image: url('../assets/pagine/chi-siamo/qualita.png');
 }
 #chi-siamo-ic-filosofia {
-    background-image: url('../../assets/pagine/chi-siamo/filosofia.png');
+    background-image: url('../assets/pagine/chi-siamo/filosofia.png');
 }
 
 #chi-siamo-img-storia{
-    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-storia.jpg');
+    background-image: url('../assets/pagine/chi-siamo/chi-siamo-storia.jpg');
 }
 
 #chi-siamo-img-qualita{
-    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-qualita.jpg');
+    background-image: url('../assets/pagine/chi-siamo/chi-siamo-qualita.jpg');
 }
 #chi-siamo-img-filosofia {
-    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-filosofia.jpg');
+    background-image: url('../assets/pagine/chi-siamo/chi-siamo-filosofia.jpg');
 }
 
 .chi-siamo-ic {
