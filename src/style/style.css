@@ -317,23 +317,61 @@ HOME PAGE
     line-height: 2em;
 }
 
+/*#container {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*    gap: 1em;*/
+/*    max-width: 50em;*/
+/*    padding-bottom: 2em;*/
+/*    padding-top: 2em;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*#container img {*/
+/*    flex-grow: 1;*/
+/*    width: 22em;*/
+/*    height: 10em;*/
+/*    object-fit: cover;*/
+/*}*/
+
+
 #container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 1em;
-    max-width: 50em;
-    padding-bottom: 2em;
-    padding-top: 2em;
-    margin: 0 auto;
+    justify-content: space-between;
+    align-content: center;
 }
 
-#container img {
+#container div {
     flex-grow: 1;
     width: 22em;
     height: 10em;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin:auto;
 }
+
+
+
+
+/* Stili per ciascun background */
+#img1 {
+    background-image: url('../../assets/pagine/index/filosofia1.jpg');
+}
+#img2 {
+    background-image: url('../../assets/pagine/index/filosofia2.jpg');
+}
+
+#img3 {
+    background-image: url('../../assets/pagine/index/filosofia3.jpg');
+}
+
+#img4 {
+    background-image: url('../../assets/pagine/index/filosofia4.jpg');
+}
+
 
 .home-button {
     display: inline-block;
@@ -452,7 +490,7 @@ CHI SIAMO PAGE
 ------------------
 */
 #chi-siamo-intro {
-    background-image: url('../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -546,10 +584,6 @@ CHI SIAMO PAGE
     position: relative;
 }
 
-.chi-siamo-boxes img {
-    width: 35%;
-    height:70%;
-}
 
 .chi-siamo-testo{
     display:flex;
@@ -566,11 +600,53 @@ CHI SIAMO PAGE
     align-self: center;
 }
 
-/*
-------------------
-RIEPILOGO-ORDINI PAGE
-------------------
-*/
+#chi-siamo-ic-storia{
+    background-image: url('../../assets/pagine/chi-siamo/storia.png');
+}
+
+#chi-siamo-ic-qualita{
+    background-image: url('../../assets/pagine/chi-siamo/qualita.png');
+}
+#chi-siamo-ic-filosofia {
+    background-image: url('../../assets/pagine/chi-siamo/filosofia.png');
+}
+
+#chi-siamo-img-storia{
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-storia.jpg');
+}
+
+#chi-siamo-img-qualita{
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-qualita.jpg');
+}
+#chi-siamo-img-filosofia {
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-filosofia.jpg');
+}
+
+.chi-siamo-ic {
+    width: 15%;
+    padding-bottom: 15%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 3%;
+}
+
+.chi-siamo-img {
+    width: 90%;
+    padding-bottom: 15%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 3px;
+}
+
+
+
+    /*
+    ------------------
+    RIEPILOGO-ORDINI PAGE
+    ------------------
+    */
 #tabella-ordini {
     background-color: var(--bgcolor);
     padding: 3em;
