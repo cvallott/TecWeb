@@ -18,7 +18,7 @@ $pizze= '';
 $cucina = '';
 if($conn){
     $menuCategorie = $connessione->getMenuCategorie();
-    $menuCategorie .= "<a href='#".str_replace(' ','', "cucina")."'>"."La nostra Cucina"."</a>";
+    $menuCategorie .= "<a href=\"#".str_replace(' ','', "cucina")."\">"."La nostra Cucina"."</a>";
 }
 
 if(empty($_POST['action'])){

@@ -29,9 +29,9 @@
         <fieldset class="form-fieldset">
           <legend>Informazioni obbligatorie</legend>
           <label for="nome">Inserisci il nome:</label>
-          <input type="text" name="nome" id="nome" [valueNome] required>
+          <input type="text" name="nome" id="nome" [valueNome] required />
           <label for="prezzo">Inserisci il prezzo:</label>
-          <input type="number" min="0" name="prezzo" id="prezzo" step="0.01" [valuePrezzo] required>
+          <input type="number" min="0" name="prezzo" id="prezzo" step="0.01" [valuePrezzo] required />
           <p>Inserisci gli ingredienti:</p>
           [listaIngredienti]
           <label for="cat">Categoria:</label>
@@ -44,10 +44,10 @@
           <label for="descr">Descrizione:</label>
           <textarea id="descr" name="descr" rows="5" cols="50" >[valueDescr]</textarea>
           <label for="file">Carica un'immagine:</label>
-          <input type="file" name="file" id="file" accept="image/*">
+          <input type="file" name="file" id="file" accept="image/*" />
         </fieldset>
-        <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" >
-        <input type="reset" id="reset" class="invia-button" value="Cancella tutto" >
+          <input type="submit" id="submit" name="submit" class="invia-button" value="Inserisci pizza" />
+          <input type="reset" id="reset" class="invia-button" value="Cancella tutto" />
       </form>
       <a class="home-button" href="dashboard.php" >Torna indietro</a>
     </div>

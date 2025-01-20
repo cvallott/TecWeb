@@ -73,17 +73,17 @@ class DBConnection {
                 }
                 if(mysqli_num_rows($pizze) > 0) {
                     $visited = true;
-                    $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',$row['cat'])."'>";
+                    $stringaReturn .= "<section class=\"menu-prodpercat\" id=\"".str_replace(' ','',$row['cat'])."\">";
                     $stringaReturn .= "<h2>".$row['nomeEsteso']."</h2>";
-                    $stringaReturn .= "<p class='sez-intro'>".$row['descrizione']."</p>";
-                    $stringaReturn .= "<div class='pizza-container'>";
+                    $stringaReturn .= "<p class=\"sez-intro\">".$row['descrizione']."</p>";
+                    $stringaReturn .= "<div class=\"pizza-container\">";
                     while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
-                        $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
-                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt=\"\" loading=\"lazy\"></div>";
-                        $stringaReturn .= "<div class='pizza-testo'>";
+                        $stringaReturn .= "<div class=\"pizza\" id=\"p-".$riga['id']."\">";
+                        $stringaReturn .= "<div><img src=\"" . $riga['path'] . "\" alt=\"\" loading=\"lazy\"></div>";
+                        $stringaReturn .= "<div class=\"pizza-testo\">";
                         $stringaReturn .= "<h3>" . $riga['nome'];
                         if($riga['veget'] == "1"){
-                            $stringaReturn .="<img src=\"assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
+                            $stringaReturn .="<img src=\"assets/icons/foglia.png\" alt=\"Vegetariana\" />";
                         }
                         $stringaReturn .= "</h3>";
                         try{
@@ -102,33 +102,33 @@ class DBConnection {
                         $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                         $stringaReturn .= "</div>";
 
-                        $stringaReturn .= "<p class='pizza-prezzo'>&euro; " . $riga['prezzo'] . "</p>";
+                        $stringaReturn .= "<p class=\"pizza-prezzo\">&euro; " . $riga['prezzo'] . "</p>";
 
-                        $stringaReturn .= "<div class='order-actions'>";
+                        $stringaReturn .= "<div class=\"order-actions\">";
 
                         if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                             if (isset($_SESSION['carrello'][$riga['id']])) {
                                 $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                                 <div class="quantity-controls">
-                                <input type="hidden" name="id" value="' . $riga['id'] . '">
-                                <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa"/></button>
+                                <input type="hidden" name="id" value="' . $riga['id'] . '" />
+                                <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa" /></button>
                                 
                                 </form>';
                                         $stringaReturn .= '<h4>';
                                         $stringaReturn .= $_SESSION['carrello'][$riga['id']]['quantita'];
                                         $stringaReturn .= '</h4>';
                                         $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
-                                <input type="hidden" name="id" value="' . $riga['id'] . '">
-                                <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa"/></button>
+                                <input type="hidden" name="id" value="' . $riga['id'] . '" />
+                                <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa" /></button>
                                 </div>
                                 </form>';
                             } else {
                                 $stringaReturn .= '<form method="POST" action="menu-prenota.php">';
-                                $stringaReturn .= '<input type="hidden" name="id" value="' . $riga['id'] . '">';
-                                $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '">';
-                                $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '">';
-                                $stringaReturn .= '<input type="hidden" name="quantita" value="1">';
-                                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$riga['nome'].' al carrello"/>';
+                                $stringaReturn .= '<input type="hidden" name="id" value="' . $riga['id'] . '" />';
+                                $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '" />';
+                                $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '" />';
+                                $stringaReturn .= '<input type="hidden" name="quantita" value="1" />';
+                                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$riga['nome'].' al carrello" />';
                                 $stringaReturn .= '</form>';
                             }
                         }
@@ -137,7 +137,7 @@ class DBConnection {
                     }
                     $stringaReturn .= '</div>';
                     $stringaReturn .= '<div class="torna-su">';
-                    $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su"></a>';
+                    $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>';
                     $stringaReturn .= '</div>';
                     $stringaReturn .= '</section>';
                 }
@@ -146,7 +146,7 @@ class DBConnection {
         if($visited == false){
             $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, la pizza cercata non esiste</h2>';
             $stringaReturn .= '<div class="torna-su">';
-            $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su"></a>';
+            $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>';
             $stringaReturn .= '</div>';
             $stringaReturn .= '</div>';
         }
@@ -181,17 +181,17 @@ class DBConnection {
         }
         if(mysqli_num_rows($pizze) > 0) {
             $visited = true;
-            $stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
+            $stringaReturn .= "<section class=\"menu-prodpercat\" id=\"".str_replace(' ','',"cucina")."\">";
             $stringaReturn .= "<h2>La nostra cucina</h2>";
-            $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";
-            $stringaReturn .= "<div class='pizza-container'>";
+            $stringaReturn .= "<p class=\"sez-intro\">La nostra proposta</p>";
+            $stringaReturn .= "<div class=\"pizza-container\">";
             while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
-                $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
-                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt=\"\" loading=\"lazy\"></div>";
-                $stringaReturn .= "<div class='pizza-testo'>";
+                $stringaReturn .= "<div class=\"pizza\" id=\"c-".$riga['id']."\">";
+                $stringaReturn .= "<div><img src=\"" . $riga['path'] . "\" alt=\"\" loading=\"lazy\" /></div>";
+                $stringaReturn .= "<div class=\"pizza-testo\">";
                 $stringaReturn .= "<h3>" . $riga['nome'];
                 if($riga['veget'] == "1"){
-                    $stringaReturn .= "<img src=\"assets/icons/foglia.png\" alt=\"Vegetariana\"/>";
+                    $stringaReturn .= "<img src=\"assets/icons/foglia.png\" alt=\"Vegetariana\" />";
                 }
                 $stringaReturn .= "</h3>";
                 try {
@@ -210,32 +210,32 @@ class DBConnection {
                 $stringaReturn .= "<p>" . $stringaIngredienti . "</p>";
                 $stringaReturn .= "</div>";
 
-                $stringaReturn .= "<p class='pizza-prezzo'>&euro; " . $riga['prezzo']. "</p>";
+                $stringaReturn .= "<p class=\"pizza-prezzo\">&euro; " . $riga['prezzo']. "</p>";
 
-                $stringaReturn .= "<div class='order-actions'>";
+                $stringaReturn .= "<div class=\"order-actions\">";
 
                 if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                     if (isset($_SESSION['carrello']["c" . $riga['id']])) {
                         $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                         <div class="quantity-controls">
-                        <input type="hidden" name="id" value=c' . $riga['id'] . '">
-                        <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa"/></button>
+                        <input type="hidden" name="id" value=c' . $riga['id'] . '" />
+                        <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa" /></button>
                         </form>';
                         $stringaReturn .= '<h4>';
                         $stringaReturn .= $_SESSION['carrello']["c" . $riga['id']]['quantita'];
                         $stringaReturn .= '</h4>';
                         $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
-                        <input type="hidden" name="id" value=c' . $riga['id'] . '">
-                        <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa"/></button>
+                        <input type="hidden" name="id" value=c' . $riga['id'] . '" />
+                        <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa" /></button>
                         </div>
                      </form>';
                     } else {
                         $stringaReturn .= '<form method="POST" action="menu-prenota.php">';
-                        $stringaReturn .= '<input type="hidden" name="id" value=c' . $riga['id'] . '>';
-                        $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '">';
-                        $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '">';
-                        $stringaReturn .= '<input type="hidden" name="quantita" value="1">';
-                        $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$riga['nome'].' al carrello"/>';
+                        $stringaReturn .= '<input type="hidden" name="id" value=c' . $riga['id'] . ' />';
+                        $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '" />';
+                        $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '" />';
+                        $stringaReturn .= '<input type="hidden" name="quantita" value="1" />';
+                        $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$riga['nome'].' al carrello" />';
                         $stringaReturn .= '</form>';
                     }
                 }
@@ -244,14 +244,14 @@ class DBConnection {
             }
             $stringaReturn .= '</div>';
             $stringaReturn .= '<div class="torna-su">';
-            $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su"></a>';
+            $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>';
             $stringaReturn .= '</div>';
             $stringaReturn .= '</section>';
         }
         if($visited == false){
             $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, il piatto cercato non esiste</h2>';
             $stringaReturn .= '<div class="torna-su">';
-            $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su"></a>';
+            $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>';
             $stringaReturn .= '</div>';
             $stringaReturn .= '</div>';
         }
@@ -268,7 +268,7 @@ class DBConnection {
         $stringaReturn = "";
         if (mysqli_num_rows($result) > 0) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                $stringaReturn .= "<a href='#".str_replace(' ','',$row['cat'])."'>".$row['nomeEsteso']."</a>";
+                $stringaReturn .= "<a href=\"#".str_replace(' ','',$row['cat'])."\">".$row['nomeEsteso']."</a>";
             }
         }
         return $stringaReturn;
@@ -285,7 +285,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<a href='menu-prenota.php#Fuorimenu'><img src='".$row['path']."' alt=\"\">";
+                $stringaReturn .= "<a href=\"menu-prenota.php#Fuorimenu\"><img src=\"".$row['path']."\" alt=\"\" />";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "</a></li>";
@@ -310,11 +310,11 @@ class DBConnection {
                 $stringaReturn .= "<img src=\"".$row['path']."\" alt=\"\" loading=\"lazy\"";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
-                $stringaReturn .= "<form method='POST' action='carrello.php' >";
-                $stringaReturn .= "<input type='hidden' name='id' value='".$row['id']."'>";
-                $stringaReturn .= "<input type='hidden' name='prezzo' value='".$row['prezzo']."'>";
-                $stringaReturn .= "<input type='hidden' name='nome' value='".$row['nome']."'>";
-                $stringaReturn .= "<input type='hidden' name='quantita' value='1'>";
+                $stringaReturn .= "<form method=\"POST\" action=\"\" >";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"prezzo\" value=\"".$row['prezzo']."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"quantita\" value=\"1\" />";
                 $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$row['nome'].' al carrello"/>';
                 $stringaReturn .= "</form></li>";
             }
@@ -395,12 +395,12 @@ class DBConnection {
                 if(count($ingredienti) > $i) {
                     if($ingredienti[$i] == $row['nome']){
                         $i++;
-                        $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\" checked>";
+                        $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\" checked />";
                     } else {
-                        $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
+                        $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\" />";
                     }
                 } else{
-                    $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\">";
+                    $stringaReturn .= "<input type=\"checkbox\" id=\"ingr".$conta."\" name=\"ingredienti[]\" value=\"".$row['nome']."\" />";
                 }
                 $stringaReturn .= "<label for=\"ingr".$conta."\">".$row['nome']."</label>";
                 $stringaReturn .= "</div>";
@@ -437,9 +437,9 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 if($categoria == $row['cat']){
-                    $stringaReturn .= "<option value='".$row['cat']."' selected>".$row['cat']."</option>";
+                    $stringaReturn .= "<option value=\"".$row['cat']."\" selected>".$row['cat']."</option>";
                 }else{
-                    $stringaReturn .= "<option value='".$row['cat']."'>".$row['cat']."</option>";
+                    $stringaReturn .= "<option value=\"".$row['cat']."\">".$row['cat']."</option>";
                 }
             }
         }
@@ -451,40 +451,40 @@ class DBConnection {
             if ($_POST['tipo'] == '0') {
                 $query = "SELECT * FROM ingrediente WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = '". $_POST['nome'] ."'";
+                    $query .= " AND nome = \"". $_POST['nome'] ."\"";
                 }
                 return $this->getIngredientiTabella($query);
             } elseif ($_POST['tipo'] == '1') {
                 $query = "SELECT * FROM pizza WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = '". $_POST['nome'] ."'";
+                    $query .= " AND nome = \"". $_POST['nome'] ."\"";
                 }
                 return $this->getPizzeTabella($query);
             } elseif ($_POST['tipo'] == '2') {
                 $query = "SELECT * FROM cucina WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = '". $_POST['nome']."'";
+                    $query .= " AND nome = \"". $_POST['nome']."\"";
                 }
                 return $this->getCucinaTabella($query);
             } else {
                 if($val == 0) {
                     $query = "SELECT * FROM pizza WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = '". $_POST['nome']."'";
+                        $query .= " AND nome = \"". $_POST['nome']."\"";
                     }
                     return $this->getPizzeTabella($query);
                 }
                 if($val == 1) {
                     $query = "SELECT * FROM cucina WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = '". $_POST['nome']."'";
+                        $query .= " AND nome = \"". $_POST['nome']."\"";
                     }
                     return $this->getCucinaTabella($query);
                 }
                 if($val == 2) {
                     $query = "SELECT * FROM ingrediente WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = '". $_POST['nome']."'";
+                        $query .= " AND nome = \"". $_POST['nome']."\"";
                     }
                     return $this->getIngredientiTabella($query);
                 }
@@ -523,8 +523,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-ingrediente.php?nome=".$nome."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$nome."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$nome."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\" />";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -551,8 +551,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-cucina.php?id=".$row['id']."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\" />";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto cucina\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -578,8 +578,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\" />";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina pizza\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -671,20 +671,20 @@ class DBConnection {
                 }
                 $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
                 $stringaReturn .= "<label for=\"ruoloUpdate\">Modifica ruolo:</label>";
                 $stringaReturn .= "<select name=\"ruolo\" class=\"select\" id=\"ruoloUpdate\">";
                 $stringaReturn .= "<option value=\"0\">Cliente</option>";
                 $stringaReturn .= "<option value=\"1\">Amministratore</option>";
                 $stringaReturn .= "</select>";
-                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\" />";
                 $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Elimina Utente\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\" />";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\" />";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina utente\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
@@ -776,19 +776,19 @@ class DBConnection {
                 }
                 $stringaReturn .= "<td data-title=\"Modifica stato\">";
                 $stringaReturn .= "<form action=\"visualizza-ordini.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
                 $stringaReturn .= "<label for=\"modificaS\">Modifica stato:</label>";
                 $stringaReturn .= "<select name=\"stato\" id=\"modificaS\" class=\"select\">";
                 $stringaReturn .= "<option value=\"1\">Consegnato</option>";
                 $stringaReturn .= "<option value=\"0\">In corso</option>";
                 $stringaReturn .= "<option value=\"-1\">Annullato</option>";
                 $stringaReturn .= "</select>";
-                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
-                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\">";
+                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\" />";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
@@ -858,7 +858,7 @@ class DBConnection {
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
-                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\">";
+                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\" />";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
@@ -1206,7 +1206,7 @@ class DBConnection {
                         $primadisponibilita = $row["fascia"];
                     }
                     if($daOrdinare + $row["pizze"] < 20) {
-                        $selectReturn .= "<option value='" . $row['fascia'] . "'>" . $row['fascia'] . "</option>";
+                        $selectReturn .= "<option value=\"" . $row['fascia'] . "\">" . $row['fascia'] . "</option>";
                     }
                 }
             }
