@@ -165,3 +165,21 @@ DASHBOARD MOBILE
 .dashboard .home-button img {
     height: 1.5em;
 }
+
+/*
+============
+FORM-AGGIUNTA MOBILE
+============
+*/
+#aggiunta-content{
+    padding: 1em;
+    margin: 0.5em;
+}
+
+.form-aggiunta label{
+    font-size: 1em;
+}
+
+.form-aggiunta p{
+    font-size: 1em;
+}
