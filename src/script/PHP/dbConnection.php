@@ -79,7 +79,7 @@ class DBConnection {
                     $stringaReturn .= "<div class='pizza-container'>";
                     while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                         $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
-                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
+                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt=''></div>";
                         $stringaReturn .= "<div class='pizza-testo'>";
                         $stringaReturn .= "<h3>" . $riga['nome'];
                         if($riga['veget'] == "1"){
@@ -187,7 +187,7 @@ class DBConnection {
             $stringaReturn .= "<div class='pizza-container'>";
             while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                 $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
-                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
+                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt=''></div>";
                 $stringaReturn .= "<div class='pizza-testo'>";
                 $stringaReturn .= "<h3>" . $riga['nome'];
                 if($riga['veget'] == "1"){
@@ -286,7 +286,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<a href='menu-prenota.php#Fuorimenu'><img src='".$row['path']."' alt='TODO'>";
+                $stringaReturn .= "<a href='menu-prenota.php#Fuorimenu'><img src='".$row['path']."' alt=''>";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "</a></li>";
@@ -308,7 +308,7 @@ class DBConnection {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<img src='".$row['path']."'>";
+                $stringaReturn .= "<img src='".$row['path']."' alt=''";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "<form method='POST' action='carrello.php' >";
@@ -784,7 +784,7 @@ class DBConnection {
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
-                $stringaReturn .= "<img src=\"assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\">";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
@@ -854,7 +854,7 @@ class DBConnection {
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
-                $stringaReturn .= "<img src=\"assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\">";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
