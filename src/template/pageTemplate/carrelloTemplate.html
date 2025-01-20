@@ -2,36 +2,36 @@
 <html lang="it">
 <head>
 	<meta charset="utf-8">
-	<title>Non solo pizza</title>
-	<meta name="description" content=""><!--TODO-->
-	<meta name="keywords" content="">
+	<title>Carrello - Non solo Pizza</title>
+	<meta name="description" content="Questa pagina è dedicata al carrello con i prodotti selezionati. Ordina e lasciati deliziare dai nostri prodotti!">
+	<meta name="keywords" content="Carrello,pizza,cucina,ordine,conferma ordine">
 	<meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
 	<link rel="stylesheet" href="style/style.css" media="screen">
 	<link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
-<body>
+<body id="carrelloPage">
 [header]
 <nav id="breadcrumb" aria-label="Breadcrumb">
 	<p>Sei in: <a lang="en" href="index.php">Home</a> / Carrello</p>
 </nav>
 <main id="content">
 	<section id="general-intro">
-		<h1>Riepilogo carrello</h1>
-		<p>Controlla il tuo carrello e procedi all'ordine!</p>
+		<h1>RIEPILOGO CARRELLO</h1>
+		<h2>Controlla il tuo carrello e procedi all'ordine!</h2>
 	</section>
 
 	<section class="order-container">
 		<div class="order-summary">
-			<h2>Il tuo ordine</h2>
+			<h3>Il tuo ordine</h3>
 			<div>
 				[rowsCarrello]
 			</div>
-			<h3 id="prezzoTot">Totale: &euro; [tot]</h3>
+			<p id="prezzoTot">Totale: &euro; [tot]</p>
 		</div>
 		<div class="order-form">
-			<h2>Informazioni necessarie</h2>
+			<h3>Informazioni necessarie</h3>
 				<div>
 					<p>Nome e Cognome: [nomeCognome]</p>
 				</div>
@@ -53,7 +53,7 @@
 		</div>
 	</section>
 	<section id="proposta-mese" class="home-section">
-		<h2>Hai già provato le nostre pizze del mese?</h2>
+		<p>Hai già provato le nostre pizze del mese?</p>
 		<div id="FM-content">
 			<ul id="lista-FM">
 				[pizzeMese]

@@ -2,10 +2,12 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-
 include_once 'template/components/loadComponents.php';
-require 'script/PHP/gestioneCarrello.php';
+
+$_SESSION['redirect']= "carrello.php";
+
 require 'script/PHP/checkUserLogin.php';
+require 'script/PHP/gestioneCarrello.php';
 
 $template = file_get_contents('template/pageTemplate/carrelloTemplate.html');
 
@@ -20,6 +22,11 @@ $connessione = new DBConnection();
 $connessioneOK = $connessione->openDBConnection();
 $consiglioPizze = "";
 $messaggio_errore = "";
+
+if(isset($_SESSION['aggiunta_carrello'])){
+    unset($_SESSION['aggiunta_carrello']);
+}
+
 if ($connessioneOK) {
     $consiglioPizze = $connessione->getFuoriMenuPerCarrello();
 }

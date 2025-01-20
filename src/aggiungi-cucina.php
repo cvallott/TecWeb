@@ -3,18 +3,21 @@
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "aggiungi-cucina.php";
+
 include_once 'script/PHP/checkForm.php';
-//require 'script/PHP/checkAdminLogin.php';
+require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-cucinaTemplate.html');
 
 $header = printHeader();
 $footer = printFooter();
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Piatto</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / <a href="prodotti.php">Prodotti</a> / Modifica piatto</p>';
     $titolo = "MODIFICA PIATTO";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Piatto</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Aggiungi piatto</p>';
     $titolo = "AGGIUNGI PIATTO";
 }
 
@@ -23,7 +26,7 @@ $conn = $connessione->openDBConnection();
 $messaggiPerForm = "";
 $nomePiatto = "";
 $prezzoPiatto = "";
-$ingredientiPiatto = "";
+$ingredientiPiatto = array();
 $listaIngredienti = "";
 $valueInfo = array();
 if($conn){

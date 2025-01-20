@@ -1,9 +1,12 @@
 <?php
 
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "aggiungi-ingrediente.php";
+
 include_once 'script/PHP/dbConnection.php';
 include_once 'script/PHP/checkForm.php';
-//require 'script/PHP/checkAdminLogin.php';
+require 'script/PHP/checkAdminLogin.php';
 use DB\DBConnection;
 
 $template = file_get_contents('template/pageTemplate/aggiungi-ingredienteTemplate.html');
@@ -15,10 +18,10 @@ $nomeIngr = '';
 $isVeget = '';
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang=\"en\" href=\"index.php\">Home</a> / <a href=\"dashboard.php\">Area Gestionale</a> / <a href=\"prodotti.php\">Prodotti</a> / Modifica Ingrediente</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / <a href="prodotti.php">Prodotti</a> / Modifica ingrediente</p>';
     $titolo = "MODIFICA INGREDIENTE";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang=\"en\" href=\"index.php\">Home</a> / <a href=\"dashboard.php\">Area Gestionale</a> / Aggiungi Ingrediente</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Aggiungi ingrediente</p>';
     $titolo = "AGGIUNGI INGREDIENTE";
 }
 
@@ -26,7 +29,7 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 if($conn) {
     if (isset($_GET['nome'])) {
-        $nome = $_GET['nome'];
+        $nome = str_replace("_", " ", $_GET['nome']);
         $ingrInfo = $connessione->infoIngredienti($connessione->queryIngredienti($nome));
         if(!empty($ingrInfo)) {
             $template = str_replace('[valueNome]', 'value = "'.$ingrInfo[0].'"', $template);

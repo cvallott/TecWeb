@@ -2,8 +2,11 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-//require 'script/PHP/checkAdminLogin.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "aggiungi-pizza.php";
+
+require 'script/PHP/checkAdminLogin.php';
 include_once 'script/PHP/checkForm.php';
 $template = file_get_contents('template/pageTemplate/aggiungi-pizzaTemplate.html');
 
@@ -11,10 +14,10 @@ $header = printHeader();
 $footer = printFooter();
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Pizza</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / <a href="prodotti.php">Prodotti</a> / Modifica pizza</p>';
     $titolo = "MODIFICA PIZZA";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Pizza</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Aggiungi pizza</p>';
     $titolo = "AGGIUNGI PIZZA";
 }
 
@@ -23,7 +26,7 @@ $conn = $connessione->openDBConnection();
 $messaggiPerForm = "";
 $nomePizza= "";
 $prezzoPizza = "";
-$ingredientiPizza = "";
+$ingredientiPizza = array();
 $descrizionePizza = "";
 $listaIngredienti = "";
 $categorie = "";

@@ -3,9 +3,11 @@
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "menu-prenota.php";
+
 require 'script/PHP/gestioneCarrello.php';
 $template = file_get_contents('template/pageTemplate/menu-prenotaTemplate.html');
-
 $header = printHeader();
 $footer = printFooter();
 
@@ -52,6 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $pizze = '';
         }
     }
+}
+
+if(isset($_SESSION['aggiunta_carrello'])){
+    $template = str_replace('[messaggio-carrello]', $_SESSION['aggiunta_carrello'], $template);
+} else{
+    $template = str_replace('[messaggio-carrello]', "", $template);
 }
 
 $template = str_replace('[header]', $header, $template);

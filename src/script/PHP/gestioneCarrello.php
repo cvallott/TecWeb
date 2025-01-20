@@ -7,8 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
     $prezzo = $_POST['prezzo'] ?? null;
     $quantita = intval($_POST['quantita'] ?? 1);
 
-    if ($_POST['azione'] === 'aggiungi' && $id && $nome && $prezzo) {
+    if ($_POST['azione'] === 'Aggiungi al carrello' && $id && $nome && $prezzo) {
         aggiornaCarrello($id, $nome, $quantita,$prezzo);
+        $_SESSION['aggiunta_carrello'] = "<div class=\"menu-prodpercat\"><p class=\"messaggio\">Prodotto aggiunto al carrello! Continua a visitare il nostro menù e procedi all'ordine!</p></div>";
     } elseif ($_POST['azione'] === 'incrementa' && $id) {
         aggiornaCarrello($id, '', 1,'');
     } elseif ($_POST['azione'] === 'decrementa' && $id) {
@@ -37,7 +38,7 @@ if (!isset($_SESSION['carrello'])) {
 
 }
 
-function aggiornaCarrello($id, $nome, $quantita, $prezzo) {
+function aggiornaCarrello($id, $nome, $quantita, $prezzo): void {
     if (isset($_SESSION['carrello'][$id])) {
         $_SESSION['carrello'][$id]['quantita'] += $quantita;
     } else {
@@ -45,11 +46,11 @@ function aggiornaCarrello($id, $nome, $quantita, $prezzo) {
     }
 }
 
-function rimuoviDalCarrello($id) {
+function rimuoviDalCarrello($id): void {
     unset($_SESSION['carrello'][$id]);
 }
 
-function getCarrello(){
+function getCarrello() : string {
     $rowsCarrello = "";
     foreach ($_SESSION['carrello'] as $id => $item) {
         $rowsCarrello .= '<div class="row">';
@@ -76,14 +77,15 @@ function getCarrello(){
     return $rowsCarrello;
 }
 
+/*
 function getQuantita($id){
     if(isset($_SESSION['carrello'][$id]['quantita'])){
         return $_SESSION['carrello'][$id]['quantita'];
     }
     return 0;
-}
+}*/
 
-function getTotale(){
+function getTotale(): float {
     $tot = 0;
     foreach ($_SESSION['carrello'] as $id => $item) {
         $tot += $item['quantita']*$item['prezzo'];

@@ -42,40 +42,30 @@ function printHeader()
     }else{
         $carrello = "<li><a href=\"carrello.php\">Carrello</a></li>";
     }
-    /*
-    if(isset($_SESSION['tipo'])){
-        if($_SESSION['tipo'] == '1') {
-            $areaRis .= "<div id='dropdown'>";
-            $areaRis .= "<li><button id=\"droplink\">".$_SESSION['nome']. " " .$_SESSION['cognome']."</button></li>";
-            $areaRis .= "<div id='dropdown-content'>";
-            $areaRis .= "<li><a href='visualizza-ordini.php'>Ordini</span></a></li>";
-            $areaRis .= "<li><a href='gestisci-prodotti.php'>Gestione menù</span></a></li>";
-            $areaRis .= "<li><a href='gestisci-utenti.php'>Utenti</span></a></li>";
-            $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";
-            $areaRis .= "</div></div>";
-        }else{
-            $areaRis .= "<div id='dropdown'>";
-            $areaRis .= "<li id=\"droplink\">".$_SESSION['nome']. " " .$_SESSION['cognome']."</li>";
-            $areaRis .= "<div id='dropdown-content'>";
-            $areaRis .= "<li><a href='riepilogo-ordini.php'>Storico ordini</span></a></li>";
-            $areaRis .= "<li><a href='script/PHP/logout.php'>Logout</span></a></li>";
-            $areaRis .= "</div></div>";
-        }
-    }else{
-        $areaRis = "<li><a href='area-riservata.php'>Area riservata</a></li>";
-    }
-    */
 
     if(isset($_SESSION['tipo'])){
         $nome .= "<p>Ciao ".$_SESSION['nome']. " " .$_SESSION['cognome']."!</p>";
         if($_SESSION['tipo'] == '1') {
-            $areaRis .= "<li><a href=\"dashboard.php\">Area Gestionale</a></li>";
+            if($currentpage == 'dashboard.php') {
+                $areaRis = "<li id=\"currentLink\"><span lang=\"en\">Dashboard</span></li>";
+            }else{
+                $areaRis = "<li><a href=\"dashboard.php\"><span lang=\"en\">Dashboard</span></a></li>";
+            }
             $areaRis .= "<li><a href=\"script/PHP/logout.php\"><span lang=\"en\">Logout</span></a></li>";
         }else{
-            $areaRis .= "<li><a href=\"riepilogo-ordini.php\">Storico ordini</a></li>";
-            $areaRis .= "<li><a href=\"script/PHP/logout.php\"><span lang=\"en\">Logout</span></a></li>";        }
+            if($currentpage == 'riepilogo-ordini.php') {
+                $areaRis = "<li id=\"currentLink\">Storico ordini</li>";
+            }else{
+                $areaRis = "<li><a href=\"riepilogo-ordini.php\">Storico ordini</a></li>";
+            }
+            $areaRis .= "<li><a href=\"script/PHP/logout.php\"><span lang=\"en\">Logout</span></a></li>";
+        }
     }else{
-        $areaRis = "<li><a href=\"area-riservata.php\">Area riservata</a></li>";
+        if($currentpage == 'area-riservata.php') {
+            $areaRis = "<li id=\"currentLink\">Area riservata</li>";
+        }else{
+            $areaRis = "<li><a href=\"area-riservata.php\">Area riservata</a></li>";
+        }
     }
 
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);

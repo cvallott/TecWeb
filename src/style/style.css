@@ -5,10 +5,10 @@
 }
 
 :root{
-    --bgcolor: #FAF3E0;
-    --txtcolor: #414143;
-    --buttoncolor: #DC1C08;
-    --bgcolor2: #DC1C08;
+    --bgcolor: #fff;
+    --txtcolor: #000;
+    --bgcolor2: #cd492a;
+    --bgcolor3: #414143;
 }
 
 html{
@@ -43,6 +43,7 @@ header {
     top: 0;
     width: 100%;
     z-index: 10;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 header img {
@@ -61,66 +62,27 @@ header img {
 }
 
 #menu li a {
+    color: var(--bgcolor2);
+    padding: 1em;
+    border-radius: 0.4em;
+    border-bottom: 2px solid var(--bgcolor2);
     text-decoration: none;
-    color: var(--buttoncolor);
-    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#menu li a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.2em;
-    width: 0;
-    height: 0.1em;
-    background-color: var(--buttoncolor);
-    transition: width 0.3s ease;
+#menu li a:visited {
+    color: var(--txtcolor);
+    border-bottom: 2px solid var(--txtcolor);
 }
 
-#menu li a:hover::after {
-    width: 100%;
+#menu li a:visited:hover {
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
 }
 
-#dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-#droplink {
-    background: none;
-    border: none;
-    color: var(--buttoncolor);
-    font: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    position: relative;
-}
-
-#droplink:focus,
-#droplink:hover {
-    outline: none;
-}
-
-#dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--bgcolor);
-    min-width: 7em;
-}
-
-#dropdown:hover #dropdown-content,
-#dropdown:focus-within #dropdown-content {
-    display: block;
-}
-
-#dropdown-content li {
-    list-style: none;
-}
-
-#dropdown-content a {
-    text-decoration: none;
-    display: block;
-    padding: 0.7em;
+#menu li a:link:hover {
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
 }
 
 /*
@@ -150,11 +112,19 @@ SEZIONE BREADCRUMB
 */
 #breadcrumb {
     margin-top: 5em;
-    background-color: var(--bgcolor2);
-    color: var(--bgcolor);
+    color: var(--bgcolor2);
     height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
+    background: var(--bgcolor) linear-gradient(35deg, var(--bgcolor), var(--bgcolor2));
+}
+
+#breadcrumb a:visited {
+    color: var(--txtcolor);
+}
+
+#breadcrumb a:link {
+    color: var(--bgcolor2);
 }
 
 /*
@@ -168,7 +138,7 @@ footer {
 }
 
 #footer-top {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor3);
     display: flex;
     justify-content: space-evenly;
     padding: 3em;
@@ -201,7 +171,7 @@ iframe {
 }
 
 #footer-bottom {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor3);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -217,27 +187,6 @@ iframe {
     opacity: .4;
 }
 
-/*
-------------------
-ERROR PAGE
-------------------
-*/
-.error-section {
-    padding: 3em;
-    text-align: center;
-    color: var(--txtcolor);
-    position: relative;
-}
-
-.error-section{
-    background-color: var(--bgcolor);
-}
-
-.error-section h2 {
-    text-align: center;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
 
 /*
 ------------------
@@ -319,28 +268,47 @@ HOME PAGE
 
 #container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 1em;
-    max-width: 50em;
-    padding-bottom: 2em;
-    padding-top: 2em;
-    margin: 0 auto;
+    justify-content: space-between;
+    align-content: center;
 }
 
-#container img {
+#container div {
     flex-grow: 1;
     width: 22em;
     height: 10em;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin:auto;
 }
+
+
+
+
+/* Stili per ciascun background */
+#img1 {
+    background-image: url('../../assets/pagine/index/filosofia1.jpg');
+}
+#img2 {
+    background-image: url('../../assets/pagine/index/filosofia2.jpg');
+}
+
+#img3 {
+    background-image: url('../../assets/pagine/index/filosofia3.jpg');
+}
+
+#img4 {
+    background-image: url('../../assets/pagine/index/filosofia4.jpg');
+}
+
 
 .home-button {
     display: inline-block;
     margin: 0.5em auto;
     width: 15em;
     padding: 0.5em;
-    background-color: var(--buttoncolor);
+    background-color: var(--bgcolor2);
     color: var(--bgcolor);
     text-decoration: none;
     border-radius: 0.5em;
@@ -349,6 +317,14 @@ HOME PAGE
 
 .home-button:hover {
     background-color: var(--txtcolor);
+}
+
+.home-button:visited {
+    background-color: var(--txtcolor);
+}
+
+.home-button:visited:hover {
+    background-color: var(--bgcolor2);
 }
 
 #fuori-menu #FM-content {
@@ -443,7 +419,7 @@ HOME PAGE
 }
 
 .torna-su:hover {
-    background-color: var(--buttoncolor);
+    background-color: var(--bgcolor2);
 }
 
 /*
@@ -452,7 +428,7 @@ CHI SIAMO PAGE
 ------------------
 */
 #chi-siamo-intro {
-    background-image: url('../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -468,13 +444,12 @@ CHI SIAMO PAGE
 }
 
 .title-container {
-    background-color: rgba(200, 0, 0, 0.7);
+    background-color: rgba(205, 73, 42, 0.7);
     padding: 1.5em 2em;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
 }
-
 
 #chi-siamo-intro h1 {
     margin: 0;
@@ -546,10 +521,6 @@ CHI SIAMO PAGE
     position: relative;
 }
 
-.chi-siamo-boxes img {
-    width: 35%;
-    height:70%;
-}
 
 .chi-siamo-testo{
     display:flex;
@@ -565,6 +536,48 @@ CHI SIAMO PAGE
     padding-bottom:0.5em;
     align-self: center;
 }
+
+#chi-siamo-ic-storia{
+    background-image: url('../../assets/pagine/chi-siamo/storia.png');
+}
+
+#chi-siamo-ic-qualita{
+    background-image: url('../../assets/pagine/chi-siamo/qualita.png');
+}
+#chi-siamo-ic-filosofia {
+    background-image: url('../../assets/pagine/chi-siamo/filosofia.png');
+}
+
+#chi-siamo-img-storia{
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-storia.jpg');
+}
+
+#chi-siamo-img-qualita{
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-qualita.jpg');
+}
+#chi-siamo-img-filosofia {
+    background-image: url('../../assets/pagine/chi-siamo/chi-siamo-filosofia.jpg');
+}
+
+.chi-siamo-ic {
+    width: 15%;
+    padding-bottom: 15%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 3%;
+}
+
+.chi-siamo-img {
+    width: 90%;
+    padding-bottom: 15%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 3px;
+}
+
+
 
 /*
 ------------------
@@ -620,108 +633,78 @@ RIEPILOGO-ORDINI PAGE
     text-indent: -999em;
 }
 
+#tabella-ordini a{
+    padding: 0.4em 0.5em 0.20em;
+    text-decoration: none;
+    border-bottom: solid 2px var(--bgcolor2);
+    border-radius: 0.4em;
+}
+
+#tabella-ordini a:link{
+    color: var(--bgcolor2);
+}
+
+#tabella-ordini a:link:hover{
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
+}
+
+#tabella-ordini a:visited{
+    color: var(--txtcolor);
+    border-bottom: 2px solid var(--txtcolor);
+}
+
+#tabella-ordini a:visited:hover {
+    background-color: var(--txtcolor);
+    color: var(--bgcolor);
+}
+
+#tabella-ordini img{
+    margin-right: 0.5em;
+}
+
 /*
 ------------------
 AREA-RISERVATA PAGE
 ------------------
 */
-:root {
-    --primary-color: #4158d0;
-    --primary-dark: #3448b0;
-    --accent-color: #c850c0;
-    --text-dark: #3c3c3c;
-    --text-light: #666;
-    --border-color: #ddd;
-    --white: #fff;
-}
-
-.container {
-    width: 100%;
-    min-height: 100vh;
-    /*padding: 0.625em;*/
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.form-box {
-    width: 90%;
-    max-width: 28.125em;
-    background: var(--white);
-    padding: 3.125em 3.75em;
-    border-radius: 0.625em;
-}
-
-#AreaRiservataPage h2 {
+#container-form h2{
     text-align: center;
-    margin-bottom: 1.875em;
-    color: var(--text-dark);
-    font-size: 1.5em;
+    margin-bottom: 0.7em;
 }
 
-.input-group {
-    margin-bottom: 1.875em;
+#container-form {
+    width: 35%;
+    min-height: 70vh;
+    margin: auto auto 2em;
 }
 
-.input-field {
-    margin-bottom: 1.25em;
+#container-form form{
+    background-color: var(--bgcolor);
+    padding: 2.5em;
+    border-radius: 0.4em;
+    min-width: 30%;
 }
 
-.input-field label {
-    display: block;
-    margin-bottom: 0.5em;
-    color: var(--text-light);
-    font-size: 0.875em;
-    font-weight: 500;
-}
-
-.input-field input {
+#container-form .invia-button{
     width: 100%;
-    padding: 0.75em;
-    border: 0.125em solid var(--border-color);
-    border-radius: 0.3125em;
-    outline: none;
-    transition: all 0.3s ease;
-    font-size: 1em;
-}
-
-.input-field input:focus {
-    border-color: var(--primary-color);
-}
-
-.btn-field button {
-    width: 100%;
-    padding: 0.9375em 0;
-    background: var(--primary-color);
-    color: var(--white);
-    border: none;
-    border-radius: 0.3125em;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn-field button:hover {
-    background: var(--primary-dark);
-    box-shadow: 0 0.125em 0.3125em rgba(65, 88, 208, 0.2);
 }
 
 .switch-text {
     text-align: center;
     margin-top: 1.25em;
-    color: var(--text-light);
+    color: var(--txtcolor);
     font-size: 0.875em;
 }
 
 .switch-text a {
-    color: var(--primary-color);
+    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */*
     text-decoration: underline;
     font-weight: 500;
 }
 
 .switch-text a:hover {
-    color: var(--primary-dark);
+    color: var(--bgcolor3);
 }
 
 #registerForm,
@@ -1082,7 +1065,7 @@ MENU-PRENOTA-PAGE
 .add-to-cart {
     padding: 0.4em 1em;
     font-size: 1em;
-    background-color: var(--buttoncolor);
+    background-color: var(--bgcolor2);
     color: var(--bgcolor);
     border: none;
     border-radius: 0.2em;
@@ -1117,6 +1100,10 @@ MENU-PRENOTA-PAGE
     height: 1.4em;
     width: 1.4em;
     margin: 0;
+}
+
+#menu-prenotaPage .invia-button, #carrelloPage .invia-button {
+    padding: 0.8em;
 }
 
 /*
@@ -1227,6 +1214,7 @@ CARRELLO
 .order-summary #prezzoTot{
     border-top: 1px solid var(--border-color);
     padding-top: 1em;
+    font-weight: bold;
 }
 
 #proposta-mese{
@@ -1432,13 +1420,18 @@ CARRELLO
     font-size: 1.2em;
 }
 
+#carrelloPage .messaggio{
+    padding: 1.5em;
+    margin-top: 1em;
+}
+
 /*
 ------------------
 VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 ------------------
 */
 #general-intro{
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor3);
     color: var(--bgcolor);
     text-align: center;
     padding: 3em;
@@ -1522,6 +1515,10 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     margin-right: 0.9em;
 }
 
+.visualizza-dettagli{
+    height:1.5em;
+}
+
 /*
 ------------------
 AGGIUNGI PRODOTTO PAGE
@@ -1551,7 +1548,6 @@ AGGIUNGI PRODOTTO PAGE
     margin: 0;
     padding: 0;
     font-size: 0.85em;
-
 }
 
 .dashboard div .home-button {
@@ -1563,7 +1559,13 @@ AGGIUNGI PRODOTTO PAGE
 }
 
 .dashboard p:hover:not(.messaggio){
-    background-color: var(--bgcolor2);
+    background-color: var(--bgcolor);
+}
+
+.dashboard p{
+    background-color: var(--bgcolor);
+    color: var(--bgcolor2);
+    border: 1px solid var(--bgcolor2);
 }
 
 /*
@@ -1584,13 +1586,14 @@ CSS PER I FORM DI AGGIUNTA
     margin-bottom: 0.3em;
     color: var(--txtcolor);
     font-size: 1.2em;
+    margin-top: 0.5em;
 }
 
 .form-aggiunta .check label{
     display: inline;
 }
 
-.form-aggiunta input[type="text"], input[type="number"]{
+.form-aggiunta input[type="text"], input[type="number"], input[type="password"], input[type="email"]{
     width: 100%;
     padding: 0.5em;
     border: 0.1em solid var(--txtcolor);
@@ -1598,7 +1601,7 @@ CSS PER I FORM DI AGGIUNTA
     font-size: 1em;
 }
 
-.form-aggiunta input[type="text"]:focus, input[type="number"]:focus {
+.form-aggiunta input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus,  input[type="email"]:focus {
     border: 0.125em solid var(--bgcolor2);
     outline: none;
 }
@@ -1607,6 +1610,7 @@ CSS PER I FORM DI AGGIUNTA
     font-size: 1.2em;
     font-weight: bold;
     color: var(--txtcolor);
+    padding-top: 0.5em;
 }
 
 .form-aggiunta input:checked + label {
@@ -1637,7 +1641,7 @@ CSS PER I FORM DI AGGIUNTA
 }
 
 .form-fieldset{
-    padding: 1.3em;
+    padding: 0 1.3em 1.3em;
     border-radius: 0.4em;
     margin-bottom: 1em;
 }
@@ -1681,9 +1685,10 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 ------------------
 */
 .messaggio{
-    font-size: 1em;
-    color: var(--bgcolor);
-    background-color: rgba(65, 65, 67, 0.7);
+    font-size: 1.2em;
+    color: var(--txtcolor);
+    text-align: center;
+    background-color: rgba(205, 73, 42, 0.7);
     padding: 1.5em;
     border-radius: 0.4em;
     margin-bottom: 1em;
@@ -1731,9 +1736,53 @@ input .error {
 
 /*
 ------------------
-ERROR 500 e 404
+ERROR PAGE
 ------------------
 */
+.error-section {
+    padding: 3em;
+    text-align: center;
+    color: var(--txtcolor);
+    position: relative;
+}
+
+#error404{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/404.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+#error500{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/500.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+#erroreGenerico{
+    font-size: 20em;
+    line-height: 1.5em;
+    background-image: url('../assets/grafiche/eGenerico.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+.error-section{
+    background-color: var(--bgcolor);
+}
+
+#btnErrorPage{
+    margin-top: 2em;
+}
 
 .error-content {
     text-align: center;
@@ -1754,9 +1803,4 @@ ERROR 500 e 404
 .error-message {
     font-size: 1.5em;
     margin: 1em 0;
-}
-
-.pizza-emoji {
-    font-size: 5em;
-    margin: 0.5em 0;
 }

@@ -6,6 +6,7 @@ include_once 'template/components/loadComponents.php';
 $paginaHTML = file_get_contents('template/pageTemplate/area-riservataTemplate.html');
 
 $messaggiPerForm = "";
+$messaggiRegForm = "";
 $connessione = new DBConnection();
 $connessioneOK = $connessione->openDBConnection();
 
@@ -52,7 +53,7 @@ function validaCampo($value, $pattern) {
 
 // Handle Login Form
 if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
-    $messaggiPerForm .= "<ul class=\"error-list\">";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $hasErrors = false;
 
     $loginUser = pulisciInput($_POST['login-user']);
@@ -78,23 +79,28 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
                 $_SESSION['cognome'] = $dettagliUtente[1];
                 $_SESSION['tipo'] = $dettagliUtente[2];
                 $_SESSION['email'] = $dettagliUtente[3];
-                header('location: index.php');
+                if(isset($_SESSION['redirect'])){
+                    $page = $_SESSION['redirect'];
+                    unset($_SESSION['redirect']);
+                    header("Location: $page");
+                }else{
+                    header('location: index.php');
+                }
                 exit();
             } else {
-                $messaggiPerForm .= '<li role="alert">Credenziali non valide.</li>';
+                $messaggiPerForm .= '<li role="alert">Credenziali non valide</li>';
             }
         } else {
             $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . '</li>';
         }
         $connessione->closeConnection();
     }
-
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 }
 
 // Handle Registration Form
 if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
-    $messaggiPerForm .= "<ul class=\"error-list\">";
+    $messaggiRegForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $hasErrors = false;
 
     $registerName = pulisciInput($_POST['register-name']);
@@ -162,14 +168,14 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
         }
         $connessione->closeConnection();
     }
-
-    $messaggiPerForm .= "</ul>";
+    $messaggiRegForm .= "</ul></fieldset>";
 }
 
 // Replace placeholders in HTML
 $paginaHTML = str_replace('[header]', printHeader(), $paginaHTML);
 $paginaHTML = str_replace('[footer]', printFooter(), $paginaHTML);
 $paginaHTML = str_replace('[messaggiForm]', $messaggiPerForm, $paginaHTML);
+$paginaHTML = str_replace('[messaggiRegForm]', $messaggiRegForm, $paginaHTML);
 $paginaHTML = str_replace('[valLoginUser]', $loginUser, $paginaHTML);
 $paginaHTML = str_replace('[valRegisterName]', $registerName, $paginaHTML);
 $paginaHTML = str_replace('[valRegisterSurname]', $registerSurname, $paginaHTML);
