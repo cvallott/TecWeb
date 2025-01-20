@@ -10,6 +10,10 @@ $messaggiRegForm = "";
 $connessione = new DBConnection();
 $connessioneOK = $connessione->openDBConnection();
 
+if(isset($_SESSION['aggiunta_carrello'])){
+    unset($_SESSION['aggiunta_carrello']);
+}
+
 // Initialize form variables
 $loginUser = '';
 $registerName = '';
