@@ -6,6 +6,7 @@ include_once 'template/components/loadComponents.php';
 $paginaHTML = file_get_contents('template/pageTemplate/area-riservataTemplate.html');
 
 $messaggiPerForm = "";
+$messaggiRegForm = "";
 $connessione = new DBConnection();
 $connessioneOK = $connessione->openDBConnection();
 
@@ -52,7 +53,7 @@ function validaCampo($value, $pattern) {
 
 // Handle Login Form
 if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
-    $messaggiPerForm .= "<ul class='error-list'>";
+    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $hasErrors = false;
 
     $loginUser = pulisciInput($_POST['login-user']);
@@ -87,20 +88,19 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
                 }
                 exit();
             } else {
-                $messaggiPerForm .= '<li role="alert">Credenziali non valide.</li>';
+                $messaggiPerForm .= '<li role="alert">Credenziali non valide</li>';
             }
         } else {
             $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
         }
         $connessione->closeConnection();
     }
-
-    $messaggiPerForm .= "</ul>";
+    $messaggiPerForm .= "</ul></fieldset>";
 }
 
 // Handle Registration Form
 if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
-    $messaggiPerForm .= "<ul class='error-list'>";
+    $messaggiRegForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
     $hasErrors = false;
 
     $registerName = pulisciInput($_POST['register-name']);
@@ -112,32 +112,32 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
 
     // Validate all fields
     if (!validaCampo($registerName, $patterns['register-name'])) {
-        $messaggiPerForm .= '<li role="alert">'. $errorMessages['register-name'] . "</li>";
+        $messaggiRegForm .= '<li role="alert">'. $errorMessages['register-name'] . "</li>";
         $hasErrors = true;
     }
 
     if (!validaCampo($registerSurname, $patterns['register-surname'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-surname'] . "</li>";
+        $messaggiRegForm .= '<li role="alert">' . $errorMessages['register-surname'] . "</li>";
         $hasErrors = true;
     }
 
     if (!validaCampo($registerUser, $patterns['user'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['user'] . "</li>";
+        $messaggiRegForm .= '<li role="alert">' . $errorMessages['user'] . "</li>";
         $hasErrors = true;
     }
 
     if (!validaCampo($registerEmail, $patterns['register-email'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-email'] . "</li>";
+        $messaggiRegForm .= '<li role="alert">' . $errorMessages['register-email'] . "</li>";
         $hasErrors = true;
     }
 
     if (!validaCampo($registerPassword, $patterns['password'])) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['password'] . "</li>";
+        $messaggiRegForm .= '<li role="alert">' . $errorMessages['password'] . "</li>";
         $hasErrors = true;
     }
 
     if ($registerPassword !== $confirmPassword) {
-        $messaggiPerForm .= '<li role="alert">' . $errorMessages['register-confirm-password'] . "</li>";
+        $messaggiRegForm .= '<li role="alert">' . $errorMessages['register-confirm-password'] . "</li>";
         $hasErrors = true;
     }
 
@@ -145,11 +145,11 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
         if ($connessioneOK) {
             // Check if username already exists
             if ($connessione->checkUserExists($registerUser)) {
-                $messaggiPerForm .= '<li role="alert">' . $errorMessages['user-exists'] . "</li>";
+                $messaggiRegForm .= '<li role="alert">' . $errorMessages['user-exists'] . "</li>";
             }
             // Check if email already exists
             else if ($connessione->checkEmailExists($registerEmail)) {
-                $messaggiPerForm .= '<li role="alert">' . $errorMessages['email-exists'] . "</li>";
+                $messaggiRegForm .= '<li role="alert">' . $errorMessages['email-exists'] . "</li>";
             }
             else {
                 $hashedPassword = password_hash($registerPassword, PASSWORD_DEFAULT);
@@ -160,22 +160,22 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
                     header("Location: index.php?registration=success");
                     exit();
                 } else {
-                    $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
+                    $messaggiRegForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
                 }
             }
         } else {
-            $messaggiPerForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
+            $messaggiRegForm .= '<li role="alert">' . $errorMessages['db-error'] . "</li>";
         }
         $connessione->closeConnection();
     }
-
-    $messaggiPerForm .= "</ul>";
+    $messaggiRegForm .= "</ul></fieldset>";
 }
 
 // Replace placeholders in HTML
 $paginaHTML = str_replace('[header]', printHeader(), $paginaHTML);
 $paginaHTML = str_replace('[footer]', printFooter(), $paginaHTML);
 $paginaHTML = str_replace('[messaggiForm]', $messaggiPerForm, $paginaHTML);
+$paginaHTML = str_replace('[messaggiRegForm]', $messaggiRegForm, $paginaHTML);
 $paginaHTML = str_replace('[valLoginUser]', $loginUser, $paginaHTML);
 $paginaHTML = str_replace('[valRegisterName]', $registerName, $paginaHTML);
 $paginaHTML = str_replace('[valRegisterSurname]', $registerSurname, $paginaHTML);

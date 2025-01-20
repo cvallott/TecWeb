@@ -14,10 +14,10 @@ $header = printHeader();
 $footer = printFooter();
 
 if(isset($_GET['id'])){
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / <a href='prodotti.php'>Prodotti</a> / Modifica Piatto</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / <a href="prodotti.php">Prodotti</a> / Modifica piatto</p>';
     $titolo = "MODIFICA PIATTO";
 }else{
-    $breadcrumb= "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a href='dashboard.php'>Area Gestionale</a> / Aggiungi Piatto</p>";
+    $breadcrumb= '<p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Aggiungi piatto</p>';
     $titolo = "AGGIUNGI PIATTO";
 }
 
@@ -26,7 +26,7 @@ $conn = $connessione->openDBConnection();
 $messaggiPerForm = "";
 $nomePiatto = "";
 $prezzoPiatto = "";
-$ingredientiPiatto[] = "";
+$ingredientiPiatto = array();
 $listaIngredienti = "";
 $valueInfo = array();
 if($conn){
