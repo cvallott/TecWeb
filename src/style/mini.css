@@ -50,6 +50,24 @@ HEADER MOBILE
 
 /*
 ============
+FOOTER MOBILE
+============
+*/
+#footer-top {
+    flex-direction: column;
+    padding: 1em;
+}
+
+.footer-column {
+    margin: 1em;
+}
+
+#footer-bottom {
+    margin-bottom: 3em;
+}
+
+/*
+============
 TABELLE MOBILE
 ============
 */
