@@ -242,3 +242,24 @@ AREA-RISERVATA MOBILE
 #container-form form{
     padding: 1.5em;
 }
+
+/*
+============
+TORNA-SU MOBILE
+============
+*/
+.torna-su {
+    position: fixed;
+    bottom: 5em;
+    right: 1em;
+    z-index: 11;
+    background-color: var(--bgcolor2);
+}
+
+.torna-su:hover {
+    position: fixed;
+    bottom: 5em;
+    right: 1em;
+    z-index: 11;
+    background-color: var(--bgcolor);
+}
