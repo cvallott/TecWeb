@@ -1458,6 +1458,10 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     color: var(--txtcolor);
 }
 
+#filtri div {
+    display: inline;
+}
+
 .select:focus {
     border-color: var(--bgcolor2);
 }

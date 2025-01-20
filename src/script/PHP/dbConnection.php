@@ -763,7 +763,7 @@ class DBConnection {
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
                 $stringaReturn .= "<td data-title=\"Cliente\">".$row['cliente']."</td>";
-                $stringaReturn .= "<td data-title=\"Data e orario\">".$row['data']." - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e ora\"><time datetime=\"".$row['data']."\">".$row['data']."</time> - <time datetime=\"".$row['ora']."\">".$row['ora']."</time></td>";
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";

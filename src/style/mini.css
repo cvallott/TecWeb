@@ -78,6 +78,21 @@ FOOTER MOBILE
 TABELLE MOBILE
 ============
 */
+#filtri div {
+    display: block;
+    margin: 0.4em;
+}
+
+/*
+============
+TABELLE MOBILE
+============
+*/
+
+#tabella-ordini{
+    padding: 1.5em;
+}
+
 #tabella-ordini thead{
     display: none;
 }
@@ -85,6 +100,11 @@ TABELLE MOBILE
 #tabella-ordini tr, th, td{
     display: block;
     padding: 0;
+}
+
+#tabella-ordini td{
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #tabella-ordini table, body, tr{
