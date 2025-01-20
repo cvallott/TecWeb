@@ -1,9 +1,12 @@
 <?php
 
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "aggiungi-ingrediente.php";
+
 include_once 'script/PHP/dbConnection.php';
 include_once 'script/PHP/checkForm.php';
-//require 'script/PHP/checkAdminLogin.php';
+require 'script/PHP/checkAdminLogin.php';
 use DB\DBConnection;
 
 $template = file_get_contents('template/pageTemplate/aggiungi-ingredienteTemplate.html');
@@ -26,7 +29,7 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 if($conn) {
     if (isset($_GET['nome'])) {
-        $nome = $_GET['nome'];
+        $nome = str_replace("_", " ", $_GET['nome']);
         $ingrInfo = $connessione->infoIngredienti($connessione->queryIngredienti($nome));
         if(!empty($ingrInfo)) {
             $template = str_replace('[valueNome]', 'value = "'.$ingrInfo[0].'"', $template);

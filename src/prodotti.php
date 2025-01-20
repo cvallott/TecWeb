@@ -2,8 +2,11 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-//require 'script/PHP/checkAdminLogin.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "prodotti.php";
+
+require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/prodottiTemplate.html');
 
 $header = printHeader();
@@ -36,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         }
     } else if ($action == 'deleteIngrediente') {
         if ($conn) {
-            $connessione->removeAssocProdIngr($_POST['nome']);
+            $nome = str_replace("_", " ", $_POST['nome']);
+            $connessione->removeAssocProdIngr($nome);
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             if ($okDelete) {
                 $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";

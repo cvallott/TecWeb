@@ -2,26 +2,45 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>404 - Pagina non trovata | Non solo Pizza</title>
+  <title>Errore 404 - Non solo Pizza</title>
   <meta name="description" content="Errore 404, pagina non trovata">
   <meta name="keywords" content="404,errore,pizza">
   <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
-  <link rel="stylesheet" href="style/style.css" media="screen">
+  <link rel="stylesheet" href="../../../style/style.css" media="screen">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-[HEADER]
+<body id="homePage">
+
+
+<header>
+  <nav aria-label="Aiuti alla navigazione">
+    <ul class="listHelp">
+      <li><a href="#content" class="navigationHelp">Vai al contenuto</a></li>
+      <li><a href="#menu" class="navigationHelp">Vai alla navigazione</a></li>
+    </ul>
+  </nav>
+  <img src="../../../assets/logo/logo.png" alt="Logo Non solo pizza">
+
+  <nav id="menu">
+    <ul>
+      <li id='currentLink' lang='en'><a href='../../../index.php'>Home</a></li>
+      <li><a href='../../../chi-siamo.php'>Chi siamo</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav id="breadcrumb" aria-label="Breadcrumb">
+  <p>Sei in: <span lang="en">Home</span></p>
+</nav>
 
 <main id="content">
-  <div class="error-content">
-    <h1 class="error-title">Errore 404</h1>
-    <span class="pizza-emoji">🍕</span>
-    <p class="error-message">Ops! Questa fetta di pizza è andata persa...</p>
-    <p>La pagina che stai cercando non esiste, forse è finita nel forno!</p>
-    <a href="index.php" class="home-button">Torna al menu principale</a>
-  </div>
-</main>
 
-[FOOTER]
+  <section id="intro" class="error-section">
+    <h3 id="error404">Errore 404</h3>
+    <p class="error-message">Questa fetta di pizza è andata persa...</p>
+    <p>La pagina che stai cercando non esiste, forse è finita nel forno!</p>
+    <a href="index.php" class="home-button" id="btnErrorPage">Torna al menu principale</a>
+  </section>
+</main>
 </body>
 </html>

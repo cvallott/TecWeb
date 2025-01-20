@@ -79,7 +79,13 @@ if (isset($_POST['login-user']) && isset($_POST['login-password'])) {
                 $_SESSION['cognome'] = $dettagliUtente[1];
                 $_SESSION['tipo'] = $dettagliUtente[2];
                 $_SESSION['email'] = $dettagliUtente[3];
-                header('location: index.php');
+                if(isset($_SESSION['redirect'])){
+                    $page = $_SESSION['redirect'];
+                    unset($_SESSION['redirect']);
+                    header("Location: $page");
+                }else{
+                    header('location: index.php');
+                }
                 exit();
             } else {
                 $messaggiPerForm .= '<li role="alert">Credenziali non valide</li>';

@@ -2,8 +2,11 @@
 
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
-//require 'script/PHP/checkAdminLogin.php';
 include_once 'template/components/loadComponents.php';
+
+$_SESSION['redirect']= "gestisci-utenti.php";
+
+require 'script/PHP/checkAdminLogin.php';
 $template = file_get_contents('template/pageTemplate/gestisci-utentiTemplate.html');
 
 $header = printHeader();

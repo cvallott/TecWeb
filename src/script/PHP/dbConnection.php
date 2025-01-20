@@ -15,8 +15,13 @@ class DBConnection {
 
         mysqli_report(MYSQLI_REPORT_ERROR);
 
-        $this->connection = mysqli_connect(DBConnection::HOST_DB, DBConnection::USERNAME, DBConnection::PASSWORD, DBConnection::DATABASE_NAME, DBConnection::PORT);
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        try{
+            $this->connection = mysqli_connect(DBConnection::HOST_DB, DBConnection::USERNAME, DBConnection::PASSWORD, DBConnection::DATABASE_NAME, DBConnection::PORT);
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        }catch(mysqli_sql_exception $e){
+            header('location: errore.php');
+        }
+
         //debug
         //return mysqli_connect_error();
 
@@ -47,9 +52,10 @@ class DBConnection {
             while ($row = $categorie->fetch_array(MYSQLI_ASSOC)) {
                 if(!empty($nome)){
                     try{
-                        $queryPizze = "SELECT * FROM pizza WHERE categoria='".$row['cat']."' AND nome = ?";
+                        $queryPizze = "SELECT * FROM pizza WHERE categoria=? AND nome LIKE ?";
                         $stmt = $this->connection->prepare($queryPizze);
-                        $stmt->bind_param('s', $nome);
+                        $nome = '%'.$nome.'%';
+                        $stmt->bind_param('ss', $row['cat'],$nome);
                         $stmt->execute();
                         $pizze = $stmt->get_result();
                     }catch(mysqli_sql_exception $e){
@@ -73,7 +79,7 @@ class DBConnection {
                     $stringaReturn .= "<div class='pizza-container'>";
                     while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                         $stringaReturn .= "<div class='pizza' id='p-".$riga['id']."'>";
-                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "' loading=\"lazy\"></div>";
+                        $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt=\"\" loading=\"lazy\"></div>";
                         $stringaReturn .= "<div class='pizza-testo'>";
                         $stringaReturn .= "<h3>" . $riga['nome'];
                         if($riga['veget'] == "1"){
@@ -102,7 +108,7 @@ class DBConnection {
 
                         if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                             if (isset($_SESSION['carrello'][$riga['id']])) {
-                                $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
+                                $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                                 <div class="quantity-controls">
                                 <input type="hidden" name="id" value="' . $riga['id'] . '">
                                 <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa"/></button>
@@ -111,13 +117,13 @@ class DBConnection {
                                         $stringaReturn .= '<h4>';
                                         $stringaReturn .= $_SESSION['carrello'][$riga['id']]['quantita'];
                                         $stringaReturn .= '</h4>';
-                                        $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '" class="inlineComponents">
+                                        $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                                 <input type="hidden" name="id" value="' . $riga['id'] . '">
                                 <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa"/></button>
                                 </div>
                                 </form>';
                             } else {
-                                $stringaReturn .= '<form method="POST" action="?scroll=p-' . $riga['id'] . '">';
+                                $stringaReturn .= '<form method="POST" action="menu-prenota.php">';
                                 $stringaReturn .= '<input type="hidden" name="id" value="' . $riga['id'] . '">';
                                 $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '">';
                                 $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '">';
@@ -155,8 +161,9 @@ class DBConnection {
         $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";*/
         if(!empty($nome)){
             try {
-                $queryCucina = "SELECT * FROM cucina WHERE nome = ?";
+                $queryCucina = "SELECT * FROM cucina WHERE nome LIKE ?";
                 $stmt = $this->connection->prepare($queryCucina);
+                $nome = '%'.$nome.'%';
                 $stmt->bind_param('s', $nome);
                 $stmt->execute();
                 $pizze = $stmt->get_result();
@@ -180,7 +187,7 @@ class DBConnection {
             $stringaReturn .= "<div class='pizza-container'>";
             while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                 $stringaReturn .= "<div class='pizza' id='c-".$riga['id']."'>";
-                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt='" . $riga['nome'] . "'></div>";
+                $stringaReturn .= "<div><img src='" . $riga['path'] . "' alt=\"\" loading=\"lazy\"></div>";
                 $stringaReturn .= "<div class='pizza-testo'>";
                 $stringaReturn .= "<h3>" . $riga['nome'];
                 if($riga['veget'] == "1"){
@@ -209,7 +216,7 @@ class DBConnection {
 
                 if(!isset($_SESSION['tipo']) OR $_SESSION['tipo']!=1) {
                     if (isset($_SESSION['carrello']["c" . $riga['id']])) {
-                        $stringaReturn .= '<form method="POST" action="?scroll=c-' . $riga['id'] . '" class="inlineComponents">
+                        $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                         <div class="quantity-controls">
                         <input type="hidden" name="id" value=c' . $riga['id'] . '">
                         <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa"/></button>
@@ -217,13 +224,13 @@ class DBConnection {
                         $stringaReturn .= '<h4>';
                         $stringaReturn .= $_SESSION['carrello']["c" . $riga['id']]['quantita'];
                         $stringaReturn .= '</h4>';
-                        $stringaReturn .= '<form method="POST" action="?scroll=c-' . $riga['id'] . '" class="inlineComponents">
+                        $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                         <input type="hidden" name="id" value=c' . $riga['id'] . '">
                         <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa"/></button>
                         </div>
                      </form>';
                     } else {
-                        $stringaReturn .= '<form method="POST" action="?scroll=c-' . $riga['id'] . '">';
+                        $stringaReturn .= '<form method="POST" action="menu-prenota.php">';
                         $stringaReturn .= '<input type="hidden" name="id" value=c' . $riga['id'] . '>';
                         $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '">';
                         $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '">';
@@ -278,7 +285,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<a href='menu-prenota.php#Fuorimenu'><img src='".$row['path']."' alt='TODO'>";
+                $stringaReturn .= "<a href='menu-prenota.php#Fuorimenu'><img src='".$row['path']."' alt=\"\">";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "</a></li>";
@@ -300,7 +307,7 @@ class DBConnection {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<img src='".$row['path']."'>";
+                $stringaReturn .= "<img src=\"".$row['path']."\" alt=\"\" loading=\"lazy\"";
                 $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "<form method='POST' action='carrello.php' >";
@@ -512,10 +519,11 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
                 $stringaReturn .= "<td></td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-ingrediente.php?nome=".$row['nome']."\">Modifica</a></td>";
+                $nome = str_replace(" ", "_", $row['nome']);
+                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-ingrediente.php?nome=".$nome."\">Modifica</a></td>";
                 $stringaReturn .= "<td data-title=\"Elimina\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
-                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\">";
+                $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$nome."\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\">";
                 $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
@@ -780,7 +788,7 @@ class DBConnection {
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
-                $stringaReturn .= "<img src=\"assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\">";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
@@ -790,9 +798,26 @@ class DBConnection {
     }
 
     public function getDettagliOrdine($idOrdine): string {
+        if($_SESSION['tipo'] == 0){
+            try{
+                $query = "SELECT id FROM ordine WHERE id = ? AND utente = ?";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param("ss", $idOrdine, $_SESSION['email']);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if($result->num_rows == 0){
+                    header("location: riepilogo-ordini.php");
+                }
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
+        }
         try {
-            $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = '" . $idOrdine . "'";
-            $result = mysqli_query($this->connection, $query);
+            $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $idOrdine);
+            $stmt->execute();
+            $result = $stmt->get_result();
         }catch(mysqli_sql_exception $e){
             header("location: errore.php");
         }
@@ -833,7 +858,7 @@ class DBConnection {
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
-                $stringaReturn .= "<img src=\"assets/icons/see-more.png\" alt=\"\" height=\"15\">";
+                $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\">";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
