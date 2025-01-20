@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Rome');
+
 use DB\DBConnection;
 include_once 'script/PHP/dbConnection.php';
 include_once 'template/components/loadComponents.php';
