@@ -9,15 +9,8 @@ $template = file_get_contents('template/pageTemplate/dettagli-ordineTemplate.htm
 $header = printHeader();
 $footer = printFooter();
 
-/*
- * ATTENZIONE: per evitare di vedere l'id nell'url o trasformo i link di dettagli in dei form e passo
- * l'id in modo hidden
- * oppure creo una pagina intermedia che mi prende il valore di get e lo mette dentro una var di sessione
- * a quel punto ho la variabile di sessione per l'ordine di cui voglio i dettagli e genero la pagina di dettagli in modo dinamico
- */
-
 if($_SESSION['tipo']==1){
-    $breadcrumb = "<p>Sei in: <a lang=\"en\" href=\"index.php\">Home</a> / <a href=\"visualizza-ordini.php\">Gestisci ordini</a> / Dettaglio ordine </p>";
+    $breadcrumb = "<p>Sei in: <a lang=\"en\" href=\"index.php\">Home</a> / <a lang=\"en\" href=\"dashboard.php\">Dashboard</a> / <a href=\"visualizza-ordini.php\">Gestisci ordini</a> / Dettaglio ordine </p>";
     $linkIndietro = "<a href=\"visualizza-ordini.php\" class=\"home-button\">Torna alla visualizzazione ordini</a>";
 }else{
     $breadcrumb = "<p>Sei in: <a lang=\"en\" href=\"index.php\">Home</a> / <a href=\"riepilogo-ordini.php\">Riepilogo ordini</a> / Dettaglio ordine </p>";

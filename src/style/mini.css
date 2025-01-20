@@ -124,11 +124,14 @@ TABELLE MOBILE
     margin-top: 1em;
     padding: 0.6em;
     background-color: var(--bgcolor2);
+    color: var(--bgcolor);
     border: none;
 }
 
 #tabella-ordini tfoot tr td{
-    border-bottom: 2px solid var(--txtcolor)
+    border-bottom: 2px solid var(--txtcolor);
+    background-color: var(--bgcolor3);
+    color: var(--bgcolor);
 }
 
 #tabella-ordini td[data-title]:before{
@@ -182,4 +185,38 @@ FORM-AGGIUNTA MOBILE
 
 .form-aggiunta p{
     font-size: 1em;
+}
+
+/*
+============
+DETTAGLI-ORDINE MOBILE
+============
+*/
+#DO{
+    flex-direction: column;
+    min-height: 0;
+}
+
+#DO-intro{
+    margin: 0.5em;
+    min-width: 90%;
+    min-height: 0;
+}
+
+#DO-intro h1{
+    padding: 1em;
+}
+
+#DO-intro .home-button{
+    padding: 0.5em;
+    margin: 1em;
+    width: 90%;
+    text-align: center;
+}
+
+#DO #tabella-ordini{
+    margin-right: 0;
+    min-height: 0;
+    min-width: 90%;
+    margin-left: 0;
 }

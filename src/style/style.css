@@ -770,6 +770,7 @@ DETTAGLI-ORDINE PAGE
     display: inline-block;
     padding: 0.7em;
     margin: 3em;
+    width: 70%;
 }
 
 #DO #tabella-ordini {
