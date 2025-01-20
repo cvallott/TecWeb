@@ -2,81 +2,59 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <title>Area Riservata-Non solo pizza</title>
-  <meta name="description" content=""><!--TODO-->
-  <meta name="keywords" content="">
+  <title>Area riservata - Non solo Pizza</title>
+  <meta name="description" content="Pagina per il login/registrazione al sito di Non Solo Pizza Scandolara">
+  <meta name="keywords" content="Non Solo Pizza,login,registrazione">
   <meta name="author" content="Ferraro Sara,Pozzobon Francesco,Santi Andrea,Vallotto Caterina">
   <link rel="stylesheet" href="style/style.css" media="screen">
   <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="script/JS/script.js"></script>
+  <script src="script/JS/checkFormJS.js"></script>
 </head>
 <body id="AreaRiservataPage">
 [header]
 <nav id="breadcrumb" aria-label="Breadcrumb">
-  <p>Sei in: <a lang="en" href="index.php">Home</a> / Area Riservata</p>
+  <p>Sei in: <a lang="en" href="index.php">Home</a> / Area riservata</p>
 </nav>
 <main id="content">
   <div id="general-intro">
-    <h1>Area Riservata</h1>
+    <h1>AREA RISERVATA</h1>
   </div>
-  <div class="container">
-    <div class="form-box">
-      <form id="loginForm" action="area-riservata.php" method="POST" class="active">
+  <div id="container-form">
+      <form id="loginForm" action="area-riservata.php" method="POST" class="active form-aggiunta">
         <h2>Accedi</h2>
         [messaggiForm]
-        <div class="input-group">
-          <div class="input-field">
-            <label for="login-user">Username</label>
-            <input type="text" id="login-user" name="login-user" value="[valLoginUser]" required>
-          </div>
-          <div class="input-field">
-            <label for="login-password" lang="en">Password</label>
-            <input type="password" id="login-password" name="login-password" required>
-          </div>
-        </div>
-        <div class="btn-field">
-          <button type="submit">Accedi</button>
-        </div>
-        <p class="switch-text">Non hai un account? <a href="#" id="showRegister">Registrati</a></p>
+        <fieldset class="form-fieldset">
+          <legend>Informazioni obbligatorie</legend>
+          <label for="login-user">Username</label>
+          <input type="text" id="login-user" name="login-user" value="[valLoginUser]" required>
+          <label for="login-password" lang="en">Password</label>
+          <input type="password" id="login-password" name="login-password" required>
+        </fieldset>
+        <input type="submit" value="Accedi" class="invia-button"/>
+        <p class="switch-text">Non hai un account? <a href="#registerForm" id="showRegister">Registrati</a></p>
       </form>
-
-      <!-- Form Registrazione -->
-      <form id="registerForm" action="area-riservata.php" method="POST">
+      <form id="registerForm" action="area-riservata.php" method="POST" class="form-aggiunta">
         <h2>Registrati</h2>
-        [messaggiForm]
-        <div class="input-group">
-          <div class="input-field">
+        [messaggiRegForm]
+        <fieldset class="form-fieldset">
+          <legend>Informazioni obbligatorie</legend>
             <label for="register-name">Nome</label>
             <input type="text" id="register-name" name="register-name" value="[valRegisterName]" required>
-          </div>
-          <div class="input-field">
             <label for="register-surname">Cognome</label>
             <input type="text" id="register-surname" name="register-surname" value="[valRegisterSurname]" required>
-          </div>
-          <div class="input-field">
             <label for="register-user">Username</label>
             <input type="text" id="register-user" name="register-user" value="[valRegisterUser]" required>
-          </div>
-          <div class="input-field">
             <label for="register-email" lang="en">Email</label>
             <input type="email" id="register-email" name="register-email" value="[valRegisterEmail]" required>
-          </div>
-          <div class="input-field">
             <label for="register-password" lang="en">Password</label>
             <input type="password" id="register-password" name="register-password" required>
-          </div>
-          <div class="input-field">
             <label for="register-confirm-password">Conferma <span lang="en">Password</span></label>
             <input type="password" id="register-confirm-password" name="register-confirm_password" required>
-          </div>
-        </div>
-        <div class="btn-field">
-          <button type="submit">Registrati</button>
-        </div>
-        <p class="switch-text">Hai già un account? <a href="#" id="showLogin">Accedi</a></p>
+        </fieldset>
+        <input type="submit" value="Registrati" class="invia-button"/>
+        <p class="switch-text">Hai già un account? <a href="#loginForm" id="showLogin">Accedi</a></p>
       </form>
-    </div>
   </div>
 </main>
 

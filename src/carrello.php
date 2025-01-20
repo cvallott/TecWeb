@@ -22,6 +22,11 @@ $connessione = new DBConnection();
 $connessioneOK = $connessione->openDBConnection();
 $consiglioPizze = "";
 $messaggio_errore = "";
+
+if(isset($_SESSION['aggiunta_carrello'])){
+    unset($_SESSION['aggiunta_carrello']);
+}
+
 if ($connessioneOK) {
     $consiglioPizze = $connessione->getFuoriMenuPerCarrello();
 }

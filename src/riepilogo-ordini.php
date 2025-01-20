@@ -23,9 +23,9 @@ $messaggioOrdine = "";
 if (isset($_SESSION['messaggio_ordine'])) {
     $messaggioOrdine = $_SESSION['messaggio_ordine'];
     unset($_SESSION['messaggio_ordine']);
-    $bread = "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a lang='en' href='menu-prenota.php'>Menù-Prenota</a> / <a lang='en' href='carrello.php'>Carrello</a> / Riepilogo Ordini</p>";
+    $bread = "<p>Sei in: <a lang='en' href='index.php'>Home</a> / <a lang='en' href='menu-prenota.php'>Menù-Prenota</a> / <a lang='en' href='carrello.php'>Carrello</a> / Riepilogo ordini</p>";
 }else{
-    $bread = "<p>Sei in: <a lang='en' href='index.php'>Home</a> / Riepilogo Ordini</p>";
+    $bread = "<p>Sei in: <a lang='en' href='index.php'>Home</a> / Riepilogo ordini</p>";
 }
 
 $template = str_replace('[header]', $header, $template);
