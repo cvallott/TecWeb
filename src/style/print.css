@@ -36,10 +36,11 @@ INDEX PAGE
     display: flex;
     align-items: center;
     gap: 1em;
+    order: -1;
 }
 
 #titolo img {
-    content: url("../assets/logo/logo.png");
+    content: url("../../assets/logo/logo.jpg");
     display: block;
     max-width: 100px;
 }
@@ -47,6 +48,11 @@ INDEX PAGE
 #titolo h1, #titolo h2 {
     margin: 0;
     color: #A2231D;
+}
+
+#breadcrumb {
+    display: flex;
+    order: 1;
 }
 
 #important-info{
@@ -60,13 +66,17 @@ INDEX PAGE
     text-align: center;
 }
 
-#important-info section{
+#important-info div{
     max-width: 200px;
     padding: 0.5em;
     height: 100px;
     /*width: 300px;*/
     width: 33%;
     background-color: var(--txtcolor);
+    text-align: center;
+}
+
+#important-info div p{
     text-align: center;
 }
 
