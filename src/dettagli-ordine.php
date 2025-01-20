@@ -21,9 +21,11 @@ $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $dettaglioOrdine = "";
 $totOrdine = "";
+$note = "";
 $id = $_GET['idOrdine'] ?? "";
 if($conn){
     if(!empty($id)){
+        $note = $connessione->getNote($id);
         $dettaglioOrdine = $connessione->getDettagliOrdine($id);
         $totOrdine = $connessione->getTotalePrezzoOrdine($id);
     }
@@ -33,6 +35,7 @@ $template = str_replace('[header]', $header, $template);
 $template = str_replace('[breadcrumb]', $breadcrumb, $template);
 $template = str_replace('[numOrdine]', $id, $template);
 $template = str_replace('[dettaglioOrdine]', $dettaglioOrdine, $template);
+$template = str_replace('[note]', $note, $template);
 $template = str_replace('[linkIndietro]', $linkIndietro, $template);
 $template = str_replace('[totOrdine]', $totOrdine, $template);
 $template = str_replace('[footer]', $footer, $template);

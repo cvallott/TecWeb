@@ -777,9 +777,18 @@ DETTAGLI-ORDINE PAGE
     margin-right: 0.7em;
     min-height: 50vh;
     min-width: 60%;
-    margin-left: 5em;
 }
 
+#note {
+    font-size: 1em;
+    color: var(--bgcolor);
+    text-align: center;
+    background-color: rgba(50, 50, 15, 0.7);
+    padding: 1.5em;
+    border-radius: 0.4em;
+    border: 1px solid var(--txtcolor);
+    margin: 1em;
+}
 
 /*
 ---------------------

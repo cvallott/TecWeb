@@ -591,6 +591,7 @@ class DBConnection {
 
     public function getInfoPizza($id){
         $return = array();
+        $result = "";
         try {
             $query = "SELECT nome, prezzo, descrizione FROM pizza WHERE id = ?";
             $stmt = $this->connection->prepare($query);
@@ -829,6 +830,27 @@ class DBConnection {
                 $stringaReturn .= "<td data-title= \"Quantità\">".$row['quantita']."</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
                 $stringaReturn .= "</tr>";
+            }
+        }
+        return $stringaReturn;
+    }
+    public function getNote($idOrdine): string {
+        try {
+            $query = "SELECT nota FROM ordine WHERE id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $idOrdine);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        $stringaReturn = "";
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            if($row['nota'] == null){
+                $stringaReturn = "<p id=\"note\">Nessuna nota</p>";
+            }else{
+                $stringaReturn .= "<p id=\"note\">Note: ".$row['nota']."\"</p>";
             }
         }
         return $stringaReturn;
