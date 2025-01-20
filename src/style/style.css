@@ -1599,6 +1599,10 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     margin-right: 0.9em;
 }
 
+.visualizza-dettagli{
+    height:1.5em;
+}
+
 /*
 ------------------
 AGGIUNGI PRODOTTO PAGE
