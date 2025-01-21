@@ -248,7 +248,12 @@ AREA-RISERVATA MOBILE
 TORNA-SU MOBILE
 ============
 */
-.torna-su {
+/*
+============
+TORNA-SU MOBILE
+============
+*/
+#mobile.torna-su, #mobile-plus.torna-su {
     position: fixed;
     bottom: 5em;
     right: 1em;
@@ -256,7 +261,7 @@ TORNA-SU MOBILE
     background-color: var(--bgcolor2);
 }
 
-.torna-su:hover {
+#mobile.torna-su:hover, #mobile-plus.torna-su:hover {
     position: fixed;
     bottom: 5em;
     right: 1em;
@@ -264,6 +269,24 @@ TORNA-SU MOBILE
     background-color: var(--bgcolor);
 }
 
+.torna-su:not(#mobile):not(#mobile-plus){
+    position: absolute;
+    text-indent: -999em;
+}
+
+.torna-su:not(#mobile.torna-su):focus{ /* ATTENZIONE, QUESTO COMANDO NON FUNZIONA */
+    position: static;
+    text-indent: 0;
+}
+
+#menu-prenotaPage .torna-su:not(#mobile):not(#mobile-plus){
+    position: relative;
+    text-indent: -999em;
+}
+
+#mobile-plus.torna-su{
+    text-indent: 0;
+}
 
 /*
 ============

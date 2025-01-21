@@ -426,6 +426,11 @@ HOME PAGE
     background-color: var(--bgcolor2);
 }
 
+#mobile-plus.torna-su{
+    position: absolute;
+    text-indent: -999em;
+}
+
 /*
 ------------------
 CHI SIAMO PAGE
