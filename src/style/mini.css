@@ -336,5 +336,142 @@ CHI-SIAMO
     margin-bottom: 0.5em;
 }
 
+/*
+============
+MENU-PRENOTA
+============
+*/
+
+    #MP-intro {
+        height: auto;
+        margin: 0.2em;
+    }
+
+    #smallMenu {
+        width: 90%;
+        margin: 1em;
+        padding: 1em;
+    }
+
+    #smallMenu h1 {
+        font-size: 1.1em;
+    }
+
+    #smallMenu #infoOrdini {
+        font-size: 0.7em;
+    }
+
+    #filtri form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        padding: 1em;
+    }
+
+    #filtri select,
+    #filtri input[type="text"] {
+        width: 100%;
+        padding: 0.5em;
+    }
+
+    #filtri .invia-button {
+        width: 100%;
+        margin-top: 0.5em;
+    }
+
+    .menu-prodpercat,
+    .pizze-speciali,
+    .pizze-stagionali,
+    .cucina {
+        margin: 0.2em;
+        padding: 0.2em;
+    }
+
+    .menu-prodpercat h2,
+    .pizze-speciali h2,
+    .pizze-stagionali h2,
+    .cucina h2 {
+        padding: 0.5em 1em;
+        width: 90%;
+        font-size: 1.1em;
+    }
+
+    .pizza,
+    .piatti-cucina {
+        flex-direction: column;
+        width: 95%;
+        text-align: center;
+        padding-bottom: 1em;
+    }
+
+    .pizza img,
+    .cucina img {
+        width: 100%;
+        height: auto;
+        margin: 0.5em 0;
+    }
+
+    .pizza-testo,
+    .cucina-testo {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .pizza-prezzo {
+        width: auto;
+        margin: 0.5em 0;
+    }
+
+    .order-actions {
+        width: 100%;
+        margin: 0.5em 0;
+    }
+
+    .quantity-controls {
+        justify-content: center;
+    }
+
+    .quantity-controls button img,
+    .controlloQuantita button img {
+        height: 1.2em;
+        width: 1.2em;
+    }
+
+    .add-to-cart {
+        width: 100%;
+        margin: 0.5em 0;
+    }
+
+    .sez-intro {
+        padding: 0.5em;
+    }
+
+    .menu-prodpercat p,
+    .pizze-speciali p,
+    .pizze-stagionali p,
+    .cucina p {
+        margin: 0.5em;
+    }
+
+.pizza-testo h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.pizza-testo h3 img {
+    position: static;
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
 
 
