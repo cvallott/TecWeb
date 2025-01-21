@@ -191,6 +191,10 @@ iframe {
     opacity: .4;
 }
 
+#footer-top .footer-column iframe{
+    margin-top: 0.7em;
+}
+
 
 /*
 ------------------
@@ -225,9 +229,8 @@ HOME PAGE
 }
 
 #titolo {
-    /*background-color: var(--bgcolor);*/
     background-image: url(../assets/pagine/index/titolo.png);
-    background-color: gray;
+    background-color: var(--bgcolor3);
     background-size: cover;
     color: var(--bgcolor);
     text-align: right;

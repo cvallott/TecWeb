@@ -104,23 +104,32 @@ INDEX MOBILE
     padding: 0;
     text-align: left;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-start;
 }
 
 #titolo img{
-    margin-top: 0.3em;
-    margin-left: 0.3em;
+    height: 5em;
+    flex: 0 0 auto;
     align-self: flex-start;
+    margin-right: auto;
 }
 
 #titolo h1 {
-    align-self: center;
-    margin: 0;
+    font-size: 1.3em;
+    flex: 1;
+    margin-top: 1em;
+    line-height: 1em;
 }
 
+
 #titolo h2 {
-    align-self: flex-end;
+    flex-basis: 100%;
+    margin-bottom: 0.5em;
+    text-align: center;
+    line-height: 1em;
+    font-size: 1em;
+    margin-top: 0;
 }
 
 #container{
@@ -138,6 +147,10 @@ INDEX MOBILE
 
 #download-container{
     flex-direction: column;
+}
+
+.home-section{
+    padding: 0.5em;
 }
 
 /*
