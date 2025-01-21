@@ -8,6 +8,7 @@
     <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -18,30 +19,28 @@
 <main id="content">
     <!-- per questra pagina paglio 3 sezioni perchè c'è anche la cosa di filtraggio, quindi le vedo come 3 cose separate -->
     <section id="general-intro">
-        <h1>ORDINI</h1>
+        <h1 id="titoloPagSecondaria">ORDINI</h1>
     </section>
     <section id="filtri">
-        <form method="post" action="visualizza-ordini.php">
-            <div> <!-- HO MESSO DIV PERCHE IN TEORIA INPUT NON PUò ESSERE FIGLIO DIRETTO DI FORM, andre dice corretto-->
-                <input type="hidden" name="action" value="filter" />
-                <label for="stato">Filtra per stato:</label>
-                <select name="stato" id="stato" class="select">
-                    <option value="">Tutti</option>
-                    <option value="1">Consegnati</option>
-                    <option value="0">In corso</option>
-                    <option value="-1">Annullati</option>
-                </select>
-                <label for="cliente">Filtra per nome cliente:</label>
-                <input type="text" name="cliente" id="cliente" />
-                <label for="data">Filtra per data:</label>
-                <input type="date" name="data" id="data" />
-                <input type="submit" class="invia-button" value="Filtra" />
-            </div>
+        <form id="filtriOrdini" method="post" action="visualizza-ordini.php" >
+            <input type="hidden" name="action" value="filter" />
+            <label for="stato">Filtra per stato:</label>
+            <select name="stato" id="stato" class="select">
+                <option value="">Tutti</option>
+                <option value="1">Consegnati</option>
+                <option value="0">In corso</option>
+                <option value="-1">Annullati</option>
+            </select>
+            <label for="cliente">Filtra per nome cliente:</label>
+            <input type="text" name="cliente" id="cliente" />
+            <label for="data">Filtra per data:</label>
+            <input type="date" name="data" id="data" />
+            <input type="submit" class="invia-button" value="Filtra" />
         </form>
     </section>
     <section id="tabella-ordini">
         [operazione-successo]
-        <span id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</span>
+        <p id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</p>
         <table aria-describedby="descrTabella">
             <caption>Ordini</caption>
             <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
@@ -51,8 +50,8 @@
                 <th scope="col">Data e ora</th>
                 <th scope="col" abbr="Totale">Totale ordine</th>
                 <th scope="col">Stato</th>
-                <th scope="col">Modifica stato</th>
-                <th scope="col">Dettagli</th>
+                <th scope="col" class="noprint">Modifica stato</th>
+                <th scope="col" class="noprint">Dettagli</th>
             </tr>
             </thead>
             <tbody>

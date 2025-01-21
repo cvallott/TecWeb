@@ -212,8 +212,59 @@ CHI SIAMO
     margin-left: 30px;
 }
 
-#primoElemento{
+#paragrafdash{
+    margin-top: -5px;
+}
+
+/*
+-------------
+RIEPILOGO ORDINI
+-------------
+ */
+#tabella-ordini table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabella-ordini caption{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#tabella-ordini th,td {
+    border: 1px solid black;
+}
+
+#tabella-ordini td{
+    text-align: center;
+}
+
+.noprint{
+    display: none;
+}
+
+#filtriOrdini{
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+}
+
+#filtriOrdini input{
+    margin-top:3px;
+}
+
+#filtriOrdini select{
+    margin-top:3px;
+}
+
+#filtriOrdini label {
+    margin-top: 10px;
+}
+
+#descrTabella{
     margin-top: 20px;
 }
+
+
 
 
