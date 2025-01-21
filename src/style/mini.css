@@ -122,7 +122,6 @@ INDEX MOBILE
     line-height: 1em;
 }
 
-
 #titolo h2 {
     flex-basis: 100%;
     margin-bottom: 0.5em;
@@ -155,7 +154,7 @@ INDEX MOBILE
 
 /*
 ============
-TABELLE MOBILE
+FILTRI MOBILE
 ============
 */
 #filtri div {
@@ -316,7 +315,7 @@ AREA-RISERVATA MOBILE
 TORNA-SU MOBILE
 ============
 */
-.torna-su {
+#mobile.torna-su {
     position: fixed;
     bottom: 5em;
     right: 1em;
@@ -324,10 +323,20 @@ TORNA-SU MOBILE
     background-color: var(--bgcolor2);
 }
 
-.torna-su:hover {
+#mobile.torna-su:hover {
     position: fixed;
     bottom: 5em;
     right: 1em;
     z-index: 11;
     background-color: var(--bgcolor);
+}
+
+.torna-su:not(#mobile){
+    position: absolute;
+    text-indent: -999em;
+}
+
+.torna-su:not(#mobile.torna-su):focus{ /* ATTENZIONE, QUESTO COMANDO NON FUNZIONA */
+    position: static;
+    text-indent: 0;
 }
