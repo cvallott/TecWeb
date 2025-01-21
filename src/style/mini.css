@@ -87,6 +87,61 @@ FOOTER MOBILE
 
 /*
 ============
+INDEX MOBILE
+============
+*/
+#important-info{
+    flex-direction: column;
+}
+
+#important-info div {
+    padding: 0.3em;
+    width: auto;
+}
+
+#titolo {
+    background-image: none;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#titolo img{
+    margin-top: 0.3em;
+    margin-left: 0.3em;
+    align-self: flex-start;
+}
+
+#titolo h1 {
+    align-self: center;
+    margin: 0;
+}
+
+#titolo h2 {
+    align-self: flex-end;
+}
+
+#container{
+    flex-direction: column;
+}
+
+#container div{
+    width: 10em;
+    height: 7em;
+}
+
+#container #img3, #container #img4{
+    display: none;
+}
+
+#download-container{
+    flex-direction: column;
+}
+
+/*
+============
 TABELLE MOBILE
 ============
 */

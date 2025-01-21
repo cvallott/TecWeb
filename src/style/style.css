@@ -287,10 +287,6 @@ HOME PAGE
     margin:auto;
 }
 
-
-
-
-/* Stili per ciascun background */
 #img1 {
     background-image: url('../../assets/pagine/index/filosofia1.jpg');
 }
@@ -305,7 +301,6 @@ HOME PAGE
 #img4 {
     background-image: url('../../assets/pagine/index/filosofia4.jpg');
 }
-
 
 .home-button {
     display: inline-block;
@@ -379,7 +374,6 @@ HOME PAGE
     align-items: center;
     max-width: 100%;
     flex-wrap: wrap;
-    /* NEL MINI.CSS METTERE CHE LA COLONNA CON LE SCRITTE VA SOTTO A QUELLA CON IL BOTTONE, FORSE CON FLEX-DIRECTION: COLUMN; */
 }
 
 .download-column {
