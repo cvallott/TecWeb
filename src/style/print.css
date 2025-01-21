@@ -36,7 +36,7 @@ INDEX PAGE
     display: flex;
     align-items: center;
     gap: 1em;
-    order: -1;
+    order: 1;
 }
 
 #titolo img {
@@ -52,7 +52,7 @@ INDEX PAGE
 
 #breadcrumb {
     display: flex;
-    order: 1;
+    order: 2;
 }
 
 #important-info{
@@ -169,3 +169,67 @@ font-size: 90%;
     color: #A2231D;
 }
 
+#download-container .download-column p{
+    margin: -0.5px;
+}
+
+/*
+------------------
+MENU PRENOTA PAGE
+------------------
+*/
+
+.menu-prodpercat img{
+    display: block;
+    margin: 8px 8px 3.2px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.menu-prodpercat .pizza-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5em;
+    /*justify-content: space-between;*/
+    /*padding: 1em;*/
+}
+
+
+.pizza {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    /*border-bottom: 0.8px var(--txtcolor) solid;*/
+    margin-bottom: 1em;
+    width: 65%;
+    border-bottom: 0.1vh solid black;
+}
+
+.pizza-testo {
+    /*display: flex;*/
+    /*flex-direction: column;
+    width: 700px;*/
+}
+
+.pizza-testo h3{
+    display: flex;
+    flex-direction: row;
+}
+
+.pizza-testo img{
+    width: 17.4px;
+    height: 17.4px;
+    margin: 0;
+    margin-left: 5.5px;
+}
+
+.pizza .pizza-prezzo{
+    margin-left: 1em;
+    width: 2em;
+}
+
+.order-actions{
+    display: none;
+}
