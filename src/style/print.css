@@ -159,3 +159,41 @@ font-size: 90%;
     color: #A2231D;
 }
 
+/*
+-------------
+CHI SIAMO
+-------------
+ */
+
+#titoloPagSecondaria{
+    margin: 0;
+    color: #A2231D;
+}
+
+#chi-siamo-contenitore{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.chi-siamo-items{
+    width: 33%;
+}
+
+.chi-siamo-items p{
+    max-width: 92%;
+    margin: auto;
+}
+
+.chi-siamo-sezbordo{
+    border-right: 1px solid black;
+}
+
+.chi-siamo-titoli{
+    text-align: center;
+}
+
+#chi-siamo-storia{
+    margin-top: 50px;
+}
+
