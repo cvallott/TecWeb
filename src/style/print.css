@@ -197,3 +197,23 @@ CHI SIAMO
     margin-top: 50px;
 }
 
+/*
+-------------
+CHI SIAMO
+-------------
+ */
+
+.dashboard{
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboard-sottoItems{
+    margin-left: 30px;
+}
+
+#primoElemento{
+    margin-top: 20px;
+}
+
+
