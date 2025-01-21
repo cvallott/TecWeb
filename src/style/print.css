@@ -277,6 +277,22 @@ DETTAGLI-ORDINE
     margin-top: 20px;
 }
 
+/*
+-------------
+AREA-RISERVATA
+-------------
+ */
+
+.form-fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+.invia-button{
+    width: 20%;
+    margin-top:10px;
+}
+
 
 
 
