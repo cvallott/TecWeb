@@ -19,11 +19,11 @@
 <main id="content">
     <section>
         <div id="general-intro">
-            <h1>RIEPILOGO ORDINI</h1>
+            <h1 id="titoloPagSecondaria">RIEPILOGO ORDINI</h1>
         </div>
         <div id="tabella-ordini">
             [messaggioOrdine]
-            <span id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</span>
+            <p id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</p>
             <table aria-describedby="descrTabella">
                 <caption>Ultimi ordini effettuati</caption>
                 <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
@@ -32,7 +32,7 @@
                     <th scope="col">Data e ora</th>
                     <th scope="col" abbr="Stato">Stato ordine</th>
                     <th scope="col" abbr="Totale">Totale ordine</th>
-                    <th scope="col">Dettagli</th>
+                    <th scope="col" class="noprint">Dettagli</th>
                 </tr>
                 </thead>
                 <tbody>
