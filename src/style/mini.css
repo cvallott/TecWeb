@@ -342,117 +342,117 @@ MENU-PRENOTA
 ============
 */
 
-    #MP-intro {
-        height: auto;
-        margin: 0.2em;
-    }
+#MP-intro {
+    height: auto;
+    margin: 0.2em;
+}
 
-    #smallMenu {
-        width: 90%;
-        margin: 1em;
-        padding: 1em;
-    }
+#smallMenu {
+    width: 90%;
+    margin: 1em;
+    padding: 1em;
+}
 
-    #smallMenu h1 {
-        font-size: 1.1em;
-    }
+#smallMenu h1 {
+    font-size: 1.1em;
+}
 
-    #smallMenu #infoOrdini {
-        font-size: 0.7em;
-    }
+#smallMenu #infoOrdini {
+    font-size: 0.7em;
+}
 
-    #filtri form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-        padding: 1em;
-    }
+#filtri form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em;
+}
 
-    #filtri select,
-    #filtri input[type="text"] {
-        width: 100%;
-        padding: 0.5em;
-    }
+#filtri select,
+#filtri input[type="text"] {
+    width: 100%;
+    padding: 0.5em;
+}
 
-    #filtri .invia-button {
-        width: 100%;
-        margin-top: 0.5em;
-    }
+#filtri .invia-button {
+    width: 100%;
+    margin-top: 0.5em;
+}
 
-    .menu-prodpercat,
-    .pizze-speciali,
-    .pizze-stagionali,
-    .cucina {
-        margin: 0.2em;
-        padding: 0.2em;
-    }
+.menu-prodpercat,
+.pizze-speciali,
+.pizze-stagionali,
+.cucina {
+    margin: 0.2em;
+    padding: 0.2em;
+}
 
-    .menu-prodpercat h2,
-    .pizze-speciali h2,
-    .pizze-stagionali h2,
-    .cucina h2 {
-        padding: 0.5em 1em;
-        width: 90%;
-        font-size: 1.1em;
-    }
+.menu-prodpercat h2,
+.pizze-speciali h2,
+.pizze-stagionali h2,
+.cucina h2 {
+    padding: 0.5em 1em;
+    width: 90%;
+    font-size: 1.1em;
+}
 
-    .pizza,
-    .piatti-cucina {
-        flex-direction: column;
-        width: 95%;
-        text-align: center;
-        padding-bottom: 1em;
-    }
+.pizza,
+.piatti-cucina {
+    flex-direction: column;
+    width: 95%;
+    text-align: center;
+    padding-bottom: 1em;
+}
 
-    .pizza img,
-    .cucina img {
-        width: 100%;
-        height: auto;
-        margin: 0.5em 0;
-    }
+.pizza img,
+.cucina img {
+    width: 100%;
+    height: auto;
+    margin: 0.5em 0;
+}
 
-    .pizza-testo,
-    .cucina-testo {
-        width: 100%;
-        align-items: center;
-        text-align: center;
-    }
+.pizza-testo,
+.cucina-testo {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
 
-    .pizza-prezzo {
-        width: auto;
-        margin: 0.5em 0;
-    }
+.pizza-prezzo {
+    width: auto;
+    margin: 0.5em 0;
+}
 
-    .order-actions {
-        width: 100%;
-        margin: 0.5em 0;
-    }
+.order-actions {
+    width: 100%;
+    margin: 0.5em 0;
+}
 
-    .quantity-controls {
-        justify-content: center;
-    }
+.quantity-controls {
+    justify-content: center;
+}
 
-    .quantity-controls button img,
-    .controlloQuantita button img {
-        height: 1.2em;
-        width: 1.2em;
-    }
+.quantity-controls button img,
+.controlloQuantita button img {
+    height: 1.2em;
+    width: 1.2em;
+}
 
-    .add-to-cart {
-        width: 100%;
-        margin: 0.5em 0;
-    }
+.add-to-cart {
+    width: 100%;
+    margin: 0.5em 0;
+}
 
-    .sez-intro {
-        padding: 0.5em;
-    }
+.sez-intro {
+    padding: 0.5em;
+}
 
-    .menu-prodpercat p,
-    .pizze-speciali p,
-    .pizze-stagionali p,
-    .cucina p {
-        margin: 0.5em;
-    }
+.menu-prodpercat p,
+.pizze-speciali p,
+.pizze-stagionali p,
+.cucina p {
+    margin: 0.5em;
+}
 
 .pizza-testo h3 {
     display: flex;
@@ -470,6 +470,122 @@ MENU-PRENOTA
     display: inline-block;
     vertical-align: middle;
 }
+
+/*
+============
+CARRELLO
+============
+*/
+
+#sez-carrello {
+    flex-direction: column;
+    margin: 0 1em;
+}
+
+.sezCarrello {
+    margin-left: 0;
+    max-width: 100%;
+    margin-bottom: 2em;
+}
+
+.sezDettaglio, .sezTotali {
+    width: 100%;
+}
+
+.order-container {
+    flex-direction: column;
+    padding: 1em;
+}
+
+.order-form, .order-summary {
+    min-width: 100%;
+    margin: 1em 0;
+}
+
+.row {
+    flex-direction: column;
+    row-gap: 1em;
+    column-gap: 0;
+    align-items: flex-start;
+    padding: 1em 0;
+}
+
+.dettaglioItem h4 {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5em;
+}
+
+.controlloQuantita {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.controlloQuantita form {
+    padding: 0 1em;
+}
+
+#containerConferma {
+    flex-direction: column;
+}
+
+.boxConferma {
+    width: 100%;
+    padding: 1.5em 1em;
+}
+
+#boxOrario {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+#boxOrario div {
+    margin-right: 0;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+#boxOrario button {
+    width: 100%;
+    margin-top: 1.5em;
+}
+
+#proposta-mese #FM-content {
+    padding: 1em 0;
+    margin: 1em;
+}
+
+#proposta-mese #FM-content li img {
+    height: 6em;
+    margin-top: 1.5em;
+}
+
+.form-container {
+    width: 100%;
+    margin: 1em 0;
+    }
+
+
+#confOrdine h1 {
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+    }
+
+#carrelloPage .messaggio {
+    padding: 1em;
+    margin-top: 0.5em;
+}
+
+#primadisp {
+    font-size: 0.8em;
+}
+
+.order-summary h2 {
+    font-size: 1.1em;
+}
+
 
 
 
