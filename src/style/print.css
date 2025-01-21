@@ -221,6 +221,7 @@ CHI SIAMO
 RIEPILOGO ORDINI
 -------------
  */
+
 #tabella-ordini table{
     width: 100%;
     border-collapse: collapse;
@@ -260,6 +261,17 @@ RIEPILOGO ORDINI
 #filtriOrdini label {
     margin-top: 10px;
 }
+
+#descrTabella{
+    margin-top: 20px;
+}
+
+
+/*
+-------------
+DETTAGLI-ORDINE
+-------------
+ */
 
 #descrTabella{
     margin-top: 20px;
