@@ -651,7 +651,6 @@ class DBConnection {
     }
 
     public function getUtenti($query): string {
-        /*$query = "SELECT nome, cognome, username, email, ruolo FROM utente";*/
         try {
             $result = mysqli_query($this->connection, $query);
         }catch(mysqli_sql_exception $e){
@@ -669,7 +668,7 @@ class DBConnection {
                 }else{
                     $stringaReturn .= "<td data-title=\"Ruolo\">Amministratore</td>";
                 }
-                $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
+                $stringaReturn .= "<td data-title=\"Modifica ruolo\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
                 $stringaReturn .= "<label for=\"ruoloUpdate\">Modifica ruolo:</label>";
@@ -681,7 +680,7 @@ class DBConnection {
                 $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
-                $stringaReturn .= "<td data-title=\"Elimina Utente\">";
+                $stringaReturn .= "<td data-title=\"Elimina Utente\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\" />";
@@ -774,7 +773,7 @@ class DBConnection {
                 }else{
                     $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
                 }
-                $stringaReturn .= "<td data-title=\"Modifica stato\" class='noprint'>";
+                $stringaReturn .= "<td data-title=\"Modifica stato\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"visualizza-ordini.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
                 $stringaReturn .= "<label for=\"modificaS\">Modifica stato:</label>";
@@ -787,7 +786,7 @@ class DBConnection {
                 $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
-                $stringaReturn .= "<td data-title=\"Dettagli\" class='noprint'>";
+                $stringaReturn .= "<td data-title=\"Dettagli\" class=\"noprint\">";
                 $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\" />";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
