@@ -520,8 +520,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Tipo\">Ingrediente singolo</td>";
                 $stringaReturn .= "<td></td>";
                 $nome = str_replace(" ", "_", $row['nome']);
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-ingrediente.php?nome=".$nome."\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<td data-title=\"Modifica\" class=\"noprint\"><a href=\"aggiungi-ingrediente.php?nome=".$nome."\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$nome."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\" />";
@@ -548,8 +548,8 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-cucina.php?id=".$row['id']."\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<td data-title=\"Modifica\" class=\"noprint\"><a href=\"aggiungi-cucina.php?id=".$row['id']."\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\" />";
@@ -575,8 +575,8 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<td data-title=\"Modifica\" class=\"noprint\"><a href=\"aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\" />";

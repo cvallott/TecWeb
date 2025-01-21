@@ -244,21 +244,21 @@ RIEPILOGO ORDINI
     display: none;
 }
 
-#filtriOrdini{
+#filtriPrint{
     display: flex;
     flex-direction: column;
     margin-top:10px;
 }
 
-#filtriOrdini input{
+#filtriPrint input{
     margin-top:3px;
 }
 
-#filtriOrdini select{
+#filtriPrint select{
     margin-top:3px;
 }
 
-#filtriOrdini label {
+#filtriPrint label {
     margin-top: 10px;
 }
 
