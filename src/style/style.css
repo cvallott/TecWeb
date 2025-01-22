@@ -682,7 +682,6 @@ RIEPILOGO-ORDINI PAGE
 #tabella-ordini .invia-button{
     width: 8em;
     margin: 0.5em;
-    white-space: nowrap;
 }
 
 #tabella-ordini select{
