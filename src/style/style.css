@@ -1007,56 +1007,9 @@ MENU-PRENOTA-PAGE
 CARRELLO
 ------------------
 */
-#sez-carrello {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.sezCarrello {
-    margin-left: 5em;
-    display: flex;
-    flex-direction: column;
-    max-width: 45%;
-}
-
-.sezDettaglio{
-    flex-direction: column;
-    flex:1.6;
-}
-
-.sezTotali{
-    flex:0.4;
-    align-items: center;
-    flex-direction: column;
-}
-
 #primadisp{
     font-size: 0.9em;
     font-style: italic;
-}
-
-#totaleSpesa{
-    align-items: center;
-}
-
-.totColumn {
-    padding-left: 2em;
-    padding-right: 2em;
-    text-align: center;
-    padding-bottom:0.6em;
-}
-
-.sezTotali button{
-    width: 16em;
-    text-align: center;
-    height: 2.2em;
-    margin-top:0.5em
-}
-
-.sezTotali p{
-    text-align: center;
 }
 
 .dettaglioItem h4{

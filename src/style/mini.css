@@ -432,7 +432,6 @@ CHI-SIAMO
 MENU-PRENOTA
 ============
 */
-
 #MP-intro {
     height: auto;
     margin: 0.2em;
@@ -470,40 +469,26 @@ MENU-PRENOTA
     margin-top: 0.5em;
 }
 
-.menu-prodpercat,
-.pizze-speciali,
-.pizze-stagionali,
-.cucina {
-    margin: 0.2em;
-    padding: 0.2em;
-}
-
-.menu-prodpercat h2,
-.pizze-speciali h2,
-.pizze-stagionali h2,
-.cucina h2 {
+.menu-prodpercat h2 {
     padding: 0.5em 1em;
     width: 90%;
     font-size: 1.1em;
 }
 
-.pizza,
-.piatti-cucina {
+.pizza {
     flex-direction: column;
     width: 95%;
     text-align: center;
     padding-bottom: 1em;
 }
 
-.pizza img,
-.cucina img {
+.pizza img {
     width: 90%;
     height: auto;
     margin: 0.5em 0;
 }
 
-.pizza-testo,
-.cucina-testo {
+.pizza-testo {
     width: 100%;
     align-items: center;
     text-align: center;
@@ -538,19 +523,8 @@ MENU-PRENOTA
     padding: 0.5em;
 }
 
-.menu-prodpercat p,
-.pizze-speciali p,
-.pizze-stagionali p,
-.cucina p {
+.menu-prodpercat {
     margin: 0.5em;
-}
-
-.pizza-testo h3 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
 }
 
 .pizza-testo h3 img {
@@ -567,22 +541,6 @@ MENU-PRENOTA
 CARRELLO
 ============
 */
-
-#sez-carrello {
-    flex-direction: column;
-    margin: 0 1em;
-}
-
-.sezCarrello {
-    margin-left: 0;
-    max-width: 100%;
-    margin-bottom: 2em;
-}
-
-.sezDettaglio, .sezTotali {
-    width: 100%;
-}
-
 .order-container {
     flex-direction: column;
     padding: 1em;
@@ -616,33 +574,6 @@ CARRELLO
     padding: 0 1em;
 }
 
-#containerConferma {
-    flex-direction: column;
-}
-
-.boxConferma {
-    width: 100%;
-    padding: 1.5em 1em;
-}
-
-#boxOrario {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2em;
-}
-
-#boxOrario div {
-    margin-right: 0;
-    margin-bottom: 1em;
-    width: 100%;
-}
-
-#boxOrario button {
-    width: 100%;
-    margin-top: 1.5em;
-}
-
 #proposta-mese #FM-content {
     padding: 1em 0;
     margin: 1em;
@@ -652,17 +583,6 @@ CARRELLO
     height: 6em;
     margin-top: 1.5em;
 }
-
-.form-container {
-    width: 100%;
-    margin: 1em 0;
-    }
-
-
-#confOrdine h1 {
-    padding: 0.5em 1em;
-    font-size: 1.1em;
-    }
 
 #carrelloPage .messaggio {
     padding: 1em;
