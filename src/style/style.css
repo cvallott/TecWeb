@@ -726,7 +726,7 @@ AREA-RISERVATA PAGE
 #registerForm.active {
     display: block;
 }
-
+/* DA CAPIRE COS'E' STA ROBA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .default-text {
     color: #666;
     font-size: 0.875em;
@@ -782,9 +782,9 @@ DETTAGLI-ORDINE PAGE
 
 #note {
     font-size: 1em;
-    color: var(--bgcolor);
+    color: var(--txtcolor);
     text-align: center;
-    background-color: rgba(50, 50, 15, 0.7);
+    background-color: rgba(128, 128, 128, 0.7);
     padding: 1.5em;
     border-radius: 0.4em;
     border: 1px solid var(--txtcolor);
@@ -950,7 +950,7 @@ MENU-PRENOTA-PAGE
 }
 
 .quantity-controls button:hover {
-    background-color: #ddd;
+    background-color: var(--bgcolor);
 }
 
 .quantity-controls span {
@@ -1050,7 +1050,7 @@ CARRELLO
     padding: 0.5em;
     font-size: 1.2em;
     cursor: pointer;
-    color: black;
+    color: var(--txtcolor);
     border: none;
     border-radius: 0.3em;
     display: flex;
@@ -1522,7 +1522,7 @@ ERROR PAGE
 .error-title {
     font-size: 6em;
     margin: 0;
-    color: #d32f2f;
+    color: var(--bgcolor2);
 }
 
 .error-message {
