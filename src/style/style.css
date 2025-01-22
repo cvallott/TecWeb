@@ -426,6 +426,7 @@ HOME PAGE
 #mobile-plus.torna-su{
     position: absolute;
     text-indent: -999em;
+    padding: 0;
 }
 
 /*
@@ -795,7 +796,7 @@ DETTAGLI-ORDINE PAGE
 MENU-PRENOTA-PAGE
 ---------------------
 */
-#menu-prenotaPage .torna-su{
+#menu-prenotaPage .torna-su:not(#mobile-plus){
     position: relative;
     bottom: 1em;
     right: 1em;
@@ -894,54 +895,6 @@ MENU-PRENOTA-PAGE
     margin-bottom: 1em;
 }
 
-.pizze-speciali{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.pizze-speciali h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.pizze-speciali p{
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-.pizze-stagionali{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.pizze-stagionali h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.pizze-stagionali p{
-    /*text-align: center;*/
-    margin-bottom: 1em;
-}
-
 .pizza {
     display: flex;
     flex-direction: row;
@@ -952,7 +905,6 @@ MENU-PRENOTA-PAGE
     width: 65%;
 }
 
-
 .pizza img {
     margin: 0.5em 0.5em 0.2em;
     width: 10em;
@@ -960,77 +912,10 @@ MENU-PRENOTA-PAGE
     object-fit: cover;
 }
 
-
 .menu-prodpercat .pizza-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.pizze-speciali .pizza-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.pizze-stagionali .pizza-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.cucina {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.cucina h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.cucina p{
-    margin-bottom: 1em;
-    /*border-bottom: #DC1C08;*/
-}
-
-.cucina .piatti-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.piatti-cucina {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    border-bottom: 0.3vh #DC1C08 solid;
-    margin-bottom: 1em;
-    width: 65%;
-}
-
-.cucina img {
-    margin-top: 0.5em;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    width: 8em;
-    height: 6em;
 }
 
 .sez-intro{
@@ -1047,12 +932,6 @@ MENU-PRENOTA-PAGE
 .pizza-prezzo{
     font-weight: bold;
     width: 10em;
-}
-.cucina-testo{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 40em;
 }
 
 .order-actions {
