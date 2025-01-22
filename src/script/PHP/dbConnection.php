@@ -128,7 +128,8 @@ class DBConnection {
                                 $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '" />';
                                 $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '" />';
                                 $stringaReturn .= '<input type="hidden" name="quantita" value="1" />';
-                                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$riga['nome'].' al carrello" />';
+                                $stringaReturn .= '<input type="hidden" name="azione" value="Aggiungi al carrello" />';
+                                $stringaReturn .= '<input type="submit" value="Aggiungi '.$riga['nome'].' al carrello" class="invia-button" />';
                                 $stringaReturn .= '</form>';
                             }
                         }
@@ -235,7 +236,8 @@ class DBConnection {
                         $stringaReturn .= '<input type="hidden" name="prezzo" value="' . $riga['prezzo'] . '" />';
                         $stringaReturn .= '<input type="hidden" name="nome" value="' . $riga['nome'] . '" />';
                         $stringaReturn .= '<input type="hidden" name="quantita" value="1" />';
-                        $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$riga['nome'].' al carrello" />';
+                        $stringaReturn .= '<input type="hidden" name="azione" value="Aggiungi al carrello" />';
+                        $stringaReturn .= '<input type="submit" value="Aggiungi '.$riga['nome'].' al carrello" class="invia-button" />';
                         $stringaReturn .= '</form>';
                     }
                 }
@@ -286,7 +288,7 @@ class DBConnection {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<li>";
                 $stringaReturn .= "<a href=\"menu-prenota.php#Fuorimenu\"><img src=\"".$row['path']."\" alt=\"\" />";
-                $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
+                $stringaReturn .= "<p><h3>".$row['nome']."</h3></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "</a></li>";
             }
@@ -308,14 +310,14 @@ class DBConnection {
 
                 $stringaReturn .= "<li>";
                 $stringaReturn .= "<img src=\"".$row['path']."\" alt=\"\" loading=\"lazy\" />";
-                $stringaReturn .= "<p><strong>".$row['nome']."</strong></p>";
+                $stringaReturn .= "<p><h4>".$row['nome']."</h4></p>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
-                $stringaReturn .= "<form method=\"POST\" action=\"\" >";
+                $stringaReturn .= "<form method=\"POST\" action=\"carrello.php\" >";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"prezzo\" value=\"".$row['prezzo']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"quantita\" value=\"1\" />";
-                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" aria-label="Aggiungi '.$row['nome'].' al carrello"/>';
+                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi al carrello" class="invia-button" />';
                 $stringaReturn .= "</form></li>";
             }
         }
@@ -1126,7 +1128,6 @@ class DBConnection {
         }catch(mysqli_sql_exception $e){
             header("location: errore.php");
         }
-
     }
 
     public function delete($queryDelete) {

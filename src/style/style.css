@@ -16,7 +16,7 @@ html{
     /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
     /*background-image: url(assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
-    background-size: cover; /**/
+    background-size: cover;
     background-image: url(../assets/grafiche/sfondo-nero.jpg);
     background-repeat: no-repeat;
 }
@@ -1010,6 +1010,11 @@ MENU-PRENOTA-PAGE
 
 #menu-prenotaPage .invia-button, #carrelloPage .invia-button {
     padding: 0.8em;
+}
+
+#menu-prenotaPage .messaggio{
+    margin: 1em;
+    color: var(--bgcolor);
 }
 
 /*
