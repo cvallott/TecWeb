@@ -255,11 +255,44 @@ AGGIUNGI INGREDIENTE
 ---------------------
 */
 
-[class="errorSuggestion mex"]{
+.errorSuggestion.mex{
     display: none;
 }
 
 .invia-button{
-    margin-top: 1em;
     margin-bottom: 1em;
+}
+
+/*
+----------------------
+AGGIUNGI PIZZA
+----------------------
+*/
+
+.form-fieldset{
+    margin-bottom: 1em;
+}
+
+label[for="prezzo"], span[class="default-text"] {
+    display: block; /* Forza l'elemento su una nuova riga */
+    margin-bottom: 0.5em; /* Aggiunge spazio sotto il label */
+}
+
+#cat{
+    display: block;
+    margin-top: 0.5em;
+}
+
+input[name="nome"]{
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#descr{
+    display: block;
+}   
+
+label[for="file"], .form-fieldset #file{
+    display: none;
 }
