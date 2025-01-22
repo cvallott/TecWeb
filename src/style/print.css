@@ -250,6 +250,28 @@ MENU PRENOTA PAGE
 }
 
 /*
+------------
+CARRELLO PAGE
+------------
+*/
+
+.order-container img{
+    display: block;
+    width: 18px;
+}
+
+.order-summary{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 0.5vh solid black;
+}
+
+.order-summary .row{
+    display: flex;
+    flex-direction: row;
+}
+/*
 ---------------------
 AGGIUNGI INGREDIENTE-PIZZA-CUCINA
 ---------------------
