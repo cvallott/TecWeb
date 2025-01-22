@@ -251,7 +251,7 @@ MENU PRENOTA PAGE
 
 /*
 ---------------------
-AGGIUNGI INGREDIENTE
+AGGIUNGI INGREDIENTE-PIZZA-CUCINA
 ---------------------
 */
 
@@ -262,12 +262,6 @@ AGGIUNGI INGREDIENTE
 .invia-button{
     margin-bottom: 1em;
 }
-
-/*
-----------------------
-AGGIUNGI PIZZA
-----------------------
-*/
 
 .form-fieldset{
     margin-bottom: 1em;
@@ -291,8 +285,16 @@ input[name="nome"]{
 
 #descr{
     display: block;
-}   
+}
 
 label[for="file"], .form-fieldset #file{
     display: none;
+}
+
+#ffc-2 {
+    display: none;
+}
+
+main#content h1{
+    color: #A2231D;
 }
