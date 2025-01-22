@@ -681,14 +681,14 @@ class DBConnection {
                 $stringaReturn .= "<option value=\"1\">Amministratore</option>";
                 $stringaReturn .= "</select>";
                 $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Aggiorna ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Elimina Utente\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina utente\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";

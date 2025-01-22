@@ -653,6 +653,7 @@ RIEPILOGO-ORDINI PAGE
     text-decoration: none;
     border-bottom: solid 2px var(--bgcolor2);
     border-radius: 0.4em;
+    white-space: nowrap;
 }
 
 #tabella-ordini a:link{
@@ -676,6 +677,16 @@ RIEPILOGO-ORDINI PAGE
 
 #tabella-ordini img{
     margin-right: 0.5em;
+}
+
+#tabella-ordini .invia-button{
+    width: 8em;
+    margin: 0.5em;
+    white-space: nowrap;
+}
+
+#tabella-ordini select{
+    line-height: 2em;
 }
 
 /*
@@ -1230,6 +1241,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     font-size: 1.1em;
+    width: 6em;
 }
 
 #filtri form .invia-button:hover {
