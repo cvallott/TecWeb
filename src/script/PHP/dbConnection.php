@@ -654,7 +654,7 @@ class DBConnection {
     }
 
     public function getUtenti($query): string {
-        /*$query = "SELECT nome, cognome, username, email, ruolo FROM utente";*/
+        $conta = 0;
         try {
             $result = mysqli_query($this->connection, $query);
         }catch(mysqli_sql_exception $e){
@@ -675,8 +675,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
-                $stringaReturn .= "<label for=\"ruoloUpdate\">Modifica ruolo:</label>";
-                $stringaReturn .= "<select name=\"ruolo\" class=\"select\" id=\"ruoloUpdate\">";
+                $stringaReturn .= "<label for=\"ruoloUpdate".$conta."\">Modifica ruolo:</label>";
+                $stringaReturn .= "<select name=\"ruolo\" class=\"select\" id=\"ruoloUpdate".$conta."\">";
                 $stringaReturn .= "<option value=\"0\">Cliente</option>";
                 $stringaReturn .= "<option value=\"1\">Amministratore</option>";
                 $stringaReturn .= "</select>";
@@ -692,6 +692,7 @@ class DBConnection {
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
+                $conta++;
             }
         }
         return $stringaReturn;
