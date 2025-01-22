@@ -22,7 +22,7 @@
     </section>
     <section id="filtri">
         <form method="post" action="visualizza-ordini.php">
-            <div> <!-- HO MESSO DIV PERCHE IN TEORIA INPUT NON PUò ESSERE FIGLIO DIRETTO DI FORM, andre dice corretto-->
+            <div>
                 <input type="hidden" name="action" value="filter" />
                 <label for="stato">Filtra per stato:</label>
                 <select name="stato" id="stato" class="select">
@@ -31,12 +31,16 @@
                     <option value="0">In corso</option>
                     <option value="-1">Annullati</option>
                 </select>
+            </div>
+            <div>
                 <label for="cliente">Filtra per nome cliente:</label>
-                <input type="text" name="cliente" id="cliente" />
+                <input type="text" name="cliente" id="cliente"/>
+            </div>
+            <div>
                 <label for="data">Filtra per data:</label>
                 <input type="date" name="data" id="data" />
-                <input type="submit" class="invia-button" value="Filtra" />
             </div>
+            <input type="submit" class="invia-button" value="Filtra" />
         </form>
     </section>
     <section id="tabella-ordini">
@@ -60,6 +64,9 @@
             </tbody>
         </table>
     </section>
+    <div class="torna-su" id="mobile-plus">
+        <a href="#general-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+    </div>
 </main>
 [footer]
 </body>

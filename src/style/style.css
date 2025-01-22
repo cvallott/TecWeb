@@ -55,15 +55,19 @@ header img {
     margin-left: auto;
 }
 
-#menu li{
+#menu li:not(.menuMobile-version){
     list-style: none;
     display: inline-block;
-    margin-right: 1.5em;
+    margin-right: 0.5em;
+}
+
+.menuMobile-version{
+    display: none;
 }
 
 #menu li a {
     color: var(--bgcolor2);
-    padding: 1em;
+    padding: 0.5em;
     border-radius: 0.4em;
     border-bottom: 2px solid var(--bgcolor2);
     text-decoration: none;
@@ -113,7 +117,7 @@ SEZIONE BREADCRUMB
 #breadcrumb {
     margin-top: 5em;
     color: var(--bgcolor2);
-    height: 3em;
+    min-height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
     background: var(--bgcolor) linear-gradient(35deg, var(--bgcolor), var(--bgcolor2));
@@ -187,6 +191,10 @@ iframe {
     opacity: .4;
 }
 
+#footer-top .footer-column iframe{
+    margin-top: 0.7em;
+}
+
 
 /*
 ------------------
@@ -221,9 +229,8 @@ HOME PAGE
 }
 
 #titolo {
-    /*background-color: var(--bgcolor);*/
     background-image: url(../assets/pagine/index/titolo.png);
-    background-color: gray;
+    background-color: var(--bgcolor3);
     background-size: cover;
     color: var(--bgcolor);
     text-align: right;
@@ -283,10 +290,6 @@ HOME PAGE
     margin:auto;
 }
 
-
-
-
-/* Stili per ciascun background */
 #img1 {
     background-image: url('../../assets/pagine/index/filosofia1.jpg');
 }
@@ -301,7 +304,6 @@ HOME PAGE
 #img4 {
     background-image: url('../../assets/pagine/index/filosofia4.jpg');
 }
-
 
 .home-button {
     display: inline-block;
@@ -375,7 +377,6 @@ HOME PAGE
     align-items: center;
     max-width: 100%;
     flex-wrap: wrap;
-    /* NEL MINI.CSS METTERE CHE LA COLONNA CON LE SCRITTE VA SOTTO A QUELLA CON IL BOTTONE, FORSE CON FLEX-DIRECTION: COLUMN; */
 }
 
 .download-column {
@@ -420,6 +421,11 @@ HOME PAGE
 
 .torna-su:hover {
     background-color: var(--bgcolor2);
+}
+
+#mobile-plus.torna-su{
+    position: absolute;
+    text-indent: -999em;
 }
 
 /*
@@ -576,8 +582,6 @@ CHI SIAMO PAGE
     background-repeat: no-repeat;
     border-radius: 3px;
 }
-
-
 
 /*
 ------------------
@@ -766,15 +770,25 @@ DETTAGLI-ORDINE PAGE
     display: inline-block;
     padding: 0.7em;
     margin: 3em;
+    width: 70%;
 }
 
 #DO #tabella-ordini {
     margin-right: 0.7em;
     min-height: 50vh;
     min-width: 60%;
-    margin-left: 5em;
 }
 
+#note {
+    font-size: 1em;
+    color: var(--bgcolor);
+    text-align: center;
+    background-color: rgba(50, 50, 15, 0.7);
+    padding: 1.5em;
+    border-radius: 0.4em;
+    border: 1px solid var(--txtcolor);
+    margin: 1em;
+}
 
 /*
 ---------------------
@@ -811,10 +825,10 @@ MENU-PRENOTA-PAGE
     padding: 2em;
     margin: 2em;
     border-radius: 0.4em;
-    width: 30%;
     justify-content: center;
-    color: var(--bgcolor);
-    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--txtcolor);
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 20em;
 }
 
 #smallMenu h1{
@@ -828,21 +842,27 @@ MENU-PRENOTA-PAGE
 
 #smallMenu #infoOrdini{
     font-size: 0.76em;
-    color: var(--bgcolor);
+    color: var(--txtcolor);
     overflow-wrap: break-word;
 }
 
 #smallMenu a{
-    color: var(--bgcolor);
-    background-color: transparent;
-    border: var(--bgcolor) 0.125em solid;
+    color: var(--txtcolor);
+    background-color: var(--bgcolor2);
+    border: var(--bgcolor2) 0.125em solid;
     border-radius: 0.4em;
     padding: 0.35em;
     margin-top: 0.8em;
     text-align: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s;
     text-decoration: none;
     font-size: 0.9em;
+}
+
+#smallMenu a:visited{
+    color: var(--bgcolor);
+    background-color: var(--txtcolor);
+    border: var(--txtcolor) 0.125em solid;
 }
 
 #smallMenu a:hover{
@@ -1105,6 +1125,8 @@ MENU-PRENOTA-PAGE
 #menu-prenotaPage .invia-button, #carrelloPage .invia-button {
     padding: 0.8em;
 }
+
+
 
 /*
 ------------------
@@ -1454,6 +1476,10 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     color: var(--txtcolor);
 }
 
+#filtri div {
+    display: inline;
+}
+
 .select:focus {
     border-color: var(--bgcolor2);
 }
@@ -1521,7 +1547,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 
 /*
 ------------------
-AGGIUNGI PRODOTTO PAGE
+DASHBOARD PAGE
 ------------------
 */
 .dashboard{
