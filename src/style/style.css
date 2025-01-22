@@ -1010,6 +1010,8 @@ MENU-PRENOTA-PAGE
 
 #menu-prenotaPage .invia-button, #carrelloPage .invia-button {
     padding: 0.8em;
+    width: 15em;
+    white-space: wrap;
 }
 
 #menu-prenotaPage .messaggio{
