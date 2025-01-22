@@ -787,7 +787,7 @@ class DBConnection {
                 $stringaReturn .= "<option value=\"-1\">Annullato</option>";
                 $stringaReturn .= "</select>";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Conferma\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Modifica ".$row['id']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "<td data-title=\"Dettagli\">";
