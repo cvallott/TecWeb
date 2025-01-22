@@ -850,7 +850,7 @@ class DBConnection {
             if($row['nota'] == null){
                 $stringaReturn = "<p id=\"note\">Nessuna nota</p>";
             }else{
-                $stringaReturn .= "<p id=\"note\">Note: ".$row['nota']."\"</p>";
+                $stringaReturn .= "<p id=\"note\">Note: ".$row['nota']."</p>";
             }
         }
         return $stringaReturn;
