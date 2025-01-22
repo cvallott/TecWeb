@@ -35,6 +35,7 @@ SEZIONE HEADER
 */
 header {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     background-color: var(--bgcolor);
     height: 5em;
@@ -52,6 +53,7 @@ header img {
 
 #menu {
     margin-left: auto;
+    white-space: nowrap;
 }
 
 #menu li:not(.menuMobile-version){
