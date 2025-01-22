@@ -248,3 +248,18 @@ MENU PRENOTA PAGE
 .order-actions{
     display: none;
 }
+
+/*
+---------------------
+AGGIUNGI INGREDIENTE
+---------------------
+*/
+
+[class="errorSuggestion mex"]{
+    display: none;
+}
+
+.invia-button{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
