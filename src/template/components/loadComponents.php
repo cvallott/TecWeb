@@ -11,6 +11,7 @@ function printHeader()
     $menu = "";
     $areaRis = "";
     $nome = "";
+    $navHelp = "";
 
     if($currentpage == 'index.php') {
         $home = "<li id=\"currentLink\" lang=\"en\">Home</li>";
@@ -28,6 +29,11 @@ function printHeader()
     if($currentpage == 'menu-prenota.php') {
         if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
             $menu = "<li id=\"currentLink\">Menù</li>";
+            $navHelp .= '<li><a href="#Classica" class="navigationHelp">Vai alle pizze Classiche</a></li>';
+            $navHelp .= '<li><a href="#Fuorimenu" class="navigationHelp">Vai alle pizze Fuori Menù</a></li>';
+            $navHelp .= '<li><a href="#Speciale" class="navigationHelp">Vai alle pizze Speciali</a></li>';
+            $navHelp .= '<li><a href="#Stagionale" class="navigationHelp">Vai alle pizze Stagionali</a></li>';
+            $navHelp .= '<li><a href="#cucina" class="navigationHelp">Vai alle nostra cucina</a></li>';
         }else{
             $menu = "<li id=\"currentLink\">Menù-Prenota</li>";
         }
@@ -80,6 +86,11 @@ function printHeader()
         }
     }
 
+    if($currentpage == 'menu-prenota.php') {
+        $headerHtml = str_replace('[menuPrenota-page]', $navHelp, $headerHtml);
+    } else {
+        $headerHtml = str_replace('[menuPrenota-page]', "", $headerHtml);
+    }
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);
     $headerHtml = str_replace('[menuOrdiniPlaceholder]', $menu, $headerHtml);

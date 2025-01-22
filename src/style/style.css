@@ -423,6 +423,11 @@ HOME PAGE
     background-color: var(--bgcolor2);
 }
 
+#mobile-plus.torna-su{
+    position: absolute;
+    text-indent: -999em;
+}
+
 /*
 ------------------
 CHI SIAMO PAGE
@@ -577,8 +582,6 @@ CHI SIAMO PAGE
     background-repeat: no-repeat;
     border-radius: 3px;
 }
-
-
 
 /*
 ------------------
@@ -822,10 +825,10 @@ MENU-PRENOTA-PAGE
     padding: 2em;
     margin: 2em;
     border-radius: 0.4em;
-    width: 30%;
     justify-content: center;
-    color: var(--bgcolor);
-    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--txtcolor);
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 20em;
 }
 
 #smallMenu h1{
@@ -839,21 +842,27 @@ MENU-PRENOTA-PAGE
 
 #smallMenu #infoOrdini{
     font-size: 0.76em;
-    color: var(--bgcolor);
+    color: var(--txtcolor);
     overflow-wrap: break-word;
 }
 
 #smallMenu a{
-    color: var(--bgcolor);
-    background-color: transparent;
-    border: var(--bgcolor) 0.125em solid;
+    color: var(--txtcolor);
+    background-color: var(--bgcolor2);
+    border: var(--bgcolor2) 0.125em solid;
     border-radius: 0.4em;
     padding: 0.35em;
     margin-top: 0.8em;
     text-align: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s;
     text-decoration: none;
     font-size: 0.9em;
+}
+
+#smallMenu a:visited{
+    color: var(--bgcolor);
+    background-color: var(--txtcolor);
+    border: var(--txtcolor) 0.125em solid;
 }
 
 #smallMenu a:hover{
@@ -1116,6 +1125,8 @@ MENU-PRENOTA-PAGE
 #menu-prenotaPage .invia-button, #carrelloPage .invia-button {
     padding: 0.8em;
 }
+
+
 
 /*
 ------------------

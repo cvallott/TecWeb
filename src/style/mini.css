@@ -36,6 +36,11 @@ HEADER MOBILE
 
 #menu li:not(.menuMobile-version){
     margin: 0;
+    padding: 0.3em;
+    line-height: 2em;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--bgcolor2);
 }
 
 #menu li #currentLink{
@@ -315,7 +320,7 @@ AREA-RISERVATA MOBILE
 TORNA-SU MOBILE
 ============
 */
-#mobile.torna-su {
+#mobile.torna-su, #mobile-plus.torna-su {
     position: fixed;
     bottom: 5em;
     right: 1em;
@@ -323,7 +328,7 @@ TORNA-SU MOBILE
     background-color: var(--bgcolor2);
 }
 
-#mobile.torna-su:hover {
+#mobile.torna-su:hover, #mobile-plus.torna-su:hover {
     position: fixed;
     bottom: 5em;
     right: 1em;
@@ -331,7 +336,7 @@ TORNA-SU MOBILE
     background-color: var(--bgcolor);
 }
 
-.torna-su:not(#mobile){
+.torna-su:not(#mobile):not(#mobile-plus){
     position: absolute;
     text-indent: -999em;
 }
@@ -340,3 +345,339 @@ TORNA-SU MOBILE
     position: static;
     text-indent: 0;
 }
+
+#menu-prenotaPage .torna-su:not(#mobile):not(#mobile-plus){
+    position: relative;
+    text-indent: -999em;
+}
+
+#mobile-plus.torna-su{
+    text-indent: 0;
+}
+
+/*
+============
+CHI-SIAMO
+============
+*/
+
+#chi-siamo-intro {
+    height: 30vh;
+    font-size: 1em;
+    margin: 0.25em;
+    }
+
+.title-container {
+    padding: 1em 1.5em;
+    width: 80%;
+    }
+
+#chi-siamo-intro h1 {
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    }
+
+#chi-siamo-contenitore {
+    flex-direction: column;
+    margin: 0.3em;
+    }
+
+.chi-siamo-items {
+    width: auto;
+    padding: 1.5em;
+}
+
+
+.chi-siamo-boxes {
+    flex-direction: column;
+    gap: 2em;
+    padding: 1.5em;
+    text-align: center;
+}
+
+/*figli pari*/
+.chi-siamo-boxes:nth-child(even) {
+    flex-direction: column-reverse;
+}
+
+.chi-siamo-img {
+    width: 100%;
+    padding-bottom: 60%;
+}
+
+.chi-siamo-ic {
+    width: 20%;
+    padding-bottom: 20%;
+    margin-right: 1em;
+}
+
+.chi-siamo-testo {
+    width: 100%;
+}
+
+.chi-siamo-testo p {
+    font-size: 0.9em;
+    line-height: 1.5em;
+    margin: 0.5em 0;
+}
+
+.chi-siamo-testo h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+/*
+============
+MENU-PRENOTA
+============
+*/
+
+#MP-intro {
+    height: auto;
+    margin: 0.2em;
+}
+
+#smallMenu {
+    width: 90%;
+    margin: 1em;
+    padding: 1em;
+}
+
+#smallMenu h1 {
+    font-size: 1.1em;
+}
+
+#smallMenu #infoOrdini {
+    font-size: 0.7em;
+}
+
+#filtri form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em;
+}
+
+#filtri select,
+#filtri input[type="text"] {
+    width: 100%;
+    padding: 0.5em;
+}
+
+#filtri .invia-button {
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+.menu-prodpercat,
+.pizze-speciali,
+.pizze-stagionali,
+.cucina {
+    margin: 0.2em;
+    padding: 0.2em;
+}
+
+.menu-prodpercat h2,
+.pizze-speciali h2,
+.pizze-stagionali h2,
+.cucina h2 {
+    padding: 0.5em 1em;
+    width: 90%;
+    font-size: 1.1em;
+}
+
+.pizza,
+.piatti-cucina {
+    flex-direction: column;
+    width: 95%;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+.pizza img,
+.cucina img {
+    width: 90%;
+    height: auto;
+    margin: 0.5em 0;
+}
+
+.pizza-testo,
+.cucina-testo {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.pizza-prezzo {
+    width: auto;
+    margin: 0.5em 0;
+}
+
+.order-actions {
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+.quantity-controls {
+    justify-content: center;
+}
+
+.quantity-controls button img,
+.controlloQuantita button img {
+    height: 1.2em;
+    width: 1.2em;
+}
+
+.add-to-cart {
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+.sez-intro {
+    padding: 0.5em;
+}
+
+.menu-prodpercat p,
+.pizze-speciali p,
+.pizze-stagionali p,
+.cucina p {
+    margin: 0.5em;
+}
+
+.pizza-testo h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.pizza-testo h3 img {
+    position: static;
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*
+============
+CARRELLO
+============
+*/
+
+#sez-carrello {
+    flex-direction: column;
+    margin: 0 1em;
+}
+
+.sezCarrello {
+    margin-left: 0;
+    max-width: 100%;
+    margin-bottom: 2em;
+}
+
+.sezDettaglio, .sezTotali {
+    width: 100%;
+}
+
+.order-container {
+    flex-direction: column;
+    padding: 1em;
+}
+
+.order-form, .order-summary {
+    min-width: 100%;
+    margin: 1em 0;
+}
+
+.row {
+    flex-direction: column;
+    row-gap: 1em;
+    column-gap: 0;
+    align-items: flex-start;
+    padding: 1em 0;
+}
+
+.dettaglioItem h4 {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5em;
+}
+
+.controlloQuantita {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.controlloQuantita form {
+    padding: 0 1em;
+}
+
+#containerConferma {
+    flex-direction: column;
+}
+
+.boxConferma {
+    width: 100%;
+    padding: 1.5em 1em;
+}
+
+#boxOrario {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+#boxOrario div {
+    margin-right: 0;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+#boxOrario button {
+    width: 100%;
+    margin-top: 1.5em;
+}
+
+#proposta-mese #FM-content {
+    padding: 1em 0;
+    margin: 1em;
+}
+
+#proposta-mese #FM-content li img {
+    height: 6em;
+    margin-top: 1.5em;
+}
+
+.form-container {
+    width: 100%;
+    margin: 1em 0;
+    }
+
+
+#confOrdine h1 {
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+    }
+
+#carrelloPage .messaggio {
+    padding: 1em;
+    margin-top: 0.5em;
+}
+
+#primadisp {
+    font-size: 0.8em;
+}
+
+.order-summary h2 {
+    font-size: 1.1em;
+}
+
+
+
+
+
+
