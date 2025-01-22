@@ -780,8 +780,8 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica stato\">";
                 $stringaReturn .= "<form action=\"visualizza-ordini.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
-                $stringaReturn .= "<label for=\"modificaS\">Modifica stato:</label>";
-                $stringaReturn .= "<select name=\"stato\" id=\"modificaS\" class=\"select\">";
+                $stringaReturn .= "<label for=\"modificaS".$row['id']."\">Modifica stato:</label>";
+                $stringaReturn .= "<select name=\"stato\" id=\"modificaS".$row['id']."\" class=\"select\">";
                 $stringaReturn .= "<option value=\"1\">Consegnato</option>";
                 $stringaReturn .= "<option value=\"0\">In corso</option>";
                 $stringaReturn .= "<option value=\"-1\">Annullato</option>";
