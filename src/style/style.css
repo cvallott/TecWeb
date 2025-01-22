@@ -19,7 +19,6 @@ html{
     background-size: cover; /**/
     background-image: url(../assets/grafiche/sfondo-nero.jpg);
     background-repeat: no-repeat;
-
 }
 
 body{
@@ -426,6 +425,7 @@ HOME PAGE
 #mobile-plus.torna-su{
     position: absolute;
     text-indent: -999em;
+    padding: 0;
 }
 
 /*
@@ -725,7 +725,7 @@ AREA-RISERVATA PAGE
 #registerForm.active {
     display: block;
 }
-
+/* DA CAPIRE COS'E' STA ROBA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .default-text {
     color: #666;
     font-size: 0.875em;
@@ -781,9 +781,9 @@ DETTAGLI-ORDINE PAGE
 
 #note {
     font-size: 1em;
-    color: var(--bgcolor);
+    color: var(--txtcolor);
     text-align: center;
-    background-color: rgba(50, 50, 15, 0.7);
+    background-color: rgba(128, 128, 128, 0.7);
     padding: 1.5em;
     border-radius: 0.4em;
     border: 1px solid var(--txtcolor);
@@ -795,7 +795,7 @@ DETTAGLI-ORDINE PAGE
 MENU-PRENOTA-PAGE
 ---------------------
 */
-#menu-prenotaPage .torna-su{
+#menu-prenotaPage .torna-su:not(#mobile-plus){
     position: relative;
     bottom: 1em;
     right: 1em;
@@ -894,54 +894,6 @@ MENU-PRENOTA-PAGE
     margin-bottom: 1em;
 }
 
-.pizze-speciali{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.pizze-speciali h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.pizze-speciali p{
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-.pizze-stagionali{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.pizze-stagionali h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.pizze-stagionali p{
-    /*text-align: center;*/
-    margin-bottom: 1em;
-}
-
 .pizza {
     display: flex;
     flex-direction: row;
@@ -952,7 +904,6 @@ MENU-PRENOTA-PAGE
     width: 65%;
 }
 
-
 .pizza img {
     margin: 0.5em 0.5em 0.2em;
     width: 10em;
@@ -960,77 +911,10 @@ MENU-PRENOTA-PAGE
     object-fit: cover;
 }
 
-
 .menu-prodpercat .pizza-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.pizze-speciali .pizza-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.pizze-stagionali .pizza-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.cucina {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.cucina h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.cucina p{
-    margin-bottom: 1em;
-    /*border-bottom: #DC1C08;*/
-}
-
-.cucina .piatti-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.piatti-cucina {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    border-bottom: 0.3vh #DC1C08 solid;
-    margin-bottom: 1em;
-    width: 65%;
-}
-
-.cucina img {
-    margin-top: 0.5em;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    width: 8em;
-    height: 6em;
 }
 
 .sez-intro{
@@ -1047,12 +931,6 @@ MENU-PRENOTA-PAGE
 .pizza-prezzo{
     font-weight: bold;
     width: 10em;
-}
-.cucina-testo{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 40em;
 }
 
 .order-actions {
@@ -1071,7 +949,7 @@ MENU-PRENOTA-PAGE
 }
 
 .quantity-controls button:hover {
-    background-color: #ddd;
+    background-color: var(--bgcolor);
 }
 
 .quantity-controls span {
@@ -1128,56 +1006,9 @@ MENU-PRENOTA-PAGE
 CARRELLO
 ------------------
 */
-#sez-carrello {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.sezCarrello {
-    margin-left: 5em;
-    display: flex;
-    flex-direction: column;
-    max-width: 45%;
-}
-
-.sezDettaglio{
-    flex-direction: column;
-    flex:1.6;
-}
-
-.sezTotali{
-    flex:0.4;
-    align-items: center;
-    flex-direction: column;
-}
-
 #primadisp{
     font-size: 0.9em;
     font-style: italic;
-}
-
-#totaleSpesa{
-    align-items: center;
-}
-
-.totColumn {
-    padding-left: 2em;
-    padding-right: 2em;
-    text-align: center;
-    padding-bottom:0.6em;
-}
-
-.sezTotali button{
-    width: 16em;
-    text-align: center;
-    height: 2.2em;
-    margin-top:0.5em
-}
-
-.sezTotali p{
-    text-align: center;
 }
 
 .dettaglioItem h4{
@@ -1218,7 +1049,7 @@ CARRELLO
     padding: 0.5em;
     font-size: 1.2em;
     cursor: pointer;
-    color: black;
+    color: var(--txtcolor);
     border: none;
     border-radius: 0.3em;
     display: flex;
@@ -1690,7 +1521,7 @@ ERROR PAGE
 .error-title {
     font-size: 6em;
     margin: 0;
-    color: #d32f2f;
+    color: var(--bgcolor2);
 }
 
 .error-message {
