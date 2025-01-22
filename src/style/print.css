@@ -179,6 +179,23 @@ MENU PRENOTA PAGE
 ------------------
 */
 
+#smallMenu{
+    display: flex;
+    flex-direction: column;
+}
+
+#smallMenu h1{
+    color: #A2231D;
+}
+
+#smallMenu a{
+    margin-bottom: 0.5em;
+}
+
+#filtri{
+    display: none;
+}
+
 .menu-prodpercat img{
     display: block;
     margin: 8px 8px 3.2px;
@@ -203,14 +220,12 @@ MENU PRENOTA PAGE
     align-items: center;
     /*border-bottom: 0.8px var(--txtcolor) solid;*/
     margin-bottom: 1em;
-    width: 65%;
     border-bottom: 0.1vh solid black;
 }
 
 .pizza-testo {
-    /*display: flex;*/
-    /*flex-direction: column;
-    width: 700px;*/
+    width: 500px;
+    margin-left: 1.5em;
 }
 
 .pizza-testo h3{
@@ -227,7 +242,7 @@ MENU PRENOTA PAGE
 
 .pizza .pizza-prezzo{
     margin-left: 1em;
-    width: 2em;
+    width: 5em;
 }
 
 .order-actions{
