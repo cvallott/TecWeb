@@ -222,7 +222,6 @@ HOME PAGE
 }
 
 #intro {
-    /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
     padding: 0.7em;
     margin-bottom: 0;
 }
@@ -240,6 +239,16 @@ HOME PAGE
 #titolo h2 {
     text-align: right;
     color: var(--bgcolor);
+}
+
+@media (max-width: 1100px) {
+    #titolo h2 {
+        max-width: 6em;
+        margin-left: auto;
+        margin-right: 0;
+        line-height: 1.5;
+        text-align: right;
+    }
 }
 
 #titolo img {
