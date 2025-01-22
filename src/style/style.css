@@ -191,6 +191,10 @@ iframe {
     opacity: .4;
 }
 
+#footer-top .footer-column iframe{
+    margin-top: 0.7em;
+}
+
 
 /*
 ------------------
@@ -225,9 +229,8 @@ HOME PAGE
 }
 
 #titolo {
-    /*background-color: var(--bgcolor);*/
     background-image: url(../assets/pagine/index/titolo.png);
-    background-color: gray;
+    background-color: var(--bgcolor3);
     background-size: cover;
     color: var(--bgcolor);
     text-align: right;
@@ -287,10 +290,6 @@ HOME PAGE
     margin:auto;
 }
 
-
-
-
-/* Stili per ciascun background */
 #img1 {
     background-image: url('../../assets/pagine/index/filosofia1.jpg');
 }
@@ -305,7 +304,6 @@ HOME PAGE
 #img4 {
     background-image: url('../../assets/pagine/index/filosofia4.jpg');
 }
-
 
 .home-button {
     display: inline-block;
@@ -379,7 +377,6 @@ HOME PAGE
     align-items: center;
     max-width: 100%;
     flex-wrap: wrap;
-    /* NEL MINI.CSS METTERE CHE LA COLONNA CON LE SCRITTE VA SOTTO A QUELLA CON IL BOTTONE, FORSE CON FLEX-DIRECTION: COLUMN; */
 }
 
 .download-column {

@@ -92,7 +92,74 @@ FOOTER MOBILE
 
 /*
 ============
-TABELLE MOBILE
+INDEX MOBILE
+============
+*/
+#important-info{
+    flex-direction: column;
+}
+
+#important-info div {
+    padding: 0.3em;
+    width: auto;
+}
+
+#titolo {
+    background-image: none;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#titolo img{
+    height: 5em;
+    flex: 0 0 auto;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+#titolo h1 {
+    font-size: 1.3em;
+    flex: 1;
+    margin-top: 1em;
+    line-height: 1em;
+}
+
+#titolo h2 {
+    flex-basis: 100%;
+    margin-bottom: 0.5em;
+    text-align: center;
+    line-height: 1em;
+    font-size: 1em;
+    margin-top: 0;
+}
+
+#container{
+    flex-direction: column;
+}
+
+#container div{
+    width: 10em;
+    height: 7em;
+}
+
+#container #img3, #container #img4{
+    display: none;
+}
+
+#download-container{
+    flex-direction: column;
+}
+
+.home-section{
+    padding: 0.5em;
+}
+
+/*
+============
+FILTRI MOBILE
 ============
 */
 #filtri div {
