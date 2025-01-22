@@ -1210,6 +1210,8 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
     border: none;
+    width: 13em;
+    white-space: wrap;
     border-radius: 0.4em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;

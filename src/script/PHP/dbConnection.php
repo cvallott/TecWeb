@@ -527,7 +527,7 @@ class DBConnection {
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$nome."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
@@ -555,7 +555,7 @@ class DBConnection {
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto cucina\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
@@ -582,7 +582,7 @@ class DBConnection {
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina pizza\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
