@@ -702,7 +702,7 @@ AREA-RISERVATA PAGE
 }
 
 .switch-text a {
-    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */*
+    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */
     text-decoration: underline;
     font-weight: 500;
 }
