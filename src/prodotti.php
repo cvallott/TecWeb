@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okDelete){
                 $message = "<p class=\"messaggio\">Pizza eliminata con successo</p>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
             }
         }
     } else if ($action == 'deleteCucina') {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if($okDelete){
                 $message = "<p class=\"messaggio\">Piatto eliminato con successo</p>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
             }
         }
     } else if ($action == 'deleteIngrediente') {
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             if ($okDelete) {
                 $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
             }
         }
     } else if ($action == 'filter') {

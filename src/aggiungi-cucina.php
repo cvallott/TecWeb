@@ -104,14 +104,14 @@ if (isset($_POST['submit'])) {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: dashboard.php");
             } else {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\" role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\" role=\"alert\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: prodotti.php");
             }
