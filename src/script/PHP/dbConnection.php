@@ -317,7 +317,8 @@ class DBConnection {
                 $stringaReturn .= "<input type=\"hidden\" name=\"prezzo\" value=\"".$row['prezzo']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$row['nome']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"quantita\" value=\"1\" />";
-                $stringaReturn .= '<input type="submit" name="azione" value="Aggiungi '.$row['nome'].' al carrello" class="invia-button" />';
+                $stringaReturn .= '<input type="hidden" name="azione" value="Aggiungi al carrello" />';
+                $stringaReturn .= '<input type="submit" value="Aggiungi '.$row['nome'].' al carrello" class="invia-button" />';
                 $stringaReturn .= "</form></li>";
             }
         }
