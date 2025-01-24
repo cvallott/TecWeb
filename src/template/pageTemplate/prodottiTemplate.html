@@ -20,7 +20,7 @@
   <section id="general-intro">
     <h1>PRODOTTI</h1>
   </section>
-  <section id="filtri">
+  <div id="filtri">
     <form method="post" action="prodotti.php">
       <div>
         <input type="hidden" name="action" value="filter" />
@@ -38,12 +38,12 @@
       </div>
       <input type="submit" class="invia-button" value="Filtra" />
     </form>
-  </section>
+  </div>
   <section id="tabella-ordini">
     [operazione-successo]
     <span id="descrTabella">In questa tabella vengono riassunti tutti i prodotti organizzati per colonne: Informazioni sul prodotto, Tipo, Prezzo, Modifica del prodotto ed Eliminazione.</span>
     <table aria-describedby="descrTabella">
-      <caption>Ordini</caption>
+      <caption><h2>Ordini</h2></caption>
       <thead>
       <tr>
         <th scope="col" abbr="Info">Info prodotto</th>

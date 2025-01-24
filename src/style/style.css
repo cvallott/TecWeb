@@ -723,9 +723,12 @@ AREA-RISERVATA PAGE
 }
 
 .switch-text a {
-    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */*
-    text-decoration: underline;
+    color: var(--bgcolor2);
     font-weight: 500;
+}
+
+.switch-text a:visited {
+    color: var(--txtcolor);
 }
 
 .switch-text a:hover {
