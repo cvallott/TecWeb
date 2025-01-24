@@ -1218,7 +1218,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     padding: 0.5em;
     font-size: 0.8em;
     color: var(--bgcolor);
-    background-color: var(--bgcolor2);
+    background-color: var(--bgcolor3);
     border: none;
     width: 13em;
     white-space: wrap;
@@ -1228,7 +1228,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 }
 
 .invia-button:hover {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor2);
     transform: translateY(-2px);
 }
 
@@ -1238,7 +1238,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 
 #filtri form .invia-button{
     background-color: var(--bgcolor);
-    color: var(--bgcolor2);
+    color: var(--bgcolor3);
     font-size: 1.1em;
     width: 6em;
 }
