@@ -16,7 +16,7 @@ html{
     /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
     /*background-image: url(assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
-    background-size: cover; /**/
+    background-size: cover;
     background-image: url(../assets/grafiche/sfondo-nero.jpg);
     background-repeat: no-repeat;
 }
@@ -35,6 +35,7 @@ SEZIONE HEADER
 */
 header {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     background-color: var(--bgcolor);
     height: 5em;
@@ -52,6 +53,7 @@ header img {
 
 #menu {
     margin-left: auto;
+    white-space: nowrap;
 }
 
 #menu li:not(.menuMobile-version){
@@ -222,7 +224,6 @@ HOME PAGE
 }
 
 #intro {
-    /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
     padding: 0.7em;
     margin-bottom: 0;
 }
@@ -240,6 +241,16 @@ HOME PAGE
 #titolo h2 {
     text-align: right;
     color: var(--bgcolor);
+}
+
+@media (max-width: 1100px) {
+    #titolo h2 {
+        max-width: 6em;
+        margin-left: auto;
+        margin-right: 0;
+        line-height: 1.5;
+        text-align: right;
+    }
 }
 
 #titolo img {
@@ -642,6 +653,7 @@ RIEPILOGO-ORDINI PAGE
     text-decoration: none;
     border-bottom: solid 2px var(--bgcolor2);
     border-radius: 0.4em;
+    white-space: nowrap;
 }
 
 #tabella-ordini a:link{
@@ -665,6 +677,15 @@ RIEPILOGO-ORDINI PAGE
 
 #tabella-ordini img{
     margin-right: 0.5em;
+}
+
+#tabella-ordini .invia-button{
+    width: 8em;
+    margin: 0.5em;
+}
+
+#tabella-ordini select{
+    line-height: 2em;
 }
 
 /*
@@ -997,8 +1018,15 @@ MENU-PRENOTA-PAGE
     margin: 0;
 }
 
-#menu-prenotaPage .invia-button, #carrelloPage .invia-button {
+#menu-prenotaPage .invia-button, #carrelloPage #FM-content .invia-button {
     padding: 0.8em;
+    width: 15em;
+    white-space: wrap;
+}
+
+#menu-prenotaPage .messaggio{
+    margin: 1em;
+    color: var(--bgcolor);
 }
 
 /*
@@ -1192,6 +1220,8 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
     border: none;
+    width: 13em;
+    white-space: wrap;
     border-radius: 0.4em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -1210,6 +1240,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     font-size: 1.1em;
+    width: 6em;
 }
 
 #filtri form .invia-button:hover {

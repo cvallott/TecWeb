@@ -67,7 +67,7 @@ if(isset($_POST['ora'])){
                 if($connessione->itemToOrdine($succ)) {
 
                     if ($totQuant == 0) {
-                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Devi inserire almeno un prodotto. Riprova!</p>";
+                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Inserisci almeno un prodotto e riprova!</p>";
                     } else {
                         unset($_SESSION['carrello']);
                         $oraScelta = $_POST['ora'];

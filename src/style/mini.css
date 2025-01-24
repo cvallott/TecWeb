@@ -134,6 +134,7 @@ INDEX MOBILE
     line-height: 1em;
     font-size: 1em;
     margin-top: 0;
+    max-width: 100%;
 }
 
 #container{
