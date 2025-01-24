@@ -306,7 +306,7 @@ class DBConnection {
 
                 $stringaReturn .= "<li>";
                 $stringaReturn .= "<img src=\"".$row['path']."\" alt=\"\" loading=\"lazy\" />";
-                $stringaReturn .= "<p><h4>".$row['nome']."</h4></p>";
+                $stringaReturn .= "<h4>".$row['nome']."</h4>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "<form method=\"POST\" action=\"carrello.php\" >";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
