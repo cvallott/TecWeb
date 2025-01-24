@@ -675,7 +675,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
-                $stringaReturn .= "<label for=\"ruoloUpdate".$conta."\">Modifica ruolo:</label>";
+                $stringaReturn .= "<label for=\"ruoloUpdate".$conta."\">Modifica ".$row['nome'].":</label>";
                 $stringaReturn .= "<select name=\"ruolo\" class=\"select\" id=\"ruoloUpdate".$conta."\">";
                 $stringaReturn .= "<option value=\"0\">Cliente</option>";
                 $stringaReturn .= "<option value=\"1\">Amministratore</option>";
@@ -781,7 +781,7 @@ class DBConnection {
                 $stringaReturn .= "<td data-title=\"Modifica stato\">";
                 $stringaReturn .= "<form action=\"visualizza-ordini.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
-                $stringaReturn .= "<label for=\"modificaS".$row['id']."\">Modifica stato:</label>";
+                $stringaReturn .= "<label for=\"modificaS".$row['id']."\">Modifica ".$row['id'].":</label>";
                 $stringaReturn .= "<select name=\"stato\" id=\"modificaS".$row['id']."\" class=\"select\">";
                 $stringaReturn .= "<option value=\"1\">Consegnato</option>";
                 $stringaReturn .= "<option value=\"0\">In corso</option>";
