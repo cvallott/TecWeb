@@ -46,7 +46,7 @@ if($conn) {
 }
 
 if (isset($_POST['submit'])) {
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset role=\"alert\" class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomeIngr = pulisciInput($_POST['nome']);
     $isVeget = pulisciInput($_POST['veget']);
 
@@ -54,16 +54,16 @@ if (isset($_POST['submit'])) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
         if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente inserito è già presente</li>";
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente inserito è già presente</li>";
         }
         if (strlen($nomeIngr) < 2) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomeIngr)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente non può contenere numeri</li>";
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomeIngr)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li>Il nome dell'ingrediente deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (strlen($isVeget) == 0) {
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<fieldset role=\"alert\" class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if ($conn) {
             if(empty($_GET['nome'])) {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
@@ -82,14 +82,14 @@ if (isset($_POST['submit'])) {
                 if ($okIngredienti) {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: dashboard.php");
             }else{
                 if($okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: prodotti.php");
             }

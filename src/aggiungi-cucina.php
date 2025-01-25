@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
         $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
     }
 
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<fieldset role=\"alert\" class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
     $nomePiatto = pulisciInput($_POST['nome']);
     $prezzoPiatto = pulisciInput($_POST['prezzo']);
     $ingredientiPiatto = pulisciInput($ingr);
@@ -65,20 +65,20 @@ if (isset($_POST['submit'])) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
         if (strlen($nomePiatto) < 2) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePiatto)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto non può contenere numeri</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePiatto)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {
-        $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero maggiore di 0</li>";
+        $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
     }
     if ($ingredientiPiatto == '') {
-        $messaggiPerForm .= "<li role=\"alert\">Il piatto deve avere almeno un ingrediente</li>";
+        $messaggiPerForm .= "<li>Il piatto deve avere almeno un ingrediente</li>";
     }
     if($path != 'assets/icons/piatto_icon.png'){
         $imageUploadResult = checkImage();
@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
     }
     $messaggiPerForm .= "</ul></fieldset>";
 
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<fieldset role=\"alert\" class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPiatto);
             if(empty($_GET['id'])) {
