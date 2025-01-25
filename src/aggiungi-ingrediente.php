@@ -53,8 +53,10 @@ if (isset($_POST['submit'])) {
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
-        if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente inserito è già presente</li>";
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente inserito è già presente</li>";
+            }
         }
         if (strlen($nomeIngr) < 2) {
             $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";

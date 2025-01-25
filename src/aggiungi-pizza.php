@@ -42,6 +42,8 @@ if($conn){
             $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
             if(!empty($valueInfo[2])){
                 $template = str_replace('[valueDescr]', $valueInfo[2], $template);
+            }else{
+                $template = str_replace('[valueDescr]', '', $template);
             }
         }
         $template = str_replace('[percorsoFile]', '"aggiungi-pizza.php?id='.$id.'"', $template);
@@ -73,6 +75,11 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkPizza($nomePizza) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePizza) < 2) {
             $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }

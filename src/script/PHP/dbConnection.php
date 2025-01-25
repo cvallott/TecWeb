@@ -1165,8 +1165,37 @@ class DBConnection {
     }
 
     public function checkIngrediente($nome) {
+        $result = "";
         try {
             $query = "SELECT nome FROM ingrediente WHERE nome = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $nome);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        return $result->num_rows > 0;
+    }
+
+    public function checkPizza($nome) {
+        $result = "";
+        try {
+            $query = "SELECT nome FROM pizza WHERE nome = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $nome);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        return $result->num_rows > 0;
+    }
+
+    public function checkCucina($nome) {
+        $result = "";
+        try {
+            $query = "SELECT nome FROM cucina WHERE nome = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param('s', $nome);
             $stmt->execute();

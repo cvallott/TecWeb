@@ -39,7 +39,7 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`cat`, `nomeEsteso`, `descrizione`) VALUES
 ('Classica', 'Le nostre pizze classiche', 'I gusti classici non tramontano mai: questi sapori sono la prova che le cose migliori non hanno bisogno di complicazioni.'),
-('Fuori menu', 'I nostri Fuori menu', 'Descrizione Fuori menu'),
+('Fuori menu', 'I nostri Fuori menu', 'Lasciati deliziare dalle nostre proposte, non fartele scappare!'),
 ('Speciale', 'Le nostre pizze speciali', 'Non è solo una pizza, è un’esperienza: ogni sapore speciale ha una storia da raccontare.'),
 ('Stagionale', 'Le nostre pizze stagionali', 'La nostra passione ci spinge a scoprire sempre cose nuove: proponiamo qualcosa di diverso, i sapori stagionali!');
 
@@ -62,25 +62,11 @@ CREATE TABLE `checkOrari` (
 
 CREATE TABLE `cucina` (
   `id` int(11) NOT NULL,
-  `nome` varchar(250) NOT NULL,
+  `nome` varchar(250) NOT NULL UNIQUE,
   `prezzo` double NOT NULL,
   `veget` tinyint(1) NOT NULL DEFAULT 0,
   `path` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `cucina`
---
-
-INSERT INTO `cucina` (`id`, `nome`, `prezzo`, `veget`, `path`) VALUES
-(1, 'frittura', 11, 1, 'assets/icons/pizza_icon.png'),
-(2, 'frittura2', 11, 1, 'assets/icons/pizza_icon.png'),
-(3, 'prova', 23, 0, 'assets/icons/piatto_icon.png'),
-(4, 'prova5', 3, 0, 'assets/icons/piatto_icon.png'),
-(5, 'prova456', 5, 0, 'assets/icons/piatto_icon.png'),
-(6, 'prova47', 25, 0, 'assets/icons/piatto_icon.png'),
-(7, 'grhgdjh', 15, 0, 'assets/pizze/'),
-(8, 'jtdfhmhfmhykf', 0, 0, 'assets/pizze/');
 
 -- --------------------------------------------------------
 
@@ -93,22 +79,6 @@ CREATE TABLE `cucina_ingrediente` (
   `ingrediente` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `cucina_ingrediente`
---
-
-INSERT INTO `cucina_ingrediente` (`cucina`, `ingrediente`) VALUES
-(2, 'cesco'),
-(2, 'crudo'),
-(3, 'fior di latte'),
-(4, 'Mozzarella'),
-(5, 'patate fritte'),
-(6, 'fior di latte'),
-(6, 'mozzarella di bufala'),
-(7, 'Mozzarella'),
-(7, 'mozzarella di bufala'),
-(7, 'patate fritte'),
-(8, 'mozzarella di bufala');
 
 -- --------------------------------------------------------
 
@@ -125,13 +95,6 @@ CREATE TABLE `disponiblitaorarie` (
 --
 
 INSERT INTO `disponiblitaorarie` (`fascia`) VALUES
-('16:00-16:10'),
-('16:10-16:20'),
-('16:20-16:30'),
-('17:10-17:20'),
-('18.00-18.10'),
-('18.10-18.20'),
-('18.20-18.30'),
 ('18.30-18.40'),
 ('18.40-18.50'),
 ('18.50-19.00'),
@@ -167,17 +130,68 @@ CREATE TABLE `ingrediente` (
 -- Dump dei dati per la tabella `ingrediente`
 --
 
-INSERT INTO `ingrediente` (`nome`, `peso`, `veget`, `pagg`) VALUES
-('carciofi', 3, 0, 0.5),
-('cesco', 3, 1, 0.5),
-('crudo', 3, 0, 2),
-('fior di latte', 3, 0, 1.5),
-('funghi', 3, 0, 0.5),
-('mascarpone', 3, 0, 2.5),
-('Mozzarella', 2, 0, 1.5),
-('mozzarella di bufala', 3, 0, 1),
-('patate fritte', 3, 0, 2),
-('pomodoro', 1, 0, 0);
+INSERT INTO `ingrediente` (`nome`, `peso`, `veget`) VALUES
+('Pomodoro', 1, 1),
+('Mozzarella', 2, 1),
+('Asparagi', 3, 1),
+('Pomodoro a fette', 3, 1),
+('Rucola', 3, 1),
+('Carciofi', 3, 1),
+('Basilico', 3, 1),
+('Olive', 3, 1),
+('Melanzane', 3, 1),
+('Mais', 3, 1),
+('Capperi', 3, 1),
+('Cipolla', 3, 1),
+('Pomodorini', 3, 1),
+('Spinaci', 3, 1),
+('Zucchine', 3, 1),
+('Peperoni', 3, 1),
+('Piselli', 3, 1),
+('Aglio', 3, 1),
+('Zucchine fritte', 3, 1),
+('Radicchio', 3, 1),
+('Mozzarella di bufala', 3, 1),
+('Brie', 3, 1),
+('Grana', 3, 1),
+('Ricotta', 3, 1),
+('Gorgonzola', 3, 1),
+('Asiago', 3, 1),
+('Burrata', 3, 1),
+('Philadelphia', 3, 1),
+('Olio al tartufo', 3, 1),
+('Pistacchio', 3, 1),
+('Noci', 3, 1),
+('Uova', 3, 1),
+('Speck', 3, 0),
+('Bresaola', 3, 0),
+('Prosciutto', 3, 0),
+('Crudo', 3, 0),
+('Salamino', 3, 0),
+('Porchetta', 3, 0),
+('Salsiccia', 3, 0),
+('Wurstel', 3, 0),
+('Pancetta stufata', 3, 0),
+('Sopressa', 3, 0),
+('Funghi', 3, 1),
+('Funghi misti', 3, 1),
+('Funghi porcini', 3, 1),
+('Funghi chiodini', 3, 1),
+('Gamberetti', 3, 0),
+('Acciughe', 3, 0),
+('Tonno', 3, 0),
+('Salmone', 3, 0),
+('Patate fritte', 3, 1),
+('Calamari', 3, 0),
+('Verdure pastellate', 3, 1),
+('Gamberetti fritti', 3, 0),
+('Baccalà (300 grammi)', 3, 0),
+('Trippa (400 grammi)', 3, 0),
+('Cotoletta di pollo', 3, 0),
+('Patate fritte con buccia', 3, 1),
+('Mozzarelline', 3, 1),
+('Anelli di cipolla', 3, 1),
+('Pepite di pollo', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -194,24 +208,6 @@ CREATE TABLE `ordine` (
   `nota` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `ordine`
---
-
-INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`, `nota`) VALUES
-(1, 'utente@utente.it', '2025-01-09', '19.40-19.50', 0, NULL),
-(2, 'utente@utente.it', '2025-01-09', '19.50-20.00', 0, NULL),
-(3, 'utente@utente.it', '2025-01-10', '19.50-20.00', 0, NULL),
-(4, 'utente@utente.it', '2025-01-09', '20.10-20.20', 0, NULL),
-(5, 'admin@admin.com', '2025-01-13', '18.20-18.30', 0, NULL),
-(6, 'admin@admin.com', '2025-01-13', '19.10-19.20', 0, NULL),
-(7, 'admin@admin.com', '2025-01-13', '19.40-19.50', 0, NULL),
-(8, 'admin@admin.com', '2025-01-13', '19.30-19.40', 0, NULL),
-(9, 'admin@admin.com', '2025-01-13', '18.00-18.10', 0, NULL),
-(10, 'admin@admin.com', '2025-01-13', '18.00-18.10', 0, NULL),
-(11, 'admin@admin.com', '2025-01-13', '18.30-18.40', 0, NULL),
-(33, 'admin@admin.com', '2025-01-13', '18.50-19.00', 0, '18.50 - 2zuccGorgo, provath, pesto buf');
-
 -- --------------------------------------------------------
 
 --
@@ -220,37 +216,13 @@ INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`, `nota`) VALUES
 
 CREATE TABLE `pizza` (
   `id` int(11) NOT NULL,
-  `nome` varchar(250) NOT NULL,
+  `nome` varchar(250) NOT NULL UNIQUE,
   `prezzo` double NOT NULL,
   `veget` tinyint(1) NOT NULL DEFAULT 0,
   `categoria` varchar(250) NOT NULL,
   `descrizione` mediumtext DEFAULT NULL,
   `path` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `pizza`
---
-
-INSERT INTO `pizza` (`id`, `nome`, `prezzo`, `veget`, `categoria`, `descrizione`, `path`) VALUES
-(21, 'Zucca e Gorgonzola', 10, 0, 'Fuori menu', 'aaaaaaaaaaaa', 'assets/pizze/FM-zuccagorgo.jpeg'),
-(22, 'Pesto e Bufala', 9, 0, 'Fuori menu', 'aaaaaaaaaaaaaaaaaaaa', 'assets/pizze/FM-pestobufala.jpeg'),
-(36, 'provapath', 8, 0, 'Fuori menu', 'kihilhj', 'assets/pizze/FM-calzonenutella.jpeg'),
-(41, 'provafm3', 6, 0, 'Fuori menu', 'jdjy', 'assets/icons/pizza_icon.png'),
-(42, 'yjjyjy', 56, 0, 'Speciale', 'ytjy', 'assets/icons/pizza_icon.png'),
-(43, 'hmgmh', 3, 0, 'Classica', 'fjhfh', 'assets/icons/pizza_icon.png'),
-(44, 'pgrkjfbefbett', 5, 0, 'Classica', 'i0+k00ih', 'assets/icons/pizza_icon.png'),
-(45, 'fbfbgnrtg', 7, 0, 'Classica', 'jtuujt', 'assets/icons/pizza_icon.png'),
-(46, 'gfgggg3', 3, 0, 'Speciale', 'gvg', 'assets/pizze/FM-calzonenutella.jpeg'),
-(47, 'prova', 1515, 0, 'Classica', 'grgr', 'assets/icons/pizza_icon.png'),
-(48, 'francesco', 5, 1, 'Classica', 'ge', 'assets/icons/pizza_icon.png'),
-(49, 'prova3343', 5, 0, 'Classica', 'ttr', 'assets/icons/pizza_icon.png'),
-(50, 'jiewijvi jifewier', 44, 1, 'Classica', 'hh', 'assets/icons/pizza_icon.png'),
-(51, 'prova', 4, 0, 'Classica', 'yyy', 'assets/icons/pizza_icon.png'),
-(52, 'prova4535', 56, 1, 'Classica', 'jhyj', 'assets/icons/pizza_icon.png'),
-(53, 'prova567', 564, 0, 'Classica', 'jj', 'assets/icons/pizza_icon.png'),
-(54, 'rgrggrt', 4, 0, 'Classica', 'tt', 'assets/icons/pizza_icon.png'),
-(55, '009', 3, 0, 'Classica', 'mnj,b', 'assets/icons/pizza_icon.png');
 
 -- --------------------------------------------------------
 
@@ -262,49 +234,6 @@ CREATE TABLE `pizza_ingrediente` (
   `pizza` int(11) NOT NULL,
   `ingrediente` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `pizza_ingrediente`
---
-
-INSERT INTO `pizza_ingrediente` (`pizza`, `ingrediente`) VALUES
-(22, 'Mozzarella'),
-(22, 'mozzarella di bufala'),
-(22, 'patate fritte'),
-(22, 'pomodoro'),
-(36, 'mascarpone'),
-(36, 'mozzarella di bufala'),
-(36, 'patate fritte'),
-(41, 'mascarpone'),
-(41, 'mozzarella di bufala'),
-(41, 'patate fritte'),
-(42, 'crudo'),
-(43, 'crudo'),
-(43, 'mascarpone'),
-(43, 'Mozzarella'),
-(43, 'patate fritte'),
-(43, 'pomodoro'),
-(45, 'carciofi'),
-(45, 'crudo'),
-(45, 'funghi'),
-(45, 'Mozzarella'),
-(45, 'patate fritte'),
-(45, 'pomodoro'),
-(46, 'fior di latte'),
-(48, 'cesco'),
-(48, 'fior di latte'),
-(48, 'funghi'),
-(49, 'fior di latte'),
-(49, 'pomodoro'),
-(50, 'cesco'),
-(50, 'funghi'),
-(50, 'pomodoro'),
-(52, 'cesco'),
-(52, 'fior di latte'),
-(52, 'pomodoro'),
-(53, 'carciofi'),
-(54, 'fior di latte'),
-(55, 'Mozzarella');
 
 -- --------------------------------------------------------
 
@@ -330,19 +259,6 @@ CREATE TABLE `prodotti_ordine` (
   `cucina` int(11) DEFAULT NULL,
   `quantita` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `prodotti_ordine`
---
-
-INSERT INTO `prodotti_ordine` (`id`, `ordine`, `pizza`, `cucina`, `quantita`) VALUES
-(1, 1, 46, NULL, 10),
-(2, 2, 46, NULL, 10),
-(3, 3, 46, NULL, 20),
-(4, 4, 46, NULL, 6),
-(33, 33, 21, NULL, 2),
-(34, 33, 36, NULL, 1),
-(35, 33, 22, NULL, 1);
 
 -- --------------------------------------------------------
 
