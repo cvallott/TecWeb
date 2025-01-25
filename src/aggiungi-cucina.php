@@ -64,6 +64,11 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePiatto) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkCucina($nomePiatto) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePiatto) < 2) {
             $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
