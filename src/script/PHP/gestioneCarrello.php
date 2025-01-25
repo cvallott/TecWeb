@@ -61,16 +61,19 @@ function getCarrello() : string {
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
-                        <button type="submit" name="azione" value="Rimuovi una pizza o un piatto"><img src="assets/icons/minus.png" alt="Rimuovi una pizza o un piatto" /></button>
+                        <input type="hidden" name="azione" value="decrementa" />
+                        <button type="submit" value="Rimuovi una '.$item['nome'].' al carrello"><img src="assets/icons/minus.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '<p>'. $item['quantita'] .'</p>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
-                        <button type="submit" name="azione" value="Aggiungi una pizza o un piatto"><img src="assets/icons/plus.png" alt="Aggiungi una pizza o un piatto" /></button>
+                        <input type="hidden" name="azione" value="incrementa" />
+                        <button type="submit" value="Aggiungi una '.$item['nome'].' al carrello"><img src="assets/icons/plus.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
-                        <button type="submit" name="azione" value="Rimuovi pizza o piatto dall\'ordine"><img src="assets/icons/cestino.png" alt="Rimuovi pizza o piatto dall\'ordine" /></button>
+                        <input type="hidden" name="azione" value="rimuovi" />
+                        <button type="submit" value="Rimuovi '.$riga['nome'].' dall\'ordine"><img src="assets/icons/cestino.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }
