@@ -732,6 +732,10 @@ AREA-RISERVATA PAGE
     color: var(--bgcolor3);
 }
 
+#registerForm a:visited,#loginForm a:visited{
+    color: var(--txtcolor);
+}
+
 #registerForm,
 #loginForm {
     display: block;
