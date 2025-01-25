@@ -61,16 +61,16 @@ function getCarrello() : string {
         $rowsCarrello .= '</div><div class="dettaglioItem"><div class="controlloQuantita">';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
-                        <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa" /></button>
+                        <button type="submit" name="azione" value="Rimuovi una pizza o un piatto"><img src="assets/icons/minus.png" alt="Rimuovi una pizza o un piatto" /></button>
                     </form>';
         $rowsCarrello .= '<p>'. $item['quantita'] .'</p>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
-                        <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa" /></button>
+                        <button type="submit" name="azione" value="Aggiungi una pizza o un piatto"><img src="assets/icons/plus.png" alt="Aggiungi una pizza o un piatto" /></button>
                     </form>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
-                        <button type="submit" name="azione" value="rimuovi"><img src="assets/icons/cestino.png" alt="Rimuovi" /></button>
+                        <button type="submit" name="azione" value="Rimuovi pizza o piatto dall\'ordine"><img src="assets/icons/cestino.png" alt="Rimuovi pizza o piatto dall\'ordine" /></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }
