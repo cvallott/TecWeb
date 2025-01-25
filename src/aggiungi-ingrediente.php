@@ -46,7 +46,7 @@ if($conn) {
 }
 
 if (isset($_POST['submit'])) {
-    $messaggiPerForm .= "<fieldset role=\"alert\" class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul>";
     $nomeIngr = pulisciInput($_POST['nome']);
     $isVeget = pulisciInput($_POST['veget']);
 
@@ -69,9 +69,9 @@ if (isset($_POST['submit'])) {
     if (strlen($isVeget) == 0) {
         $messaggiPerForm .= "<li>Indicare se l'ingrediente è vegetariano o no</li>";
     }
-    $messaggiPerForm .= "</ul></fieldset>";
+    $messaggiPerForm .= "</ul></div>";
 
-    if(trim($messaggiPerForm) == "<fieldset role=\"alert\" class=\"errore-form\"><legend><span lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul></ul></div>"){
         if ($conn) {
             if(empty($_GET['nome'])) {
                 $okIngredienti = $connessione->insertIngrediente($nomeIngr, $isVeget);
@@ -80,16 +80,16 @@ if (isset($_POST['submit'])) {
             }
             if(empty($_GET['nome'])) {
                 if ($okIngredienti) {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Prodotto inserito con successo</div>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
                 }
                 header("Location: dashboard.php");
             }else{
                 if($okIngredienti){
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Prodotto modificato con successo</div>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
                 }
                 header("Location: prodotti.php");
             }

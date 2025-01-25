@@ -1452,7 +1452,7 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 
 .errore-form{
     border: 1px solid var(--bgcolor2);
-    border-radius: 5px;
+    border-radius: 0.4em;
 }
 
 .errore-form span{
