@@ -727,10 +727,6 @@ AREA-RISERVATA PAGE
     font-weight: 500;
 }
 
-.switch-text a:visited {
-    color: var(--txtcolor);
-}
-
 .switch-text a:hover {
     color: var(--bgcolor3);
 }
