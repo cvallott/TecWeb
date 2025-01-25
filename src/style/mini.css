@@ -223,7 +223,7 @@ TABELLE MOBILE
     display: none;
 }
 
-#tabella-ordini caption{
+#tabella-ordini caption h2{
     font-size: 1.5em;
 }
 
@@ -342,11 +342,6 @@ TORNA-SU MOBILE
     text-indent: -999em;
 }
 
-.torna-su:not(#mobile.torna-su):focus{ /* ATTENZIONE, QUESTO COMANDO NON FUNZIONA */
-    position: static;
-    text-indent: 0;
-}
-
 #menu-prenotaPage .torna-su:not(#mobile):not(#mobile-plus){
     position: relative;
     text-indent: -999em;
@@ -397,7 +392,6 @@ CHI-SIAMO
     text-align: center;
 }
 
-/*figli pari*/
 .chi-siamo-boxes:nth-child(even) {
     flex-direction: column-reverse;
 }
