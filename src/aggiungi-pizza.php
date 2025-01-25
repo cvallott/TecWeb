@@ -42,6 +42,8 @@ if($conn){
             $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
             if(!empty($valueInfo[2])){
                 $template = str_replace('[valueDescr]', $valueInfo[2], $template);
+            }else{
+                $template = str_replace('[valueDescr]', '', $template);
             }
         }
         $template = str_replace('[percorsoFile]', '"aggiungi-pizza.php?id='.$id.'"', $template);
@@ -73,6 +75,11 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkPizza($nomePizza) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePizza) < 2) {
             $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }
@@ -122,14 +129,14 @@ if (isset($_POST['submit'])) {
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: dashboard.php");
             }else{
                 if($okPizza && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: prodotti.php");
             }

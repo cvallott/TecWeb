@@ -64,6 +64,11 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePiatto) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkCucina($nomePiatto) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePiatto) < 2) {
             $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
@@ -104,14 +109,14 @@ if (isset($_POST['submit'])) {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: dashboard.php");
             } else {
                 if($okCucina && $okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\" role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p class=\"messaggio\" role=\"alert\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: prodotti.php");
             }

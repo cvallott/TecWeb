@@ -53,8 +53,10 @@ if (isset($_POST['submit'])) {
     if (strlen($nomeIngr) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome dell'ingrediente</li>";
     } else {
-        if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente inserito è già presente</li>";
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkIngrediente($nomeIngr) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente inserito è già presente</li>";
+            }
         }
         if (strlen($nomeIngr) < 2) {
             $messaggiPerForm .= "<li role=\"alert\">Il nome dell'ingrediente deve contenere almeno 2 caratteri</li>";
@@ -82,14 +84,14 @@ if (isset($_POST['submit'])) {
                 if ($okIngredienti) {
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: dashboard.php");
             }else{
                 if($okIngredienti){
                     $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
                 }
                 header("Location: prodotti.php");
             }
