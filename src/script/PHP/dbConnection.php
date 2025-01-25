@@ -69,7 +69,6 @@ class DBConnection {
                     }catch(mysqli_sql_exception $e){
                         header("location: errore.php");
                     }
-
                 }
                 if(mysqli_num_rows($pizze) > 0) {
                     $visited = true;
@@ -890,7 +889,7 @@ class DBConnection {
     }
 
     public function isVeget(array $ingredienti) {
-        $veget = 0;
+        $veget = 1;
         foreach($ingredienti as $ingrediente) {
             try {
                 $query = "SELECT veget FROM ingrediente WHERE nome='" . $ingrediente . "'";
@@ -900,12 +899,12 @@ class DBConnection {
             }
             if(mysqli_num_rows($result) > 0) {
                 $row = $result->fetch_assoc();
-                if ($row['veget'] == 1) {
-                    $veget = 1;
+                if ($row['veget'] == 0) {
+                    return 0;
                 }
             }
         }
-        return $veget;
+        return 1;
     }
 
     public function insertIngrediente($nome, $veget, $nomeOld = null) {
