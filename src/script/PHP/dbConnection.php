@@ -450,40 +450,40 @@ class DBConnection {
             if ($_POST['tipo'] == '0') {
                 $query = "SELECT * FROM ingrediente WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = \"". $_POST['nome'] ."\"";
+                    $query .= " AND nome LIKE \"%". $_POST['nome'] ."%\"";
                 }
                 return $this->getIngredientiTabella($query);
             } elseif ($_POST['tipo'] == '1') {
                 $query = "SELECT * FROM pizza WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = \"". $_POST['nome'] ."\"";
+                    $query .= " AND nome LIKE \"%". $_POST['nome'] ."%\"";
                 }
                 return $this->getPizzeTabella($query);
             } elseif ($_POST['tipo'] == '2') {
                 $query = "SELECT * FROM cucina WHERE 1=1";
                 if (!empty($_POST['nome'])) {
-                    $query .= " AND nome = \"". $_POST['nome']."\"";
+                    $query .= " AND nome LIKE \"%". $_POST['nome']."%\"";
                 }
                 return $this->getCucinaTabella($query);
             } else {
                 if($val == 0) {
                     $query = "SELECT * FROM pizza WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = \"". $_POST['nome']."\"";
+                        $query .= " AND nome LIKE \"%". $_POST['nome']."%\"";
                     }
                     return $this->getPizzeTabella($query);
                 }
                 if($val == 1) {
                     $query = "SELECT * FROM cucina WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = \"". $_POST['nome']."\"";
+                        $query .= " AND nome LIKE \"%". $_POST['nome']."%\"";
                     }
                     return $this->getCucinaTabella($query);
                 }
                 if($val == 2) {
                     $query = "SELECT * FROM ingrediente WHERE 1=1";
                     if (!empty($_POST['nome'])) {
-                        $query .= " AND nome = \"". $_POST['nome']."\"";
+                        $query .= " AND nome LIKE \"%". $_POST['nome']."%\"";
                     }
                     return $this->getIngredientiTabella($query);
                 }
