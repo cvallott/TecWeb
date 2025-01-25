@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
 
     if ($_POST['azione'] === 'Aggiungi al carrello' && $id && $nome && $prezzo) {
         aggiornaCarrello($id, $nome, $quantita,$prezzo);
-        $_SESSION['aggiunta_carrello'] = "<div><p class=\"messaggio\">Prodotto aggiunto al carrello! Continua a visitare il nostro menù e procedi all'ordine!</p></div>";
+        $_SESSION['aggiunta_carrello'] = "<div class=\"messaggio\">Prodotto aggiunto al carrello! Continua a visitare il nostro menù e procedi all'ordine!</div>";
     } elseif ($_POST['azione'] === 'incrementa' && $id) {
         aggiornaCarrello($id, '', 1,'');
     } elseif ($_POST['azione'] === 'decrementa' && $id) {
