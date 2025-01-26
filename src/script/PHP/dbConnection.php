@@ -763,7 +763,7 @@ class DBConnection {
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
                 $stringaReturn .= "<td data-title=\"Cliente\">".$row['cliente']."</td>";
-                $stringaReturn .= "<td data-title=\"Data e ora\"><time datetime=\"".$row['data']."\">".$row['data']."</time> - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e ora\">".$row['data']." - ".$row['ora']."</td>";
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
@@ -867,7 +867,7 @@ class DBConnection {
             while($row = $result->fetch_array(MYSQLI_ASSOC) ){
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
-                $stringaReturn .= "<td data-title=\"Data e ora\"><time datetime=\"".$row['data']."\">".$row['data']."</time> - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e ora\">".$row['data']." - ".$row['ora']."</td>";
                 if($row['stato']==0){
                     $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
                 }else if($row['stato']==1){
