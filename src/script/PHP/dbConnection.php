@@ -954,11 +954,28 @@ class DBConnection {
         return true;
     }
 
+    function getCurrentPath($id,$tabella){
+        $result= '';
+        try {
+            $query = "SELECT path FROM ".$tabella." WHERE id=?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('d', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+            return $row['path'];
+        }
+        return false;
+    }
+
     public function insertProdottoIngrediente($nome, $ingredienti, $table, $id = null) {
         $result = "";
         if ($id != null){
             try {
-                $query = "DELETE FROM " . $table . "_ingrediente WHERE " . $table . "=" . $id;
                 $query = "DELETE FROM " .$table. "_ingrediente WHERE ?=?";
                 $stmt = $this->connection->prepare($query);
                 $stmt->bind_param('ss', $table, $id);

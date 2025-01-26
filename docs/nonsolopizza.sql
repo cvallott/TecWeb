@@ -270,7 +270,7 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`id`, `nome`, `prezzo`, `veget`, `categoria`, `descrizione`, `path`) VALUES
-(56, 'Asparagi', 7, 1, 'Classica', '', 'assets/icons/pizza_icon.png'),
+(56, 'Asparagi', 7, 1, 'Classica', '', 'assets/pizze/asparagi.jpeg'),
 (57, 'Bufalina', 7.5, 1, 'Classica', '', 'assets/icons/pizza_icon.png'),
 (59, 'Bresaola', 7.5, 0, 'Classica', '', 'assets/icons/pizza_icon.png'),
 (60, 'Briosa', 8, 1, 'Classica', '', 'assets/pizze/briosa.jpeg'),
