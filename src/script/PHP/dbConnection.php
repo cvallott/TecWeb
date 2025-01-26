@@ -877,7 +877,6 @@ class DBConnection {
     }
 
     public function isVeget(array $ingredienti) {
-        $veget = 1;
         foreach($ingredienti as $ingrediente) {
             try {
                 $query = "SELECT veget FROM ingrediente WHERE nome='" . $ingrediente . "'";
