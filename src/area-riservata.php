@@ -27,7 +27,6 @@ $patterns = [
     'password' => '/^.{4,}$/',
     'register-name' => '/^[A-Za-zÀ-ÿ\s\']{2,}$/',
     'register-surname' => '/^[A-Za-zÀ-ÿ\s\']{2,}$/',
-    //'register-email' => '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/'
     'register-email' => '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'
 
 ];
@@ -175,7 +174,6 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
     $messaggiRegForm .= "</ul></fieldset>";
 }
 
-// Replace placeholders in HTML
 $paginaHTML = str_replace('[header]', printHeader(), $paginaHTML);
 $paginaHTML = str_replace('[footer]', printFooter(), $paginaHTML);
 $paginaHTML = str_replace('[messaggiForm]', $messaggiPerForm, $paginaHTML);

@@ -21,11 +21,6 @@ class DBConnection {
         }catch(mysqli_sql_exception $e){
             header('location: errore.php');
         }
-
-        //debug
-        //return mysqli_connect_error();
-
-        //production
         if(mysqli_connect_errno()) {
             return false;
         }else{
@@ -154,9 +149,6 @@ class DBConnection {
     public function getMenuCucina($nome = '') :string{
         $visited = false;
         $stringaReturn = "";
-        /*$stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
-        $stringaReturn .= "<h2>La nostra cucina</h2>";
-        $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";*/
         if(!empty($nome)){
             try {
                 $queryCucina = "SELECT * FROM cucina WHERE nome LIKE ?";
@@ -728,8 +720,6 @@ class DBConnection {
                 $prezzo += ($row['quantita']*$row['prezzo']);
             }
             return $prezzo;
-        }else{
-            /*qualche errore*/
         }
     }
 
@@ -746,8 +736,6 @@ class DBConnection {
                 $conta += $row['quantita'];
             }
             return $conta;
-        }else{
-            /*qualche errore*/
         }
     }
 
@@ -996,7 +984,6 @@ class DBConnection {
         $row = mysqli_fetch_assoc($result);
         $prodottoId = $row['id'];
 
-        // Itera sugli ingredienti e inseriscili
         foreach ($ingredienti as $ingrediente) {
             try {
                 $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
@@ -1223,7 +1210,7 @@ class DBConnection {
     }
 
     public function registerUser($name, $surname, $username, $email, $hashedPassword) {
-        $ruolo = 0; // ruolo default
+        $ruolo = 0;
         try {
             $query = "INSERT INTO utente (nome, cognome, username, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->connection->prepare($query);
