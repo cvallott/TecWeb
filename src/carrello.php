@@ -38,11 +38,20 @@ foreach ($_SESSION['carrello'] as $prodotto) {
     $totQuant += $prodotto['quantita'];
 }
 
-$primadisp = "";
+$primadisp = "La prima disponibilità è nella fascia oraria ";
 $optionOrario = "";
 if ($connessioneOK) {
-    $primadisp = $connessione->getFasceOrarie($totQuant)[0];
-    $optionOrario = $connessione->getFasceOrarie($totQuant)[1];
+    $primadisp .= $connessione->getFasceOrarie($totQuant)[0];
+    $option = $connessione->getFasceOrarie($totQuant)[1];
+    if(!empty($option)){
+        $optionOrario = "<label for=\"ora\">Seleziona ora di ritiro:</label>";
+        $optionOrario .= "<select name=\"ora\" id=\"ora\" class=\"select\" required>";
+        $optionOrario .= $option;
+        $optionOrario .= "</select>";
+    }else{
+        $primadisp = "Ci spiace, al momento non abbiamo nessuna disponibilità. Alla prossima!";
+    }
+
 }
 
 if(isset($_POST['ora'])){
@@ -58,7 +67,7 @@ if(isset($_POST['ora'])){
                 if($connessione->itemToOrdine($succ)) {
 
                     if ($totQuant == 0) {
-                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Devi inserire almeno un prodotto. Riprova!</p>";
+                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Inserisci almeno un prodotto e riprova!</p>";
                     } else {
                         unset($_SESSION['carrello']);
                         $oraScelta = $_POST['ora'];
@@ -71,6 +80,8 @@ if(isset($_POST['ora'])){
         }
     }
 }
+
+
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[messaggio_errore]', $messaggio_errore, $template);

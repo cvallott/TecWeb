@@ -21,28 +21,34 @@
     <section id="general-intro">
         <h1 id="titoloPagSecondaria">ORDINI</h1>
     </section>
-    <section id="filtri">
-        <form id="filtriPrint" method="post" action="visualizza-ordini.php" >
-            <input type="hidden" name="action" value="filter" />
-            <label for="stato">Filtra per stato:</label>
-            <select name="stato" id="stato" class="select">
-                <option value="">Tutti</option>
-                <option value="1">Consegnati</option>
-                <option value="0">In corso</option>
-                <option value="-1">Annullati</option>
-            </select>
-            <label for="cliente">Filtra per nome cliente:</label>
-            <input type="text" name="cliente" id="cliente" />
-            <label for="data">Filtra per data:</label>
-            <input type="date" name="data" id="data" />
+    <div id="filtri">
+        <form id="filtriPrint" method="post" action="visualizza-ordini.php">
+            <div>
+                <input type="hidden" name="action" value="filter" />
+                <label for="stato">Filtra per stato:</label>
+                <select name="stato" id="stato" class="select">
+                    <option value="">Tutti</option>
+                    <option value="1">Consegnati</option>
+                    <option value="0">In corso</option>
+                    <option value="-1">Annullati</option>
+                </select>
+            </div>
+            <div>
+                <label for="cliente">Filtra per nome cliente:</label>
+                <input type="text" name="cliente" id="cliente"/>
+            </div>
+            <div>
+                <label for="data">Filtra per data:</label>
+                <input type="date" name="data" id="data" />
+            </div>
             <input type="submit" class="invia-button" value="Filtra" />
         </form>
-    </section>
+    </div>
     <section id="tabella-ordini">
         [operazione-successo]
         <p id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</p>
         <table aria-describedby="descrTabella">
-            <caption>Ordini</caption>
+            <caption><h2>Ordini</h2></caption>
             <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
             <tr>
                 <th scope="col" abbr="Numero" class="num-ordine">Numero ordine</th>
@@ -59,6 +65,9 @@
             </tbody>
         </table>
     </section>
+    <div class="torna-su" id="mobile-plus">
+        <a href="#general-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+    </div>
 </main>
 [footer]
 </body>

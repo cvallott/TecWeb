@@ -8,7 +8,7 @@
     <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
-    <link rel="stylesheet" href="style/print.css" media="print">
+	<link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -20,12 +20,13 @@
     <div id="DO">
         <section id="DO-intro">
             <h1 id="titoloPagSecondaria">Dettagli ordine numero [numOrdine]</h1>
+            [note]
             [linkIndietro]
         </section>
         <section id="tabella-ordini">
             <p id="descrTabella">In questa tabella vengono riassunti i dettagli dell'ordine selezionato organizzati per colonne: Nome del prodotto, Quantità acquistata, Prezzo. Nulle'ultima riga è presente il prezzo totale dell'ordine.</p>
             <table aria-describedby="descrTabella">
-                <caption>Dettagli ordine</caption>
+                <caption><h2>Dettagli ordine</h2></caption>
                 <thead>
                 <tr>
                     <th scope="col">Prodotto</th>

@@ -26,7 +26,7 @@
       <p id="infoOrdini">utilizza il nostro menù digitale o chiamaci al numero +39 0422 345324</p>
     </div>
   </section>
-  <section id="filtri">
+  <div id="filtri">
     <form method="post" action="menu-prenota.php">
       <input type="hidden" name="action" value="filter" />
       <label for="tipo">Filtra per tipo:</label>
@@ -39,10 +39,13 @@
       <input type="text" name="nome" id="nome" />
       <input type="submit" class="invia-button" value="Filtra" />
     </form>
-  </section>
+  </div>
   [messaggio-carrello]
   [menu]
   [cucina]
+  <div class="torna-su" id="mobile-plus">
+    <a href="#smallMenu"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+  </div>
 </main>
 [footer]
 </body>

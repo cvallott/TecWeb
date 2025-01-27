@@ -21,29 +21,33 @@
     <section id="general-intro">
         <h1 id="titoloPagSecondaria">GESTISCI UTENTI</h1>
     </section>
-    <section id="filtri">
+    <div id="filtri">
         <form id="filtriPrint" method="post" action="gestisci-utenti.php">
-            <input type="hidden" name="action" value="filter" />
-            <label for="ruolo">Filtra per ruolo:</label>
-            <select name="ruolo" id="ruolo" class="select">
-                <option value="">Tutti</option>
-                <option value="0">Clienti</option>
-                <option value="1">Amministratori</option>
-            </select>
-
-            <label for="nome">Filtra per nome utente:</label>
-            <input type="text" name="nome_utente" id="nome" />
-
-            <label for="username">Filtra per username utente:</label>
-            <input type="text" name="username_utente" id="username" />
+            <div>
+                <input type="hidden" name="action" value="filter" />
+                <label for="ruolo">Filtra per ruolo:</label>
+                <select name="ruolo" id="ruolo" class="select">
+                    <option value="">Tutti</option>
+                    <option value="0">Clienti</option>
+                    <option value="1">Amministratori</option>
+                </select>
+            </div>
+            <div>
+                <label for="nome">Filtra per nome utente:</label>
+                <input type="text" name="nome_utente" id="nome" />
+            </div>
+            <div>
+                <label for="username">Filtra per username utente:</label>
+                <input type="text" name="username_utente" id="username" />
+            </div>
             <input type="submit" class="invia-button" value="Filtra" />
         </form>
-    </section>
+    </div>
     <section id="tabella-ordini">
         [operazione-successo]
         <p id="descrTabella">In questa tabella vengono riassunti tutti gli utenti registrati organizzati per colonne: Numero e Cognome, Username, Email, Ruolo, Modifica ruolo ed Elimina utente.</p>
         <table aria-describedby="descrTabella">
-            <caption>Utenti</caption>
+            <caption><h2>Utenti</h2></caption>
             <thead>
             <tr>
                 <th scope="col">Nome e Cognome</th>
@@ -59,6 +63,9 @@
             </tbody>
         </table>
     </section>
+    <div class="torna-su" id="mobile-plus">
+        <a href="#general-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+    </div>
 </main>
 [footer]
 </body>
