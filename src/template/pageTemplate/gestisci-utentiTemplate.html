@@ -6,8 +6,13 @@
     <meta name="description" content="Questa pagina contiene la lista di tutti gli utenti registrati">
     <meta name="keywords" content="Utente,amministratore,cliente">
     <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+    <link rel="shortcut icon" href="assets/logo/logo-neg.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -16,41 +21,44 @@
     <p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Gestisci utenti</p>
 </nav>
 <main id="content">
-    <!-- anche qui 3 sezioni -->
     <section id="general-intro">
-        <h1>GESTISCI UTENTI</h1>
+        <h1 id="titoloPagSecondaria">GESTISCI UTENTI</h1>
     </section>
-    <section id="filtri">
-        <form method="post" action="gestisci-utenti.php">
-            <input type="hidden" name="action" value="filter" />
-            <label for="ruolo">Filtra per ruolo:</label>
-            <select name="ruolo" id="ruolo" class="select">
-                <option value="">Tutti</option>
-                <option value="0">Clienti</option>
-                <option value="1">Amministratori</option>
-            </select>
-
-            <label for="nome">Filtra per nome utente:</label>
-            <input type="text" name="nome_utente" id="nome" />
-
-            <label for="username">Filtra per username utente:</label>
-            <input type="text" name="username_utente" id="username" />
+    <div id="filtri">
+        <form id="filtriPrint" method="post" action="gestisci-utenti.php">
+            <div>
+                <input type="hidden" name="action" value="filter" />
+                <label for="ruolo">Filtra per ruolo:</label>
+                <select name="ruolo" id="ruolo" class="select">
+                    <option value="">Tutti</option>
+                    <option value="0">Clienti</option>
+                    <option value="1">Amministratori</option>
+                </select>
+            </div>
+            <div>
+                <label for="nome">Filtra per nome utente:</label>
+                <input type="text" name="nome_utente" id="nome" />
+            </div>
+            <div>
+                <label for="username">Filtra per username utente:</label>
+                <input type="text" name="username_utente" id="username" />
+            </div>
             <input type="submit" class="invia-button" value="Filtra" />
         </form>
-    </section>
+    </div>
     <section id="tabella-ordini">
         [operazione-successo]
-        <span id="descrTabella">In questa tabella vengono riassunti tutti gli utenti registrati organizzati per colonne: Numero e Cognome, Username, Email, Ruolo, Modifica ruolo ed Elimina utente.</span>
+        <p id="descrTabella">In questa tabella vengono riassunti tutti gli utenti registrati organizzati per colonne: Numero e Cognome, Username, Email, Ruolo, Modifica ruolo ed Elimina utente.</p>
         <table aria-describedby="descrTabella">
-            <caption>Utenti</caption>
+            <caption><h2>Utenti</h2></caption>
             <thead>
             <tr>
                 <th scope="col">Nome e Cognome</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Ruolo</th>
-                <th scope="col">Modifica ruolo</th>
-                <th scope="col">Elimina utente</th>
+                <th scope="col" class="noprint">Modifica ruolo</th>
+                <th scope="col" class="noprint">Elimina utente</th>
             </tr>
             </thead>
             <tbody>
@@ -58,6 +66,9 @@
             </tbody>
         </table>
     </section>
+    <div class="torna-su" id="mobile-plus">
+        <a href="#general-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+    </div>
 </main>
 [footer]
 </body>

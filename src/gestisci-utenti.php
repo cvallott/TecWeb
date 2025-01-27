@@ -24,18 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if($conn){
             $okUpdate = $connessione->updateUtente($ruolo);
             if($okUpdate){
-                $message = "<p class=\"messaggio\">Ruolo modificato con successo</p>";
+                $message = "<div class=\"messaggio\">Ruolo modificato con successo</div>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</p>";
+                $message = "<div role=\"alert\" class=\"messaggio\">Assicurati che il ruolo selezionato non fosse già quello giusto, altrimenti riprova!</div>";
             }
         }
     } else if ($action == 'delete') {
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeleteUtente());
             if($okDelete){
-                $message = "<p class=\"messaggio\">Utente eliminato con successo</p>";
+                $message = "<div class=\"messaggio\">Utente eliminato con successo</div>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<div role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
             }
         }
     } else if ($action == 'filter') {

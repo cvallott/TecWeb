@@ -36,7 +36,6 @@ INDEX PAGE
     display: flex;
     align-items: center;
     gap: 1em;
-    order: 1;
 }
 
 #titolo img {
@@ -48,11 +47,6 @@ INDEX PAGE
 #titolo h1, #titolo h2 {
     margin: 0;
     color: #A2231D;
-}
-
-#breadcrumb {
-    display: flex;
-    order: 2;
 }
 
 #important-info{
@@ -70,7 +64,6 @@ INDEX PAGE
     max-width: 200px;
     padding: 0.5em;
     height: 100px;
-    /*width: 300px;*/
     width: 33%;
     background-color: var(--txtcolor);
     text-align: center;
@@ -334,7 +327,7 @@ AGGIUNGI INGREDIENTE-PIZZA-CUCINA
 }
 
 label[for="prezzo"], span[class="default-text"] {
-    display: block; 
+    display: block;
     margin-bottom: 0.5em;
 }
 
@@ -364,3 +357,140 @@ label[for="file"], .form-fieldset #file{
 main#content h1{
     color: #A2231D;
 }
+/*
+-------------
+CHI SIAMO
+-------------
+ */
+
+#titoloPagSecondaria{
+    margin: 0;
+    color: #A2231D;
+}
+
+#chi-siamo-contenitore{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.chi-siamo-items{
+    width: 33%;
+}
+
+.chi-siamo-items p{
+    max-width: 92%;
+    margin: auto;
+}
+
+.chi-siamo-sezbordo{
+    border-right: 1px solid black;
+}
+
+.chi-siamo-titoli{
+    text-align: center;
+}
+
+#chi-siamo-storia{
+    margin-top: 50px;
+}
+
+/*
+-------------
+CHI SIAMO
+-------------
+ */
+
+.dashboard{
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboard-sottoItems{
+    margin-left: 30px;
+}
+
+#paragrafdash{
+    margin-top: -5px;
+}
+
+/*
+-------------
+RIEPILOGO ORDINI
+-------------
+ */
+
+#tabella-ordini table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabella-ordini caption{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#tabella-ordini th,td {
+    border: 1px solid black;
+}
+
+#tabella-ordini td{
+    text-align: center;
+}
+
+.noprint{
+    display: none;
+}
+
+#filtriPrint{
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+}
+
+#filtriPrint input{
+    margin-top:3px;
+}
+
+#filtriPrint select{
+    margin-top:3px;
+}
+
+#filtriPrint label {
+    margin-top: 10px;
+}
+
+#descrTabella{
+    margin-top: 20px;
+}
+
+
+/*
+-------------
+DETTAGLI-ORDINE
+-------------
+ */
+
+#descrTabella{
+    margin-top: 20px;
+}
+
+/*
+-------------
+AREA-RISERVATA
+-------------
+ */
+
+.form-fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+.invia-button{
+    width: 20%;
+    margin-top:10px;
+}
+
+
+
+

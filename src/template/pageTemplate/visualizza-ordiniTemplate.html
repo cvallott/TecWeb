@@ -6,8 +6,13 @@
     <meta name="description" content="Questa pagina contiene la visualizzazione di tutti gli ordini ricevuti dalla pizzeria">
     <meta name="keywords" content="Ordini,pizza,consegnati,in corso">
     <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+    <link rel="shortcut icon" href="assets/logo/logo-neg.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -16,13 +21,12 @@
     <p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Visualizza ordini</p>
 </nav>
 <main id="content">
-    <!-- per questra pagina paglio 3 sezioni perchè c'è anche la cosa di filtraggio, quindi le vedo come 3 cose separate -->
     <section id="general-intro">
-        <h1>ORDINI</h1>
+        <h1 id="titoloPagSecondaria">ORDINI</h1>
     </section>
-    <section id="filtri">
-        <form method="post" action="visualizza-ordini.php">
-            <div> <!-- HO MESSO DIV PERCHE IN TEORIA INPUT NON PUò ESSERE FIGLIO DIRETTO DI FORM, andre dice corretto-->
+    <div id="filtri">
+        <form id="filtriPrint" method="post" action="visualizza-ordini.php">
+            <div>
                 <input type="hidden" name="action" value="filter" />
                 <label for="stato">Filtra per stato:</label>
                 <select name="stato" id="stato" class="select">
@@ -31,28 +35,32 @@
                     <option value="0">In corso</option>
                     <option value="-1">Annullati</option>
                 </select>
+            </div>
+            <div>
                 <label for="cliente">Filtra per nome cliente:</label>
-                <input type="text" name="cliente" id="cliente" />
+                <input type="text" name="cliente" id="cliente"/>
+            </div>
+            <div>
                 <label for="data">Filtra per data:</label>
                 <input type="date" name="data" id="data" />
-                <input type="submit" class="invia-button" value="Filtra" />
             </div>
+            <input type="submit" class="invia-button" value="Filtra" />
         </form>
-    </section>
+    </div>
     <section id="tabella-ordini">
         [operazione-successo]
-        <span id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</span>
+        <p id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</p>
         <table aria-describedby="descrTabella">
-            <caption>Ordini</caption>
-            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+            <caption><h2>Ordini</h2></caption>
+            <thead>
             <tr>
                 <th scope="col" abbr="Numero" class="num-ordine">Numero ordine</th>
                 <th scope="col" abbr="Cliente">Nome cliente</th>
                 <th scope="col">Data e ora</th>
                 <th scope="col" abbr="Totale">Totale ordine</th>
                 <th scope="col">Stato</th>
-                <th scope="col">Modifica stato</th>
-                <th scope="col">Dettagli</th>
+                <th scope="col" class="noprint">Modifica stato</th>
+                <th scope="col" class="noprint">Dettagli</th>
             </tr>
             </thead>
             <tbody>
@@ -60,6 +68,9 @@
             </tbody>
         </table>
     </section>
+    <div class="torna-su" id="mobile-plus">
+        <a href="#general-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+    </div>
 </main>
 [footer]
 </body>

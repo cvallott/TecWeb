@@ -6,11 +6,14 @@
   <meta name="description" content="Menù della pizzeria Non Solo Pizza, ampia scelta tra piatti di cucine e pizze di tutte le tipologie. Scorri il nostro menu e lasciati stupire">
   <meta name="keywords" content="Menu,Pizza,ingredienti,cucina,piatto,pizza classica,pizza speciale,pizza fuori menu,pizza stagionale">
   <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+  <link rel="shortcut icon" href="assets/logo/logo-neg.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/style.css" media="screen">
   <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
   <link rel="stylesheet" href="style/print.css" media="print">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body id="menu-prenotaPage">
 [header]
@@ -27,7 +30,7 @@
       <p id="infoOrdini">utilizza il nostro menù digitale o chiamaci al numero +39 0422 345324</p>
     </div>
   </section>
-  <section id="filtri">
+  <div id="filtri">
     <form method="post" action="menu-prenota.php">
       <input type="hidden" name="action" value="filter" />
       <label for="tipo">Filtra per tipo:</label>
@@ -40,10 +43,13 @@
       <input type="text" name="nome" id="nome" />
       <input type="submit" class="invia-button" value="Filtra" />
     </form>
-  </section>
+  </div>
   [messaggio-carrello]
   [menu]
   [cucina]
+  <div class="torna-su" id="mobile-plus">
+    <a href="#smallMenu"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>
+  </div>
 </main>
 [footer]
 </body>

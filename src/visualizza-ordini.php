@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if($conn){
             $okUpdate = $connessione->updateOrdine($stato);
             if($okUpdate){
-                $message = "<p class=\"messaggio\">Stato modificato con successo</p>";
+                $message = "<div class=\"messaggio\">Stato modificato con successo</div>";
             } else {
-                $message = "<p class=\"messaggio\">Oops..qualcosa è andato storto. Assicurati che lo stato selezionato non fosse già quello giusto, altrimenti riprova!</p>";
+                $message = "<div class=\"messaggio\">Assicurati che lo stato selezionato non fosse già quello giusto, altrimenti riprova!</div>";
             }
         }
     } else if ($action == 'filter') {

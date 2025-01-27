@@ -23,18 +23,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeletePizza());
             if($okDelete){
-                $message = "<p class=\"messaggio\">Pizza eliminata con successo</p>";
+                $message = "<div class=\"messaggio\">Pizza eliminata con successo</div>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<div role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
             }
         }
     } else if ($action == 'deleteCucina') {
         if($conn){
             $okDelete = $connessione->delete($connessione->queryDeleteCucina());
             if($okDelete){
-                $message = "<p class=\"messaggio\">Piatto eliminato con successo</p>";
+                $message = "<div class=\"messaggio\">Piatto eliminato con successo</div>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<div role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
             }
         }
     } else if ($action == 'deleteIngrediente') {
@@ -43,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $connessione->removeAssocProdIngr($nome);
             $okDelete = $connessione->delete($connessione->queryDeleteIngrediente());
             if ($okDelete) {
-                $message = "<p class=\"messaggio\">Ingrediente eliminato con successo</p>";
+                $message = "<div class=\"messaggio\">Ingrediente eliminato con successo</div>";
             } else {
-                $message = "<p role=\"alert\" class=\"messaggio\">Oops..qualcosa è andato storto. Riprova!</p>";
+                $message = "<div role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
             }
         }
     } else if ($action == 'filter') {

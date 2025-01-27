@@ -28,6 +28,7 @@ $nomePiatto = "";
 $prezzoPiatto = "";
 $ingredientiPiatto = array();
 $listaIngredienti = "";
+$currentPath = "";
 $valueInfo = array();
 if($conn){
     if(isset($_GET['id'])){
@@ -50,13 +51,22 @@ if (isset($_POST['submit'])) {
     } else {
         $ingr = '';
     }
-    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = 'assets/icons/piatto_icon.png';
-    }else{
-        $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+    if(!isset($_GET['id'])){
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = 'assets/icons/piatto_icon.png';
+        }else{
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
+    } else {
+        $currentPath = $connessione->getCurrentPath($_GET['id'],'cucina');
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = $currentPath;
+        } else {
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
     }
 
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul>";
     $nomePiatto = pulisciInput($_POST['nome']);
     $prezzoPiatto = pulisciInput($_POST['prezzo']);
     $ingredientiPiatto = pulisciInput($ingr);
@@ -64,33 +74,49 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePiatto) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkCucina($nomePiatto) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePiatto) < 2) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePiatto)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto non può contenere numeri</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePiatto)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li>Il nome del piatto deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (!is_numeric($prezzoPiatto) || $prezzoPiatto <= 0) {
-        $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero maggiore di 0</li>";
+        $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
     }
     if ($ingredientiPiatto == '') {
-        $messaggiPerForm .= "<li role=\"alert\">Il piatto deve avere almeno un ingrediente</li>";
+        $messaggiPerForm .= "<li>Il piatto deve avere almeno un ingrediente</li>";
     }
-    if($path != 'assets/icons/piatto_icon.png'){
-        $imageUploadResult = checkImage();
-        if ($imageUploadResult["success"]) {
-            $path = $imageUploadResult["path"];
-        } else {
-            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+    if(!isset($_GET['id'])){
+        if($path != 'assets/icons/piatto_icon.png'){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
+        }
+    } else {
+        if($path != $currentPath){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
         }
     }
-    $messaggiPerForm .= "</ul></fieldset>";
+    $messaggiPerForm .= "</ul></div>";
 
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul></ul></div>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPiatto);
             if(empty($_GET['id'])) {
@@ -102,16 +128,16 @@ if (isset($_POST['submit'])) {
             }
             if(empty($_GET['id'])) {
                 if($okCucina && $okIngredienti){
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Prodotto inserito con successo</div>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\"  role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\"  role=\"alert\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
                 }
                 header("Location: dashboard.php");
             } else {
                 if($okCucina && $okIngredienti){
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Prodotto modificato con successo</div>";
                 } else {
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\" role=\"alert\">Oops..qualcosa è andato storto..riprova!</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\" role=\"alert\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
                 }
                 header("Location: prodotti.php");
             }

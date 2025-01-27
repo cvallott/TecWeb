@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    box-sizing: border-box; /*per evitare che venga lo scroll orizzontale*/
+    box-sizing: border-box;
 }
 
 :root{
@@ -12,14 +12,10 @@
 }
 
 html{
-    /*background-image: url(assets/grafiche/sfondo.jpg);*/
-    /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
-    /*background-image: url(assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
-    background-size: cover; /**/
+    background-size: cover;
     background-image: url(../assets/grafiche/sfondo-nero.jpg);
     background-repeat: no-repeat;
-
 }
 
 body{
@@ -36,6 +32,7 @@ SEZIONE HEADER
 */
 header {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     background-color: var(--bgcolor);
     height: 5em;
@@ -53,17 +50,22 @@ header img {
 
 #menu {
     margin-left: auto;
+    white-space: nowrap;
 }
 
-#menu li{
+#menu li:not(.menuMobile-version){
     list-style: none;
     display: inline-block;
-    margin-right: 1.5em;
+    margin-right: 0.5em;
+}
+
+.menuMobile-version{
+    display: none;
 }
 
 #menu li a {
     color: var(--bgcolor2);
-    padding: 1em;
+    padding: 0.5em;
     border-radius: 0.4em;
     border-bottom: 2px solid var(--bgcolor2);
     text-decoration: none;
@@ -113,10 +115,10 @@ SEZIONE BREADCRUMB
 #breadcrumb {
     margin-top: 5em;
     color: var(--bgcolor2);
-    height: 3em;
+    min-height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
-    background: var(--bgcolor) linear-gradient(35deg, var(--bgcolor), var(--bgcolor2));
+    background-color: var(--bgcolor);
 }
 
 #breadcrumb a:visited {
@@ -187,6 +189,10 @@ iframe {
     opacity: .4;
 }
 
+#footer-top .footer-column iframe{
+    margin-top: 0.7em;
+}
+
 
 /*
 ------------------
@@ -215,15 +221,13 @@ HOME PAGE
 }
 
 #intro {
-    /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
     padding: 0.7em;
     margin-bottom: 0;
 }
 
 #titolo {
-    /*background-color: var(--bgcolor);*/
     background-image: url(../assets/pagine/index/titolo.png);
-    background-color: gray;
+    background-color: var(--bgcolor3);
     background-size: cover;
     color: var(--bgcolor);
     text-align: right;
@@ -234,6 +238,16 @@ HOME PAGE
 #titolo h2 {
     text-align: right;
     color: var(--bgcolor);
+}
+
+@media (max-width: 1100px) {
+    #titolo h2 {
+        max-width: 6em;
+        margin-left: auto;
+        margin-right: 0;
+        line-height: 1.5;
+        text-align: right;
+    }
 }
 
 #titolo img {
@@ -283,10 +297,6 @@ HOME PAGE
     margin:auto;
 }
 
-
-
-
-/* Stili per ciascun background */
 #img1 {
     background-image: url('../../assets/pagine/index/filosofia1.jpg');
 }
@@ -301,7 +311,6 @@ HOME PAGE
 #img4 {
     background-image: url('../../assets/pagine/index/filosofia4.jpg');
 }
-
 
 .home-button {
     display: inline-block;
@@ -375,7 +384,6 @@ HOME PAGE
     align-items: center;
     max-width: 100%;
     flex-wrap: wrap;
-    /* NEL MINI.CSS METTERE CHE LA COLONNA CON LE SCRITTE VA SOTTO A QUELLA CON IL BOTTONE, FORSE CON FLEX-DIRECTION: COLUMN; */
 }
 
 .download-column {
@@ -420,6 +428,12 @@ HOME PAGE
 
 .torna-su:hover {
     background-color: var(--bgcolor2);
+}
+
+#mobile-plus.torna-su{
+    position: absolute;
+    text-indent: -999em;
+    padding: 0;
 }
 
 /*
@@ -577,8 +591,6 @@ CHI SIAMO PAGE
     border-radius: 3px;
 }
 
-
-
 /*
 ------------------
 RIEPILOGO-ORDINI PAGE
@@ -638,6 +650,7 @@ RIEPILOGO-ORDINI PAGE
     text-decoration: none;
     border-bottom: solid 2px var(--bgcolor2);
     border-radius: 0.4em;
+    white-space: nowrap;
 }
 
 #tabella-ordini a:link{
@@ -661,6 +674,15 @@ RIEPILOGO-ORDINI PAGE
 
 #tabella-ordini img{
     margin-right: 0.5em;
+}
+
+#tabella-ordini .invia-button{
+    width: 8em;
+    margin: 0.5em;
+}
+
+#tabella-ordini select{
+    line-height: 2em;
 }
 
 /*
@@ -698,13 +720,15 @@ AREA-RISERVATA PAGE
 }
 
 .switch-text a {
-    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */*
-    text-decoration: underline;
-    font-weight: 500;
+    color: var(--bgcolor2);
 }
 
 .switch-text a:hover {
     color: var(--bgcolor3);
+}
+
+#registerForm a:visited,#loginForm a:visited{
+    color: var(--txtcolor);
 }
 
 #registerForm,
@@ -723,12 +747,12 @@ AREA-RISERVATA PAGE
 }
 
 .default-text {
-    color: #666;
+    color: var(--txtcolor);
     font-size: 0.875em;
 }
 
 .errorSuggestion {
-    color: red;
+    color: var(--bgcolor2);
     font-size: 0.875em;
     font-weight: 500;
 }
@@ -766,23 +790,32 @@ DETTAGLI-ORDINE PAGE
     display: inline-block;
     padding: 0.7em;
     margin: 3em;
+    width: 70%;
 }
 
 #DO #tabella-ordini {
     margin-right: 0.7em;
     min-height: 50vh;
     min-width: 60%;
-    margin-left: 5em;
 }
 
+#note {
+    font-size: 1em;
+    color: var(--txtcolor);
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.7);
+    padding: 1.5em;
+    border-radius: 0.4em;
+    border: 1px solid var(--txtcolor);
+    margin: 1em;
+}
 
 /*
 ---------------------
 MENU-PRENOTA-PAGE
 ---------------------
 */
-
-#menu-prenotaPage .torna-su{
+#menu-prenotaPage .torna-su:not(#mobile-plus){
     position: relative;
     bottom: 1em;
     right: 1em;
@@ -794,7 +827,7 @@ MENU-PRENOTA-PAGE
 }
 
 #MP-intro{
-    background-image: url('../assets/altre/menu-prenota/blurred.png');
+    background-image: url('../assets/pagine/menu-prenota/blurred.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
@@ -811,10 +844,10 @@ MENU-PRENOTA-PAGE
     padding: 2em;
     margin: 2em;
     border-radius: 0.4em;
-    width: 30%;
     justify-content: center;
-    color: var(--bgcolor);
-    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--txtcolor);
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 20em;
 }
 
 #smallMenu h1{
@@ -828,21 +861,27 @@ MENU-PRENOTA-PAGE
 
 #smallMenu #infoOrdini{
     font-size: 0.76em;
-    color: var(--bgcolor);
+    color: var(--txtcolor);
     overflow-wrap: break-word;
 }
 
 #smallMenu a{
-    color: var(--bgcolor);
-    background-color: transparent;
-    border: var(--bgcolor) 0.125em solid;
+    color: var(--txtcolor);
+    background-color: var(--bgcolor2);
+    border: var(--bgcolor2) 0.125em solid;
     border-radius: 0.4em;
     padding: 0.35em;
     margin-top: 0.8em;
     text-align: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s;
     text-decoration: none;
     font-size: 0.9em;
+}
+
+#smallMenu a:visited{
+    color: var(--bgcolor);
+    background-color: var(--txtcolor);
+    border: var(--txtcolor) 0.125em solid;
 }
 
 #smallMenu a:hover{
@@ -875,54 +914,6 @@ MENU-PRENOTA-PAGE
     margin-bottom: 1em;
 }
 
-.pizze-speciali{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.pizze-speciali h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.pizze-speciali p{
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-.pizze-stagionali{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.pizze-stagionali h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.pizze-stagionali p{
-    /*text-align: center;*/
-    margin-bottom: 1em;
-}
-
 .pizza {
     display: flex;
     flex-direction: row;
@@ -933,7 +924,6 @@ MENU-PRENOTA-PAGE
     width: 65%;
 }
 
-
 .pizza img {
     margin: 0.5em 0.5em 0.2em;
     width: 10em;
@@ -941,79 +931,10 @@ MENU-PRENOTA-PAGE
     object-fit: cover;
 }
 
-
 .menu-prodpercat .pizza-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.pizze-speciali .pizza-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.pizze-stagionali .pizza-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.cucina {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    padding: 0.5em;
-    background-color: #FAF3E0;
-}
-
-.cucina h2 {
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-.cucina p{
-    margin-bottom: 1em;
-    /*border-bottom: #DC1C08;*/
-}
-
-.cucina .piatti-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*flex-wrap: wrap;
-    /*justify-content: space-between;*/
-}
-
-.piatti-cucina {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    border-bottom: 0.3vh #DC1C08 solid;
-    margin-bottom: 1em;
-    width: 65%;
-}
-
-.cucina img {
-    margin-top: 0.5em;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    width: 8em;
-    height: 6em;
 }
 
 .sez-intro{
@@ -1030,12 +951,6 @@ MENU-PRENOTA-PAGE
 .pizza-prezzo{
     font-weight: bold;
     width: 10em;
-}
-.cucina-testo{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 40em;
 }
 
 .order-actions {
@@ -1054,7 +969,7 @@ MENU-PRENOTA-PAGE
 }
 
 .quantity-controls button:hover {
-    background-color: #ddd;
+    background-color: var(--bgcolor);
 }
 
 .quantity-controls span {
@@ -1102,8 +1017,15 @@ MENU-PRENOTA-PAGE
     margin: 0;
 }
 
-#menu-prenotaPage .invia-button, #carrelloPage .invia-button {
+#menu-prenotaPage .invia-button, #carrelloPage #FM-content .invia-button {
     padding: 0.8em;
+    width: 15em;
+    white-space: wrap;
+}
+
+#menu-prenotaPage .messaggio{
+    margin: 1em;
+    color: var(--bgcolor);
 }
 
 /*
@@ -1111,61 +1033,12 @@ MENU-PRENOTA-PAGE
 CARRELLO
 ------------------
 */
-#sez-carrello {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.sezCarrello {
-    margin-left: 5em;
-    display: flex;
-    flex-direction: column;
-    max-width: 45%;
-}
-
-.sezDettaglio{
-    flex-direction: column;
-    flex:1.6;
-}
-
-.sezTotali{
-    flex:0.4;
-    align-items: center;
-    flex-direction: column;
-}
-
 #primadisp{
     font-size: 0.9em;
     font-style: italic;
 }
 
-#totaleSpesa{
-    align-items: center;
-}
-
-.totColumn {
-    padding-left: 2em;
-    padding-right: 2em;
-    text-align: center;
-    padding-bottom:0.6em;
-}
-
-.sezTotali button{
-    width: 16em;
-    text-align: center;
-    height: 2.2em;
-    margin-top:0.5em
-}
-
-.sezTotali p{
-    text-align: center;
-}
-
 .dettaglioItem h4{
-    /*max-width: 7em;
-    min-width: 6em;*/
     width: 7em  ;
     margin-right: 1em;
 }
@@ -1201,7 +1074,7 @@ CARRELLO
     padding: 0.5em;
     font-size: 1.2em;
     cursor: pointer;
-    color: black;
+    color: var(--txtcolor);
     border: none;
     border-radius: 0.3em;
     display: flex;
@@ -1212,8 +1085,8 @@ CARRELLO
 }
 
 .order-summary #prezzoTot{
-    border-top: 1px solid var(--border-color);
-    padding-top: 1em;
+    border-top: 1px solid var(--txtcolor);
+    padding-top: 0.5em;
     font-weight: bold;
 }
 
@@ -1292,134 +1165,6 @@ CARRELLO
     border: none;
 }
 
-
-#confOrdine{
-    display: flex;
-    background-color: var(--bgcolor);
-    flex-direction: column;
-    font-size: 1.3em;
-}
-
-#confOrdine h1{
-    text-align: center;
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    background-color: #DC1C08;
-    width: fit-content;
-    padding: 0.5em 5em;
-}
-
-#containerConferma{
-    display: flex;
-    flex-direction: row;
-}
-
-.boxConferma{
-    display:flex;
-    flex-direction: column;
-    /*justify-content: space-between;*/
-    padding-left: 2em;
-    padding-top: 3em;
-    width: 45%;
-}
-
-#nomecognUtente{
-    border-bottom:  0.1em solid black;
-    text-align: center;
-    /*width: 40%;*/
-}
-
-.boxConferma #totOrdine{
-    margin-top: 0.7em;
-}
-
-
-.boxConferma .infoConferma{
-    margin-left: 2em;
-    margin-top: 0.2em;
-}
-
-.form-container {
-    width: 90%;
-    margin: 1.5em 1.25em 3em 2em;
-    padding: 1em;
-    background-color: #f9f9f9;
-    border: 0.1vh solid #ddd;
-    border-radius: 0.4em;
-    box-shadow:  0 0.25em 0.375em rgba(0, 0, 0, 0.5);
-}
-
-/* etichetta-"titolo" */
-.form-label {
-    display: block; /* Rende l'etichetta un blocco */
-    font-weight: bold;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 10px; /* Spazio tra l'etichetta e l'input */
-}
-
-/* testo inserito dall'utente */
-.form-input {
-    width: 100%; /* Occupa tutta la larghezza del contenitore */
-    padding: 0.65em; /* Spazio interno */
-    font-size: 0.9em; /* Dimensione del testo */
-    color: #555; /* Colore del testo */
-    border: 0.1vh solid #ccc; /* Bordo grigio chiaro */
-    border-radius: 0.3em; /* Angoli arrotondati */
-    box-sizing: border-box; /* Considera padding e border nella larghezza */
-    transition: border-color 0.3s ease; /* utile per animazione */
-    resize: vertical;
-    min-height: 1.5em;
-    max-height: 9em;
-}
-
-/* focus del campo-testo */
-.form-input:focus {
-    border-color: #ff180061;
-    outline: none;
-}
-
-.form-input::placeholder {
-    color: #aaa;
-    font-style: italic;
-}
-
-#boxOrario{
-    width: 45%;
-    display: flex;
-    justify-content: flex-end;
-    text-align: center;
-    flex-direction: row;
-    margin-top: 5em;
-}
-
-#boxOrario div{
-    margin-right: 1em;
-}
-
-#boxOrario .select {
-    padding: 0.5em;
-    font-size: 0.9em;
-    border: 0.125em solid var(--txtcolor);
-    border-radius: 0.4em;
-    background-color: var(--bgcolor);
-    color: var(--txtcolor);
-    outline: none;
-    max-height: 3em;
-}
-
-#boxOrario .select option {
-    max-height: 2em;
-}
-
-#boxOrario button{
-    width: 6em;
-    margin-top: 3em;
-    font-size: 1.2em;
-}
-
 #carrelloPage .messaggio{
     padding: 1.5em;
     margin-top: 1em;
@@ -1454,6 +1199,10 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     color: var(--txtcolor);
 }
 
+#filtri div {
+    display: inline;
+}
+
 .select:focus {
     border-color: var(--bgcolor2);
 }
@@ -1466,15 +1215,17 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     padding: 0.5em;
     font-size: 0.8em;
     color: var(--bgcolor);
-    background-color: var(--bgcolor2);
+    background-color: var(--bgcolor3);
     border: none;
+    width: 13em;
+    white-space: wrap;
     border-radius: 0.4em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .invia-button:hover {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor2);
     transform: translateY(-2px);
 }
 
@@ -1484,8 +1235,9 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 
 #filtri form .invia-button{
     background-color: var(--bgcolor);
-    color: var(--bgcolor2);
+    color: var(--bgcolor3);
     font-size: 1.1em;
+    width: 6em;
 }
 
 #filtri form .invia-button:hover {
@@ -1521,7 +1273,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 
 /*
 ------------------
-AGGIUNGI PRODOTTO PAGE
+DASHBOARD PAGE
 ------------------
 */
 .dashboard{
@@ -1531,17 +1283,6 @@ AGGIUNGI PRODOTTO PAGE
     flex-direction: column;
     font-size: 1.3em;
     padding: 1em;
-}
-
-.dashboard .home-button{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dashboard .home-button img {
-    margin-left: auto;
 }
 
 .dashboard div{
@@ -1554,19 +1295,89 @@ AGGIUNGI PRODOTTO PAGE
     width: 40%;
 }
 
-.dashboard p img{
-    transform: rotate(90deg);
-}
-
 .dashboard p:hover:not(.messaggio){
     background-color: var(--bgcolor);
 }
 
-.dashboard p{
+.dashboard #dashboard-gestisci{
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     border: 1px solid var(--bgcolor2);
+    margin:0.5em auto;
 }
+
+#dashboard-clienti{
+    background-image: url("../../assets/icons/utente-bianco.png");
+}
+
+#dashboard-ingredienti{
+    background-image: url("../../assets/icons/ingrediente-bianco.png");
+}
+
+#dashboard-ordini{
+    background-image: url("../../assets/icons/ordine-bianco.png");
+}
+
+#dashboard-piatto{
+    background-image: url("../../assets/icons/piatto-bianco.png");
+}
+
+#dashboard-pizza{
+    background-image: url("../../assets/icons/pizza-bianca.png");
+}
+
+#dashboard-prodotti{
+    background-image: url("../../assets/icons/prodotti-bianco.png");
+}
+#dashboard-freccia{
+    background-image: url("../../assets/icons/freccia-basso.png");
+}
+
+.dashboard .home-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2% 3%;
+    gap: 4%;
+    width: 50%;
+}
+
+.dashboard .home-button img {
+    margin-left: auto;
+    width: 5%;
+    height: auto;
+}
+
+.dashboard-ic {
+    width: 5%;
+    height: 0;
+    padding-bottom: 5%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    margin-left: 2%;
+    vertical-align: middle;
+    min-width: 30px;
+}
+
+#dashboard-clienti,
+#dashboard-ingredienti,
+#dashboard-ordini,
+#dashboard-piatto,
+#dashboard-pizza,
+#dashboard-prodotti,
+#dashboard-freccia{
+    background-size: contain;
+    min-height: 30px;
+    padding-bottom: 0;
+    height: auto;
+    display: block;
+}
+#dashboard-freccia{
+    margin-left: auto;
+}
+
 
 /*
 ------------------
@@ -1688,7 +1499,7 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
     font-size: 1.2em;
     color: var(--txtcolor);
     text-align: center;
-    background-color: rgba(205, 73, 42, 0.7);
+    background-color: rgba(205, 73, 42, 0.9);
     padding: 1.5em;
     border-radius: 0.4em;
     margin-bottom: 1em;
@@ -1696,12 +1507,11 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
 }
 
 .errore-form{
-    border-color: var(--bgcolor2);
+    border: 1px solid var(--bgcolor2);
     border-radius: 0.4em;
-    margin-bottom: 1.5em;
 }
 
-.errore-form legend{
+.errore-form span{
     margin-left: 0.5em;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -1797,7 +1607,7 @@ ERROR PAGE
 .error-title {
     font-size: 6em;
     margin: 0;
-    color: #d32f2f;
+    color: var(--bgcolor2);
 }
 
 .error-message {

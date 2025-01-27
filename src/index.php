@@ -9,6 +9,8 @@ $template = file_get_contents('template/pageTemplate/indexTemplate.html');
 $header = printHeader();
 $footer = printFooter();
 
+$_SESSION['redirect']= "index.php";
+
 $connessione = new DBConnection();
 $conn = $connessione->openDBConnection();
 $pizzeFM = "";
