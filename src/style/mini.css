@@ -226,6 +226,7 @@ DASHBOARD MOBILE
 .dashboard .home-button{
     width: 90%;
     font-size: 1em;
+    gap:2.5%;
 }
 
 .dashboard div .home-button {

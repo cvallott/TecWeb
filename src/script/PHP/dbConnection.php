@@ -105,15 +105,18 @@ class DBConnection {
                                 $stringaReturn .= '<div class="quantity-controls">
                                 <form method="POST" action="menu-prenota.php" class="inlineComponents">
                                 <input type="hidden" name="id" value="' . $riga['id'] . '" />
-                                <button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa" /></button>
+                                <button type="submit" name="azione" value="Rimuovi una '.$riga['nome'].' dal carrello"><img src="assets/icons/minus.png" alt="" /></button>
+                                
                                 </form>';
                                 $stringaReturn .= '<h4>';
                                 $stringaReturn .= $_SESSION['carrello'][$riga['id']]['quantita'];
                                 $stringaReturn .= '</h4>';
                                 $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">
                                 <input type="hidden" name="id" value="' . $riga['id'] . '" />
-                                <button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa" /></button>
-                                </form></div>';
+                                <input type="hidden" name="azione" value="incrementa" />
+                                <button type="submit" value="Aggiungi una '.$riga['nome'].' al carrello"><img src="assets/icons/plus.png" alt="" /></button>
+                                </div>
+                                </form>';
                             } else {
                                 $stringaReturn .= '<form method="POST" action="menu-prenota.php">';
                                 $stringaReturn .= '<input type="hidden" name="id" value="' . $riga['id'] . '" />';
@@ -209,13 +212,16 @@ class DBConnection {
                         $stringaReturn .= '<div class="quantity-controls">';
                         $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">';
                         $stringaReturn .= '<input type="hidden" name="id" value="c' . $riga['id'] . '" />';
-                        $stringaReturn .= '<button type="submit" name="azione" value="decrementa"><img src="assets/icons/minus.png" alt="Decrementa" /></button></form>';
+                        $stringaReturn .='<input type="hidden" name="azione" value="decrementa" />';
+                        $stringaReturn .='<button type="submit" value="Rimuovi una '.$riga['nome'].' dal carrello">><img src="assets/icons/minus.png" alt="" /></button>';
+                        $stringaReturn .='</form>';
                         $stringaReturn .= '<h4>';
                         $stringaReturn .= $_SESSION['carrello']["c" . $riga['id']]['quantita'];
                         $stringaReturn .= '</h4>';
                         $stringaReturn .= '<form method="POST" action="menu-prenota.php" class="inlineComponents">';
                         $stringaReturn .= '<input type="hidden" name="id" value="c' . $riga['id'] . '" />';
-                        $stringaReturn .= '<button type="submit" name="azione" value="incrementa"><img src="assets/icons/plus.png" alt="Incrementa" /></button>';
+                        $stringaReturn .= '<input type="hidden" name="id" value=c' . $riga['id'] . '" />';
+                        $stringaReturn .='<button type="submit" name="azione" value="Aggiungi una '.$riga['nome'].' al carrello"><img src="assets/icons/plus.png" alt="" /></button>';
                         $stringaReturn .= '</form></div>';
                     } else {
                         $stringaReturn .= '<form method="POST" action="menu-prenota.php">';
