@@ -291,6 +291,11 @@ textarea[name="note"]{
     align-items: center;
     justify-content: center;
     list-style: none;
+    width: 33%;
+}
+
+#FM-content #lista-FM li form{
+    display: none;
 }
 
 #FM-content #lista-FM li img {
