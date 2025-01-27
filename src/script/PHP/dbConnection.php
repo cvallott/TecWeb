@@ -273,7 +273,7 @@ class DBConnection {
 
     public function getFuoriMenu(): string {
         try {
-            $query = "SELECT nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
+            $query = "SELECT id,nome,descrizione,path FROM pizza WHERE categoria='Fuori menù'";
             $result = mysqli_query($this->connection, $query);
         }catch(mysqli_sql_exception $e){
             header("location: errore.php");
@@ -282,7 +282,7 @@ class DBConnection {
         if(mysqli_num_rows($result) > 0) {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<li>";
-                $stringaReturn .= "<a href=\"menu-prenota.php#Fuorimenu\"><img src=\"".$row['path']."\" alt=\"\" />";
+                $stringaReturn .= "<a href=\"menu-prenota.php#p-".$row['id']."\"><img src=\"".$row['path']."\" alt=\"\" />";
                 $stringaReturn .= "<h3>".$row['nome']."</h3>";
                 $stringaReturn .= "<p>".$row['descrizione']."</p>";
                 $stringaReturn .= "</a></li>";
