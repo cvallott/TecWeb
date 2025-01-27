@@ -67,11 +67,11 @@ if(isset($_POST['ora'])){
                 if($connessione->itemToOrdine($succ)) {
 
                     if ($totQuant == 0) {
-                        $messaggio_errore= "<p role=\"alert\" class=\"messaggio\">Inserisci almeno un prodotto e riprova!</p>";
+                        $messaggio_errore= "<div role=\"alert\" class=\"messaggio\">Inserisci almeno un prodotto e riprova!</div>";
                     } else {
                         unset($_SESSION['carrello']);
                         $oraScelta = $_POST['ora'];
-                        $_SESSION['messaggio_ordine'] = "<p class=\"messaggio\">Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</p>";
+                        $_SESSION['messaggio_ordine'] = "<div class=\"messaggio\">Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</div>";
                         header("location: riepilogo-ordini.php");
                     }
                 }

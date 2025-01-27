@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
+    $messaggiPerForm .= "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul>";
     $nomePizza = pulisciInput($_POST['nome']);
     $prezzoPizza = pulisciInput($_POST['prezzo']);
     $categoriaPizza = pulisciInput($_POST['cat']);
@@ -91,26 +91,26 @@ if (isset($_POST['submit'])) {
             }
         }
         if (strlen($nomePizza) < 2) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve contenere almeno 2 caratteri</li>";
+            $messaggiPerForm .= "<li>Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }
         if (preg_match("/\d/", $nomePizza)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza non può contenere numeri</li>";
+            $messaggiPerForm .= "<li>Il nome della pizza non può contenere numeri</li>";
         }
         if (!preg_match("/^[A-Z][a-zÀ-ÖØ-öø-ÿ]*(?: [a-zÀ-ÖØ-öø-ÿ]+)*$/", $nomePizza)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
+            $messaggiPerForm .= "<li>Il nome della pizza deve iniziare con una lettera maiuscola e le altre lettere devono essere minuscole</li>";
         }
     }
     if (strlen($prezzoPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il prezzo della pizza</li>";
         if (!is_numeric($prezzoPizza) || $prezzoPizza <= 0) {
-            $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero maggiore di 0</li>";
+            $messaggiPerForm .= "<li>Il prezzo deve essere un numero maggiore di 0</li>";
         }
         if (!preg_match("/^[1-9]\d*(\.\d+)?$/", $prezzoPizza)) {
-            $messaggiPerForm .= "<li role=\"alert\">Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
+            $messaggiPerForm .= "<li>Il prezzo deve essere un numero intero o decimale (ex. 8.50)</li>";
         }
     }
     if ($ingredientiPizza == '') {
-        $messaggiPerForm .= "<li role=\"alert\">La pizza deve avere almeno un ingrediente</li>";
+        $messaggiPerForm .= "<li>La pizza deve avere almeno un ingrediente</li>";
     }
     if (strlen($categoriaPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire la categoria della pizza</li>";
@@ -134,10 +134,9 @@ if (isset($_POST['submit'])) {
             }
         }
     }
+    $messaggiPerForm .= "</ul></div>";
 
-    $messaggiPerForm .= "</ul></fieldset>";
-
-    if(trim($messaggiPerForm) == "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul></ul></fieldset>"){
+    if(trim($messaggiPerForm) == "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul></ul></div>"){
         if($conn){
             $veget = $connessione->isVeget($ingredientiPizza);
             if(empty($_GET['id'])) {
@@ -149,16 +148,16 @@ if (isset($_POST['submit'])) {
             }
             if(empty($_GET['id'])) {
                 if($okPizza && $okIngredienti){
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto inserito con successo</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Prodotto inserito con successo</div>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
+                    $_SESSION['messaggio'] = "<div role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
                 }
                 header("Location: dashboard.php");
             }else{
                 if($okPizza && $okIngredienti){
-                    $_SESSION['messaggio'] = "<p class=\"messaggio\">Prodotto modificato con successo</p>";
+                    $_SESSION['messaggio'] = "<div class=\"messaggio\">Prodotto modificato con successo</div>";
                 } else {
-                    $_SESSION['messaggio'] = "<p role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</p>";
+                    $_SESSION['messaggio'] = "<div role=\"alert\" class=\"messaggio\">Non siamo riusciti a gestire la tua richiesta, riprova altrimenti contattaci!</div>";
                 }
                 header("Location: prodotti.php");
             }
