@@ -39,10 +39,10 @@ foreach ($_SESSION['carrello'] as $prodotto) {
     $totQuant += $prodotto['quantita'];
 }
 if(date("l") != 'Monday'){
-    $primadisp = "<p id=\"primadisp\">La prima disponibilità è nella fascia oraria</p>";
+    $primadisp = "<p id=\"primadisp\">La prima disponibilità è nella fascia oraria ";
     $optionOrario = "";
     if ($connessioneOK) {
-        $primadisp .= $connessione->getFasceOrarie($totQuant)[0];
+        $primadisp .= $connessione->getFasceOrarie($totQuant)[0]."</p>";
         $option = $connessione->getFasceOrarie($totQuant)[1];
         if(!empty($option)){
             $optionOrario = "<label for=\"ora\">Seleziona ora di ritiro:</label>";
@@ -53,37 +53,32 @@ if(date("l") != 'Monday'){
             $primadisp = "<div role=\"alert\"><p id=\"primadisp\">Ci spiace, al momento non abbiamo nessuna disponibilità. Alla prossima!</p></div>";
         }
     }
-} else {
-    $primadisp = "<div role=\"alert\"><p id=\"primadisp\">Ci spiace, il lunedì siamo chiusi. Alla prossima!</p></div>";
-}
-
-
-if(isset($_POST['ora'])){
-    if($connessioneOK){
-        $succ = "";
-        if(isset($_POST['note'])){
-            $succ = $connessione->insertOrder($_POST['ora'],$_POST['note']);
-        }else{
-            $succ = $connessione->insertOrder($_POST['ora']);
-        }
-        if($succ){
-            if($connessioneOK){
-                if($connessione->itemToOrdine($succ)) {
-
-                    if ($totQuant == 0) {
-                        $messaggio_errore= "<div role=\"alert\" class=\"messaggio\">Inserisci almeno un prodotto e riprova!</div>";
-                    } else {
+    if($totQuant == 0){
+        $messaggio_errore= "<div role=\"alert\" class=\"messaggio\">Inserisci almeno un prodotto</div>";
+    } else if(isset($_POST['ora'])){
+        if($connessioneOK){
+            $succ = "";
+            if(isset($_POST['note'])){
+                $succ = $connessione->insertOrder($_POST['ora'],$_POST['note']);
+            }else{
+                $succ = $connessione->insertOrder($_POST['ora']);
+            }
+            if($succ){
+                if($connessioneOK){
+                    if($connessione->itemToOrdine($succ)) {
                         unset($_SESSION['carrello']);
                         $oraScelta = $_POST['ora'];
                         $_SESSION['messaggio_ordine'] = "<div class=\"messaggio\">Ordine Confermato! Ti aspettiamo alle ore $oraScelta. Grazie per aver scelto Non Solo Pizza!</div>";
                         header("location: riepilogo-ordini.php");
                     }
                 }
-
             }
         }
     }
+} else {
+    $primadisp = "<div role=\"alert\"><p id=\"primadisp\">Ci spiace, il lunedì siamo chiusi. Alla prossima!</p></div>";
 }
+
 
 $template = str_replace('[header]', $header, $template);
 $template = str_replace('[messaggio_errore]', $messaggio_errore, $template);
