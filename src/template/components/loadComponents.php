@@ -29,15 +29,14 @@ function printHeader()
     if($currentpage == 'menu-prenota.php') {
         if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
             $menu = "<li id=\"currentLink\">Menù</li>";
-            $navHelp .= '<li><a href="#Classica" class="navigationHelp">Vai alle pizze Classiche</a></li>';
-            $navHelp .= '<li><a href="#Fuorimenu" class="navigationHelp">Vai alle pizze Fuori Menù</a></li>';
-            $navHelp .= '<li><a href="#Speciale" class="navigationHelp">Vai alle pizze Speciali</a></li>';
-            $navHelp .= '<li><a href="#Stagionale" class="navigationHelp">Vai alle pizze Stagionali</a></li>';
-            $navHelp .= '<li><a href="#cucina" class="navigationHelp">Vai alle nostra cucina</a></li>';
         }else{
             $menu = "<li id=\"currentLink\">Menù-Prenota</li>";
         }
-
+        $navHelp .= '<li><a href="#Classica" class="navigationHelp">Vai alle pizze Classiche</a></li>';
+        $navHelp .= '<li><a href="#Fuorimenu" class="navigationHelp">Vai alle pizze Fuori Menù</a></li>';
+        $navHelp .= '<li><a href="#Speciale" class="navigationHelp">Vai alle pizze Speciali</a></li>';
+        $navHelp .= '<li><a href="#Stagionale" class="navigationHelp">Vai alle pizze Stagionali</a></li>';
+        $navHelp .= '<li><a href="#cucina" class="navigationHelp">Vai alle nostra cucina</a></li>';
     }else{
         if(isset($_SESSION['tipo']) AND $_SESSION['tipo'] == 1) {
             $menu = "<li><a href=\"menu-prenota.php\">Menù</a></li>";
