@@ -94,13 +94,6 @@ a:link:after, a:visited:after {
     font-size: 90%;
 }
 
-/*da capire se usare questo sopra (nome+URL) oppure se usare questo sotto (URL e basta)*/
-/*
-a:link, a:visited {
-    content: attr(href); viene mostrato solo l'url
-font-size: 90%;
-*/
-
 #fuori-menu{
     text-align: center;
 }
@@ -117,22 +110,13 @@ font-size: 90%;
     justify-content: space-around;
 }
 
-/*#lista-FM li {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    flex-direction: row;*/
-/*    flex: 0 1 45%; !* Ogni elemento occupa circa metà riga *!*/
-/*    list-style: none; !* Rimuove i puntini *!*/
-/*    margin-bottom: 1em; !* Spaziatura tra le righe *!*/
-/*}*/
-
 #lista-FM li {
     margin-top: 1em;
-    display: flex; /* Attiva Flexbox */
-    flex-direction: row; /* Dispone immagine e testo in una riga */
-    align-items: center; /* Allinea verticalmente immagine e testo */
-    list-style: none; /* Rimuove i puntini */
-    margin-bottom: 1em; /* Spaziatura tra gli elementi */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 1em;
 }
 
 #lista-FM li img {
