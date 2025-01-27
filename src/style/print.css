@@ -94,13 +94,6 @@ a:link:after, a:visited:after {
     font-size: 90%;
 }
 
-/*da capire se usare questo sopra (nome+URL) oppure se usare questo sotto (URL e basta)*/
-/*
-a:link, a:visited {
-    content: attr(href); viene mostrato solo l'url
-font-size: 90%;
-*/
-
 #fuori-menu{
     text-align: center;
 }
@@ -117,22 +110,13 @@ font-size: 90%;
     justify-content: space-around;
 }
 
-/*#lista-FM li {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    flex-direction: row;*/
-/*    flex: 0 1 45%; !* Ogni elemento occupa circa metà riga *!*/
-/*    list-style: none; !* Rimuove i puntini *!*/
-/*    margin-bottom: 1em; !* Spaziatura tra le righe *!*/
-/*}*/
-
 #lista-FM li {
     margin-top: 1em;
-    display: flex; /* Attiva Flexbox */
-    flex-direction: row; /* Dispone immagine e testo in una riga */
-    align-items: center; /* Allinea verticalmente immagine e testo */
-    list-style: none; /* Rimuove i puntini */
-    margin-bottom: 1em; /* Spaziatura tra gli elementi */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 1em;
 }
 
 #lista-FM li img {
@@ -158,4 +142,141 @@ font-size: 90%;
 #download-container h2{
     color: #A2231D;
 }
+
+/*
+-------------
+CHI SIAMO
+-------------
+ */
+
+#titoloPagSecondaria{
+    margin: 0;
+    color: #A2231D;
+}
+
+#chi-siamo-contenitore{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.chi-siamo-items{
+    width: 33%;
+}
+
+.chi-siamo-items p{
+    max-width: 92%;
+    margin: auto;
+}
+
+.chi-siamo-sezbordo{
+    border-right: 1px solid black;
+}
+
+.chi-siamo-titoli{
+    text-align: center;
+}
+
+#chi-siamo-storia{
+    margin-top: 50px;
+}
+
+/*
+-------------
+CHI SIAMO
+-------------
+ */
+
+.dashboard{
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboard-sottoItems{
+    margin-left: 30px;
+}
+
+#paragrafdash{
+    margin-top: -5px;
+}
+
+/*
+-------------
+RIEPILOGO ORDINI
+-------------
+ */
+
+#tabella-ordini table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabella-ordini caption{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#tabella-ordini th,td {
+    border: 1px solid black;
+}
+
+#tabella-ordini td{
+    text-align: center;
+}
+
+.noprint{
+    display: none;
+}
+
+#filtriPrint{
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+}
+
+#filtriPrint input{
+    margin-top:3px;
+}
+
+#filtriPrint select{
+    margin-top:3px;
+}
+
+#filtriPrint label {
+    margin-top: 10px;
+}
+
+#descrTabella{
+    margin-top: 20px;
+}
+
+
+/*
+-------------
+DETTAGLI-ORDINE
+-------------
+ */
+
+#descrTabella{
+    margin-top: 20px;
+}
+
+/*
+-------------
+AREA-RISERVATA
+-------------
+ */
+
+.form-fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+.invia-button{
+    width: 20%;
+    margin-top:10px;
+}
+
+
+
 

@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -21,10 +22,10 @@
 </nav>
 <main id="content">
     <section id="general-intro">
-        <h1>GESTISCI UTENTI</h1>
+        <h1 id="titoloPagSecondaria">GESTISCI UTENTI</h1>
     </section>
     <div id="filtri">
-        <form method="post" action="gestisci-utenti.php">
+        <form id="filtriPrint" method="post" action="gestisci-utenti.php">
             <div>
                 <input type="hidden" name="action" value="filter" />
                 <label for="ruolo">Filtra per ruolo:</label>
@@ -47,7 +48,7 @@
     </div>
     <section id="tabella-ordini">
         [operazione-successo]
-        <span id="descrTabella">In questa tabella vengono riassunti tutti gli utenti registrati organizzati per colonne: Numero e Cognome, Username, Email, Ruolo, Modifica ruolo ed Elimina utente.</span>
+        <p id="descrTabella">In questa tabella vengono riassunti tutti gli utenti registrati organizzati per colonne: Numero e Cognome, Username, Email, Ruolo, Modifica ruolo ed Elimina utente.</p>
         <table aria-describedby="descrTabella">
             <caption><h2>Utenti</h2></caption>
             <thead>
@@ -56,8 +57,8 @@
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Ruolo</th>
-                <th scope="col">Modifica ruolo</th>
-                <th scope="col">Elimina utente</th>
+                <th scope="col" class="noprint">Modifica ruolo</th>
+                <th scope="col" class="noprint">Elimina utente</th>
             </tr>
             </thead>
             <tbody>

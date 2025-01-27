@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+	<link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -22,12 +23,12 @@
 <main id="content">
     <div id="DO">
         <section id="DO-intro">
-            <h1>Dettagli ordine numero [numOrdine]</h1>
+            <h1 id="titoloPagSecondaria">Dettagli ordine numero [numOrdine]</h1>
             [note]
             [linkIndietro]
         </section>
         <section id="tabella-ordini">
-            <span id="descrTabella">In questa tabella vengono riassunti i dettagli dell'ordine selezionato organizzati per colonne: Nome del prodotto, Quantità acquistata, Prezzo. Nulle'ultima riga è presente il prezzo totale dell'ordine.</span>
+            <p id="descrTabella">In questa tabella vengono riassunti i dettagli dell'ordine selezionato organizzati per colonne: Nome del prodotto, Quantità acquistata, Prezzo. Nulle'ultima riga è presente il prezzo totale dell'ordine.</p>
             <table aria-describedby="descrTabella">
                 <caption><h2>Dettagli ordine</h2></caption>
                 <thead>

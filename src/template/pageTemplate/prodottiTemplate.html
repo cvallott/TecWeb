@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/style.css" media="screen">
   <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+  <link rel="stylesheet" href="style/print.css" media="print">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -21,10 +22,10 @@
 </nav>
 <main id="content">
   <section id="general-intro">
-    <h1>PRODOTTI</h1>
+    <h1 id="titoloPagSecondaria">PRODOTTI</h1>
   </section>
   <div id="filtri">
-    <form method="post" action="prodotti.php">
+    <form id="filtriPrint" method="post" action="prodotti.php">
       <div>
         <input type="hidden" name="action" value="filter" />
         <label for="tipo">Filtra per tipo:</label>
@@ -44,7 +45,7 @@
   </div>
   <section id="tabella-ordini">
     [operazione-successo]
-    <span id="descrTabella">In questa tabella vengono riassunti tutti i prodotti organizzati per colonne: Informazioni sul prodotto, Tipo, Prezzo, Modifica del prodotto ed Eliminazione.</span>
+    <p id="descrTabella">In questa tabella vengono riassunti tutti i prodotti organizzati per colonne: Informazioni sul prodotto, Tipo, Prezzo, Modifica del prodotto ed Eliminazione.</p>
     <table aria-describedby="descrTabella">
       <caption><h2>Prodotti</h2></caption>
       <thead>
@@ -52,8 +53,8 @@
         <th scope="col" abbr="Info">Info prodotto</th>
         <th scope="col">Tipo</th>
         <th scope="col">Prezzo</th>
-        <th scope="col">Modifica</th>
-        <th scope="col">Elimina</th>
+        <th scope="col" class="noprint">Modifica</th>
+        <th scope="col" class="noprint">Elimina</th>
       </tr>
       </thead>
       <tbody>

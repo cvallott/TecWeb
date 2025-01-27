@@ -544,8 +544,8 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Piatto</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-cucina.php?id=".$row['id']."\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<td data-title=\"Modifica\" class=\"noprint\"><a href=\"aggiungi-cucina.php?id=".$row['id']."\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\" />";
@@ -571,8 +571,8 @@ class DBConnection {
                 $stringaReturn .= "<th scope=\"row\">".$row['nome']."</th>";
                 $stringaReturn .= "<td data-title=\"Tipo\">Pizza ".$row['categoria']."</td>";
                 $stringaReturn .= "<td data-title=\"Prezzo\">&euro; ".$row['prezzo']."</td>";
-                $stringaReturn .= "<td data-title=\"Modifica\"><a href=\"aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
-                $stringaReturn .= "<td data-title=\"Elimina\">";
+                $stringaReturn .= "<td data-title=\"Modifica\" class=\"noprint\"><a href=\"aggiungi-pizza.php?id=".$row['id']."\">Modifica</a></td>";
+                $stringaReturn .= "<td data-title=\"Elimina\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\" />";
@@ -666,7 +666,7 @@ class DBConnection {
                 }else{
                     $stringaReturn .= "<td data-title=\"Ruolo\">Amministratore</td>";
                 }
-                $stringaReturn .= "<td data-title=\"Modifica ruolo\">";
+                $stringaReturn .= "<td data-title=\"Modifica ruolo\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
                 $stringaReturn .= "<label for=\"ruoloUpdate".$conta."\">Modifica ".$row['nome'].":</label>";
@@ -678,7 +678,7 @@ class DBConnection {
                 $stringaReturn .= "<input type=\"submit\" value=\"Aggiorna ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
-                $stringaReturn .= "<td data-title=\"Elimina Utente\">";
+                $stringaReturn .= "<td data-title=\"Elimina Utente\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"gestisci-utenti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"email\" value=\"".$row['email']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"delete\" />";
@@ -768,7 +768,7 @@ class DBConnection {
                 }else{
                     $stringaReturn .= "<td data-title=\"Stato\">Annullato</td>";
                 }
-                $stringaReturn .= "<td data-title=\"Modifica stato\">";
+                $stringaReturn .= "<td data-title=\"Modifica stato\" class=\"noprint\">";
                 $stringaReturn .= "<form action=\"visualizza-ordini.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"update\" />";
                 $stringaReturn .= "<label for=\"modificaS".$row['id']."\">Modifica ".$row['id'].":</label>";
@@ -781,7 +781,7 @@ class DBConnection {
                 $stringaReturn .= "<input type=\"submit\" value=\"Modifica ".$row['id']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
-                $stringaReturn .= "<td data-title=\"Dettagli\">";
+                $stringaReturn .= "<td data-title=\"Dettagli\" class=\"noprint\">";
                 $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\" />";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";
@@ -872,7 +872,7 @@ class DBConnection {
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
-                $stringaReturn .= "<td data-title=\"Dettagli\">";
+                $stringaReturn .= "<td data-title=\"Dettagli\" class=\"noprint\">";
                 $stringaReturn .= "<img class=\"visualizza-dettagli\" src=\"assets/icons/see-more.png\" alt=\"\" />";
                 $stringaReturn .= "<a href=\"dettagli-ordine.php?idOrdine=".$row['id']."\">Visualizza dettagli</a>";
                 $stringaReturn .= "</td>";

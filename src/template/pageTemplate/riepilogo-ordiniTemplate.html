@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="style/print.css" media="print">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -22,11 +23,11 @@
 <main id="content">
     <section>
         <div id="general-intro">
-            <h1>RIEPILOGO ORDINI</h1>
+            <h1 id="titoloPagSecondaria">RIEPILOGO ORDINI</h1>
         </div>
         <div id="tabella-ordini">
             [messaggioOrdine]
-            <span id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</span>
+            <p id="descrTabella">In questa tabella vengono riassunti i tuoi ordini organizzati per colonne: Numero ordine, Data e ora, Stato ordine, Totale ordine e Dettagli.</p>
             <table aria-describedby="descrTabella">
                 <caption><h2>Ultimi ordini effettuati</h2></caption>
                 <thead>
@@ -35,7 +36,7 @@
                     <th scope="col">Data e ora</th>
                     <th scope="col" abbr="Stato">Stato ordine</th>
                     <th scope="col" abbr="Totale">Totale ordine</th>
-                    <th scope="col">Dettagli</th>
+                    <th scope="col" class="noprint">Dettagli</th>
                 </tr>
                 </thead>
                 <tbody>
