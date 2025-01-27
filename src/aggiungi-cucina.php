@@ -28,6 +28,7 @@ $nomePiatto = "";
 $prezzoPiatto = "";
 $ingredientiPiatto = array();
 $listaIngredienti = "";
+$currentPath = "";
 $valueInfo = array();
 if($conn){
     if(isset($_GET['id'])){
@@ -50,10 +51,19 @@ if (isset($_POST['submit'])) {
     } else {
         $ingr = '';
     }
-    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = 'assets/icons/piatto_icon.png';
-    }else{
-        $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+    if(!isset($_GET['id'])){
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = 'assets/icons/piatto_icon.png';
+        }else{
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
+    } else {
+        $currentPath = $connessione->getCurrentPath($_GET['id'],'cucina');
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = $currentPath;
+        } else {
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
     }
 
     $messaggiPerForm .= "<fieldset class=\"errore-form\"><legend><span role=\"alert\" lang=\"en\">Warning</span></legend><ul>";
@@ -85,12 +95,23 @@ if (isset($_POST['submit'])) {
     if ($ingredientiPiatto == '') {
         $messaggiPerForm .= "<li role=\"alert\">Il piatto deve avere almeno un ingrediente</li>";
     }
-    if($path != 'assets/icons/piatto_icon.png'){
-        $imageUploadResult = checkImage();
-        if ($imageUploadResult["success"]) {
-            $path = $imageUploadResult["path"];
-        } else {
-            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+    if(!isset($_GET['id'])){
+        if($path != 'assets/icons/piatto_icon.png'){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
+        }
+    } else {
+        if($path != $currentPath){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
         }
     }
     $messaggiPerForm .= "</ul></fieldset>";

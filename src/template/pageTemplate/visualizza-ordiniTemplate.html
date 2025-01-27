@@ -6,6 +6,10 @@
     <meta name="description" content="Questa pagina contiene la visualizzazione di tutti gli ordini ricevuti dalla pizzeria">
     <meta name="keywords" content="Ordini,pizza,consegnati,in corso">
     <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+    <link rel="shortcut icon" href="assets/logo/logo-neg.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
     <link rel="stylesheet" href="style/print.css" media="print">
@@ -17,7 +21,6 @@
     <p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Visualizza ordini</p>
 </nav>
 <main id="content">
-    <!-- per questra pagina paglio 3 sezioni perchè c'è anche la cosa di filtraggio, quindi le vedo come 3 cose separate -->
     <section id="general-intro">
         <h1 id="titoloPagSecondaria">ORDINI</h1>
     </section>
@@ -49,7 +52,7 @@
         <p id="descrTabella">In questa tabella vengono riassunti tutti gli ordini effettuati organizzati per colonne: Numero ordine, Nome cliente, Data e ora, Stato ordine, Modifica stato e Dettagli.</p>
         <table aria-describedby="descrTabella">
             <caption><h2>Ordini</h2></caption>
-            <thead> <!-- ci andrebbero anche le abbreviazioni ma solo dove hanno senso, in questo caso potrei farlo solo con Paola Egonu togliendo il secondo nome -->
+            <thead>
             <tr>
                 <th scope="col" abbr="Numero" class="num-ordine">Numero ordine</th>
                 <th scope="col" abbr="Cliente">Nome cliente</th>

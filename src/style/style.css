@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    box-sizing: border-box; /*per evitare che venga lo scroll orizzontale*/
+    box-sizing: border-box;
 }
 
 :root{
@@ -12,9 +12,6 @@
 }
 
 html{
-    /*background-image: url(assets/grafiche/sfondo.jpg);*/
-    /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
-    /*background-image: url(assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
     background-size: cover;
     background-image: url(../assets/grafiche/sfondo-nero.jpg);
@@ -121,7 +118,7 @@ SEZIONE BREADCRUMB
     min-height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
-    background: var(--bgcolor) linear-gradient(35deg, var(--bgcolor), var(--bgcolor2));
+    background-color: var(--bgcolor);
 }
 
 #breadcrumb a:visited {
@@ -1039,8 +1036,6 @@ CARRELLO
 }
 
 .dettaglioItem h4{
-    /*max-width: 7em;
-    min-width: 6em;*/
     width: 7em  ;
     margin-right: 1em;
 }

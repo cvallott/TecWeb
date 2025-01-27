@@ -21,11 +21,6 @@ class DBConnection {
         }catch(mysqli_sql_exception $e){
             header('location: errore.php');
         }
-
-        //debug
-        //return mysqli_connect_error();
-
-        //production
         if(mysqli_connect_errno()) {
             return false;
         }else{
@@ -154,9 +149,6 @@ class DBConnection {
     public function getMenuCucina($nome = '') :string{
         $visited = false;
         $stringaReturn = "";
-        /*$stringaReturn .= "<section class='menu-prodpercat' id='".str_replace(' ','',"cucina")."'>";
-        $stringaReturn .= "<h2>La nostra cucina</h2>";
-        $stringaReturn .= "<p class='sez-intro'>La nostra proposta</p>";*/
         if(!empty($nome)){
             try {
                 $queryCucina = "SELECT * FROM cucina WHERE nome LIKE ?";
@@ -728,8 +720,6 @@ class DBConnection {
                 $prezzo += ($row['quantita']*$row['prezzo']);
             }
             return $prezzo;
-        }else{
-            /*qualche errore*/
         }
     }
 
@@ -746,8 +736,6 @@ class DBConnection {
                 $conta += $row['quantita'];
             }
             return $conta;
-        }else{
-            /*qualche errore*/
         }
     }
 
@@ -763,7 +751,7 @@ class DBConnection {
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
                 $stringaReturn .= "<td data-title=\"Cliente\">".$row['cliente']."</td>";
-                $stringaReturn .= "<td data-title=\"Data e ora\"><time datetime=\"".$row['data']."\">".$row['data']."</time> - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e ora\">".$row['data']." - ".$row['ora']."</td>";
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
                 $stringaReturn .= "<td data-title=\"Totale\">&euro; ".$prezzo." - ".$tot." prodotti</td>";
@@ -867,7 +855,7 @@ class DBConnection {
             while($row = $result->fetch_array(MYSQLI_ASSOC) ){
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
-                $stringaReturn .= "<td data-title=\"Data e ora\"><time datetime=\"".$row['data']."\">".$row['data']."</time> - ".$row['ora']."</td>";
+                $stringaReturn .= "<td data-title=\"Data e ora\">".$row['data']." - ".$row['ora']."</td>";
                 if($row['stato']==0){
                     $stringaReturn .= "<td data-title=\"Stato\">In corso</td>";
                 }else if($row['stato']==1){
@@ -889,7 +877,6 @@ class DBConnection {
     }
 
     public function isVeget(array $ingredienti) {
-        $veget = 1;
         foreach($ingredienti as $ingrediente) {
             try {
                 $query = "SELECT veget FROM ingrediente WHERE nome='" . $ingrediente . "'";
@@ -954,11 +941,28 @@ class DBConnection {
         return true;
     }
 
+    function getCurrentPath($id,$tabella){
+        $result= '';
+        try {
+            $query = "SELECT path FROM ".$tabella." WHERE id=?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('d', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }catch(mysqli_sql_exception $e){
+            header("location: errore.php");
+        }
+        if(mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+            return $row['path'];
+        }
+        return false;
+    }
+
     public function insertProdottoIngrediente($nome, $ingredienti, $table, $id = null) {
         $result = "";
         if ($id != null){
             try {
-                $query = "DELETE FROM " . $table . "_ingrediente WHERE " . $table . "=" . $id;
                 $query = "DELETE FROM " .$table. "_ingrediente WHERE ?=?";
                 $stmt = $this->connection->prepare($query);
                 $stmt->bind_param('ss', $table, $id);
@@ -979,7 +983,6 @@ class DBConnection {
         $row = mysqli_fetch_assoc($result);
         $prodottoId = $row['id'];
 
-        // Itera sugli ingredienti e inseriscili
         foreach ($ingredienti as $ingrediente) {
             try {
                 $ingrediente = mysqli_real_escape_string($this->connection, $ingrediente);
@@ -1206,7 +1209,7 @@ class DBConnection {
     }
 
     public function registerUser($name, $surname, $username, $email, $hashedPassword) {
-        $ruolo = 0; // ruolo default
+        $ruolo = 0;
         try {
             $query = "INSERT INTO utente (nome, cognome, username, email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->connection->prepare($query);
