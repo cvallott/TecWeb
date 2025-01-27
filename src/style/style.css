@@ -750,7 +750,7 @@ AREA-RISERVATA PAGE
 #registerForm.active {
     display: block;
 }
-/* DA CAPIRE COS'E' STA ROBA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
 .default-text {
     color: var(--txtcolor);
     font-size: 0.875em;
@@ -1292,17 +1292,6 @@ DASHBOARD PAGE
     padding: 1em;
 }
 
-.dashboard .home-button{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dashboard .home-button img {
-    margin-left: auto;
-}
-
 .dashboard div{
     margin: 0;
     padding: 0;
@@ -1313,19 +1302,89 @@ DASHBOARD PAGE
     width: 40%;
 }
 
-.dashboard p img{
-    transform: rotate(90deg);
-}
-
 .dashboard p:hover:not(.messaggio){
     background-color: var(--bgcolor);
 }
 
-.dashboard p{
+.dashboard #dashboard-gestisci{
     background-color: var(--bgcolor);
     color: var(--bgcolor2);
     border: 1px solid var(--bgcolor2);
+    margin:0.5em auto;
 }
+
+#dashboard-clienti{
+    background-image: url("../../assets/icons/utente-bianco.png");
+}
+
+#dashboard-ingredienti{
+    background-image: url("../../assets/icons/ingrediente-bianco.png");
+}
+
+#dashboard-ordini{
+    background-image: url("../../assets/icons/ordine-bianco.png");
+}
+
+#dashboard-piatto{
+    background-image: url("../../assets/icons/piatto-bianco.png");
+}
+
+#dashboard-pizza{
+    background-image: url("../../assets/icons/pizza-bianca.png");
+}
+
+#dashboard-prodotti{
+    background-image: url("../../assets/icons/prodotti-bianco.png");
+}
+#dashboard-freccia{
+    background-image: url("../../assets/icons/freccia-basso.png");
+}
+
+.dashboard .home-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2% 3%;
+    gap: 4%;
+    width: 50%;
+}
+
+.dashboard .home-button img {
+    margin-left: auto;
+    width: 5%;
+    height: auto;
+}
+
+.dashboard-ic {
+    width: 5%;
+    height: 0;
+    padding-bottom: 5%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    margin-left: 2%;
+    vertical-align: middle;
+    min-width: 30px;
+}
+
+#dashboard-clienti,
+#dashboard-ingredienti,
+#dashboard-ordini,
+#dashboard-piatto,
+#dashboard-pizza,
+#dashboard-prodotti,
+#dashboard-freccia{
+    background-size: contain;
+    min-height: 30px;
+    padding-bottom: 0;
+    height: auto;
+    display: block;
+}
+#dashboard-freccia{
+    margin-left: auto;
+}
+
 
 /*
 ------------------
