@@ -636,10 +636,10 @@ class DBConnection {
                 $query .= "SELECT nome, cognome, username, email, ruolo FROM utente WHERE ruolo='".$_POST['ruolo']."'";
             }
             if(isset($_POST['nome_utente']) && $_POST['nome_utente'] != ''){
-                $query .= " AND nome LIKE '".$_POST['nome_utente']."'";
+                $query .= " AND nome LIKE '%".$_POST['nome_utente']."%'";
             }
             if(isset($_POST['username_utente']) && $_POST['username_utente'] != ''){
-                $query .= " AND username LIKE '".$_POST['username_utente']."'";
+                $query .= " AND username LIKE '%".$_POST['username_utente']."%'";
             }
         }else if ($filtro == null){
             $query .= "SELECT nome, cognome, username, email, ruolo FROM utente";
@@ -701,10 +701,10 @@ class DBConnection {
                 $query .= "SELECT o.id, u.nome AS cliente_nome, u.cognome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
             }
             if(isset($_POST['data']) && $_POST['data'] != ''){
-                $query .= " AND data LIKE '".$_POST['data']."'";
+                $query .= " AND data LIKE '%".$_POST['data']."%'";
             }
             if(isset($_POST['cliente']) && $_POST['cliente'] != ''){
-                $query .= " AND u.nome LIKE '".$_POST['cliente']."'";
+                $query .= " AND u.nome LIKE '%".$_POST['cliente']."%'";
             }
         }else if ($filtro == 0){
             $query .= "SELECT o.id, u.nome AS cliente_nome, u.cognome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
