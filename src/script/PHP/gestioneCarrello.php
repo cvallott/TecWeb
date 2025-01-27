@@ -91,20 +91,12 @@ function getCarrello() : string {
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
                         <input type="hidden" name="azione" value="rimuovi" />
-                        <button type="submit" value="Rimuovi '.$riga['nome'].' dall\'ordine"><img src="assets/icons/cestino.png" alt="" /></button>
+                        <button type="submit" value="Rimuovi '.$item['nome'].' dall\'ordine"><img src="assets/icons/cestino.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }
     return $rowsCarrello;
 }
-
-/*
-function getQuantita($id){
-    if(isset($_SESSION['carrello'][$id]['quantita'])){
-        return $_SESSION['carrello'][$id]['quantita'];
-    }
-    return 0;
-}*/
 
 function getTotale(): float {
     $tot = 0;
