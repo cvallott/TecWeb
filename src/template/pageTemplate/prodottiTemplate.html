@@ -6,6 +6,10 @@
   <meta name="description" content="Questa pagina contiene la lista di tutti i prodotti della pizzeria">
   <meta name="keywords" content="Pizza,ingredienti,cucina,piatto,pizza classica,pizza speciale,pizza fuori menu,pizza stagionale">
   <meta name="author" content="Santi Andrea,Pozzobon Francesco,Ferraro Sara,Vallotto Caterina">
+  <link rel="shortcut icon" href="assets/logo/logo-neg.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/style.css" media="screen">
   <link rel="stylesheet" href="style/mini.css" media="screen and (max-width: 768px)">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +20,10 @@
   <p>Sei in: <a lang="en" href="index.php">Home</a> / <a lang="en" href="dashboard.php">Dashboard</a> / Visualizza prodotti</p>
 </nav>
 <main id="content">
-  <!-- anche qui lascio 3 sezioni -->
   <section id="general-intro">
     <h1>PRODOTTI</h1>
   </section>
-  <section id="filtri">
+  <div id="filtri">
     <form method="post" action="prodotti.php">
       <div>
         <input type="hidden" name="action" value="filter" />
@@ -38,12 +41,12 @@
       </div>
       <input type="submit" class="invia-button" value="Filtra" />
     </form>
-  </section>
+  </div>
   <section id="tabella-ordini">
     [operazione-successo]
     <span id="descrTabella">In questa tabella vengono riassunti tutti i prodotti organizzati per colonne: Informazioni sul prodotto, Tipo, Prezzo, Modifica del prodotto ed Eliminazione.</span>
     <table aria-describedby="descrTabella">
-      <caption>Ordini</caption>
+      <caption><h2>Prodotti</h2></caption>
       <thead>
       <tr>
         <th scope="col" abbr="Info">Info prodotto</th>

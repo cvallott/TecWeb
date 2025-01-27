@@ -28,6 +28,7 @@ $nomePiatto = "";
 $prezzoPiatto = "";
 $ingredientiPiatto = array();
 $listaIngredienti = "";
+$currentPath = "";
 $valueInfo = array();
 if($conn){
     if(isset($_GET['id'])){
@@ -50,10 +51,19 @@ if (isset($_POST['submit'])) {
     } else {
         $ingr = '';
     }
-    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = 'assets/icons/piatto_icon.png';
-    }else{
-        $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+    if(!isset($_GET['id'])){
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = 'assets/icons/piatto_icon.png';
+        }else{
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
+    } else {
+        $currentPath = $connessione->getCurrentPath($_GET['id'],'cucina');
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = $currentPath;
+        } else {
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
     }
 
     $messaggiPerForm .= "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul>";
@@ -64,6 +74,11 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePiatto) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome del piatto</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkCucina($nomePiatto) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome del piatto inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePiatto) < 2) {
             $messaggiPerForm .= "<li>Il nome del piatto deve contenere almeno 2 caratteri</li>";
         }
@@ -80,12 +95,23 @@ if (isset($_POST['submit'])) {
     if ($ingredientiPiatto == '') {
         $messaggiPerForm .= "<li>Il piatto deve avere almeno un ingrediente</li>";
     }
-    if($path != 'assets/icons/piatto_icon.png'){
-        $imageUploadResult = checkImage();
-        if ($imageUploadResult["success"]) {
-            $path = $imageUploadResult["path"];
-        } else {
-            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+    if(!isset($_GET['id'])){
+        if($path != 'assets/icons/piatto_icon.png'){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
+        }
+    } else {
+        if($path != $currentPath){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
         }
     }
     $messaggiPerForm .= "</ul></div>";

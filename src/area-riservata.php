@@ -159,6 +159,7 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
                 if ($connessione->registerUser($registerName, $registerSurname, $registerUser, $registerEmail, $hashedPassword)) {
                     $_SESSION['nome'] = $registerName;
                     $_SESSION['cognome'] = $registerSurname;
+                    $_SESSION['email'] = $registerEmail;
                     $_SESSION['tipo'] = 0;
                     header("Location: index.php?registration=success");
                     exit();
@@ -174,7 +175,6 @@ if (isset($_POST['register-name']) && isset($_POST['register-password'])) {
     $messaggiRegForm .= "</ul></div>";
 }
 
-// Replace placeholders in HTML
 $paginaHTML = str_replace('[header]', printHeader(), $paginaHTML);
 $paginaHTML = str_replace('[footer]', printFooter(), $paginaHTML);
 $paginaHTML = str_replace('[messaggiForm]', $messaggiPerForm, $paginaHTML);

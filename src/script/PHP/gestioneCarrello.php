@@ -7,11 +7,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
     $prezzo = $_POST['prezzo'] ?? null;
     $quantita = intval($_POST['quantita'] ?? 1);
 
+    $totQuantita = getTotaleQuantita();
+
     if ($_POST['azione'] === 'Aggiungi al carrello' && $id && $nome && $prezzo) {
-        aggiornaCarrello($id, $nome, $quantita,$prezzo);
-        $_SESSION['aggiunta_carrello'] = "<div class=\"messaggio\">Prodotto aggiunto al carrello! Continua a visitare il nostro menù e procedi all'ordine!</div>";
+        if($totQuantita+1<=10){
+            aggiornaCarrello($id, $nome, $quantita,$prezzo);
+            $_SESSION['aggiunta_carrello'] = "<div class=\"messaggio\"><p>Prodotto aggiunto al carrello! Continua a visitare il nostro menù e procedi all'ordine!</p></div>";
+        }else {
+            $_SESSION['aggiunta_carrello'] = "<div role=\"alert\" class=\"messaggio\"><p>Ci spiace ma hai raggiunto la quantità massima di 10 pizze. Contattaci telefonicamente per ordini maggiori</p></div>";
+        }
     } elseif ($_POST['azione'] === 'incrementa' && $id) {
-        aggiornaCarrello($id, '', 1,'');
+        if($totQuantita+1<=10){
+            aggiornaCarrello($id, '', 1,'');
+        }else {
+            $_SESSION['aggiunta_carrello'] = "<div role=\"alert\" class=\"messaggio\"><p>Ci spiace ma hai raggiunto la quantità massima di 10 pizze. Contattaci telefonicamente per ordini maggiori</p></div>";
+        }
     } elseif ($_POST['azione'] === 'decrementa' && $id) {
         if (isset($_SESSION['carrello'][$id]) && $_SESSION['carrello'][$id]['quantita'] > 1) {
             $_SESSION['carrello'][$id]['quantita']--;
@@ -31,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($_POST['azione'])) {
         header('Location:' . basename($_SERVER['PHP_SELF']));
     }
 
+}
+
+function getTotaleQuantita(): int{
+    $quantitaTot = 0;
+    foreach ($_SESSION['carrello'] as $id => $q) {
+        $quantitaTot += $q['quantita'];
+    }
+    return $quantitaTot;
 }
 
 if (!isset($_SESSION['carrello'])) {

@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    box-sizing: border-box; /*per evitare che venga lo scroll orizzontale*/
+    box-sizing: border-box;
 }
 
 :root{
@@ -12,9 +12,6 @@
 }
 
 html{
-    /*background-image: url(assets/grafiche/sfondo.jpg);*/
-    /*background-image: url(assets/grafiche/sfondo-nero.jpg);*/
-    /*background-image: url(assets/grafiche/sfondoarancio2.png);*/
     background-color: var(--bgcolor);
     background-size: cover;
     background-image: url(../assets/grafiche/sfondo-nero.jpg);
@@ -121,7 +118,7 @@ SEZIONE BREADCRUMB
     min-height: 3em;
     line-height: 3em;
     padding-left: 0.8em;
-    background: var(--bgcolor) linear-gradient(35deg, var(--bgcolor), var(--bgcolor2));
+    background-color: var(--bgcolor);
 }
 
 #breadcrumb a:visited {
@@ -723,9 +720,8 @@ AREA-RISERVATA PAGE
 }
 
 .switch-text a {
-    color: var(--bgcolor2); /*SE VANNO EVIDENZIATI ANCHE LINK INTERNI ALLA PAGINE FARE IL CASO VISITED DEL LINK A */
+    color: var(--bgcolor2);
 }
-
 
 .switch-text a:hover {
     color: var(--bgcolor3);
@@ -831,7 +827,7 @@ MENU-PRENOTA-PAGE
 }
 
 #MP-intro{
-    background-image: url('../assets/altre/menu-prenota/blurred.png');
+    background-image: url('../assets/pagine/menu-prenota/blurred.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
@@ -1043,8 +1039,6 @@ CARRELLO
 }
 
 .dettaglioItem h4{
-    /*max-width: 7em;
-    min-width: 6em;*/
     width: 7em  ;
     margin-right: 1em;
 }
@@ -1221,7 +1215,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
     padding: 0.5em;
     font-size: 0.8em;
     color: var(--bgcolor);
-    background-color: var(--bgcolor2);
+    background-color: var(--bgcolor3);
     border: none;
     width: 13em;
     white-space: wrap;
@@ -1231,7 +1225,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 }
 
 .invia-button:hover {
-    background-color: var(--txtcolor);
+    background-color: var(--bgcolor2);
     transform: translateY(-2px);
 }
 
@@ -1241,7 +1235,7 @@ VISUALIZZA ORDINI e GESTISCI UTENTI PAGE
 
 #filtri form .invia-button{
     background-color: var(--bgcolor);
-    color: var(--bgcolor2);
+    color: var(--bgcolor3);
     font-size: 1.1em;
     width: 6em;
 }
@@ -1505,7 +1499,7 @@ CSS PER MESSAGGIO DI SUCCESSO O ERRORE
     font-size: 1.2em;
     color: var(--txtcolor);
     text-align: center;
-    background-color: rgba(205, 73, 42, 0.7);
+    background-color: rgba(205, 73, 42, 0.9);
     padding: 1.5em;
     border-radius: 0.4em;
     margin-bottom: 1em;

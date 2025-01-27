@@ -30,6 +30,7 @@ $ingredientiPizza = array();
 $descrizionePizza = "";
 $listaIngredienti = "";
 $categorie = "";
+$currentPath = "";
 $valueInfo = array();
 if($conn){
     if(isset($_GET['id'])){
@@ -42,6 +43,8 @@ if($conn){
             $template = str_replace('[valuePrezzo]', 'value = "'.$valueInfo[1].'"', $template);
             if(!empty($valueInfo[2])){
                 $template = str_replace('[valueDescr]', $valueInfo[2], $template);
+            }else{
+                $template = str_replace('[valueDescr]', '', $template);
             }
         }
         $template = str_replace('[percorsoFile]', '"aggiungi-pizza.php?id='.$id.'"', $template);
@@ -58,10 +61,19 @@ if (isset($_POST['submit'])) {
         $ingredientiPizza = '';
     }
 
-    if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
-        $path = 'assets/icons/pizza_icon.png';
-    }else{
-        $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+    if(!isset($_GET['id'])){
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = 'assets/icons/pizza_icon.png';
+        }else{
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
+    } else {
+        $currentPath = $connessione->getCurrentPath($_GET['id'],'pizza');
+        if(!isset($_FILES["file"]) || $_FILES["file"]["error"] === UPLOAD_ERR_NO_FILE){
+            $path = $currentPath;
+        } else {
+            $path = 'assets/pizze/'. basename($_FILES["file"]["name"]);
+        }
     }
 
     $messaggiPerForm .= "<div role=\"alert\" class=\"errore-form\"><span lang=\"en\">Warning</span><ul>";
@@ -73,6 +85,11 @@ if (isset($_POST['submit'])) {
     if (strlen($nomePizza) == 0) {
         $messaggiPerForm .= "<li>Inserire il nome della pizza</li>";
     } else {
+        if(!isset($_GET['id'])){
+            if ($conn && $connessione->checkPizza($nomePizza) > 0) {
+                $messaggiPerForm .= "<li role=\"alert\">Il nome della pizza inserito è già presente</li>";
+            }
+        }
         if (strlen($nomePizza) < 2) {
             $messaggiPerForm .= "<li>Il nome della pizza deve contenere almeno 2 caratteri</li>";
         }
@@ -98,12 +115,23 @@ if (isset($_POST['submit'])) {
     if (strlen($categoriaPizza) == 0) {
         $messaggiPerForm .= "<li>Inserire la categoria della pizza</li>";
     }
-    if($path != 'assets/icons/pizza_icon.png'){
-        $imageUploadResult = checkImage();
-        if ($imageUploadResult["success"]) {
-            $path = $imageUploadResult["path"];
-        } else {
-            $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+    if(!isset($_GET['id'])){
+        if($path != 'assets/icons/pizza_icon.png'){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
+        }
+    } else {
+        if($path != $currentPath){
+            $imageUploadResult = checkImage();
+            if ($imageUploadResult["success"]) {
+                $path = $imageUploadResult["path"];
+            } else {
+                $messaggiPerForm .= "<li>" . $imageUploadResult["message"] . "</li>";
+            }
         }
     }
     $messaggiPerForm .= "</ul></div>";
