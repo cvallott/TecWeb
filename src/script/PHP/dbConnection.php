@@ -696,9 +696,9 @@ class DBConnection {
         $query = '';
         if($filtro != null){
             if(isset($_POST['stato']) && $_POST['stato'] == ''){
-                $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND (stato=0 OR stato=1 OR stato=-1)";
+                $query .= "SELECT o.id, u.nome AS cliente_nome, u.cognome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND (stato=0 OR stato=1 OR stato=-1)";
             }else{
-                $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
+                $query .= "SELECT o.id, u.nome AS cliente_nome, u.cognome AS cliente, o.data, o.ora, o.stato FROM ordine AS o, utente AS u WHERE u.email = o.utente AND stato='".$_POST['stato']."'";
             }
             if(isset($_POST['data']) && $_POST['data'] != ''){
                 $query .= " AND data LIKE '".$_POST['data']."'";
@@ -707,7 +707,7 @@ class DBConnection {
                 $query .= " AND u.nome LIKE '".$_POST['cliente']."'";
             }
         }else if ($filtro == 0){
-            $query .= "SELECT o.id, u.nome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
+            $query .= "SELECT o.id, u.nome AS cliente_nome, u.cognome AS cliente, o.data, o.ora, o.stato FROM ordine AS o JOIN utente AS u ON u.email = o.utente";
         }
         $query .= " ORDER BY o.id DESC";
         return $query;
@@ -756,7 +756,7 @@ class DBConnection {
             while($row = $result->fetch_array(MYSQLI_ASSOC)){
                 $stringaReturn .= "<tr>";
                 $stringaReturn .= "<th scope=\"row\">".$row['id']."</th>";
-                $stringaReturn .= "<td data-title=\"Cliente\">".$row['cliente']."</td>";
+                $stringaReturn .= "<td data-title=\"Cliente\">".$row['cliente_nome']." ".$row['cliente']."</td>";
                 $stringaReturn .= "<td data-title=\"Data e ora\">".$row['data']." - ".$row['ora']."</td>";
                 $tot = $this->getTotaleProdottiOrdine($row['id']);
                 $prezzo = $this->getTotalePrezzoOrdine($row['id']);
