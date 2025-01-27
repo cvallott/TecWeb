@@ -176,7 +176,7 @@ class DBConnection {
             $visited = true;
             $stringaReturn .= "<section class=\"menu-prodpercat\" id=\"".str_replace(' ','',"cucina")."\">";
             $stringaReturn .= "<h2>La nostra cucina</h2>";
-            $stringaReturn .= "<p class=\"sez-intro\">La nostra proposta</p>";
+            $stringaReturn .= "<p class=\"sez-intro\">La nostra passione, coltivata a 360°: Non Solo Pizza!</p>";
             $stringaReturn .= "<div class=\"pizza-container\">";
             while ($riga = $pizze->fetch_array(MYSQLI_ASSOC)) {
                 $stringaReturn .= "<div class=\"pizza\" id=\"c-".$riga['id']."\">";
