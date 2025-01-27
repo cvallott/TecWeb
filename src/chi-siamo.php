@@ -3,6 +3,8 @@
 include_once 'template/components/loadComponents.php';
 $template = file_get_contents('template/pageTemplate/chisiamoTemplate.html');
 
+$_SESSION['redirect']= "chi-siamo.php";
+
 $header = printHeader();
 $footer = printFooter();
 
