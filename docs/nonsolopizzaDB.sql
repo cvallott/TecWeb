@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Creato il: Gen 25, 2025 alle 15:05
+-- Creato il: Gen 27, 2025 alle 11:53
 -- Versione del server: 10.6.7-MariaDB-1:10.6.7+maria~focal
 -- Versione PHP: 8.2.8
 
@@ -137,8 +137,8 @@ INSERT INTO `disponiblitaorarie` (`fascia`) VALUES
 ('18.40-18.50'),
 ('18.50-19.00'),
 ('19.00-19.10'),
-('19.02-19.30'),
 ('19.10-19.20'),
+('19.20-19.30'),
 ('19.30-19.40'),
 ('19.40-19.50'),
 ('19.50-20.00'),
@@ -248,6 +248,20 @@ CREATE TABLE `ordine` (
   `stato` tinyint(1) NOT NULL DEFAULT 0,
   `nota` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `ordine`
+--
+
+INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`, `nota`) VALUES
+(34, 'user@email.com', '2025-01-03', '19.40-19.50', 1, 'Asparagi con abbondante mozzarella'),
+(35, 'user@email.com', '2025-02-06', '20.20-20.30', 0, NULL),
+(36, 'user@email.com', '2025-01-20', '18.50-19.00', -1, NULL),
+(37, 'mario.rossi@email.com', '2025-01-27', '20.40-20.50', 1, 'Campania tagliata'),
+(38, 'mario.rossi@email.com', '2025-01-23', '20.30-20.40', 1, NULL),
+(39, 'maria.bianchi@email.com', '2025-01-30', '19.10-19.20', 1, NULL),
+(40, 'maria.bianchi@email.com', '2025-01-13', '21.00-21.10', -1, NULL),
+(41, 'user@email.com', '2025-01-27', '19.20-19.30', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -698,6 +712,32 @@ CREATE TABLE `prodotti_ordine` (
   `quantita` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `prodotti_ordine`
+--
+
+INSERT INTO `prodotti_ordine` (`id`, `ordine`, `pizza`, `cucina`, `quantita`) VALUES
+(36, 34, 56, NULL, 1),
+(37, 34, 117, NULL, 2),
+(38, 34, NULL, 18, 1),
+(39, 35, 62, NULL, 1),
+(40, 35, 67, NULL, 1),
+(41, 35, 132, NULL, 1),
+(42, 36, NULL, 11, 1),
+(43, 36, 66, NULL, 1),
+(44, 37, 88, NULL, 2),
+(45, 37, NULL, 9, 1),
+(46, 37, 100, NULL, 1),
+(47, 38, 125, NULL, 1),
+(48, 38, NULL, 16, 1),
+(49, 39, 121, NULL, 1),
+(50, 39, 72, NULL, 2),
+(51, 39, 89, NULL, 1),
+(52, 39, 131, NULL, 1),
+(53, 39, 132, NULL, 1),
+(54, 39, 133, NULL, 2),
+(55, 40, 81, NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -719,7 +759,10 @@ CREATE TABLE `utente` (
 
 INSERT INTO `utente` (`email`, `username`, `password`, `nome`, `cognome`, `ruolo`) VALUES
 ('admin@admin.com', 'admin', '$2y$10$w65KHkkqwPxnZ/3ntng6puxHt/YCh4uK0jn54iNyw3KclXQRiTqhO', 'Admin', 'Admin', 1),
-('utente@utente.it', 'utente', '$2y$10$wxE2jEUpUH7FV25sdaImhOeuodxzE5VH7WEmEOD6L5eIffnK1dYgW', 'Utente', 'Utente', 0);
+('lucia.verdi@email.com', 'luciaverdi', '$2y$10$lCzc85IVfHGrUKFgiyW1tuLoPa80zBBfctp5vPL7ETIytUCwWqMzO', 'Lucia', 'Verdi', 0),
+('maria.bianchi@email.com', 'mariabianchi', '$2y$10$h4J6cpJvLTtv6PXObiezyO123rHueTnuKo002kls42oBC4N2oLf3e', 'Maria', 'Bianchi', 0),
+('mario.rossi@email.com', 'mariorossi', '$2y$10$fqOPUQhPkVyK1OQkqeTJ5.FKejhfChGEfp1dc2suvFQ49Po452EvW', 'Mario', 'Rossi', 0),
+('user@email.com', 'user', '$2y$10$JNdKKa2igUE.LoYcmwaybexMG2L6j84bbeToWTKHYYvLK3CA/taja', 'User', 'User', 0);
 
 -- --------------------------------------------------------
 
@@ -826,7 +869,7 @@ ALTER TABLE `cucina`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT per la tabella `pizza`
@@ -838,7 +881,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT per la tabella `prodotti_ordine`
 --
 ALTER TABLE `prodotti_ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- Limiti per le tabelle scaricate
