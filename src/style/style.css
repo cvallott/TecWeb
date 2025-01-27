@@ -752,12 +752,12 @@ AREA-RISERVATA PAGE
 }
 /* DA CAPIRE COS'E' STA ROBA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .default-text {
-    color: #666;
+    color: var(--txtcolor);
     font-size: 0.875em;
 }
 
 .errorSuggestion {
-    color: red;
+    color: var(--bgcolor2);
     font-size: 0.875em;
     font-weight: 500;
 }
