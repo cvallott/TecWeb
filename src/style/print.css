@@ -1,3 +1,10 @@
+:root{
+    --bgcolor: #fff;
+    --txtcolor: #000;
+    --bgcolor2: #cd492a;
+    --bgcolor3: #414143;
+}
+
 html{
     font-family: "Times New Roman", Times, serif;
     font-size:12pt;
@@ -5,7 +12,7 @@ html{
 
 body{
     background: none;
-    color: #000;
+    color: var(--txtcolor);
 }
 
 header, footer{
@@ -46,12 +53,12 @@ INDEX PAGE
 
 #titolo h1, #titolo h2 {
     margin: 0;
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 
 #important-info{
     max-width: 800px;
-    border: 2px solid #000;
+    border: 2px solid var(--txtcolor);
     display: flex;
     flex-wrap: wrap;
     height: 150px;
@@ -75,7 +82,7 @@ INDEX PAGE
 
 #filosofia h2{
     text-align: start;
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 
 #filosofia{
@@ -103,13 +110,13 @@ a:link:after, a:visited:after {
 
 #fuori-menu h2{
     text-align: start;
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 
 #lista-FM {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #000;
+    border: 1px solid var(--txtcolor);
     justify-content: space-around;
 }
 
@@ -130,7 +137,7 @@ a:link:after, a:visited:after {
 }
 
 #lista-FM li a {
-    color: black;
+    color: var(--txtcolor);
     text-decoration: none;
 }
 
@@ -143,7 +150,7 @@ a:link:after, a:visited:after {
 }
 
 #download-container h2{
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 
 #download-container .download-column p{
@@ -162,7 +169,7 @@ MENU PRENOTA PAGE
 }
 
 #smallMenu h1{
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 
 #smallMenu a{
@@ -194,7 +201,7 @@ MENU PRENOTA PAGE
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 1em;
-    border-bottom: 0.1vh solid black;
+    border-bottom: 1px solid var(--txtcolor);
 }
 
 .pizza-testo {
@@ -236,7 +243,7 @@ CARRELLO PAGE
 
 .order-summary{
     width: auto;
-    border: 0.2vh solid black;
+    border: 1px solid var(--txtcolor);
 }
 
 .order-summary .recap-pizze{
@@ -282,7 +289,7 @@ textarea[name="note"]{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000;
+    border: 1px solid var(--txtcolor);
 }
 
 #FM-content #lista-FM li {
@@ -305,7 +312,7 @@ textarea[name="note"]{
 }
 
 #FM-content #lista-FM li a {
-    color: black;
+    color: var(--txtcolor);
     text-decoration: none;
 }
 
@@ -360,7 +367,7 @@ label[for="file"], .form-fieldset #file{
 }
 
 main#content h1{
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 /*
 -------------
@@ -370,7 +377,7 @@ CHI SIAMO
 
 #titoloPagSecondaria{
     margin: 0;
-    color: #A2231D;
+    color: var(--bgcolor2);
 }
 
 #chi-siamo-contenitore{
@@ -389,7 +396,7 @@ CHI SIAMO
 }
 
 .chi-siamo-sezbordo{
-    border-right: 1px solid black;
+    border-right: 1px solid var(--txtcolor);
 }
 
 .chi-siamo-titoli{
@@ -436,7 +443,7 @@ RIEPILOGO ORDINI
 }
 
 #tabella-ordini th,td {
-    border: 1px solid black;
+    border: 1px solid var(--txtcolor);
 }
 
 #tabella-ordini td{
