@@ -104,13 +104,6 @@ a:link:after, a:visited:after {
     font-size: 90%;
 }
 
-/*da capire se usare questo sopra (nome+URL) oppure se usare questo sotto (URL e basta)*/
-/*
-a:link, a:visited {
-    content: attr(href); viene mostrato solo l'url
-font-size: 90%;
-*/
-
 #fuori-menu{
     text-align: center;
 }
@@ -129,11 +122,11 @@ font-size: 90%;
 
 #lista-FM li {
     margin-top: 1em;
-    display: flex; /* Attiva Flexbox */
-    flex-direction: row; /* Dispone immagine e testo in una riga */
-    align-items: center; /* Allinea verticalmente immagine e testo */
-    list-style: none; /* Rimuove i puntini */
-    margin-bottom: 1em; /* Spaziatura tra gli elementi */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 1em;
 }
 
 #lista-FM li img {
@@ -199,8 +192,6 @@ MENU PRENOTA PAGE
     display: flex;
     flex-direction: column;
     margin-left: 1.5em;
-    /*justify-content: space-between;*/
-    /*padding: 1em;*/
 }
 
 
@@ -209,7 +200,6 @@ MENU PRENOTA PAGE
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    /*border-bottom: 0.8px var(--txtcolor) solid;*/
     margin-bottom: 1em;
     border-bottom: 0.1vh solid black;
 }
@@ -344,7 +334,7 @@ AGGIUNGI INGREDIENTE-PIZZA-CUCINA
 }
 
 label[for="prezzo"], span[class="default-text"] {
-    display: block; /* inserito perche, cosi, va a capo */
+    display: block; 
     margin-bottom: 0.5em;
 }
 
