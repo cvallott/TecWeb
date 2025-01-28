@@ -281,7 +281,7 @@
           <mxGeometry x="482" y="310" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="_Mf7b5W_oBMYDt20IuVR-134" value="0:N" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="600" y="230" width="60" height="30" as="geometry" />
+          <mxGeometry x="591" y="230" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="_Mf7b5W_oBMYDt20IuVR-136" value="DISP ORARIE" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="860" y="475" width="120" height="40" as="geometry" />
