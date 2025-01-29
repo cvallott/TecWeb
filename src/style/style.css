@@ -801,9 +801,9 @@ DETTAGLI-ORDINE PAGE
 
 #note {
     font-size: 1em;
-    color: var(--txtcolor);
+    color: var(--bgcolor);
     text-align: center;
-    background-color: rgba(128, 128, 128, 0.7);
+    background-color: var(--bgcolor3);
     padding: 1.5em;
     border-radius: 0.4em;
     border: 1px solid var(--txtcolor);
@@ -991,10 +991,6 @@ MENU-PRENOTA-PAGE
 .add-to-cart:hover {
     color: var(--bgcolor);
     background-color: var(--bgcolor2);
-}
-
-#prodotto-non-trovato{
-    padding-bottom: 3em;
 }
 
 .order-actions .home-button{

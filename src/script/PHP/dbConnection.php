@@ -140,7 +140,7 @@ class DBConnection {
             }
         }
         if($visited == false){
-            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, la pizza cercata non esiste</h2>';
+            $stringaReturn .= '<div class="menu-prodpercat"><h2>Siamo spiacenti, la pizza cercata non esiste</h2>';
             $stringaReturn .= '<div class="torna-su">';
             $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>';
             $stringaReturn .= '</div>';
@@ -244,7 +244,7 @@ class DBConnection {
             $stringaReturn .= '</section>';
         }
         if($visited == false){
-            $stringaReturn .= '<div class="menu-prodpercat" id="prodotto-non-trovato"><h2>Siamo spiacenti, il piatto cercato non esiste</h2>';
+            $stringaReturn .= '<div class="menu-prodpercat"><h2>Siamo spiacenti, il piatto cercato non esiste</h2>';
             $stringaReturn .= '<div class="torna-su">';
             $stringaReturn .= '<a href="#MP-intro"><img src="assets/icons/torna-su.png" alt="Torna su" /></a>';
             $stringaReturn .= '</div>';
@@ -521,11 +521,16 @@ class DBConnection {
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"nome\" value=\"".$nome."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteIngrediente\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ingrediente ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
             }
+        } else {
+            $stringaReturn .= "<tr>";
+            $stringaReturn .= "<td colspan=\"5\"> Nessun ingrediente trovato </td>";
+            $stringaReturn .= "</td>";
+            $stringaReturn .= "</tr>";
         }
         return $stringaReturn;
     }
@@ -549,11 +554,16 @@ class DBConnection {
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deleteCucina\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina piatto ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
             }
+        } else {
+            $stringaReturn .= "<tr>";
+            $stringaReturn .= "<td colspan=\"5\"> Nessun piatto trovato </td>";
+            $stringaReturn .= "</td>";
+            $stringaReturn .= "</tr>";
         }
         return $stringaReturn;
     }
@@ -576,11 +586,16 @@ class DBConnection {
                 $stringaReturn .= "<form action=\"prodotti.php\" method=\"post\">";
                 $stringaReturn .= "<input type=\"hidden\" name=\"id\" value=\"".$row['id']."\" />";
                 $stringaReturn .= "<input type=\"hidden\" name=\"action\" value=\"deletePizza\" />";
-                $stringaReturn .= "<input type=\"submit\" value=\"Elimina ".$row['nome']."\" class=\"invia-button\" />";
+                $stringaReturn .= "<input type=\"submit\" value=\"Elimina pizza ".$row['nome']."\" class=\"invia-button\" />";
                 $stringaReturn .= "</form>";
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
             }
+        } else {
+            $stringaReturn .= "<tr>";
+            $stringaReturn .= "<td colspan=\"5\"> Nessuna pizza trovata </td>";
+            $stringaReturn .= "</td>";
+            $stringaReturn .= "</tr>";
         }
         return $stringaReturn;
     }
@@ -688,6 +703,11 @@ class DBConnection {
                 $stringaReturn .= "</tr>";
                 $conta++;
             }
+        } else {
+            $stringaReturn .= "<tr>";
+            $stringaReturn .= "<td colspan=\"6\"> Nessun utente trovato </td>";
+            $stringaReturn .= "</td>";
+            $stringaReturn .= "</tr>";
         }
         return $stringaReturn;
     }
@@ -787,6 +807,11 @@ class DBConnection {
                 $stringaReturn .= "</td>";
                 $stringaReturn .= "</tr>";
             }
+        } else {
+            $stringaReturn .= "<tr>";
+            $stringaReturn .= "<td colspan=\"7\"> Nessun ordine trovato </td>";
+            $stringaReturn .= "</td>";
+            $stringaReturn .= "</tr>";
         }
         return $stringaReturn;
     }

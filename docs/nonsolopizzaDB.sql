@@ -260,8 +260,7 @@ INSERT INTO `ordine` (`id`, `utente`, `data`, `ora`, `stato`, `nota`) VALUES
 (37, 'mario.rossi@email.com', '2025-01-27', '20.40-20.50', 1, 'Campania tagliata'),
 (38, 'mario.rossi@email.com', '2025-01-23', '20.30-20.40', 1, NULL),
 (39, 'maria.bianchi@email.com', '2025-01-30', '19.10-19.20', 1, NULL),
-(40, 'maria.bianchi@email.com', '2025-01-13', '21.00-21.10', -1, NULL),
-(41, 'user@email.com', '2025-01-27', '19.20-19.30', 0, NULL);
+(40, 'maria.bianchi@email.com', '2025-01-13', '21.00-21.10', -1, NULL);
 
 -- --------------------------------------------------------
 
