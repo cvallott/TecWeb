@@ -80,18 +80,18 @@ function getCarrello() : string {
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
                         <input type="hidden" name="azione" value="decrementa" />
-                        <button type="submit" value="Rimuovi una '.$item['nome'].' al carrello"><img src="assets/icons/minus.png" alt="" /></button>
+                        <button type="submit" aria-label="Rimuovi una '.$item['nome'].' al carrello" value="Rimuovi una '.$item['nome'].' al carrello"><img src="assets/icons/minus.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '<p>'. $item['quantita'] .'</p>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
                         <input type="hidden" name="azione" value="incrementa" />
-                        <button type="submit" value="Aggiungi una '.$item['nome'].' al carrello"><img src="assets/icons/plus.png" alt="" /></button>
+                        <button type="submit" aria-label="Aggiungi una '.$item['nome'].' al carrello" value="Aggiungi una '.$item['nome'].' al carrello"><img src="assets/icons/plus.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '<form method="POST" action="carrello.php" class="inlineComponents">
                         <input type="hidden" name="id" value="'.$id.'" />
                         <input type="hidden" name="azione" value="rimuovi" />
-                        <button type="submit" value="Rimuovi '.$item['nome'].' dall\'ordine"><img src="assets/icons/cestino.png" alt="" /></button>
+                        <button type="submit" aria-label="Rimuovi '.$item['nome'].' dall\'ordine" value="Rimuovi '.$item['nome'].' dall\'ordine"><img src="assets/icons/cestino.png" alt="" /></button>
                     </form>';
         $rowsCarrello .= '</div></div></div>';
     }
