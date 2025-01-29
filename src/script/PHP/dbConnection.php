@@ -992,16 +992,16 @@ class DBConnection {
 
     public function insertProdottoIngrediente($nome, $ingredienti, $table, $id = null) {
         $result = "";
-        if ($id != null){
-            try {
-                $query = "DELETE FROM " .$table. "_ingrediente WHERE ?=?";
-                $stmt = $this->connection->prepare($query);
-                $stmt->bind_param('ss', $table, $id);
-                $stmt->execute();
-            }catch(mysqli_sql_exception $e){
-                header("location: errore.php");
+            if ($id != null){
+                try {
+                    $query = "DELETE FROM " .$table. "_ingrediente WHERE ".$table."=?";
+                    $stmt = $this->connection->prepare($query);
+                    $stmt->bind_param('s', $id);
+                    $stmt->execute();
+                }catch(mysqli_sql_exception $e){
+                    header("location: errore.php");
+                }
             }
-        }
         try {
             $query = "SELECT id FROM $table WHERE nome = ?";
             $stmt = $this->connection->prepare($query);
