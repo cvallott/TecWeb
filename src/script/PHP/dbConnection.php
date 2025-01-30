@@ -830,6 +830,19 @@ class DBConnection {
             }catch(mysqli_sql_exception $e){
                 header("location: errore.php");
             }
+        }else{
+            try{
+                $query = "SELECT id FROM ordine WHERE id = ?";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bind_param("s", $idOrdine);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if($result->num_rows == 0){
+                    header("location: visualizza-ordini.php");
+                }
+            }catch(mysqli_sql_exception $e){
+                header("location: errore.php");
+            }
         }
         try {
             $query = "SELECT COALESCE(P.nome, C.nome) AS prodotto, PO.quantita AS quantita, (PO.quantita * COALESCE(P.prezzo, C.prezzo)) AS prezzo FROM prodotti_ordine AS PO LEFT JOIN pizza AS P ON PO.pizza = P.id LEFT JOIN cucina AS C ON PO.cucina = C.id WHERE PO.ordine = ?";
