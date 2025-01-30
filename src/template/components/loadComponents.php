@@ -67,9 +67,9 @@ function printHeader()
             $areaRis .= "<li class=\"menuMobile-version\"><a href=\"script/PHP/logout.php\"><img src=\"assets/icons/logout.png\" alt=\"Logout\" /></a></li>";
         }else{
             if($currentpage == 'riepilogo-ordini.php') {
-                $areaRis = "<li id=\"currentLink\">Storico ordini</li>";
+                $areaRis = "<li id=\"currentLink\">Riepilogo ordini</li>";
             }else{
-                $areaRis = "<li><a href=\"riepilogo-ordini.php\">Storico ordini</a></li>";
+                $areaRis = "<li><a href=\"riepilogo-ordini.php\">Riepilogo ordini</a></li>";
                 $areaRis .= "<li class=\"menuMobile-version\"><a href=\"riepilogo-ordini.php\"><img src=\"assets/icons/ordini.png\" alt=\"Riepilogo ordini\" /></a></li>";
             }
             $areaRis .= "<li><a href=\"script/PHP/logout.php\"><span lang=\"en\">Logout</span></a></li>";
