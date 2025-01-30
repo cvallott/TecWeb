@@ -356,7 +356,7 @@ INSERT INTO `pizza` (`id`, `nome`, `prezzo`, `veget`, `categoria`, `descrizione`
 (128, 'Radicchio', 8, 1, 'Stagionale', '', 'assets/pizze/radicchio.jpeg'),
 (129, 'Radicchio e salsiccia', 9, 0, 'Stagionale', '', 'assets/icons/pizza_icon.png'),
 (130, 'Treviso', 8.5, 1, 'Stagionale', '', 'assets/pizze/radicchiograna.jpeg'),
-(131, 'Zucca e gorgonzola', 8.5, 1, 'Fuori menu', 'Il sapore forte del gorgonzola unito alla dolcezza della zucca', 'assets/pizze/FM-zuccagorgo.jpeg'),
+(131, 'Zucca e gorgonzola', 8.5, 1, 'Fuori menu', 'La decisione del gorgonzola unito alla sapore della zucca', 'assets/pizze/FM-zuccagorgo.jpeg'),
 (132, 'Pesto e bufala', 8.5, 1, 'Fuori menu', 'Scopri la delicatezza della nostra Pesto e bufala!', 'assets/pizze/FM-pestobufala.jpeg'),
 (133, 'Calzone alla nutella', 4.5, 1, 'Fuori menu', 'C&#039;&egrave; sempre spazio per il dolce, no?', 'assets/pizze/FM-calzonenutella.jpeg'),
 (134, 'Brie e speck', 8, 0, 'Classica', '', 'assets/pizze/briespeck.jpeg');
