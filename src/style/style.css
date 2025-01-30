@@ -443,6 +443,7 @@ CHI SIAMO PAGE
 */
 #chi-siamo-intro {
     background-image: url('../assets/pagine/chi-siamo/chi-siamo-intro-b.png');
+    background-color: var(--txtcolor);
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
@@ -828,6 +829,7 @@ MENU-PRENOTA-PAGE
 
 #MP-intro{
     background-image: url('../assets/pagine/menu-prenota/blurred.png');
+    background-color: var(--bgcolor);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
