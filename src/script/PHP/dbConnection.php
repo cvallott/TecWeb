@@ -1286,7 +1286,7 @@ class DBConnection {
 
     public function getFasceOrarie($daOrdinare){
         try {
-            $query = "SELECT disponiblitaorarie.fascia AS fascia, pizzePerFascia.pizze AS pizze FROM disponiblitaorarie LEFT JOIN pizzePerFascia ON disponiblitaorarie.fascia = pizzePerFascia.fascia WHERE disponiblitaorarie.fascia NOT IN (SELECT orario FROM checkOrari);";
+            $query = "SELECT disponiblitaorarie.fascia AS fascia, pizzePerFascia.pizze AS pizze FROM disponiblitaorarie LEFT JOIN pizzePerFascia ON disponiblitaorarie.fascia = pizzePerFascia.fascia WHERE disponiblitaorarie.fascia NOT IN (SELECT orario FROM checkOrari) ORDER BY disponiblitaorarie.fascia;";
             $risultato = mysqli_query($this->connection, $query);
         }catch(mysqli_sql_exception $e){
             header("location: errore.php");
