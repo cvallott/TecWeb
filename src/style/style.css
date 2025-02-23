@@ -829,25 +829,22 @@ MENU-PRENOTA-PAGE
     background-position: right;
     text-align: center;
     font-size: 1.2em;
-    height: 70vh;
+    height: 50vh;
     margin: 0.5em;
     display: flex;
+    flex-direction: column;
 }
 
 #smallMenu {
-    display: flex;
-    flex-direction: column;
     padding: 2em;
     margin: 2em;
     border-radius: 0.4em;
-    justify-content: center;
     color: var(--txtcolor);
     background-color: rgba(255, 255, 255, 0.6);
-    width: 20em;
 }
 
 #smallMenu h1{
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 #smallMenu #prenota{
@@ -861,28 +858,42 @@ MENU-PRENOTA-PAGE
     overflow-wrap: break-word;
 }
 
-#smallMenu a{
+#categoria {
+    background-color: var(--bgcolor);
+    margin: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#categoria h2{
+    color: var(--bgcolor3);
+    padding-right: 1.5em;
+    margin: 1em;
+}
+
+#categoria a{
     color: var(--txtcolor);
-    background-color: var(--bgcolor2);
     border: var(--bgcolor2) 0.125em solid;
     border-radius: 0.4em;
-    padding: 0.35em;
-    margin-top: 0.8em;
+    padding: 0.5em;
+    margin: 1em;
     text-align: center;
     transition: background-color 0.5s;
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
-#smallMenu a:visited{
-    color: var(--bgcolor);
+#categoria a:visited{
     background-color: var(--txtcolor);
     border: var(--txtcolor) 0.125em solid;
 }
 
-#smallMenu a:hover{
-    color: var(--txtcolor);
-    background-color: var(--bgcolor);
+#categoria a:hover{
+    background-color: var(--bgcolor2);
+    color: var(--bgcolor);
+    border: var(--bgcolor2) 0.125em solid;
 }
 
 .menu-prodpercat {
@@ -1027,6 +1038,12 @@ CARRELLO
 */
 #primadisp{
     font-size: 0.9em;
+    font-style: italic;
+}
+
+#chiusura{
+    font-size: 1.3em;
+    color: var(--bgcolor2);
     font-style: italic;
 }
 

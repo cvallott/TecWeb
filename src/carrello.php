@@ -76,7 +76,7 @@ if(date("l") != 'Monday'){
         }
     }
 } else {
-    $primadisp = "<div role=\"alert\"><p id=\"primadisp\">Ci spiace, il lunedì siamo chiusi. Alla prossima!</p></div>";
+    $primadisp = "<div role=\"alert\"><p id=\"chiusura\">Ci spiace, il lunedì siamo chiusi. Alla prossima!</p></div>";
 }
 
 
