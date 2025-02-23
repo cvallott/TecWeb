@@ -438,6 +438,21 @@ MENU-PRENOTA
     font-size: 0.7em;
 }
 
+#categoria{
+    flex-direction: row;
+    margin: 0.2em;
+}
+
+#categoria h2{
+    margin: 0.5em;
+    font-size: 1em;
+}
+
+#categoria a{
+    margin: 0.5em;
+    font-size: 0.9em;
+}
+
 #filtri form {
     display: flex;
     flex-direction: column;

@@ -868,7 +868,7 @@ MENU-PRENOTA-PAGE
 }
 
 #categoria h2{
-    color: var(--bgcolor2);
+    color: var(--bgcolor3);
     padding-right: 1.5em;
     margin: 1em;
 }
@@ -1038,6 +1038,12 @@ CARRELLO
 */
 #primadisp{
     font-size: 0.9em;
+    font-style: italic;
+}
+
+#chiusura{
+    font-size: 1.3em;
+    color: var(--bgcolor2);
     font-style: italic;
 }
 
