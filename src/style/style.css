@@ -297,10 +297,10 @@ HOME PAGE
 }
 
 #img1 {
-    background-image: url('../assets/pagine/index/filosofia1.jpg');
+    background-image: url('../assets/pagine/index/filosofia1.png');
 }
 #img2 {
-    background-image: url('../assets/pagine/index/filosofia2.jpg');
+    background-image: url('../assets/pagine/index/filosofia2.png');
 }
 
 #img3 {
@@ -308,7 +308,7 @@ HOME PAGE
 }
 
 #img4 {
-    background-image: url('../assets/pagine/index/filosofia4.jpg');
+    background-image: url('../assets/pagine/index/filosofia4.png');
 }
 
 .home-button {
@@ -570,7 +570,7 @@ CHI SIAMO PAGE
     background-image: url('../assets/pagine/chi-siamo/chi-siamo-qualita.jpg');
 }
 #chi-siamo-img-filosofia {
-    background-image: url('../assets/pagine/chi-siamo/chi-siamo-filosofia.jpg');
+    background-image: url('../assets/pagine/chi-siamo/chi-siamo-filosofia.png');
 }
 
 .chi-siamo-ic {
