@@ -9,6 +9,7 @@ include_once 'template/components/loadComponents.php';
 $_SESSION['redirect']= "carrello.php";
 
 require 'script/PHP/checkUserLogin.php';
+include_once 'script/PHP/checkForm.php';
 require 'script/PHP/gestioneCarrello.php';
 
 $template = file_get_contents('template/pageTemplate/carrelloTemplate.html');
@@ -59,7 +60,8 @@ if(date("l") != 'Monday'){
         if($connessioneOK){
             $succ = "";
             if(isset($_POST['note'])){
-                $succ = $connessione->insertOrder($_POST['ora'],$_POST['note']);
+                $note = pulisciDescrizione($_POST['note']);
+                $succ = $connessione->insertOrder($_POST['ora'],$note);
             }else{
                 $succ = $connessione->insertOrder($_POST['ora']);
             }

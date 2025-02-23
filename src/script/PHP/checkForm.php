@@ -13,7 +13,7 @@ function pulisciInput($value) {
 
 function pulisciDescrizione($value){
     $value = trim($value);
-    $value = htmlentities($value);
+    $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     return $value;
 }
 
