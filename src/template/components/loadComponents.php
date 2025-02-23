@@ -12,10 +12,13 @@ function printHeader()
     $areaRis = "";
     $nome = "";
     $navHelp = "";
+    $logo = "";
 
     if($currentpage == 'index.php') {
+        $logo = "<img src=\"assets/logo/logo.png\" alt=\"\" />";
         $home = "<li id=\"currentLink\" lang=\"en\">Home</li>";
     }else{
+        $logo = "<a href=\"index.php\"><img src=\"assets/logo/logo.png\" alt=\"\" /></a>";
         $home = "<li><a href=\"index.php\"><span lang=\"en\">Home</span></a></li>";
         $home .= "<li class=\"menuMobile-version\"><a href=\"index.php\"><img src=\"assets/icons/home.png\" alt=\"Home\" /></a></li>";
     }
@@ -90,6 +93,7 @@ function printHeader()
     } else {
         $headerHtml = str_replace('[menuPrenota-page]', "", $headerHtml);
     }
+    $headerHtml = str_replace('[logo]', $logo, $headerHtml);
     $headerHtml = str_replace('[homePlaceholder]', $home, $headerHtml);
     $headerHtml = str_replace('[chiSiamoPlaceholder]', $chisiamo, $headerHtml);
     $headerHtml = str_replace('[menuOrdiniPlaceholder]', $menu, $headerHtml);
