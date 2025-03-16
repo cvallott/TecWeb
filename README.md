@@ -4,9 +4,9 @@
 ### Progetto "Non Solo Pizza - Pizzeria Scandolara"
 
 Realizzato da:
-- [@cvallot](https://github.com/cvallott)
-- [francescopozzobon](https://github.com/francescopozzobon)
-- [saraferraro18](https://github.com/saraferraro18)
-- [andreasanti03](https://github.com/andreasanti03)
+- [Caterina Vallotto](https://github.com/cvallott)
+- [Francesco Pozzobon](https://github.com/francescopozzobon)
+- [Sara Ferraro](https://github.com/saraferraro18)
+- [Andrea Santi](https://github.com/andreasanti03)
 
 [Relazione e Specifiche.pdf](https://github.com/cvallott/TecWeb/blob/main/docs/Relazione-tecweb.pdf)
