@@ -1,9 +1,12 @@
 # TecWeb
 
-TECNOLOGIE WEB - Corso di Laurea in Informatica - Unipd
+## Università degli Studi di Padova - Corso di Tecnologie Web A.A. 2024/25
+### Progetto "Non Solo Pizza - Pizzeria Scandolara"
 
-## reminder per server TecWeb
---> cambiare parametri connessione al DB  
---> verificare path css ed immagini  
---> verificare link pagine di errore  
---> verificare link logout  
+Realizzato da:
+- [@cvallot](https://github.com/cvallott)
+- [francescopozzobon](https://github.com/francescopozzobon)
+- [saraferraro18](https://github.com/saraferraro18)
+- [andreasanti03](https://github.com/andreasanti03)
+
+[Relazione e Specifiche.pdf](https://github.com/cvallott/TecWeb/blob/main/docs/Relazione-tecweb.pdf)
